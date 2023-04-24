@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.domain.comunidades;
 
 import ar.edu.utn.frba.dds.domain.servicios.Servicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Estacion;
+import java.util.Arrays;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +15,9 @@ public class Comunidad {
   private String nombre;
 
   /**
-   * @param estacion: Estacion a modificar
+   * @param estacion:      Estacion a modificar
    * @param administrador: Administrador que realiza la modifiación
-   * @param servicio: Servicio a agregar
+   * @param servicio:      Servicio a agregar
    */
   public void ingresarServicio(Estacion estacion, Usuario administrador, Servicio servicio) {
     if (this.administradores.contains(administrador)) {
@@ -24,4 +25,18 @@ public class Comunidad {
     }
   }
 
+  public void quitarServicio(Estacion estacion, Usuario administrador, Servicio servicio) {
+    if (this.administradores.contains(administrador)) {
+      estacion.darDeBajaServicio(servicio);
+    }
+  }
+
+  public void agregarUsuarios(Usuario... usuarios) {
+    this.miembros.addAll(Arrays.asList(usuarios));
+  }
+
+  public void agregarAdministradores(Usuario... administradores) {
+    this.administradores.addAll(Arrays.asList(administradores));
+
+  }
 }
