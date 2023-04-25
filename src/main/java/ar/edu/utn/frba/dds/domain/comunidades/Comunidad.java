@@ -37,6 +37,5 @@ public class Comunidad {
 
   public void agregarAdministradores(Usuario... administradores) {
     this.administradores.addAll(Arrays.asList(administradores));
-
   }
 }

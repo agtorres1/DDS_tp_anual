@@ -12,7 +12,6 @@ public class Usuario {
   public Boolean esValida(String clave) {
     return true;
   }
-
   public Usuario(String usuario, String clave) {
     this.usuario = usuario;
     this.clave = clave;
