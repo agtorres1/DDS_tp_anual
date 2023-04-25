@@ -4,9 +4,9 @@ package ar.edu.utn.frba.dds.domain.servicios;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Setter @Getter
 public class Banio extends Servicio {
-  String genero;
-  Boolean discapacitado;
+  private Genero genero;
+  private Boolean discapacitado;
+
 }

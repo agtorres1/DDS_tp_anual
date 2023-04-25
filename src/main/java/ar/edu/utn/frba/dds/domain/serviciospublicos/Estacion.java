@@ -7,8 +7,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Setter @Getter
 public class Estacion {
   String nombre;
   Ubicacion centroide;
