@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.domain.serviciospublicos;
 
 import ar.edu.utn.frba.dds.domain.servicios.Servicio;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
@@ -12,6 +13,11 @@ public class Estacion {
   String nombre;
   Ubicacion centroide;
   List<Servicio> servicios;
+
+
+  public Estacion() {
+    this.servicios = new ArrayList<>();
+  }
 
   public Boolean algunServicioNoPrestado() {
     for (Servicio servicio : this.servicios) {
