@@ -1,6 +1,8 @@
 package ar.edu.utn.frba.dds.domain.serviciospublicos;
 
 import ar.edu.utn.frba.dds.domain.servicios.Servicio;
+
+import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,14 +23,14 @@ public class Estacion {
     return true;
   }
 
-  public void agregarServicio(Servicio ... servicio) {
-    this.servicios.addAll(List.of(servicio));
+  public void agregarServicios(Servicio ... servicio) {
+    Collections.addAll(this.servicios,servicio);
   }
 
   /**
    * param servicio: Lista de servicios
    */
-  public void darDeBajaServicio(Servicio ... servicio) {
+  public void darDeBajaServicios(Servicio ... servicio) {
     for (Servicio value : servicio) {
       this.servicios.remove(value);
     }

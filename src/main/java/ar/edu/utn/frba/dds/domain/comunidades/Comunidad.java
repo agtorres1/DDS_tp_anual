@@ -21,13 +21,13 @@ public class Comunidad {
    */
   public void ingresarServicio(Estacion estacion, Usuario administrador, Servicio servicio) {
     if (this.administradores.contains(administrador)) {
-      estacion.agregarServicio(servicio);
+      estacion.agregarServicios(servicio);
     }
   }
 
   public void quitarServicio(Estacion estacion, Usuario administrador, Servicio servicio) {
     if (this.administradores.contains(administrador)) {
-      estacion.darDeBajaServicio(servicio);
+      estacion.darDeBajaServicios(servicio);
     }
   }
 
