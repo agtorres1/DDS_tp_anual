@@ -1,6 +1,22 @@
-# java-base-project
+# Trabajo Practico Anual Grupo 4
 
-Esta es una plantilla de proyecto diseñada para: 
+## Proxima entrega
+
+La proxima entrega es el 26 de abril, para esta se debe tener completado:
+
+- [ ] Las clases de los servicios públicos.
+- [ ] Idem de los servicios.
+- [ ] Idem de las prestaciones de servicios.
+- [ ] Idem de las comunidades y miembros.
+- [ ] La administración de cada uno de los anteriores (Alta, baja, y modificación).
+- [ ] El registro de usuarios.
+- [ ] La verificación de contraseñas.
+
+### Entregables
+
+- [ ] Modelo de casos de uso de las funcionalidades 
+
+## Info de utilidad
 
 * Java 17. :warning: Si bien el proyecto no lo limita explícitamente, el comando `mvn verify` no funcionará con versiones más antiguas de Java. 
 * JUnit 5. :warning: La versión 5 de JUnit es la más nueva del framework y presenta algunas diferencias respecto a la versión "clásica" (JUnit 4). Para mayores detalles, ver: 
@@ -9,13 +25,15 @@ Esta es una plantilla de proyecto diseñada para:
   *  [Entrada de Blog (en español)](https://www.paradigmadigital.com/dev/nos-espera-junit-5/)
 * Maven 3.8.1 o superior
 
-## Ejecutar tests
+## Comandos utiles
+
+Ejecutar tests: 
 
 ```
 mvn test
 ```
 
-## Validar el proyecto de forma exahustiva
+Validar el proyecto de forma exahustiva:
 
 ```
 mvn clean verify
@@ -77,3 +95,5 @@ mvn clean verify && git tag entrega-final && git push origin HEAD --tags
 3. Configurarlo activando los Checks de Google y la versión de Checkstyle `== 8.35`:
 
 ![image](https://user-images.githubusercontent.com/39303639/228126437-3d2f0137-3180-4221-a789-a057d920ae4e.png)
+
+Por favor eliminar cuando todos lo hayan configurado.
