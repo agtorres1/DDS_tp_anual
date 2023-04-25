@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
+import ar.edu.utn.frba.dds.domain.excepciones.NoEsAdministradorExcepcion;
 import ar.edu.utn.frba.dds.domain.servicios.Servicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Estacion;
 import java.util.Arrays;
@@ -19,16 +20,18 @@ public class Comunidad {
    * @param administrador: Administrador que realiza la modifiación
    * @param servicio:      Servicio a agregar
    */
-  public void ingresarServicio(Estacion estacion, Usuario administrador, Servicio servicio) {
-    if (this.administradores.contains(administrador)) {
-      estacion.agregarServicio(servicio);
+  public void ingresarServicio(Estacion estacion, Usuario administrador, Servicio servicio) throws NoEsAdministradorExcepcion{
+    if (!this.administradores.contains(administrador)) {
+      throw new NoEsAdministradorExcepcion();
     }
+    estacion.agregarServicios(servicio);
   }
 
-  public void quitarServicio(Estacion estacion, Usuario administrador, Servicio servicio) {
-    if (this.administradores.contains(administrador)) {
-      estacion.darDeBajaServicio(servicio);
+  public void quitarServicio(Estacion estacion, Usuario administrador, Servicio servicio) throws NoEsAdministradorExcepcion{
+    if (!this.administradores.contains(administrador)) {
+      throw new NoEsAdministradorExcepcion();
     }
+    estacion.darDeBajaServicios(servicio);
   }
 
   public void agregarUsuarios(Usuario... usuarios) {
@@ -37,6 +40,11 @@ public class Comunidad {
 
   public void agregarAdministradores(Usuario... administradores) {
     this.administradores.addAll(Arrays.asList(administradores));
+  }
 
+  public void removerUsuarios(Usuario... usuarios) {
+    for (Usuario value : usuarios) {
+      this.miembros.remove(value);
+    }
   }
 }
