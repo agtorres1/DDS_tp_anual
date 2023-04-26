@@ -63,4 +63,9 @@ public class Comunidad{
       this.miembros.remove(value);
     }
   }
+  public void removerAdministradores(Usuario... administradores) {
+      for (Usuario value : administradores){
+        this.administradores.remove(value);
+      }
+    }
 }
