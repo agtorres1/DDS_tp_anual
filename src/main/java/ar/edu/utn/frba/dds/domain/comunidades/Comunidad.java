@@ -8,9 +8,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class Comunidad {
+@Getter @Setter
+public class Comunidad{
   private List<Usuario> administradores;
   private List<Usuario> miembros;
   private String nombre;

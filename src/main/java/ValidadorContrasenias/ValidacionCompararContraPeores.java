@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class ValidacionCompararContraPeores implements Validable{
-    public ValidacionCompararContraPeores() {
+    public ValidacionCompararContraPeores(){
     }
 
     @Override

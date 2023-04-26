@@ -14,6 +14,8 @@ public class EstacionTest {
     private Ubicacion ubicacion;
     @BeforeEach
     public void init(){
+
+
         this.ubicacion = new Ubicacion();
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);

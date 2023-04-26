@@ -4,8 +4,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Setter @Getter
 public class Linea {
   String nombre;
   Estacion origen;

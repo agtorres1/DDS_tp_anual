@@ -1,15 +1,16 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
+import ValidadorContrasenias.Validable;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class Usuario {
+public class Usuario{
   private String usuario;
   private String clave;
 
-  public Boolean esValida(String clave) {
+  public boolean esValida(String clave){
     return true;
   }
   public Usuario(String usuario, String clave) {
