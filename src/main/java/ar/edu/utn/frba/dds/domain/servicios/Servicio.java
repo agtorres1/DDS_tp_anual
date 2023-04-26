@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 public class Servicio {
   private Boolean funciona;
-  private String nombre;
 
   public void cambiarPrestacion(Boolean funciona) {
     this.funciona = funciona;

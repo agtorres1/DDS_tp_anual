@@ -43,4 +43,10 @@ public class Estacion {
       this.servicios.remove(value);
     }
   }
+
+  public void cambiarPrestacionDeServicios(Boolean funciona, Servicio ... servicio) {
+    for (Servicio value : servicio) {
+      value.setFunciona(funciona);
+    }
+  }
 }
