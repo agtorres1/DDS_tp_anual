@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
 import ValidadorContrasenias.Validable;
+import ValidadorContrasenias.ValidadorDeContrasenias;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,10 +23,11 @@ public class Usuario{
    * @param clave: Contraseña
    * @return Nuevo Usuario
    */
-  public Usuario registrarse(String usuario, String clave) {
-    if (this.esValida(clave)) {
+  public Usuario registrarse(String usuario, String clave, ValidadorDeContrasenias validador) {
+    if (validador.esValida(clave)){
       return new Usuario(this.clave = clave, this.usuario = usuario);
-    } else {
+    }
+    else {
       return null;
     }
   }
