@@ -19,6 +19,9 @@ public class Estacion {
     this.servicios = new ArrayList<>();
   }
 
+  /*
+    Ejemplo posible de funcion a utilizar en el futuro
+  */
   public Boolean algunServicioNoPrestado() {
     for (Servicio servicio : this.servicios) {
       if (!servicio.getFunciona()) {
