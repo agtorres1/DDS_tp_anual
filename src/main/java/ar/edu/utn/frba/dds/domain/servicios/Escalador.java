@@ -3,8 +3,7 @@ package ar.edu.utn.frba.dds.domain.servicios;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Setter @Getter
 public class Escalador extends Servicio {
   private TipoTraslado origen;
   private TipoTraslado destino;

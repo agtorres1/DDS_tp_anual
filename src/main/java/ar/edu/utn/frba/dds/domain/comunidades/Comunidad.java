@@ -4,6 +4,8 @@ import ar.edu.utn.frba.dds.domain.excepciones.NoEsAdministradorExcepcion;
 import ar.edu.utn.frba.dds.domain.servicios.Servicio;
 import ar.edu.utn.frba.dds.domain.servicios.ServicioComunitario;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Estacion;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lombok.Getter;
@@ -14,6 +16,12 @@ public class Comunidad{
   private List<Usuario> administradores;
   private List<Usuario> miembros;
   private String nombre;
+
+  public Comunidad(String nombre) {
+    this.nombre = nombre;
+    this.administradores = new ArrayList<>();
+    this.miembros = new ArrayList<>();
+  }
 
   /**
    * @param estacion:      Estacion a modificar
@@ -44,7 +52,7 @@ public class Comunidad{
     estacion.agregarServicios(servicio);
   }
 
-  private void verificarQueEsAdministrador(Usuario administrador) throws NoEsAdministradorExcepcion{
+  public void verificarQueEsAdministrador(Usuario administrador) throws NoEsAdministradorExcepcion{
     if (!this.administradores.contains(administrador)) {
       throw new NoEsAdministradorExcepcion();
     }
