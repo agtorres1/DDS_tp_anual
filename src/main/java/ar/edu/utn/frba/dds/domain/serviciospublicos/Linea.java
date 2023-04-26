@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Setter @Getter
 public class Linea {
-  String nombre;
+  Character nombre;
   Estacion origen;
   Estacion destino;
   List<Estacion> estaciones;
