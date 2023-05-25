@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.domain.comunidades.Comunidad;
-import ar.edu.utn.frba.dds.domain.comunidades.Usuario;
+import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.excepciones.NoEsAdministradorExcepcion;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Estacion;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Ubicacion;
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 
 public class ComunidadTest {
     private Comunidad comunidad;
-    private Usuario cualquiera;
-    private Usuario administrador;
+    private Miembro cualquiera;
+    private Miembro administrador;
     private Estacion estacion;
     private Ubicacion ubicacion;
     @BeforeEach
@@ -25,8 +25,8 @@ public class ComunidadTest {
         this.estacion.setNombre("Flores");
         this.estacion.setCentroide(ubicacion);
 
-        this.cualquiera = new Usuario("thompson","soyHacker");
-        this.administrador = new Usuario("adminResponsable","puedoAgregarServicios");
+        this.cualquiera = new Miembro("thompson","soyHacker");
+        this.administrador = new Miembro("adminResponsable","puedoAgregarServicios");
 
         this.comunidad = new Comunidad("ComunidadMuySegura");
     }

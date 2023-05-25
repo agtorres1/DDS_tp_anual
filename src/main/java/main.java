@@ -1,4 +1,4 @@
-import ValidadorContrasenias.ValidadorDeContrasenias;
+import ar.edu.utn.frba.dds.domain.ValidadorContrasenias.ValidadorDeContrasenias;
 
 public class main {
   public static void main(String[] args) {

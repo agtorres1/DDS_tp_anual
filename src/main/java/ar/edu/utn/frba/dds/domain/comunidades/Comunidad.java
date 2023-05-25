@@ -13,8 +13,8 @@ import lombok.Setter;
 
 @Getter @Setter
 public class Comunidad{
-  private List<Usuario> administradores;
-  private List<Usuario> miembros;
+  private List<Miembro> administradores;
+  private List<Miembro> miembros;
   private String nombre;
 
   public Comunidad(String nombre) {
@@ -28,22 +28,22 @@ public class Comunidad{
    * @param administrador: Administrador que realiza la modifiación
    * @param servicio:      Servicio a agregar
    */
-  public void ingresarServicioExistente(Estacion estacion, Usuario administrador, Servicio servicio) throws NoEsAdministradorExcepcion{
+  public void ingresarServicioExistente(Estacion estacion, Miembro administrador, Servicio servicio) throws NoEsAdministradorExcepcion{
     this.verificarQueEsAdministrador(administrador);
     estacion.agregarServicios(servicio);
   }
 
-  public void quitarServicio(Estacion estacion, Usuario administrador, Servicio servicio) throws NoEsAdministradorExcepcion{
+  public void quitarServicio(Estacion estacion, Miembro administrador, Servicio servicio) throws NoEsAdministradorExcepcion{
     this.verificarQueEsAdministrador(administrador);
     estacion.darDeBajaServicios(servicio);
   }
 
-  public void cambiarPrestacionDeServicio(Estacion estacion, Usuario administrador, Servicio servicio, Boolean funciona) throws NoEsAdministradorExcepcion{
+  public void cambiarPrestacionDeServicio(Estacion estacion, Miembro administrador, Servicio servicio, Boolean funciona) throws NoEsAdministradorExcepcion{
     this.verificarQueEsAdministrador(administrador);
     estacion.cambiarPrestacionDeServicios(funciona, servicio);
   }
 
-  public void ingresarServicioNuevo(Estacion estacion, Usuario administrador, String nombre, String descripcion) throws NoEsAdministradorExcepcion {
+  public void ingresarServicioNuevo(Estacion estacion, Miembro administrador, String nombre, String descripcion) throws NoEsAdministradorExcepcion {
     this.verificarQueEsAdministrador(administrador);
     ServicioComunitario servicio = new ServicioComunitario();
     servicio.setNombre(nombre);
@@ -52,27 +52,27 @@ public class Comunidad{
     estacion.agregarServicios(servicio);
   }
 
-  public void verificarQueEsAdministrador(Usuario administrador) throws NoEsAdministradorExcepcion{
+  public void verificarQueEsAdministrador(Miembro administrador) throws NoEsAdministradorExcepcion{
     if (!this.administradores.contains(administrador)) {
       throw new NoEsAdministradorExcepcion();
     }
   }
 
-  public void agregarUsuarios(Usuario... usuarios) {
-    this.miembros.addAll(Arrays.asList(usuarios));
+  public void agregarUsuarios(Miembro... miembros) {
+    this.miembros.addAll(Arrays.asList(miembros));
   }
 
-  public void agregarAdministradores(Usuario... administradores) {
+  public void agregarAdministradores(Miembro... administradores) {
     this.administradores.addAll(Arrays.asList(administradores));
   }
 
-  public void removerUsuarios(Usuario... usuarios) {
-    for (Usuario value : usuarios) {
+  public void removerUsuarios(Miembro... miembros) {
+    for (Miembro value : miembros) {
       this.miembros.remove(value);
     }
   }
-  public void removerAdministradores(Usuario... administradores) {
-      for (Usuario value : administradores){
+  public void removerAdministradores(Miembro... administradores) {
+      for (Miembro value : administradores){
         this.administradores.remove(value);
       }
     }

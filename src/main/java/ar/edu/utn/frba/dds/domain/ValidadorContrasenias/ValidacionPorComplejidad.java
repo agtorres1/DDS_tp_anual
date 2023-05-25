@@ -1,4 +1,4 @@
-package ValidadorContrasenias;
+package ar.edu.utn.frba.dds.domain.ValidadorContrasenias;
 
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLowerCase;
