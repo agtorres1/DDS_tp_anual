@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds.domain.serviciospublicos;
 
 public enum TipoEntidad {
-    TRANSPORTE,
+    LINEA_TRASPORTE,
     SUPERMERCADO,
     BANCO
 }

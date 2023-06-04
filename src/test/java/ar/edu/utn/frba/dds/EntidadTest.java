@@ -45,7 +45,7 @@ public class EntidadTest {
     @DisplayName("Instanciar una linea sin agregar origen y destino a la lista de estaciones")
     public void instanciarLineaSinAgregarEnLista(){
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                this.entidad = new Entidad(this.establecimientos,this.origen,this.destino,TipoEntidad.TRANSPORTE));
+                this.entidad = new Entidad());
     }
 
     @Test
@@ -54,7 +54,8 @@ public class EntidadTest {
         Assertions.assertDoesNotThrow(()->{
             this.establecimientos.add(origen);
             this.establecimientos.add(destino);
-            this.entidad = new Entidad(this.establecimientos,this.origen,this.destino,TipoEntidad.TRANSPORTE);
+            this.entidad = new Entidad();
+            this.serviciopublico = new Serviciopublico();
         });
     }
 }
