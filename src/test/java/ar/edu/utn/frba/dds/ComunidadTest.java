@@ -3,7 +3,7 @@ package ar.edu.utn.frba.dds;
 import ar.edu.utn.frba.dds.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.excepciones.NoEsAdministradorExcepcion;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Estacion;
+import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Ubicacion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +13,7 @@ public class ComunidadTest {
     private Comunidad comunidad;
     private Miembro cualquiera;
     private Miembro administrador;
-    private Estacion estacion;
+    private Establecimiento establecimiento;
     private Ubicacion ubicacion;
     @BeforeEach
     public void init() {
@@ -21,9 +21,9 @@ public class ComunidadTest {
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);
 
-        this.estacion = new Estacion();
-        this.estacion.setNombre("Flores");
-        this.estacion.setCentroide(ubicacion);
+        this.establecimiento = new Establecimiento();
+        this.establecimiento.setNombre("Flores");
+        this.establecimiento.setCentroide(ubicacion);
 
         this.cualquiera = new Miembro("thompson","soyHacker");
         this.administrador = new Miembro("adminResponsable","puedoAgregarServicios");
@@ -35,7 +35,7 @@ public class ComunidadTest {
     @DisplayName("Agregar un servicio nuevo en una estación sin ser administrador de la comunidad")
     public void agregarServicioSinSerAdmin(){
         try {
-            this.comunidad.ingresarServicioNuevo(this.estacion, this.cualquiera,"servicio","muyInclusivo");
+            this.comunidad.ingresarServicioNuevo(this.establecimiento, this.cualquiera,"servicio","muyInclusivo");
         } catch (NoEsAdministradorExcepcion e) {
             throw new RuntimeException(e);
         }
@@ -46,7 +46,7 @@ public class ComunidadTest {
     public void agregarServicioSiendoAdmin() throws NoEsAdministradorExcepcion {
         this.comunidad.agregarAdministradores(this.administrador);
         try {
-            this.comunidad.ingresarServicioNuevo(this.estacion,this.administrador,"servicioBueno","servicioMuyResponsable");
+            this.comunidad.ingresarServicioNuevo(this.establecimiento,this.administrador,"servicioBueno","servicioMuyResponsable");
         } catch (NoEsAdministradorExcepcion e) {
             throw new RuntimeException(e);
         }

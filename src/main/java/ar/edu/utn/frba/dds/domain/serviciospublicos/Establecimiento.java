@@ -9,13 +9,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Setter @Getter
-public class Estacion {
+public class Establecimiento {
   String nombre;
   Ubicacion centroide;
   List<Servicio> servicios;
 
 
-  public Estacion() {
+  public Establecimiento() {
     this.servicios = new ArrayList<>();
   }
 

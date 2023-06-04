@@ -11,4 +11,6 @@ public class Localizacion{
     private Provincia provincia;
     private Municipio municipio;
     private Departamento departamento;
+
+
 }

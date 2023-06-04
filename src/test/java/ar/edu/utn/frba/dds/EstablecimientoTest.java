@@ -1,14 +1,14 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.domain.servicios.*;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Estacion;
+import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Ubicacion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class EstacionTest {
-    private Estacion estacion;
+public class EstablecimientoTest {
+    private Establecimiento establecimiento;
     private Banio banio;
     private Escalador ascensor;
     private Ubicacion ubicacion;
@@ -20,9 +20,9 @@ public class EstacionTest {
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);
 
-        this.estacion = new Estacion();
-        this.estacion.setNombre("Flores");
-        this.estacion.setCentroide(ubicacion);
+        this.establecimiento = new Establecimiento();
+        this.establecimiento.setNombre("Flores");
+        this.establecimiento.setCentroide(ubicacion);
 
         this.banio = new Banio();
         this.banio.setFunciona(true);
@@ -38,7 +38,7 @@ public class EstacionTest {
     @Test
     @DisplayName("Agregamos dos servicios y damos de baja uno")
     public void EstacionAgregaDosServiciosYEliminaUno(){
-        estacion.agregarServicios(this.ascensor,this.banio);
-        estacion.darDeBajaServicios(this.ascensor);
+        establecimiento.agregarServicios(this.ascensor,this.banio);
+        establecimiento.darDeBajaServicios(this.ascensor);
     }
 }
