@@ -1,8 +1,7 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Ubicacion;
+import ar.edu.utn.frba.dds.domain.serviciospublicos.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,8 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntidadTest {
+    private Serviciopublico serviciopublico;
     private Entidad entidad;
-    private List<Establecimiento> estaciones;
+    private List<Establecimiento> establecimientos;
     private Establecimiento origen;
     private Establecimiento destino;
     private Ubicacion ubicacion1;
@@ -35,20 +35,26 @@ public class EntidadTest {
         this.destino.setNombre("Once");
         this.destino.setCentroide(ubicacion2);
 
-        this.estaciones = new ArrayList<>();
+        this.establecimientos = new ArrayList<>();
+
+        this.serviciopublico = new Serviciopublico();
+
     }
 
     @Test
     @DisplayName("Instanciar una linea sin agregar origen y destino a la lista de estaciones")
     public void instanciarLineaSinAgregarEnLista(){
-        this.entidad = new Entidad(this.estaciones,this.origen,this.destino);
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                this.entidad = new Entidad(this.establecimientos,this.origen,this.destino,TipoEntidad.TRANSPORTE));
     }
 
     @Test
     @DisplayName("Instanciar una linea agregando origen y destino a la lista de estaciones")
     public void instanciarLineaAgregandoEnLista(){
-        this.estaciones.add(origen);
-        this.estaciones.add(destino);
-        this.entidad = new Entidad(this.estaciones,this.origen,this.destino);
+        Assertions.assertDoesNotThrow(()->{
+            this.establecimientos.add(origen);
+            this.establecimientos.add(destino);
+            this.entidad = new Entidad(this.establecimientos,this.origen,this.destino,TipoEntidad.TRANSPORTE);
+        });
     }
 }

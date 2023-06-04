@@ -6,6 +6,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Serviciopublico {
-  Transporte transporte;
+  TipoEntidad tipoEntidad;
   Entidad entidad;
 }
