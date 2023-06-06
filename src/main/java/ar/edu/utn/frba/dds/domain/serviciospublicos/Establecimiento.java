@@ -13,9 +13,11 @@ public class Establecimiento {
   String nombre;
   Ubicacion centroide;
   List<Servicio> servicios;
+  TipoEstablecimiento tipoEstablecimiento;
 
 
-  public Establecimiento() {
+  public Establecimiento(TipoEstablecimiento tipoEstablecimiento) {
+    this.tipoEstablecimiento = tipoEstablecimiento;
     this.servicios = new ArrayList<>();
   }
 

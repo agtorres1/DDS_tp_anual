@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.domain.servicios.*;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
+import ar.edu.utn.frba.dds.domain.serviciospublicos.TipoEstablecimiento;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Ubicacion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,7 @@ public class EstablecimientoTest {
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);
 
-        this.establecimiento = new Establecimiento();
+        this.establecimiento = new Establecimiento(TipoEstablecimiento.ESTACION);
         this.establecimiento.setNombre("Flores");
         this.establecimiento.setCentroide(ubicacion);
 
