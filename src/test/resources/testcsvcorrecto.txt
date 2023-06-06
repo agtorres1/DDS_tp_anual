@@ -1,0 +1,4 @@
+usuario,clave
+entidad1, entidad1
+entidad2, entidad2
+entidad3, entidad3

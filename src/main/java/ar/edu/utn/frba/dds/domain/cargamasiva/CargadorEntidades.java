@@ -13,6 +13,7 @@ public class CargadorEntidades {
         String linea;
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            br.readLine();
             while ((linea = br.readLine()) != null) {
                 String[] dato = linea.split(",");
                 String usuario = dato[0];
