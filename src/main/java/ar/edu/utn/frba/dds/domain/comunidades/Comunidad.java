@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
 import ar.edu.utn.frba.dds.domain.excepciones.NoEsAdministradorExcepcion;
+import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicios;
 import ar.edu.utn.frba.dds.domain.servicios.Servicio;
 import ar.edu.utn.frba.dds.domain.servicios.ServicioComunitario;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
@@ -23,33 +24,29 @@ public class Comunidad{
     this.miembros = new ArrayList<>();
   }
 
-  /**
-   * @param establecimiento:      Estacion a modificar
-   * @param administrador: Administrador que realiza la modifiación
-   * @param servicio:      Servicio a agregar
-   */
-  public void ingresarServicioExistente(Establecimiento establecimiento, Miembro administrador, Servicio servicio) throws NoEsAdministradorExcepcion{
+  public void ingresarServicioExistente(Establecimiento establecimiento, Miembro administrador, PrestacionDeServicios prestacionDeServicios) throws NoEsAdministradorExcepcion{
     this.verificarQueEsAdministrador(administrador);
-    establecimiento.agregarServicios(servicio);
+    establecimiento.agregarPrestaciones(prestacionDeServicios);
   }
 
-  public void quitarServicio(Establecimiento establecimiento, Miembro administrador, Servicio servicio) throws NoEsAdministradorExcepcion{
+  public void quitarServicio(Establecimiento establecimiento, Miembro administrador, PrestacionDeServicios prestacionDeServicios) throws NoEsAdministradorExcepcion{
     this.verificarQueEsAdministrador(administrador);
-    establecimiento.darDeBajaServicios(servicio);
+    establecimiento.darDeBajaPrestaciones(prestacionDeServicios);
   }
 
-  public void cambiarPrestacionDeServicio(Establecimiento establecimiento, Miembro administrador, Servicio servicio, Boolean funciona) throws NoEsAdministradorExcepcion{
+  public void cambiarPrestacionDeServicio(Establecimiento establecimiento, Miembro administrador, PrestacionDeServicios prestacionDeServicios, Boolean funciona) throws NoEsAdministradorExcepcion{
     this.verificarQueEsAdministrador(administrador);
-    establecimiento.cambiarPrestacionDeServicios(funciona, servicio);
+    establecimiento.cambiarPrestacionDeServicio(funciona, prestacionDeServicios);
   }
 
-  public void ingresarServicioNuevo(Establecimiento establecimiento, Miembro administrador, String nombre, String descripcion) throws NoEsAdministradorExcepcion {
+  public void ingresarServicioNuevo(Establecimiento establecimiento, Miembro administrador, String nombre, String descripcion, int cantidad) throws NoEsAdministradorExcepcion {
     this.verificarQueEsAdministrador(administrador);
     ServicioComunitario servicio = new ServicioComunitario();
     servicio.setNombre(nombre);
     servicio.setDescripcion(descripcion);
     servicio.setFunciona(false);
-    establecimiento.agregarServicios(servicio);
+    PrestacionDeServicios prestacionDeServicios = new PrestacionDeServicios(servicio,cantidad);
+    establecimiento.agregarPrestaciones(prestacionDeServicios);
   }
 
   public void verificarQueEsAdministrador(Miembro administrador) throws NoEsAdministradorExcepcion{

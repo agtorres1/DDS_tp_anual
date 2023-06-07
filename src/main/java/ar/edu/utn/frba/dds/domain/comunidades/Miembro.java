@@ -1,20 +1,38 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
 import ar.edu.utn.frba.dds.domain.ValidadorContrasenias.ValidadorDeContrasenias;
+import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.domain.servicios.Servicio;
+import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Setter @Getter
 public class Miembro {
   private String usuario;
   private String clave;
+  private List<Interes> intereses;
+  private Localizacion localizacion;
 
-  public boolean esValida(String clave){
-    return true;
-  }
-  public Miembro(String usuario, String clave) {
+  public Miembro(String usuario, String clave, Localizacion localizacion) {
     this.usuario = usuario;
     this.clave = clave;
+    List<Interes> intereses = new ArrayList<>();
+    this.localizacion = localizacion;
+  }
+
+  public void agregarInteres(Interes ... interes){
+    Collections.addAll(this.intereses,interes);
+  }
+
+  public void actualizarIntereses(){
+    for(Interes interes : this.intereses){
+      interes.actualizarInteres();
+    }
   }
 
   /**
@@ -22,12 +40,4 @@ public class Miembro {
    * @param clave: Contraseña
    * @return Nuevo Usuario
    */
-  public Miembro registrarse(String usuario, String clave, ValidadorDeContrasenias validador) {
-    if (validador.esValida(clave)){
-      return new Miembro(this.clave = clave, this.usuario = usuario);
-    }
-    else {
-      return null;
-    }
-  }
 }

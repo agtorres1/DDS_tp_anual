@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 public class EstablecimientoTest {
     private Establecimiento establecimiento;
     private Banio banio;
+    private PrestacionDeServicios prestacionBanio;
     private Escalador ascensor;
+    private PrestacionDeServicios prestacionAscensor;
     private Ubicacion ubicacion;
     @BeforeEach
     public void init(){
@@ -29,17 +31,19 @@ public class EstablecimientoTest {
         this.banio.setFunciona(true);
         this.banio.setGenero(Genero.HOMBRE);
         this.banio.setDiscapacitado(true);
+        this.prestacionBanio = new PrestacionDeServicios(this.banio,3);
 
         this.ascensor = new Escalador();
         this.ascensor.setFunciona(true);
         this.ascensor.setOrigen(TipoTraslado.CALLE);
         this.ascensor.setDestino(TipoTraslado.BARRERA);
+        this.prestacionAscensor = new PrestacionDeServicios(this.ascensor,2);
 
     }
     @Test
-    @DisplayName("Agregamos dos servicios y damos de baja uno")
-    public void EstacionAgregaDosServiciosYEliminaUno(){
-        establecimiento.agregarServicios(this.ascensor,this.banio);
-        establecimiento.darDeBajaServicios(this.ascensor);
+    @DisplayName("Agregamos dos prestaciones de servicios y damos de baja uno")
+    public void EstacionAgregaDosPrestacionesYEliminaUno(){
+        establecimiento.agregarPrestaciones(this.prestacionAscensor,this.prestacionBanio);
+        establecimiento.darDeBajaPrestaciones(this.prestacionAscensor);
     }
 }

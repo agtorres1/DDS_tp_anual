@@ -1,9 +1,6 @@
 package ar.edu.utn.frba.dds.domain.services_api.georef;
 
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.GeorefLlamadas;
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.ListadoDeDepartamentosDeProvincia;
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.ListadoDeMunicipiosDeProvincia;
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.ListadoDeProvincias;
+import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -52,6 +49,32 @@ public class ServicioGeoref {
         Response<ListadoDeDepartamentosDeProvincia> departamentosResponse = requestDepartamentos.execute(); //Ejecuta la solicitud
 
         return departamentosResponse.body(); //Me devuelve lo que responde
+    }
+
+    public Provincia buscarProvincia(String unaProvincia) throws IOException {
+        for(Provincia provincia : this.listadoDeProvincias().provincias){
+            if(provincia.nombre.equals(unaProvincia)){
+                return provincia;
+            }
+        }
+        return null;
+    }
+
+    public Municipio buscarMunicipio(String unMunicipio, int provincia, int max) throws IOException {
+        for(Municipio municipio : this.listadoDeMunicipios(provincia,max).municipios){
+            if(municipio.nombre.equals(unMunicipio)){
+                return municipio;
+            }
+        }
+        return null;
+    }
+    public Departamento buscarDepartamento(String unDepartamento, int provincia, int max) throws IOException {
+        for(Departamento departamento : this.listadoDeDepartamentos(provincia,max).departamentos){
+            if(departamento.nombre.equals(unDepartamento)){
+                return departamento;
+            }
+        }
+        return null;
     }
 
 }
