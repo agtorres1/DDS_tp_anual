@@ -23,15 +23,12 @@ public class ComunidadTest {
     private Establecimiento establecimiento;
     private Ubicacion ubicacion;
 
-    private Localizacion localizacion;
 
     @BeforeEach
     public void init() throws IOException {
         this.ubicacion = new Ubicacion();
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);
-
-        this.localizacion = new Localizacion(ServicioGeoref.getInstance(),"Buenos Aires");
 
         this.establecimiento = new Establecimiento(TipoEstablecimiento.ESTACION);
         this.establecimiento.setNombre("Flores");

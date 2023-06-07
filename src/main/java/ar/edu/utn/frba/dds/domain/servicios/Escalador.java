@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Setter @Getter
-public class Escalador extends Servicio {
+public class Escalador implements Servicio {
   private TipoTraslado origen;
   private TipoTraslado destino;
   private TipoEscalador tipoEscalador;

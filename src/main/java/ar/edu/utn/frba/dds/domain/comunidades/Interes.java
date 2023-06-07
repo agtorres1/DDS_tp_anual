@@ -1,32 +1,45 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
-import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicios;
-import ar.edu.utn.frba.dds.domain.servicios.Servicio;
+import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import lombok.Getter;
 
+import java.io.IOException;
 import java.util.*;
 
 @Getter
 public class Interes {
     private Entidad entidad;
-    private Set<PrestacionDeServicios> prestacionesDeInteres;
+    private Set<PrestacionDeServicio> prestacionesDeInteres;
 
     public Interes(Entidad entidad){
         this.entidad = entidad;
-        this.prestacionesDeInteres = new HashSet<PrestacionDeServicios>();
+        this.prestacionesDeInteres = new HashSet<PrestacionDeServicio>();
     }
 
+    public Boolean tieneLocalizacionEspecifica(Localizacion localizacion){
+        return localizacion.getMunicipio() != null || localizacion.getDepartamento() != null;
+    }
+    public Boolean tieneLocalizacionValida(Localizacion localizacion) throws IOException {
+        if(tieneLocalizacionEspecifica(localizacion)){
+            return localizacion.getServicioGeoref().buscarMunicipio(localizacion.getMunicipio().nombre,this.entidad
+                    .getLocalizacion().getProvincia().id,localizacion.getMaxMunicipios()) != null
+                    ||
+                    localizacion.getServicioGeoref().buscarDepartamento(localizacion.getDepartamento().nombre,this.entidad
+                            .getLocalizacion().getProvincia().id,localizacion.getMaxDepartamentos()) != null;
+        }
+        return localizacion.getProvincia().equals(this.entidad.getLocalizacion().getProvincia());
+    }
 
-    public void actualizarInteres(Localizacion localizacion){
+    public void actualizarInteres(Localizacion localizacion) throws IOException {
         this.prestacionesDeInteres.clear();
-        if(Objects.equals(localizacion.getProvincia(), this.entidad.getLocalizacion().getProvincia())){
+        if(tieneLocalizacionValida(localizacion)){
             for(Establecimiento establecimiento : this.entidad.getEstablecimientos()){
-                for(PrestacionDeServicios prestacionDeServicios : establecimiento.getPrestacionesDeServicios()){
-                    if(!prestacionDeServicios.getServicio().getFunciona()){
-                        this.prestacionesDeInteres.add(prestacionDeServicios);
+                for(PrestacionDeServicio prestacionDeServicio : establecimiento.getPrestacionesDeServicios()){
+                    if(!prestacionDeServicio.getFunciona()){
+                        this.prestacionesDeInteres.add(prestacionDeServicio);
                     }
                 }
             }

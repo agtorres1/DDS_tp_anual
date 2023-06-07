@@ -8,6 +8,7 @@ import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Miembro {
     }
   }
 
-  public void actualizarIntereses(){
+  public void actualizarIntereses() throws IOException {
     for(Interes interes : this.intereses){
       interes.actualizarInteres(this.localizacion);
     }

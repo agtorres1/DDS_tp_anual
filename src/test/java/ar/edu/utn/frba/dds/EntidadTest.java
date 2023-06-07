@@ -3,7 +3,6 @@ package ar.edu.utn.frba.dds;
 import ar.edu.utn.frba.dds.domain.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.services_api.georef.ServicioGeoref;
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.Provincia;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

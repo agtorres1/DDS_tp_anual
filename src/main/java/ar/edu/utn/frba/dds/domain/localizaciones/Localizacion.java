@@ -4,10 +4,9 @@ import ar.edu.utn.frba.dds.domain.comunidades.Interes;
 import ar.edu.utn.frba.dds.domain.services_api.georef.ServicioGeoref;
 import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.io.IOException;
-import java.util.List;
+
 @Getter
 public class Localizacion{
     private Provincia provincia;
@@ -25,6 +24,12 @@ public class Localizacion{
         this.provincia = this.servicioGeoref.buscarProvincia(provincia);
     }
 
+    public void setProvincia(String provincia) throws IOException {
+        if(this.servicioGeoref.buscarProvincia(provincia) == null){
+            throw new IllegalArgumentException("No es un municipio del listado requerido");
+        }
+        this.provincia = this.servicioGeoref.buscarProvincia(provincia);
+    }
     public void setMunicipio(String municipio) throws IOException {
         if(this.servicioGeoref.buscarMunicipio(municipio,this.provincia.id,this.maxMunicipios) == null){
             throw new IllegalArgumentException("No es un municipio del listado requerido");
@@ -39,4 +44,11 @@ public class Localizacion{
         this.departamento = this.servicioGeoref.buscarDepartamento(departamento,this.provincia.id,this.maxDepartamentos);
     }
 
+    public Integer getMaxMunicipios(){
+        return this.maxMunicipios;
+    }
+
+    public Integer getMaxDepartamentos(){
+        return this.maxDepartamentos;
+    }
 }
