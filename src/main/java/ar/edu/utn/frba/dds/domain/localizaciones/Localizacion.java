@@ -2,10 +2,7 @@ package ar.edu.utn.frba.dds.domain.localizaciones;
 
 import ar.edu.utn.frba.dds.domain.comunidades.Interes;
 import ar.edu.utn.frba.dds.domain.services_api.georef.ServicioGeoref;
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.Departamento;
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.ListadoDeProvincias;
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.Municipio;
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.Provincia;
+import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,6 +38,5 @@ public class Localizacion{
         }
         this.departamento = this.servicioGeoref.buscarDepartamento(departamento,this.provincia.id,this.maxDepartamentos);
     }
-
 
 }

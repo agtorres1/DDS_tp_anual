@@ -37,8 +37,8 @@ public class ComunidadTest {
         this.establecimiento.setNombre("Flores");
         this.establecimiento.setCentroide(ubicacion);
 
-        this.cualquiera = new Miembro("thompson","soyHacker",this.localizacion);
-        this.administrador = new Miembro("adminResponsable","puedoAgregarServicios",this.localizacion);
+        this.cualquiera = new Miembro("thompson","soyHacker");
+        this.administrador = new Miembro("adminResponsable","puedoAgregarServicios");
 
         this.comunidad = new Comunidad("ComunidadMuySegura");
     }
