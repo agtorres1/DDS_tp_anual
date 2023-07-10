@@ -2,7 +2,6 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.domain.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
-import ar.edu.utn.frba.dds.domain.services_api.georef.ServicioGeoref;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +36,7 @@ public class EntidadTest {
         this.destino.setNombre("Once");
         this.destino.setCentroide(ubicacion2);
 
-        this.localizacion = new Localizacion(ServicioGeoref.getInstance(),"Chaco");
+        this.localizacion = new Localizacion("Chaco");
     }
 
     @Test
@@ -45,7 +44,7 @@ public class EntidadTest {
     public void instanciarLineaSinAgregarEnLista() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             this.entidad = new Entidad(TipoEntidad.LINEA_TRANSPORTE,TipoEstablecimiento.ESTACION,this.localizacion);
-            this.serviciopublico = new Serviciopublico(entidad,CategoriaPosible.SUBTERRANEO);
+            this.serviciopublico = new Serviciopublico(entidad, ServicioPublicoPosible.SUBTERRANEO);
         });
     }
 
@@ -55,7 +54,7 @@ public class EntidadTest {
         Assertions.assertDoesNotThrow(()->{
             this.entidad = new Entidad(TipoEntidad.LINEA_TRANSPORTE,TipoEstablecimiento.ESTACION,this.localizacion);
             this.entidad.agregarEstablecimientos(this.origen,this.destino);
-            this.serviciopublico = new Serviciopublico(entidad,CategoriaPosible.FERROCARRIL);
+            this.serviciopublico = new Serviciopublico(entidad, ServicioPublicoPosible.FERROCARRIL);
         });
     }
 
@@ -65,7 +64,7 @@ public class EntidadTest {
         Assertions.assertThrows(IllegalArgumentException.class,()->{
             this.entidad = new Entidad(TipoEntidad.LINEA_TRANSPORTE,TipoEstablecimiento.ESTACION,this.localizacion);
             this.entidad.agregarEstablecimientos(this.origen,this.destino);
-            this.serviciopublico = new Serviciopublico(entidad,CategoriaPosible.BANCO_CAT);
+            this.serviciopublico = new Serviciopublico(entidad, ServicioPublicoPosible.BANCO);
         });
     }
 

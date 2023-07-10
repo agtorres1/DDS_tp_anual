@@ -16,8 +16,8 @@ public class Localizacion{
     private static Integer maxMunicipios = 200;
     private static Integer maxDepartamentos = 135;
 
-    public Localizacion(ServicioGeoref servicioGeoref,String provincia) throws IOException {
-        this.servicioGeoref = servicioGeoref;
+    public Localizacion(String provincia) throws IOException {
+        this.servicioGeoref = ServicioGeoref.getInstance();
         if(this.servicioGeoref.buscarProvincia(provincia) == null){
             throw new IllegalArgumentException("No es una provincia del listado requerido");
         }

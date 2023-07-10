@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
+import ar.edu.utn.frba.dds.domain.Incidente;
 import ar.edu.utn.frba.dds.domain.excepciones.NoEsAdministradorExcepcion;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.servicios.ServicioComunitario;
@@ -15,6 +16,7 @@ import lombok.Setter;
 public class Comunidad{
   private List<Miembro> administradores;
   private List<Miembro> miembros;
+  private List<Incidente> incidentes;
   private String nombre;
 
   public Comunidad(String nombre) {
@@ -71,5 +73,10 @@ public class Comunidad{
       for (Miembro value : administradores){
         this.administradores.remove(value);
       }
-    }
+  }
+
+  public void ingresarIncidente(Miembro autor){
+
+  }
+
 }
