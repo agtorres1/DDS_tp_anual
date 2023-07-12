@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.domain.excepciones;
+package ar.edu.utn.frba.dds.excepciones;
 
 public class TipoEstablecimientoInvalidoExcepcion extends Exception{
     public TipoEstablecimientoInvalidoExcepcion() {

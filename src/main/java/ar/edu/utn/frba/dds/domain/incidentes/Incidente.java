@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.domain;
+package ar.edu.utn.frba.dds.domain.incidentes;
 
 import java.util.Date;
 

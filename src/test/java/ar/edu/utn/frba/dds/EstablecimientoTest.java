@@ -1,5 +1,7 @@
 package ar.edu.utn.frba.dds;
 
+import ar.edu.utn.frba.dds.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.servicios.*;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.TipoEstablecimiento;
@@ -8,23 +10,26 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 public class EstablecimientoTest {
     private Establecimiento establecimiento;
+    private EstablecimientoBuilder establecimientoBuilder;
     private Banio banio;
     private PrestacionDeServicio prestacionBanio;
     private Escalador ascensor;
     private PrestacionDeServicio prestacionAscensor;
     private Ubicacion ubicacion;
     @BeforeEach
-    public void init(){
-
+    public void init() throws IOException {
+        this.establecimientoBuilder = new EstablecimientoBuilder();
 
         this.ubicacion = new Ubicacion();
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);
 
-        this.establecimiento = new Establecimiento(TipoEstablecimiento.ESTACION);
-        this.establecimiento.setNombre("Flores");
+        this.establecimiento = this.establecimientoBuilder.conNombre("Flores").conTipo(TipoEstablecimiento.SUCURSAL).
+                conLocalizacion(new Localizacion("Buenos Aires")).construir();
         this.establecimiento.setCentroide(ubicacion);
 
         this.banio = new Banio();

@@ -1,5 +1,7 @@
 package ar.edu.utn.frba.dds.domain.serviciospublicos;
 
+import ar.edu.utn.frba.dds.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.servicios.Servicio;
 
@@ -14,12 +16,8 @@ public class Establecimiento {
   Ubicacion centroide;
   Set<PrestacionDeServicio> prestacionesDeServicios;
   TipoEstablecimiento tipoEstablecimiento;
+  Localizacion localizacion;
 
-
-  public Establecimiento(TipoEstablecimiento tipoEstablecimiento) {
-    this.tipoEstablecimiento = tipoEstablecimiento;
-    this.prestacionesDeServicios = new HashSet<PrestacionDeServicio>();
-  }
 
   public void agregarPrestaciones(PrestacionDeServicio... prestacionDeServicios) {
     Collections.addAll(this.prestacionesDeServicios, prestacionDeServicios);

@@ -1,8 +1,10 @@
 package ar.edu.utn.frba.dds;
 
+import ar.edu.utn.frba.dds.builders.EstablecimientoBuilder;
 import ar.edu.utn.frba.dds.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.domain.excepciones.NoEsAdministradorExcepcion;
+import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.excepciones.NoEsAdministradorExcepcion;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.TipoEstablecimiento;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Ubicacion;
@@ -18,17 +20,19 @@ public class ComunidadTest {
     private Miembro cualquiera;
     private Miembro administrador;
     private Establecimiento establecimiento;
+    private EstablecimientoBuilder establecimientoBuilder;
     private Ubicacion ubicacion;
 
 
     @BeforeEach
     public void init() throws IOException {
+        this.establecimientoBuilder = new EstablecimientoBuilder();
         this.ubicacion = new Ubicacion();
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);
 
-        this.establecimiento = new Establecimiento(TipoEstablecimiento.ESTACION);
-        this.establecimiento.setNombre("Flores");
+        this.establecimiento = establecimientoBuilder.conNombre("Flores").conTipo(TipoEstablecimiento.ESTACION).
+                conLocalizacion(new Localizacion("Buenos Aires")).construir();
         this.establecimiento.setCentroide(ubicacion);
 
         this.cualquiera = new Miembro("thompson","soyHacker");

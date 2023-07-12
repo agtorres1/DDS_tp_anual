@@ -22,23 +22,21 @@ public class Interes {
     public Boolean tieneLocalizacionEspecifica(Localizacion localizacion){
         return localizacion.getMunicipio() != null || localizacion.getDepartamento() != null;
     }
-    public Boolean tieneLocalizacionValida(Localizacion localizacion) throws IOException {
+    public Boolean tieneLocalizacionValida(Localizacion localizacion, Establecimiento establecimiento) throws IOException {
         if(tieneLocalizacionEspecifica(localizacion)){
-            return localizacion.getServicioGeoref().buscarMunicipio(localizacion.getMunicipio().nombre,this.entidad
-                    .getLocalizacion().getProvincia().id,localizacion.getMaxMunicipios()) != null
+            return localizacion.getMunicipio() == establecimiento.getLocalizacion().getMunicipio()
                     ||
-                    localizacion.getServicioGeoref().buscarDepartamento(localizacion.getDepartamento().nombre,this.entidad
-                            .getLocalizacion().getProvincia().id,localizacion.getMaxDepartamentos()) != null;
+                    localizacion.getDepartamento() == establecimiento.getLocalizacion().getDepartamento();
         }
         return localizacion.getProvincia().equals(this.entidad.getLocalizacion().getProvincia());
     }
 
     public void actualizarInteres(Localizacion localizacion) throws IOException {
         this.prestacionesDeInteres.clear();
-        if(tieneLocalizacionValida(localizacion)){
-            for(Establecimiento establecimiento : this.entidad.getEstablecimientos()){
-                for(PrestacionDeServicio prestacionDeServicio : establecimiento.getPrestacionesDeServicios()){
-                    if(!prestacionDeServicio.getFunciona()){
+        for(Establecimiento establecimiento : this.entidad.getEstablecimientos()){
+            if(tieneLocalizacionValida(localizacion, establecimiento)){
+                for(PrestacionDeServicio prestacionDeServicio : establecimiento.getPrestacionesDeServicios()) {
+                    if (!prestacionDeServicio.getFunciona()) {
                         this.prestacionesDeInteres.add(prestacionDeServicio);
                     }
                 }

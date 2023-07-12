@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
-import ar.edu.utn.frba.dds.domain.Incidente;
-import ar.edu.utn.frba.dds.domain.excepciones.NoEsAdministradorExcepcion;
+import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
+import ar.edu.utn.frba.dds.excepciones.NoEsAdministradorExcepcion;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.servicios.ServicioComunitario;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
