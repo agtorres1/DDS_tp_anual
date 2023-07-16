@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.domain.serviciospublicos;
 
+import ar.edu.utn.frba.dds.excepciones.LocalizacionEstablecimientoInvalidaExcepcion;
 import ar.edu.utn.frba.dds.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import lombok.Getter;
@@ -21,6 +22,9 @@ public class Entidad {
   public void agregarEstablecimientos(Establecimiento... establecimientos) throws TipoEstablecimientoInvalidoExcepcion {
     if(Arrays.stream(establecimientos).anyMatch(e->e.getTipoEstablecimiento()!=this.tipoEstablecimiento)){
       throw new TipoEstablecimientoInvalidoExcepcion();
+    }
+    if(Arrays.stream(establecimientos).anyMatch(e->e.getLocalizacion().getProvincia()!=this.localizacion.getProvincia())){
+      throw new LocalizacionEstablecimientoInvalidaExcepcion();
     }
     Collections.addAll(this.establecimientos,establecimientos);
   }

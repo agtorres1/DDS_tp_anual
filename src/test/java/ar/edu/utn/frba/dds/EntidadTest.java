@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.builders.EntidadBuilder;
 import ar.edu.utn.frba.dds.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.excepciones.LocalizacionEstablecimientoInvalidaExcepcion;
 import ar.edu.utn.frba.dds.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.*;
@@ -33,7 +34,7 @@ public class EntidadTest {
         this.ubicacion1.setLongitud(-1.00);
         this.localizacionOrigen = new Localizacion("Chaco");
         this.localizacionOrigen.setMunicipio("Isla del Cerrito");
-        this.origen = this.establecimientoBuilder.conNombre("Flores").conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(localizacionOrigen).construir();
+        this.origen = this.establecimientoBuilder.conNombre("Flores").conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(this.localizacionOrigen).construir();
         this.origen.setCentroide(ubicacion1);
 
         this.ubicacion2 = new Ubicacion();
@@ -68,6 +69,20 @@ public class EntidadTest {
             this.entidad =this.entidadBuilder.conNombre("Linea Resistencia").
                     conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(this.localizacionEntidad).construir();
             this.entidad.agregarEstablecimientos(this.origen,establecimientoIncorrecto);
+        });
+    }
+
+    @Test
+    @DisplayName("Instanciar establecimientos a la lista de una entidad, pero una de estas con un diferente provincia configurada a la de la entidad")
+    public void instanciarEstablecimientosIncorrectos2(){
+        Assertions.assertThrows(LocalizacionEstablecimientoInvalidaExcepcion.class,()->{
+            Establecimiento establecimientoIncorrecto = establecimientoBuilder.conNombre("Soy malo").
+                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(new Localizacion("Buenos Aires")).construir();
+            Establecimiento establecimientoCorrecto = establecimientoBuilder.conNombre("Soy bueno").
+                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(new Localizacion("Chaco")).construir();
+            this.entidad =this.entidadBuilder.conNombre("Linea Resistencia").
+                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(this.localizacionEntidad).construir();
+            this.entidad.agregarEstablecimientos(establecimientoCorrecto,establecimientoIncorrecto);
         });
     }
 
