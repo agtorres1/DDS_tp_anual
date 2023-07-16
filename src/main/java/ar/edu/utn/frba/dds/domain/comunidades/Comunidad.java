@@ -5,6 +5,11 @@ import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
+import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
+import ar.edu.utn.frba.dds.excepciones.NoEsUnaPrestacionValidaExcepcion;
+import ar.edu.utn.frba.dds.excepciones.PrestacionFuncionaExcepcion;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,21 +25,16 @@ public class Comunidad{
     this.administradores = new ArrayList<>();
     this.miembros = new ArrayList<>();
   }
+
+  public Boolean actualizarPrestacionDeServicio(Establecimiento establecimiento, PrestacionDeServicio prestacionDeServicio){
+    if(!establecimiento.getPrestacionesDeServicios().contains(prestacionDeServicio)){
+      throw new NoEsUnaPrestacionValidaExcepcion();
+    }
+    return prestacionDeServicio.getFunciona();
+  }
 /*
-  public void ingresarServicioExistente(Establecimiento establecimiento, Miembro administrador, PrestacionDeServicio prestacionDeServicio) throws NoEsAdministradorExcepcion{
-    this.verificarQueEsAdministrador(administrador);
-    establecimiento.agregarPrestaciones(prestacionDeServicio);
-  }
 
-  public void quitarServicio(Establecimiento establecimiento, Miembro administrador, PrestacionDeServicio prestacionDeServicio) throws NoEsAdministradorExcepcion{
-    this.verificarQueEsAdministrador(administrador);
-    establecimiento.darDeBajaPrestaciones(prestacionDeServicio);
-  }
 
-  public void cambiarPrestacionDeServicio(Establecimiento establecimiento, Miembro administrador, PrestacionDeServicio prestacionDeServicio, Boolean funciona) throws NoEsAdministradorExcepcion{
-    this.verificarQueEsAdministrador(administrador);
-    establecimiento.cambiarPrestacionDeServicio(funciona, prestacionDeServicio);
-  }
 
   public void ingresarServicioNuevo(Establecimiento establecimiento, Miembro administrador, String nombre, String descripcion, int cantidad) throws NoEsAdministradorExcepcion {
     this.verificarQueEsAdministrador(administrador);
@@ -71,9 +71,17 @@ public class Comunidad{
       }
   }
 
-  public void ingresarIncidente(Miembro autor){
+  public void abrirIncidente(Miembro autor, String observaciones,Establecimiento establecimiento ,PrestacionDeServicio prestacionDeServicio){
+    if(actualizarPrestacionDeServicio(establecimiento,prestacionDeServicio)){
+      throw new PrestacionFuncionaExcepcion();
+    }
+    Incidente incidente = new Incidente();
+    incidente.meAbro(autor,observaciones,establecimiento,prestacionDeServicio);
+    //notificamos al resto de miembros del incidente
 
   }
-  public void cerrarIncidente(Miembro autor)
+  public void cerrarIncidente(Miembro autor,Incidente incidente){
+    incidente.meCierro(autor);
+  }
 
 }
