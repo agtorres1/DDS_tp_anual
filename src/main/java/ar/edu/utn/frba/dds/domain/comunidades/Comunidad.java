@@ -1,10 +1,6 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
 import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
-import ar.edu.utn.frba.dds.excepciones.NoEsAdministradorExcepcion;
-import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
-import ar.edu.utn.frba.dds.domain.servicios.ServicioComunitario;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +20,7 @@ public class Comunidad{
     this.administradores = new ArrayList<>();
     this.miembros = new ArrayList<>();
   }
-
+/*
   public void ingresarServicioExistente(Establecimiento establecimiento, Miembro administrador, PrestacionDeServicio prestacionDeServicio) throws NoEsAdministradorExcepcion{
     this.verificarQueEsAdministrador(administrador);
     establecimiento.agregarPrestaciones(prestacionDeServicio);
@@ -55,7 +51,7 @@ public class Comunidad{
       throw new NoEsAdministradorExcepcion();
     }
   }
-
+*/
   public void agregarUsuarios(Miembro... miembros) {
     this.miembros.addAll(Arrays.asList(miembros));
   }
@@ -78,5 +74,6 @@ public class Comunidad{
   public void ingresarIncidente(Miembro autor){
 
   }
+  public void cerrarIncidente(Miembro autor)
 
 }

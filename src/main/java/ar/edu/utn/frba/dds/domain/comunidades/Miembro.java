@@ -1,15 +1,12 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
-import ar.edu.utn.frba.dds.domain.ValidadorContrasenias.ValidadorDeContrasenias;
+
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
-import ar.edu.utn.frba.dds.domain.servicios.Servicio;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
