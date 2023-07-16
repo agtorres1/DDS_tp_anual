@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.builders.MiembroBuilder;
 import ar.edu.utn.frba.dds.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
@@ -17,6 +18,7 @@ import java.io.IOException;
 
 public class ComunidadTest {
     private Comunidad comunidad;
+    private MiembroBuilder miembroBuilder = new MiembroBuilder();
     private Miembro cualquiera;
     private Miembro administrador;
     private Establecimiento establecimiento;
@@ -35,8 +37,8 @@ public class ComunidadTest {
                 conLocalizacion(new Localizacion("Buenos Aires")).construir();
         this.establecimiento.setCentroide(ubicacion);
 
-        this.cualquiera = new Miembro("thompson","soyHacker");
-        this.administrador = new Miembro("adminResponsable","puedoAgregarServicios");
+        this.cualquiera = miembroBuilder.conCuenta("Thompson","Nosejaja").conLocalizacion(new Localizacion("Chaco")).construir();
+        this.administrador = miembroBuilder.conCuenta("adminResponsable","cuidador123").conLocalizacion(new Localizacion("Chaco")).construir();
 
         this.comunidad = new Comunidad("ComunidadMuySegura");
     }

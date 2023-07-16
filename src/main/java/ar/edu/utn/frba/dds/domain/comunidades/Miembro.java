@@ -20,12 +20,6 @@ public class Miembro {
   private List<Interes> intereses;
   private Localizacion localizacion;
 
-  public Miembro(String usuario, String clave) {
-    this.usuario = usuario;
-    this.clave = clave;
-    List<Interes> intereses = new ArrayList<>();
-  }
-
   public void agregarIntereses(Interes ... interes){
     Collections.addAll(this.intereses,interes);
   }
