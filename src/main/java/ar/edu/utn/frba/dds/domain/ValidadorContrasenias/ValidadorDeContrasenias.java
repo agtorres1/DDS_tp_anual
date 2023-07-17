@@ -1,6 +1,5 @@
-package ValidadorContrasenias;
+package ar.edu.utn.frba.dds.domain.ValidadorContrasenias;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 

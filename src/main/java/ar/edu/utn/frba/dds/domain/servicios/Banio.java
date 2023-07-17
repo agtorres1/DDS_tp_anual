@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Setter @Getter
-public class Banio extends Servicio {
+public class Banio implements Servicio {
   private Genero genero;
   private Boolean discapacitado;
 

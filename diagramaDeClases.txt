@@ -76,8 +76,8 @@ package comunidades <<Frame>> {
         -administradores: List<Usuario>
         -miembros: List<Usuario>
         -nombre: String
-        +agregarServicio(Estacion estacion, Usuario administrador, String nombreDeServicio)
-        +quitarServicio(Estacion estacion, Usuario administrador, String nombreDeServicio)
+        +agregarServicio(Estacion establecimiento, Usuario administrador, String nombreDeServicio)
+        +quitarServicio(Estacion establecimiento, Usuario administrador, String nombreDeServicio)
         +agregarAdministradores(Usuario ... administradores)
         +quitarAdministradores(Usuario ... administradores)
         +agregarMiembros(Usuario ... miembros)

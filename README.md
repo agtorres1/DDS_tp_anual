@@ -9,7 +9,7 @@ La proxima entrega es el 26 de abril, para esta se debe tener completado:
 - [ ] Idem de las prestaciones de servicios.
 - [ ] Idem de las comunidades y miembros.
 - [ ] La administración de cada uno de los anteriores (Alta, baja, y modificación).
-- [ ] El registro de usuarios.
+- [ ] El registro de miembros.
 - [ ] La verificación de contraseñas.
 
 ### Entregables
