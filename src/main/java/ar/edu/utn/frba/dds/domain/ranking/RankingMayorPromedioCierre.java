@@ -26,10 +26,14 @@ public class RankingMayorPromedioCierre implements Ranking{
     }
 
     private Duration obtenerDuracionPromedioCierre(Entidad entidad, List<Comunidad> comunidades){
+        LocalDateTime fechaHasta = LocalDateTime.now();
+        LocalDateTime fechaDesde = fechaHasta.minusDays(7);
+
         List<Incidente> incidentesEntidad = comunidades.stream()
                 .flatMap(comunidad -> comunidad.getIncidentes().stream())
                 .filter(incidente -> !incidente.getAbierto())
                 .filter(incidente -> incidente.getEstablecimiento().getEntidad().equals(entidad))
+                .filter(incidente -> incidente.getFechaYHoraCierre().isAfter(fechaDesde) && incidente.getFechaYHoraCierre().isBefore(fechaHasta))
                 .collect(Collectors.toList());
 
         if(incidentesEntidad.isEmpty()){
