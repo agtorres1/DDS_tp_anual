@@ -77,11 +77,17 @@ public class Comunidad{
     }
     Incidente incidente = new Incidente();
     incidente.meAbro(autor,observaciones,establecimiento,prestacionDeServicio);
-    //notificamos al resto de miembros del incidente
+    for (Miembro miembro : this.miembros) {
+      //notificamos a cada miembro del incidente
+    }
+
 
   }
   public void cerrarIncidente(Miembro autor,Incidente incidente){
     incidente.meCierro(autor);
+    for(Miembro miembro : this.miembros){
+      //notificamos a cada miembro que se cerró el incidente
+    }
   }
 
 }
