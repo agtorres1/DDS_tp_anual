@@ -3,7 +3,6 @@ package ar.edu.utn.frba.dds.domain.MediosDeComunicacion;
 
 import javax.swing.*;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
