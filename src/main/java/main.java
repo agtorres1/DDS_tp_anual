@@ -1,10 +1,12 @@
+import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Email;
+import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.domain.ValidadorContrasenias.ValidadorDeContrasenias;
 
 public class main {
   public static void main(String[] args) {
 
     System.out.println("Empezamos la ejecución del programa");
-    ValidadorDeContrasenias validador = new ValidadorDeContrasenias();
+  /*  ValidadorDeContrasenias validador = new ValidadorDeContrasenias();
 
 
 
@@ -21,8 +23,11 @@ public class main {
     System.out.println( validador.esValida("1Qaz2wsx"));
 
     System.out.println( "Prueba clave valida");
-    System.out.println( validador.esValida("VamosAPromocionarCon10$"));
+    System.out.println( validador.esValida("VamosAPromocionarCon10$"));*/
 
-
+    Whatsapp whatsapp = new Whatsapp();
+    Email email = new Email();
+    whatsapp.enviarNotificacion("German NEPE");
+    email.enviarNotificacion("German NEPE");
   }
 }
