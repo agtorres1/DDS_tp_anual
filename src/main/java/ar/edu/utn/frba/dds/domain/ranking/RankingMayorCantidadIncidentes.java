@@ -30,7 +30,6 @@ public class RankingMayorCantidadIncidentes implements Ranking{
         return comunidades.stream()
                 .flatMap(comunidad -> comunidad.getIncidentes().stream())
                 .filter(incidente -> incidente.getEstablecimiento().getEntidad().equals(entidad))
-                .filter(incidente -> incidente.getFechaYHoraCierre() != null)
                 .filter(incidente -> incidente.getFechaYHoraCierre().isAfter(fechaDesde) && incidente.getFechaYHoraCierre().isBefore(fechaHasta))
                 .collect(Collectors.toList());
     }
