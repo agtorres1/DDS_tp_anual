@@ -12,11 +12,10 @@ import java.util.*;
 @Getter
 public class Interes {
     private Entidad entidad;
-    private Set<PrestacionDeServicio> prestacionesDeInteres;
-
+    private Set<InteresEnPrestacion> prestacionesDeInteres;
     public Interes(Entidad entidad){
         this.entidad = entidad;
-        this.prestacionesDeInteres = new HashSet<PrestacionDeServicio>();
+        this.prestacionesDeInteres = new HashSet<>();
     }
 
     public Boolean tieneLocalizacionEspecifica(Localizacion localizacion){
@@ -37,7 +36,8 @@ public class Interes {
             if(tieneLocalizacionValida(localizacion, establecimiento)){
                 for(PrestacionDeServicio prestacionDeServicio : establecimiento.getPrestacionesDeServicios()) {
                     if (!prestacionDeServicio.getFunciona()) {
-                        this.prestacionesDeInteres.add(prestacionDeServicio);
+                        var prestacionNueva = new InteresEnPrestacion (prestacionDeServicio);
+                        this.prestacionesDeInteres.add(prestacionNueva);
                     }
                 }
             }

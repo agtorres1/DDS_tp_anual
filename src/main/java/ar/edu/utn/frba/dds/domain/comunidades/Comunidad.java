@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ar.edu.utn.frba.dds.domain.incidentes.TipoFiltrado;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.excepciones.NoEsUnaPrestacionValidaExcepcion;
@@ -33,6 +34,20 @@ public class Comunidad{
     }
     return prestacionDeServicio.getFunciona();
   }
+
+   //esto s para fijarse el estado de los incidentes abiertos
+  public void imprimirIncidentes(TipoFiltrado tipoFiltrado) {
+    for (Incidente incidente : incidentes) {
+      if (tipoFiltrado == TipoFiltrado.SOLO_ABIERTOS && incidente.getAbierto()) {
+        System.out.println(incidente);
+      } else if (tipoFiltrado == TipoFiltrado.SOLO_CERRADOS && !incidente.getAbierto()) {
+        System.out.println(incidente);
+      } else if (tipoFiltrado == TipoFiltrado.TODOS) {
+        System.out.println(incidente);
+      }
+    }
+  }
+  
 /*
 
 
@@ -79,6 +94,7 @@ public class Comunidad{
     Incidente incidente = new Incidente();
     incidente.meAbro(autor,observaciones,establecimiento,prestacionDeServicio);
     this.notificarMiembros(incidente);
+    this.incidentes.add(incidente);
 
 
   }

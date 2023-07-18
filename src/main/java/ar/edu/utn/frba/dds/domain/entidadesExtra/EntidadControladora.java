@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.domain.entidadesExtra;
 import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class EntidadControladora {
     @Setter String descripcion;
     @Setter String direccion;
     @Setter Localizacion localizacion;
-    List<Entidad> entidades;
+    @Getter List<Entidad> entidades;
     public EntidadControladora(String nombre){
         this.nombre = nombre;
         this.entidades = new ArrayList<>();

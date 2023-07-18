@@ -19,6 +19,7 @@ public class Miembro {
   private Localizacion localizacion;
   public MedioDeNotificacion medioDeNotificacion;
 
+
   public void agregarIntereses(Interes ... interes){
     Collections.addAll(this.intereses,interes);
   }

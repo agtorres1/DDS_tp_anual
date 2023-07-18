@@ -34,4 +34,18 @@ public class Incidente {
         this.setCerrador(cerrador);
     }
 
+     @Override
+    public String toString() {
+        return "Incidente{" +
+            "fachaYHoraApertura=" + fachaYHoraApertura +
+            ", fechaYHoraCierre=" + fechaYHoraCierre +
+            ", prestacionDeServicio=" + prestacionDeServicio +
+            ", establecimiento=" + establecimiento +
+            ", observaciones='" + observaciones + '\'' +
+            ", abierto=" + abierto +
+            ", abridor=" + abridor +
+           ", cerrador=" + cerrador +
+            '}';
+    }
+
 }

@@ -17,7 +17,7 @@ public class Establecimiento {
   Set<PrestacionDeServicio> prestacionesDeServicios;
   TipoEstablecimiento tipoEstablecimiento;
   Localizacion localizacion;
-
+  Entidad entidad;
 
   public void agregarPrestaciones(PrestacionDeServicio... prestacionDeServicios) {
     Collections.addAll(this.prestacionesDeServicios, prestacionDeServicios);
