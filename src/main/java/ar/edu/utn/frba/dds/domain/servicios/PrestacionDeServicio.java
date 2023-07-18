@@ -8,7 +8,7 @@ public class PrestacionDeServicio {
     private Servicio servicio;
     private Integer cantidad;
     private Boolean funciona;
-
+    private String nombreServicio;
 
     public PrestacionDeServicio(Servicio servicio, Integer cantidad){
         this.servicio = servicio;

@@ -33,13 +33,16 @@ public abstract class MedioDeNotificacion {
   public void evaluarEnvioDeNotificacion(Notificacion notificacion) {
 
       if (rangosHorariosElegidos.isEmpty()) {
-        this.enviarNotificacion(notificacion);
+        this.notificacionesRecientes.add(notificacion);
+        this.enviarNotificacion();
       } else if (notificacionesRecientes.isEmpty()) {
+        this.notificacionesRecientes.add(notificacion);
         LocalTime horaActual = LocalTime.now();
         Optional<LocalTime> horaInicioProxima;
         long diferenciaEnSegundos;
         if (rangosHorariosElegidos.stream().anyMatch(rangoHorario -> rangoHorario.contiene(horaActual)))/*chequeo que se encuentre dentro del horario*/ {
-          this.enviarNotificacion(notificacion);
+
+          this.enviarNotificacion();
 
         } else {
                   List<RangoHorario> rangosHorariosProximos = rangosHorariosElegidos.stream()
@@ -60,7 +63,7 @@ public abstract class MedioDeNotificacion {
 
                   TimerTask tareaCalendarizada = new TimerTask() {
                     public void run() {
-                      enviarNotificacion(notificacion);
+                      enviarNotificacion();
                     }
                   };
                   Timer timer = new Timer();
@@ -73,5 +76,20 @@ public abstract class MedioDeNotificacion {
       }
 
   }
-  protected abstract void enviarNotificacion(Notificacion notificacion);
+  public String notificacionesToString(){
+
+    StringBuilder contenido = new StringBuilder();
+    contenido.append("Resumen de incidentes:\n");
+
+    for (Notificacion notificacion : this.notificacionesRecientes) {
+      contenido.append("Fecha y hora de apertura: ").append(notificacion.getFachaYHoraApertura()).append("\n");
+      contenido.append("Prestación de servicio: ").append(notificacion.getPrestacionDeServicio()).append("\n");
+      contenido.append("Establecimiento: ").append(notificacion.getPrestacionDeServicio()).append("\n");
+      contenido.append("Observaciones: ").append(notificacion.getObservaciones()).append("\n");
+      contenido.append("--------------------\n");
+    }
+    return contenido.toString();
+
+  }
+  protected abstract void enviarNotificacion();
 }

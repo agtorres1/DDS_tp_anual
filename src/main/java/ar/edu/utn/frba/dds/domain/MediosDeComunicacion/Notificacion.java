@@ -5,48 +5,39 @@ import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter@Setter
 public class Notificacion {
 
-  public String observaciones;
-  public Notificacion(String obs) {
-    this.observaciones = obs;
-  }
+  //public String observaciones;
+  //public Notificacion(String obs) {
+  //  this.observaciones = obs;
+ // }
 
-  public String getObservaciones() {
-    return observaciones;
-  }
- /* private LocalDateTime fachaYHoraApertura;
-  private PrestacionDeServicio prestacionDeServicio;
-  private Establecimiento establecimiento;
+//  public String getObservaciones() {
+  //  return observaciones;
+ // }
+
+  private LocalDateTime fachaYHoraApertura;
+  private String prestacionDeServicio;
+  private String establecimiento;
   private String observaciones;
-  private Boolean abierto;
+  private String abierto;
 
   public Notificacion(Incidente incidente){
+
     this.fachaYHoraApertura = incidente.getFachaYHoraApertura();
-    this.prestacionDeServicio = incidente.getPrestacionDeServicio();
-    this.establecimiento = incidente.getEstablecimiento();
+    this.prestacionDeServicio = incidente.getPrestacionDeServicio().getNombreServicio();
+    this.establecimiento = incidente.getEstablecimiento().getNombre();
     this.observaciones = incidente.getObservaciones();
-    this.abierto = incidente.getAbierto();
+    if (incidente.getAbierto()){
+      this.abierto = "INCIDENTE ABIERTO";
+    }else{
+      this.abierto = "INDICENTE CERRADO";
+    }
+
   }
 
-  public LocalDateTime getFachaYHoraApertura() {
-    return fachaYHoraApertura;
-  }
-
-  public PrestacionDeServicio getPrestacionDeServicio() {
-    return prestacionDeServicio;
-  }
-
-  public Establecimiento getEstablecimiento() {
-    return establecimiento;
-  }
-
-  public String getObservaciones() {
-    return observaciones;
-  }
-
-  public Boolean getAbierto() {
-    return abierto;
-  }*/
 }

@@ -15,17 +15,18 @@ import javax.mail.internet.MimeMessage;
 public class Email extends MedioDeNotificacion  {
 
 
+  public String email;
 
 
-
-  public Email() {
+  public Email(String mail) {
+    email = mail;
   }
 
 
 
 
   @Override
-  public void enviarNotificacion(Notificacion notificacion) {
+  public void enviarNotificacion() {
     try {
       Properties propiedades = new Properties();
       propiedades.setProperty("mail.smtp.host", "smtp.office365.com");
@@ -39,8 +40,8 @@ public class Email extends MedioDeNotificacion  {
       String contrasenia_emisor = "tpdds42023";
 
       String correo_receptor = "facuantelo.fa@gmail.com";
-      String asunto = "Notificacion TP 2023";
-      String mensaje = notificacion.getObservaciones();
+      String asunto = "Incidentes Recientes";
+      String mensaje = this.notificacionesToString();
 
 
       MimeMessage message = new MimeMessage(sesion);
@@ -55,7 +56,7 @@ public class Email extends MedioDeNotificacion  {
       transporte.close();
 
       System.out.println("Se ha enviado notificacion al Email - " + new Date());
-
+      this.notificacionesRecientes.clear();
     } catch (AddressException ex) {
       JOptionPane.showMessageDialog(null,"Error : " +ex);
     } catch (MessagingException ex) {

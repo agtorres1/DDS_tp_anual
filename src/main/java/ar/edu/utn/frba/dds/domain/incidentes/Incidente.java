@@ -27,6 +27,7 @@ public class Incidente {
         setPrestacionDeServicio(prestacionDeServicio);
         setFachaYHoraApertura(LocalDateTime.now());
         setAbierto(true);
+
     }
     public void meCierro(Miembro cerrador){
         this.setFechaYHoraCierre(LocalDateTime.now());

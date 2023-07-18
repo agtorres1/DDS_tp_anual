@@ -54,17 +54,7 @@ public class main {
     System.out.println("Diferencia 1: " + diferencia1 + " horas");
     System.out.println("Diferencia 2: " + diferencia2 + " horas");*/
 
-// Ejemplo 1: Notificacion con observaciones sobre un incidente
-    Notificacion notificacion1 = new Notificacion("Problema de suministro eléctrico");
-    System.out.println(notificacion1);
 
-    // Ejemplo 2: Notificacion con observaciones sobre otro incidente
-    Notificacion notificacion2 = new Notificacion("Fuga de agua en el baño");
-    System.out.println(notificacion2);
-
-    // Ejemplo 3: Notificacion con observaciones sobre un evento
-    Notificacion notificacion3 = new Notificacion("Recordatorio de reunión a las 15:00");
-    System.out.println(notificacion3);
 
     Whatsapp whatsapp = new Whatsapp();
   //  Email email = new Email();
@@ -74,7 +64,7 @@ public class main {
     RangoHorario rangoHorario1 = new RangoHorario(horaInicio1, horaFin1);
 
     // Ejemplo 2: Crear otro rango horario de 13:30 a 18:00
-    LocalTime horaInicio2 = LocalTime.of(13, 30);
+    LocalTime horaInicio2 = LocalTime.of(16, 16);
     LocalTime horaFin2 = LocalTime.of(18, 0);
     RangoHorario rangoHorario2 = new RangoHorario(horaInicio2, horaFin2);
 
@@ -84,7 +74,7 @@ public class main {
     rangosHorariosElegidos.add(rangoHorario2);
 
     whatsapp.setRangosHorariosElegidos(rangosHorariosElegidos);
-    whatsapp.evaluarEnvioDeNotificacion(notificacion2);
+    whatsapp.evaluarEnvioDeNotificacion();
   //  email.enviarNotificacion("German NEPE");
   }
 }
