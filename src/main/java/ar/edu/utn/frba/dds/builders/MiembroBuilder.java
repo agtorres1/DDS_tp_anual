@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.builders;
 
+import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
@@ -19,6 +20,12 @@ public class MiembroBuilder {
         this.miembro.setLocalizacion(localizacion);
         return this;
     }
+
+    public MiembroBuilder conMedioDeNotidicacion(MedioDeNotificacion medioDeNotificacion){
+        this.miembro.setMedioDeNotificacion(medioDeNotificacion);
+        return this;
+    }
+
     public Miembro construir(){
         if(this.miembro.getUsuario() == null){
             throw new SinUsuarioExcepcion();

@@ -1,3 +1,4 @@
+/*
 import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Email;
 import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Notificacion;
 import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.RangoHorario;
@@ -16,8 +17,11 @@ import java.util.Optional;
 public class main {
   public static void main(String[] args) {
 
-    System.out.println("Empezamos la ejecución del programa");
-  /*  ValidadorDeContrasenias validador = new ValidadorDeContrasenias();
+*/
+/*    System.out.println("Empezamos la ejecución del programa");
+  *//*
+*/
+/*  ValidadorDeContrasenias validador = new ValidadorDeContrasenias();
 
 
 
@@ -34,17 +38,29 @@ public class main {
     System.out.println( validador.esValida("1Qaz2wsx"));
 
     System.out.println( "Prueba clave valida");
-    System.out.println( validador.esValida("VamosAPromocionarCon10$"));*/
+    System.out.println( validador.esValida("VamosAPromocionarCon10$"));*//*
+*/
+/*
 
-   /* Whatsapp whatsapp = new Whatsapp();
+   *//*
+*/
+/* Whatsapp whatsapp = new Whatsapp();
     Email email = new Email();
     whatsapp.enviarNotificacion("German NEPE");
-    email.enviarNotificacion("German NEPE");*/
-    /*LocalTime horaActual1 = LocalTime.of(20, 0);
-    LocalTime horaActual2 = LocalTime.of(2, 0);*/
+    email.enviarNotificacion("German NEPE");*//*
+*/
+/*
+    *//*
+*/
+/*LocalTime horaActual1 = LocalTime.of(20, 0);
+    LocalTime horaActual2 = LocalTime.of(2, 0);*//*
+*/
+/*
 
     // Caso 1: Hora de inicio: 2 y Hora actual: 20
-  /*  LocalTime horaInicio1 = LocalTime.of(2, 0);
+  *//*
+*/
+/*  LocalTime horaInicio1 = LocalTime.of(2, 0);
     long diferencia1 = 24 - horaInicio1.until(horaActual1, ChronoUnit.HOURS);
 
     // Caso 2: Hora de inicio: 20 y Hora actual: 2
@@ -52,7 +68,9 @@ public class main {
     long diferencia2 =  horaActual2.until(horaInicio2, ChronoUnit.HOURS);
 
     System.out.println("Diferencia 1: " + diferencia1 + " horas");
-    System.out.println("Diferencia 2: " + diferencia2 + " horas");*/
+    System.out.println("Diferencia 2: " + diferencia2 + " horas");*//*
+*/
+/*
 
 
 
@@ -69,12 +87,11 @@ public class main {
     RangoHorario rangoHorario2 = new RangoHorario(horaInicio2, horaFin2);
 
     // Almacenar los rangos horarios en la lista rangosHorariosElegidos
-    List<RangoHorario> rangosHorariosElegidos = new ArrayList<>();
-    rangosHorariosElegidos.add(rangoHorario1);
-    rangosHorariosElegidos.add(rangoHorario2);
+
 
     whatsapp.setRangosHorariosElegidos(rangosHorariosElegidos);
     whatsapp.evaluarEnvioDeNotificacion();
   //  email.enviarNotificacion("German NEPE");
-  }
-}
+  }*//*
+
+}*/

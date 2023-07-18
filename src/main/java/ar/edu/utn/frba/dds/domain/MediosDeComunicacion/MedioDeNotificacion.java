@@ -31,7 +31,7 @@ public abstract class MedioDeNotificacion {
   }
 
   public void evaluarEnvioDeNotificacion(Notificacion notificacion) {
-
+      System.out.println("Holaaaa");
       if (rangosHorariosElegidos.isEmpty()) {//CUANDO SUCEDEN
         this.notificacionesRecientes.add(notificacion);
         this.enviarNotificacion();
@@ -41,7 +41,7 @@ public abstract class MedioDeNotificacion {
         Optional<LocalTime> horaInicioProxima;
         long diferenciaEnSegundos;
         if (rangosHorariosElegidos.stream().anyMatch(rangoHorario -> rangoHorario.contiene(horaActual)))/*chequeo que se encuentre dentro del horario*/ {
-
+            System.out.println("Se ha enviadsfrgvergber ");
           this.enviarNotificacion();
 
         } else {
@@ -82,6 +82,7 @@ public abstract class MedioDeNotificacion {
     contenido.append("Resumen de incidentes:\n");
 
     for (Notificacion notificacion : this.notificacionesRecientes) {
+        contenido.append("Incidente: ").append(notificacion.getAbierto()).append("\n");
       contenido.append("Fecha y hora de apertura: ").append(notificacion.getFachaYHoraApertura()).append("\n");
       contenido.append("Prestación de servicio: ").append(notificacion.getPrestacionDeServicio()).append("\n");
       contenido.append("Establecimiento: ").append(notificacion.getPrestacionDeServicio()).append("\n");

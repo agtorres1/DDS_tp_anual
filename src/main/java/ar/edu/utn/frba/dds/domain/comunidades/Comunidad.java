@@ -15,6 +15,7 @@ import ar.edu.utn.frba.dds.excepciones.PrestacionFuncionaExcepcion;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter @Setter
 public class Comunidad{
   private List<Miembro> administradores;
@@ -26,6 +27,7 @@ public class Comunidad{
     this.nombre = nombre;
     this.administradores = new ArrayList<>();
     this.miembros = new ArrayList<>();
+    this.incidentes = new ArrayList<>();
   }
 
   public Boolean actualizarPrestacionDeServicio(Establecimiento establecimiento, PrestacionDeServicio prestacionDeServicio){
@@ -88,9 +90,9 @@ public class Comunidad{
   }
 
   public void abrirIncidente(Miembro autor, String observaciones,Establecimiento establecimiento ,PrestacionDeServicio prestacionDeServicio){
-    if(actualizarPrestacionDeServicio(establecimiento,prestacionDeServicio)){
+/*    if(actualizarPrestacionDeServicio(establecimiento,prestacionDeServicio)){
       throw new PrestacionFuncionaExcepcion();
-    }
+    }*/
     Incidente incidente = new Incidente();
     incidente.meAbro(autor,observaciones,establecimiento,prestacionDeServicio);
     this.notificarMiembros(incidente);
@@ -101,10 +103,12 @@ public class Comunidad{
 
   public void notificarMiembros(Incidente incidente){
     Notificacion notificacion = new Notificacion(incidente);
-    this.miembros.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())
+    /*this.miembros.stream()*//*.filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())*//*
                           .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
-    this.administradores.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())
-        .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
+    this.administradores.stream()*//*.filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())*//*
+        .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));*/
+    this.administradores.get(0).getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion);
+    System.out.println("Se ha enviado notificacion al WhatssApp - ");
   }
 
   public void cerrarIncidente(Miembro autor,Incidente incidente){
