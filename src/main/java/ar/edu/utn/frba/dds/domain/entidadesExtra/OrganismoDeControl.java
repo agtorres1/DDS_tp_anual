@@ -12,7 +12,7 @@ public class OrganismoDeControl {
     String nombre;
     @Setter String descripcion;
     @Setter Localizacion localizacion;
-    List<Entidad> entidades;
+    @Getter List<Entidad> entidades;
     public OrganismoDeControl(String nombre){
         this.nombre = nombre;
         this.entidades = new ArrayList<>();
