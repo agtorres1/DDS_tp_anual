@@ -78,9 +78,7 @@ public class Comunidad{
     }
     Incidente incidente = new Incidente();
     incidente.meAbro(autor,observaciones,establecimiento,prestacionDeServicio);
-    for (Miembro miembro : this.miembros) {
-      //notificamos a cada miembro del incidente
-    }
+    this.notificarMiembros(incidente);
 
 
   }
@@ -95,9 +93,7 @@ public class Comunidad{
 
   public void cerrarIncidente(Miembro autor,Incidente incidente){
     incidente.meCierro(autor);
-    for(Miembro miembro : this.miembros){
-      //notificamos a cada miembro que se cerró el incidente
-    }
+    this.notificarMiembros(incidente);
   }
 
 }

@@ -39,7 +39,7 @@ public class Email extends MedioDeNotificacion  {
       String correo_emisor = "tpddsgrupo42023@outlook.es";
       String contrasenia_emisor = "tpdds42023";
 
-      String correo_receptor = "facuantelo.fa@gmail.com";
+      String correo_receptor = email;
       String asunto = "Incidentes Recientes";
       String mensaje = this.notificacionesToString();
 

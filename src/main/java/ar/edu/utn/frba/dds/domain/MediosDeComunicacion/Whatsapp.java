@@ -26,7 +26,7 @@ public class Whatsapp extends MedioDeNotificacion{
     Message message = Message.creator(
             new com.twilio.type.PhoneNumber("whatsapp:"+ telefono),
             new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
-            this.notificacionesToString())
+            this.notificacionesToString()) //DETALLE DEL WHATSAPP
         .create();
     System.out.println(message.getSid());
     System.out.println("Se ha enviado notificacion al WhatssApp - ");

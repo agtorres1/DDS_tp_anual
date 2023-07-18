@@ -32,7 +32,7 @@ public abstract class MedioDeNotificacion {
 
   public void evaluarEnvioDeNotificacion(Notificacion notificacion) {
 
-      if (rangosHorariosElegidos.isEmpty()) {
+      if (rangosHorariosElegidos.isEmpty()) {//CUANDO SUCEDEN
         this.notificacionesRecientes.add(notificacion);
         this.enviarNotificacion();
       } else if (notificacionesRecientes.isEmpty()) {
