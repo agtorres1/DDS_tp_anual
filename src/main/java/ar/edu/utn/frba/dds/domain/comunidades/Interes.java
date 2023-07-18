@@ -15,7 +15,7 @@ public class Interes {
     private Set<InteresEnPrestacion> prestacionesDeInteres;
     public Interes(Entidad entidad){
         this.entidad = entidad;
-        this.prestacionesDeInteres = new HashSet<InteresEnPrestacion>();
+        this.prestacionesDeInteres = new HashSet<>();
     }
 
     public Boolean tieneLocalizacionEspecifica(Localizacion localizacion){
