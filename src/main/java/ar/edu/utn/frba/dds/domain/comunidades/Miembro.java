@@ -16,6 +16,7 @@ public class Miembro {
   private String clave;
   private List<Interes> intereses;
   private Localizacion localizacion;
+  private MedioDeNotificacion medioDeNotificacion;
 
   public void agregarIntereses(Interes ... interes){
     Collections.addAll(this.intereses,interes);
