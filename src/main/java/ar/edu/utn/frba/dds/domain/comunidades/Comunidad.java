@@ -94,6 +94,8 @@ public class Comunidad{
     for (Miembro miembro : this.miembros) {
       //notificamos a cada miembro del incidente
     }
+    this.incidentes.add(incidente);
+
 
 
   }
