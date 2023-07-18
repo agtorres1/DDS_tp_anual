@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
+import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Notificacion;
 import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
 
 import java.util.ArrayList;
@@ -92,19 +93,23 @@ public class Comunidad{
     }
     Incidente incidente = new Incidente();
     incidente.meAbro(autor,observaciones,establecimiento,prestacionDeServicio);
-    for (Miembro miembro : this.miembros) {
-      //notificamos a cada miembro del incidente
-    }
+    this.notificarMiembros(incidente);
     this.incidentes.add(incidente);
 
 
-
   }
+
+  public void notificarMiembros(Incidente incidente){
+    Notificacion notificacion = new Notificacion(incidente);
+    this.miembros.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())
+                          .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
+    this.administradores.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())
+        .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
+  }
+
   public void cerrarIncidente(Miembro autor,Incidente incidente){
     incidente.meCierro(autor);
-    for(Miembro miembro : this.miembros){
-      //notificamos a cada miembro que se cerró el incidente
-    }
+    this.notificarMiembros(incidente);
   }
 
 }

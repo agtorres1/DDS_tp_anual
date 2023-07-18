@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.domain.comunidades;
 
 
+import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 
 import lombok.Getter;
@@ -16,6 +17,7 @@ public class Miembro {
   private String clave;
   private List<Interes> intereses;
   private Localizacion localizacion;
+  public MedioDeNotificacion medioDeNotificacion;
 
 
   public void agregarIntereses(Interes ... interes){
@@ -33,6 +35,7 @@ public class Miembro {
       interes.actualizarInteres(this.localizacion);
     }
   }
+
 
   /**
    * @param usuario: Nombre de Usuario
