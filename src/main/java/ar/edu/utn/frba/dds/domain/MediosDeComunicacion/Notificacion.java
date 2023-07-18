@@ -7,7 +7,16 @@ import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import java.time.LocalDateTime;
 
 public class Notificacion {
-  private LocalDateTime fachaYHoraApertura;
+
+  public String observaciones;
+  public Notificacion(String obs) {
+    this.observaciones = obs;
+  }
+
+  public String getObservaciones() {
+    return observaciones;
+  }
+ /* private LocalDateTime fachaYHoraApertura;
   private PrestacionDeServicio prestacionDeServicio;
   private Establecimiento establecimiento;
   private String observaciones;
@@ -39,5 +48,5 @@ public class Notificacion {
 
   public Boolean getAbierto() {
     return abierto;
-  }
+  }*/
 }

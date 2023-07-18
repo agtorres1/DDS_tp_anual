@@ -12,7 +12,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class Email  {
+public class Email extends MedioDeNotificacion  {
 
 
 
@@ -24,8 +24,8 @@ public class Email  {
 
 
 
-
-  public void enviarNotificacion(String notificacion) {
+  @Override
+  public void enviarNotificacion(Notificacion notificacion) {
     try {
       Properties propiedades = new Properties();
       propiedades.setProperty("mail.smtp.host", "smtp.office365.com");
@@ -40,7 +40,7 @@ public class Email  {
 
       String correo_receptor = "facuantelo.fa@gmail.com";
       String asunto = "Notificacion TP 2023";
-      String mensaje = notificacion;
+      String mensaje = notificacion.getObservaciones();
 
 
       MimeMessage message = new MimeMessage(sesion);

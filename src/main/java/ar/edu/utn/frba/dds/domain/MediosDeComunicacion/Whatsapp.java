@@ -8,7 +8,8 @@ import com.twilio.rest.api.v2010.account.Message;
 
 
 
-public class Whatsapp {
+public class Whatsapp extends MedioDeNotificacion{
+
 
 
   public static final String ACCOUNT_SID = "AC8248ee633b83070844ab4267e9269cb8";
@@ -19,13 +20,13 @@ public class Whatsapp {
 
 
 
-
-  public void enviarNotificacion(String notificacion) {
+  @Override
+  public void enviarNotificacion(Notificacion notificacion) {
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     Message message = Message.creator(
             new com.twilio.type.PhoneNumber("whatsapp:+5491144134775"),
             new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
-            notificacion)
+            notificacion.getObservaciones())
         .create();
     System.out.println(message.getSid());
     System.out.println("Se ha enviado notificacion al WhatssApp - ");

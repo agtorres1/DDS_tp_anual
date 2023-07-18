@@ -19,6 +19,7 @@ public class Incidente {
     private Miembro abridor;
     private Miembro cerrador;
 
+
     public void meAbro(Miembro abridor,String observaciones,Establecimiento establecimiento,PrestacionDeServicio prestacionDeServicio){
         setAbridor(abridor);
         setObservaciones(observaciones);
