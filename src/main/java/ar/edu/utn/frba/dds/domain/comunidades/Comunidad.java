@@ -32,6 +32,20 @@ public class Comunidad{
     }
     return prestacionDeServicio.getFunciona();
   }
+
+   //esto s para fijarse el estado de los incidentes abiertos
+  public void imprimirIncidentes(TipoFiltrado tipoFiltrado) {
+    for (Incidente incidente : incidentes) {
+      if (tipoFiltrado == TipoFiltrado.SOLO_ABIERTOS && incidente.getAbierto()) {
+        System.out.println(incidente);
+      } else if (tipoFiltrado == TipoFiltrado.SOLO_CERRADOS && !incidente.getAbierto()) {
+        System.out.println(incidente);
+      } else if (tipoFiltrado == TipoFiltrado.TODOS) {
+        System.out.println(incidente);
+      }
+    }
+  }
+  
 /*
 
 
