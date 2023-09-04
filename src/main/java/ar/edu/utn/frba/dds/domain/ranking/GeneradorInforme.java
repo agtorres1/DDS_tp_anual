@@ -7,7 +7,6 @@ import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
-
 public class GeneradorInforme {
     public String generarInformeEntidadControladora(EntidadControladora entidadControladora, ResultadosRanking resultadosRankings){
         String tipoInforme = "Informe para Entidad Controladora\n";
