@@ -11,21 +11,27 @@ import java.util.Set;
 public class Notificador {
     private Set<Miembro> miembrosNotificados;
     public void notificar(Miembro emisor, AperturaIncidente aperturaIncidente){
+        notificarComunidades(emisor,aperturaIncidente);
+        notificarInteresados(emisor,aperturaIncidente);
         miembrosNotificados.clear();
+    }
+
+    public void notificarComunidades(Miembro emisor, AperturaIncidente aperturaIncidente){
         for(Comunidad comunidad : emisor.getComunidades()){
             Incidente incidente = new Incidente();
             incidente.meAbro(emisor,aperturaIncidente);
             filtrarYaNotificados(comunidad.getMiembros(),incidente)
-                    .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(incidente.getNotificacion()));
+                    .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(new Notificacion(incidente)));
+            comunidad.getIncidentes().add(incidente);
         }
-        notificarInteresados(aperturaIncidente,emisor);
+
     }
 
-    public void notificarInteresados(AperturaIncidente aperturaIncidente,Miembro emisor){
+    public void notificarInteresados(Miembro emisor, AperturaIncidente aperturaIncidente){
         Incidente incidente = new Incidente();
         incidente.meAbro(emisor,aperturaIncidente);
         filtrarYaNotificados(aperturaIncidente.getPrestacionDeServicio().getInteresados(),incidente)
-                .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(incidente.getNotificacion()));
+                .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(new Notificacion(incidente)));
     }
 
     public List<Miembro> filtrarYaNotificados(List<Miembro> notificables,Incidente incidente){

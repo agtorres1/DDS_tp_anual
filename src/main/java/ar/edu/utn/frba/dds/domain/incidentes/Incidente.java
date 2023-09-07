@@ -19,7 +19,6 @@ public class Incidente {
     private Boolean abierto;
     private Miembro abridor;
     private Miembro cerrador;
-    private Notificacion notificacion;
 
     public void meAbro(Miembro abridor,AperturaIncidente aperturaIncidente){
         setAbridor(abridor);
@@ -28,7 +27,7 @@ public class Incidente {
         setPrestacionDeServicio(aperturaIncidente.getPrestacionDeServicio());
         setFachaYHoraApertura(LocalDateTime.now());
         setAbierto(true);
-        this.notificacion = new Notificacion(this);
+
 
     }
     public void meCierro(Miembro cerrador){
