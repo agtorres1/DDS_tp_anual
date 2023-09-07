@@ -25,16 +25,9 @@ public class Comunidad{
 
   public Comunidad(String nombre) {
     this.nombre = nombre;
-    this.administradores = new ArrayList<>();
+    // this.administradores = new ArrayList<>();
     this.miembros = new ArrayList<>();
     this.incidentes = new ArrayList<>();
-  }
-
-  public Boolean actualizarPrestacionDeServicio(Establecimiento establecimiento, PrestacionDeServicio prestacionDeServicio){
-    if(!establecimiento.getPrestacionesDeServicios().contains(prestacionDeServicio)){
-      throw new NoEsUnaPrestacionValidaExcepcion();
-    }
-    return prestacionDeServicio.getFunciona();
   }
 
    //esto s para fijarse el estado de los incidentes abiertos
@@ -89,25 +82,13 @@ public class Comunidad{
       }
   }
 
-  public void abrirIncidente(Miembro autor, String observaciones,Establecimiento establecimiento ,PrestacionDeServicio prestacionDeServicio){
-/*    if(actualizarPrestacionDeServicio(establecimiento,prestacionDeServicio)){
-      throw new PrestacionFuncionaExcepcion();
-    }*/
-    Incidente incidente = new Incidente();
-    incidente.meAbro(autor,observaciones,establecimiento,prestacionDeServicio);
-    this.notificarMiembros(incidente);
-    this.incidentes.add(incidente);
 
-
-  }
 
   public void notificarMiembros(Incidente incidente){
+    getIncidentes().add(incidente);
     Notificacion notificacion = new Notificacion(incidente);
-    /*this.miembros.stream()*//*.filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())*//*
+    this.miembros.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())
                           .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
-    this.administradores.stream()*//*.filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())*//*
-        .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));*/
-    this.administradores.get(0).getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion);
     System.out.println("Se ha enviado notificacion al WhatssApp - ");
   }
 

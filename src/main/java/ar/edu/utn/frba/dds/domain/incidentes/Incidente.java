@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.domain.incidentes;
 
+import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Notificacion;
 import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
@@ -18,15 +19,16 @@ public class Incidente {
     private Boolean abierto;
     private Miembro abridor;
     private Miembro cerrador;
+    private Notificacion notificacion;
 
-
-    public void meAbro(Miembro abridor,String observaciones,Establecimiento establecimiento,PrestacionDeServicio prestacionDeServicio){
+    public void meAbro(Miembro abridor,AperturaIncidente aperturaIncidente){
         setAbridor(abridor);
-        setObservaciones(observaciones);
-        setEstablecimiento(establecimiento);
-        setPrestacionDeServicio(prestacionDeServicio);
+        setObservaciones(aperturaIncidente.getObservaciones());
+        setEstablecimiento(aperturaIncidente.getEstablecimiento());
+        setPrestacionDeServicio(aperturaIncidente.getPrestacionDeServicio());
         setFachaYHoraApertura(LocalDateTime.now());
         setAbierto(true);
+        this.notificacion = new Notificacion(this);
 
     }
     public void meCierro(Miembro cerrador){

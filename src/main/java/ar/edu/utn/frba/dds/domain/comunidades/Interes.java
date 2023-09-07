@@ -36,11 +36,16 @@ public class Interes {
             if(tieneLocalizacionValida(localizacion, establecimiento)){
                 for(PrestacionDeServicio prestacionDeServicio : establecimiento.getPrestacionesDeServicios()) {
                     if (!prestacionDeServicio.getFunciona()) {
-                        var prestacionNueva = new InteresEnPrestacion (prestacionDeServicio);
-                        this.prestacionesDeInteres.add(prestacionNueva);
+                        this.prestacionesDeInteres.add(new InteresEnPrestacion (prestacionDeServicio));
                     }
                 }
             }
+        }
+    }
+
+    public void actualizarInteresados(Miembro miembro) {
+        for(InteresEnPrestacion interesEnPrestacion : this.prestacionesDeInteres ){
+            interesEnPrestacion.getPrestacion().getInteresados().add(miembro);
         }
     }
 }

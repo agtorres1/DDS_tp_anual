@@ -76,7 +76,7 @@ public class ComunidadTest {
         });
     }
 
-    @Test
+ /*     @Test
     @DisplayName("Agregar un servicio nuevo en una estación siendo administrador de la comunidad")
     public void AbrirIncidente(){
         LocalTime horaInicio1 = LocalTime.of(3, 20);
@@ -95,7 +95,7 @@ public class ComunidadTest {
         this.establecimiento.agregarPrestaciones(prestacionDeServicio);
         this.comunidad.agregarAdministradores(this.administrador);
         this.comunidad.abrirIncidente(administrador,"Hola",this.establecimiento,prestacionDeServicio);
-    }
+    } */
 
     // Ejemplo 1: Crear un rango horario de 8:00 a 12:30
 
