@@ -29,18 +29,17 @@ public class fusionarComunidadesController implements Handler {
             comunidadFusionada.setUsuarios(fusionarListas(comunidad1.getUsuarios(), comunidad2.getUsuarios()));
             comunidadFusionada.setIncidentes(fusionarListas(comunidad1.getIncidentes(), comunidad2.getIncidentes()));
 
-
-            respuesta.setExito(true);
-            respuesta.setCodigoDeEstado(HttpStatus.OK.getCode());
             respuesta.setResultado(comunidadFusionada);
-
-            context.status(HttpStatus.OK);
         }
         catch(Exception e){
             respuesta.setExito(false);
+            respuesta.setError(e.getMessage());
             respuesta.setCodigoDeEstado(HttpStatus.INTERNAL_SERVER_ERROR.getCode());
         }
-    context.json(respuesta);
+        context.status(HttpStatus.OK);
+        respuesta.setExito(true);
+        respuesta.setCodigoDeEstado(HttpStatus.OK.getCode());
+        context.json(respuesta);
     }
 
     private List<String> fusionarListas(List<String> lista1, List<String> lista2){
