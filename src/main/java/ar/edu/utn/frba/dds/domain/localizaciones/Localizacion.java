@@ -1,6 +1,5 @@
 package ar.edu.utn.frba.dds.domain.localizaciones;
 
-import ar.edu.utn.frba.dds.domain.comunidades.Interes;
 import ar.edu.utn.frba.dds.domain.services_api.georef.ServicioGeoref;
 import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;
 import lombok.Getter;

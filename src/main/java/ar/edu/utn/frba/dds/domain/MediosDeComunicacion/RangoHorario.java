@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds.domain.MediosDeComunicacion;
-import java.time.LocalDate;
+
 import java.time.LocalTime;
-import java.util.List;
+
 
 public class RangoHorario {
 

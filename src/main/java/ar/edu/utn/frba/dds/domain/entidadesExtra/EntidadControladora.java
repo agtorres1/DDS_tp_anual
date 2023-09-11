@@ -1,6 +1,5 @@
 package ar.edu.utn.frba.dds.domain.entidadesExtra;
 
-import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import lombok.Getter;

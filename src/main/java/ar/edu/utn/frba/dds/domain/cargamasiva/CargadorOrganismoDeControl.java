@@ -1,6 +1,4 @@
 package ar.edu.utn.frba.dds.domain.cargamasiva;
-import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.domain.entidadesExtra.EntidadControladora;
 import ar.edu.utn.frba.dds.domain.entidadesExtra.OrganismoDeControl;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 

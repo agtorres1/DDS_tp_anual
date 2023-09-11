@@ -3,10 +3,8 @@ package ar.edu.utn.frba.dds.builders;
 import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import ar.edu.utn.frba.dds.excepciones.*;
 
-import java.util.ArrayList;
 
 public class MiembroBuilder {
     private Miembro miembro = new Miembro();

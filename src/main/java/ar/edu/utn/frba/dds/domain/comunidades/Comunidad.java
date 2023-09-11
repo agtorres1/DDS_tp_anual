@@ -8,10 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ar.edu.utn.frba.dds.domain.incidentes.TipoFiltrado;
-import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
-import ar.edu.utn.frba.dds.excepciones.NoEsUnaPrestacionValidaExcepcion;
-import ar.edu.utn.frba.dds.excepciones.PrestacionFuncionaExcepcion;
+
 import lombok.Getter;
 import lombok.Setter;
 

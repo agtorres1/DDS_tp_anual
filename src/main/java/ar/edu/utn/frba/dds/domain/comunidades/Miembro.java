@@ -2,10 +2,8 @@ package ar.edu.utn.frba.dds.domain.comunidades;
 
 
 import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.MedioDeNotificacion;
-import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Notificacion;
 import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.domain.incidentes.AperturaIncidente;
-import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;

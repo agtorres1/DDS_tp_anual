@@ -10,8 +10,7 @@ import ar.edu.utn.frba.dds.excepciones.SinNombreExcepcion;
 import ar.edu.utn.frba.dds.excepciones.SinTipoExcepcion;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+
 
 public class EntidadBuilder {
     private Entidad entidad = new Entidad();
