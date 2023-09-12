@@ -13,15 +13,12 @@ import io.javalin.http.Handler;
 import io.javalin.http.HttpStatus;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class analizarFusionController implements Handler {
+public class AnalizarFusionController implements Handler {
     List<Criterio> criterios;
-    public analizarFusionController(){
+    public AnalizarFusionController(){
         this.criterios = new ArrayList<>();
         criterios.add(new CriterioCoincidencia());
         criterios.add(new CriterioGradoDeConfiabilidad());
@@ -49,14 +46,16 @@ public class analizarFusionController implements Handler {
                     }
                 }
             }
+            respuesta.setExito(true);
+            respuesta.setCodigoDeEstado(HttpStatus.OK.getCode());
             respuesta.setResultado(sugerencias);
+            context.status(HttpStatus.OK.getCode());
         }catch(Exception e){
             respuesta.setExito(false);
             respuesta.setError(e.getMessage());
             respuesta.setCodigoDeEstado(HttpStatus.INTERNAL_SERVER_ERROR.getCode());
+            context.status(HttpStatus.INTERNAL_SERVER_ERROR.getCode());
         }
-        respuesta.setExito(true);
-        respuesta.setCodigoDeEstado(HttpStatus.OK.getCode());
 
         context.json(respuesta);
     }

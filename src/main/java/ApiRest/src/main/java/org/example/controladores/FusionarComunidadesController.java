@@ -8,11 +8,10 @@ import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
 import io.javalin.http.HttpStatus;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fusionarComunidadesController implements Handler {
+public class FusionarComunidadesController implements Handler {
     @Override
     public void handle(@NotNull Context context) throws Exception {
         ApiResponse<Comunidad> respuesta = new ApiResponse<>();
@@ -30,15 +29,16 @@ public class fusionarComunidadesController implements Handler {
             comunidadFusionada.setIncidentes(fusionarListas(comunidad1.getIncidentes(), comunidad2.getIncidentes()));
 
             respuesta.setResultado(comunidadFusionada);
+            context.status(HttpStatus.OK);
+            respuesta.setExito(true);
+            respuesta.setCodigoDeEstado(HttpStatus.OK.getCode());
         }
         catch(Exception e){
             respuesta.setExito(false);
             respuesta.setError(e.getMessage());
             respuesta.setCodigoDeEstado(HttpStatus.INTERNAL_SERVER_ERROR.getCode());
+            context.status(HttpStatus.INTERNAL_SERVER_ERROR.getCode());
         }
-        context.status(HttpStatus.OK);
-        respuesta.setExito(true);
-        respuesta.setCodigoDeEstado(HttpStatus.OK.getCode());
         context.json(respuesta);
     }
 
