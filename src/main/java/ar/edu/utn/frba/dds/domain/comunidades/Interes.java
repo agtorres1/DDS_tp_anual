@@ -4,13 +4,23 @@ import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.Getter;
 
 import java.io.IOException;
 import java.util.*;
-
+@Entity
+@Table(name = "Intereses")
 @Getter
 public class Interes {
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Transient
     private Entidad entidad;
     private Set<InteresEnPrestacion> prestacionesDeInteres;
     public Interes(Entidad entidad){

@@ -56,7 +56,7 @@ public class ComunidadTest {
 
 
 
-        this.comunidad = new Comunidad("ComunidadMuySegura");
+        this.comunidad = new Comunidad();
     }
 
     @Test

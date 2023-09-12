@@ -10,20 +10,39 @@ import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.excepciones.NoEsUnaPrestacionValidaExcepcion;
 import ar.edu.utn.frba.dds.excepciones.PrestacionFuncionaExcepcion;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
 import java.util.*;
-
+@Entity
+@Table(name = "Miembros")
 @Setter @Getter
 public class Miembro {
-  private String usuario;
-  private String clave;
+  @Id
+  @GeneratedValue
+  private Long id;
+  @Column(name = "usuario")
+ private String usuario;
+  @Column(name = "clave")
+ private String clave;
+  @OneToMany
   private List<Interes> intereses;
+  @Transient
   private Localizacion localizacion;
+  @Transient
   public MedioDeNotificacion medioDeNotificacion;
+  @Transient
   private Set<Comunidad> comunidades;
+
 
   public Miembro(){
     this.comunidades = new HashSet<>();
