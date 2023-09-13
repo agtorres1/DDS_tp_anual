@@ -26,7 +26,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class ApiRestTest {
     private Javalin app;
-    private Integer port = Integer.parseInt(System.getProperty("port", "8082"));
+    private Integer port = Integer.parseInt(System.getProperty("port", "8080"));
     private Comunidad comunidad1;
     private Comunidad comunidad2;
     private Comunidad comunidad3;
@@ -83,7 +83,6 @@ public class ApiRestTest {
 
     @Test
     public void testAnalizarFusionPropuestos() {
-
         comunidadSugerencia1.setParComunidad(comunidad1,comunidad3);
         comunidadSugerencia2.setParComunidad(comunidad2,comunidad4);
         List<ComunidadSugerencia> comunidadesSugerencias = new ArrayList<>();
@@ -116,6 +115,7 @@ public class ApiRestTest {
                 .body(sugerenciaRequest)
                 .when()
                 .post("/api/analizar-fusion");
+
 
         assertThat(response, equalTo(jsonEsperado));
     }
