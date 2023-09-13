@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Getter @Setter
 public class Comunidad {
@@ -17,7 +18,7 @@ public class Comunidad {
     private List<Long> usuarios;
     private List<Long> incidentes;
 
-    private Map<Long, LocalDate> propuestasAnteriores; // String sea idComunidad
+    private List<PropuestaAnterior> propuestasAnteriores; // String sea idComunidad
 
     private double gradoConfianza;
 
@@ -26,6 +27,6 @@ public class Comunidad {
         this.servicios = new ArrayList<>();
         this.usuarios = new ArrayList<>();
         this.incidentes = new ArrayList<>();
-        this.propuestasAnteriores = new HashMap<>();
+        this.propuestasAnteriores = new ArrayList<>();
     }
 }

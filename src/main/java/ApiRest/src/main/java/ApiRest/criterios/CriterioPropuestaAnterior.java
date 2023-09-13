@@ -1,22 +1,31 @@
 package ApiRest.criterios;
 
 import ApiRest.Entidades.Comunidad;
+import ApiRest.Entidades.PropuestaAnterior;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
 public class CriterioPropuestaAnterior implements Criterio{
-
     private static final Integer MIN_DIFERENCIA_PROPUESTA_MESES = 6;
-    private Integer fechasDistanciaMeses(LocalDate fecha1, LocalDate fecha2) {
-        return Period.between(fecha1,fecha2).getYears()==0?Period.between(fecha1,fecha2).getMonths():
-                Period.between(fecha1,fecha2).getYears()*12+Period.between(fecha1,fecha2).getMonths();
-    }
 
     @Override
     public Boolean validarCriterio(Comunidad comunidad1, Comunidad comunidad2) {
-        return comunidad1.getPropuestasAnteriores().containsKey(comunidad2.getId())?
-                fechasDistanciaMeses(comunidad1.getPropuestasAnteriores().get(comunidad2),LocalDate.now())>=MIN_DIFERENCIA_PROPUESTA_MESES
-                :false;
+
+        Optional<PropuestaAnterior> propuestaAnterior = comunidad1.getPropuestasAnteriores()
+                .stream()
+                .filter(prop -> prop.getIdComunidad() == comunidad2.getId())
+                .findFirst();
+
+        if(propuestaAnterior.isPresent()){
+            LocalDate fechaPropuesta = propuestaAnterior.get().getFechaComoLocalDate();
+            long diferenciaMeses = ChronoUnit.MONTHS.between(fechaPropuesta, LocalDate.now());
+
+            return diferenciaMeses >= MIN_DIFERENCIA_PROPUESTA_MESES;
+        }
+
+        return true;
     }
 }
