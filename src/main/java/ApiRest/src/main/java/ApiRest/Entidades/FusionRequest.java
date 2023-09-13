@@ -1,4 +1,4 @@
-package ApiRest.src.main.java.org.example.Entidades;
+package ApiRest.Entidades;
 
 import lombok.Getter;
 import lombok.Setter;

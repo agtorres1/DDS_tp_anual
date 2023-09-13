@@ -1,6 +1,6 @@
-package ApiRest.src.main.java.org.example.criterios;
+package ApiRest.criterios;
 
-import ApiRest.src.main.java.org.example.Entidades.Comunidad;
+import ApiRest.Entidades.Comunidad;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class CriterioCoincidencia implements Criterio{
     private static final double MIN_COINCIDENCIA_USUARIOS = 0.05;
 
 
-    private double calcularPorcentajeCoincidencia(List<String> lista1, List<String> lista2){
+    private double calcularPorcentajeCoincidencia(List<Long> lista1, List<Long> lista2){
         double coincidencias = lista1.stream()
                 .filter(lista2::contains)
                 .count();

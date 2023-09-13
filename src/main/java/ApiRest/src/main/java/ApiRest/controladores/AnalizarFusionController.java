@@ -1,13 +1,13 @@
-package ApiRest.src.main.java.org.example.controladores;
+package ApiRest.controladores;
 
-import ApiRest.src.main.java.org.example.criterios.Criterio;
-import ApiRest.src.main.java.org.example.Entidades.Comunidad;
-import ApiRest.src.main.java.org.example.Entidades.ComunidadSugerencia;
-import ApiRest.src.main.java.org.example.Entidades.SugerenciaRequest;
-import ApiRest.src.main.java.org.example.Entidades.ApiResponse;
-import ApiRest.src.main.java.org.example.criterios.CriterioCoincidencia;
-import ApiRest.src.main.java.org.example.criterios.CriterioGradoDeConfiabilidad;
-import ApiRest.src.main.java.org.example.criterios.CriterioPropuestaAnterior;
+import ApiRest.Entidades.ApiResponse;
+import ApiRest.Entidades.Comunidad;
+import ApiRest.Entidades.ComunidadSugerencia;
+import ApiRest.Entidades.SugerenciaRequest;
+import ApiRest.criterios.Criterio;
+import ApiRest.criterios.CriterioCoincidencia;
+import ApiRest.criterios.CriterioGradoDeConfiabilidad;
+import ApiRest.criterios.CriterioPropuestaAnterior;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import io.javalin.http.HttpStatus;
@@ -50,6 +50,7 @@ public class AnalizarFusionController implements Handler {
             respuesta.setCodigoDeEstado(HttpStatus.OK.getCode());
             respuesta.setResultado(sugerencias);
             context.status(HttpStatus.OK.getCode());
+            context.result("Analisis realizado");
         }catch(Exception e){
             respuesta.setExito(false);
             respuesta.setError(e.getMessage());
@@ -58,6 +59,7 @@ public class AnalizarFusionController implements Handler {
         }
 
         context.json(respuesta);
+
     }
     private boolean cumplenCriterios(Comunidad comunidad1, Comunidad comunidad2){
         return criterios.stream().allMatch(criterio ->{

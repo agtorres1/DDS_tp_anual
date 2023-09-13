@@ -1,11 +1,10 @@
-package ApiRest.src.main.java.org.example;
-import ApiRest.controladores.*;
+package ApiRest;
 
+import ApiRest.controladores.AnalizarFusionController;
+import ApiRest.controladores.FusionarComunidadesController;
 import io.javalin.Javalin;
 
-
-public class App
-{
+public class ApiRest {
     public static void main( String[] args )
     {
         Integer port = Integer.parseInt(System.getProperty("port", "8082"));

@@ -1,6 +1,6 @@
-package ApiRest.src.main.java.org.example.criterios;
+package ApiRest.criterios;
 
-import ApiRest.src.main.java.org.example.Entidades.Comunidad;
+import ApiRest.Entidades.Comunidad;
 
 public class CriterioGradoDeConfiabilidad implements Criterio{
 

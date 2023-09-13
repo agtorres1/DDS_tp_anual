@@ -1,8 +1,8 @@
-package ApiRest.src.main.java.org.example.controladores;
+package ApiRest.controladores;
 
-import ApiRest.src.main.java.org.example.Entidades.ApiResponse;
-import ApiRest.src.main.java.org.example.Entidades.Comunidad;
-import ApiRest.src.main.java.org.example.Entidades.FusionRequest;
+import ApiRest.Entidades.ApiResponse;
+import ApiRest.Entidades.Comunidad;
+import ApiRest.Entidades.FusionRequest;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
@@ -32,6 +32,7 @@ public class FusionarComunidadesController implements Handler {
             context.status(HttpStatus.OK);
             respuesta.setExito(true);
             respuesta.setCodigoDeEstado(HttpStatus.OK.getCode());
+            context.result("Fusion realizada");
         }
         catch(Exception e){
             respuesta.setExito(false);
@@ -42,9 +43,9 @@ public class FusionarComunidadesController implements Handler {
         context.json(respuesta);
     }
 
-    private List<String> fusionarListas(List<String> lista1, List<String> lista2){
-        List<String> listaFusionada = new ArrayList<String>(lista1);
-        for(String elemento : lista2){
+    private List<Long> fusionarListas(List<Long> lista1, List<Long> lista2){
+        List<Long> listaFusionada = new ArrayList<>(lista1);
+        for(Long elemento : lista2){
             if (!listaFusionada.contains(elemento)) {
                 listaFusionada.add(elemento);
             }
