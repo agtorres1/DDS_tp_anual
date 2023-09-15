@@ -32,7 +32,9 @@ public class EntidadTest {
         this.ubicacion1 = new Ubicacion();
         this.ubicacion1.setLatitud(1.00);
         this.ubicacion1.setLongitud(-1.00);
-        this.localizacionOrigen = new Localizacion("Chaco");
+        Localizacion localizacion = new Localizacion();
+        localizacion.setProvincia("Chaco");
+        this.localizacionOrigen = localizacion;
         this.localizacionOrigen.setMunicipio("Isla del Cerrito");
         this.origen = this.establecimientoBuilder.conNombre("Flores").conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(this.localizacionOrigen).construir();
         this.origen.setCentroide(ubicacion1);
@@ -40,13 +42,17 @@ public class EntidadTest {
         this.ubicacion2 = new Ubicacion();
         this.ubicacion2.setLatitud(2.00);
         this.ubicacion2.setLongitud(-8.00);
-        this.localizacionDestino = new Localizacion("Chaco");
+        Localizacion localizacion2 = new Localizacion();
+        localizacion.setProvincia("Chaco");
+        this.localizacionDestino = localizacion2;
         this.localizacionDestino.setMunicipio("Chorotis");
         this.destino = this.establecimientoBuilder.conNombre("Once").conTipo(TipoEstablecimiento.ESTACION).
                 conLocalizacion(localizacionDestino).construir();
         this.destino.setCentroide(ubicacion2);
+        Localizacion localizacion3 = new Localizacion();
+        localizacion.setProvincia("Chaco");
 
-        this.localizacionEntidad = new Localizacion("Chaco");
+        this.localizacionEntidad = localizacion3;
     }
 
 
@@ -62,10 +68,12 @@ public class EntidadTest {
 
     @Test
     @DisplayName("Instanciar una linea agregando origen y destino a la lista de estaciones, pero estas con un diferente tipo de establecimiento al esperado")
-    public void instanciarEstablecimientosIncorrectos(){
+    public void instanciarEstablecimientosIncorrectos() throws IOException {
+        Localizacion localizacion = new Localizacion();
+        localizacion.setProvincia("Chaco");
         Assertions.assertThrows(TipoEstablecimientoInvalidoExcepcion.class,()->{
             Establecimiento establecimientoIncorrecto = establecimientoBuilder.conNombre("Soy malo").
-                    conTipo(TipoEstablecimiento.SUCURSAL).conLocalizacion(new Localizacion("Chaco")).construir();
+                    conTipo(TipoEstablecimiento.SUCURSAL).conLocalizacion(localizacion).construir();
             this.entidad =this.entidadBuilder.conNombre("Linea Resistencia").
                     conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(this.localizacionEntidad).construir();
             this.entidad.agregarEstablecimientos(this.origen,establecimientoIncorrecto);
@@ -77,9 +85,9 @@ public class EntidadTest {
     public void instanciarEstablecimientosIncorrectos2(){
         Assertions.assertThrows(LocalizacionEstablecimientoInvalidaExcepcion.class,()->{
             Establecimiento establecimientoIncorrecto = establecimientoBuilder.conNombre("Soy malo").
-                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(new Localizacion("Buenos Aires")).construir();
+                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(localizacion3).construir();
             Establecimiento establecimientoCorrecto = establecimientoBuilder.conNombre("Soy bueno").
-                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(new Localizacion("Chaco")).construir();
+                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(localizacion4).construir();
             this.entidad =this.entidadBuilder.conNombre("Linea Resistencia").
                     conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(this.localizacionEntidad).construir();
             this.entidad.agregarEstablecimientos(establecimientoCorrecto,establecimientoIncorrecto);

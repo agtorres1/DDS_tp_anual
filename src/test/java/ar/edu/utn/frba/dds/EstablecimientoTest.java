@@ -27,21 +27,26 @@ public class EstablecimientoTest {
         this.ubicacion = new Ubicacion();
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);
-
+        Localizacion localizacion10 = new Localizacion();
+        localizacion10.setProvincia("Buenos Aires");
         this.establecimiento = this.establecimientoBuilder.conNombre("Flores").conTipo(TipoEstablecimiento.SUCURSAL).
-                conLocalizacion(new Localizacion("Buenos Aires")).construir();
+                conLocalizacion(localizacion10).construir();
         this.establecimiento.setCentroide(ubicacion);
 
         this.banio = new Banio();
         this.banio.setGenero(Genero.HOMBRE);
         this.banio.setDiscapacitado(true);
-        this.prestacionBanio = new PrestacionDeServicio(this.banio,3);
+        PrestacionDeServicio prestacionBanio = new PrestacionDeServicio();
+        prestacionBanio.setServicio(this.banio);
+        prestacionBanio.setCantidad(3);
         this.prestacionBanio.setFunciona(true);
 
         this.ascensor = new Escalador();
         this.ascensor.setOrigen(TipoTraslado.CALLE);
         this.ascensor.setDestino(TipoTraslado.BARRERA);
-        this.prestacionAscensor = new PrestacionDeServicio(this.ascensor,2);
+        PrestacionDeServicio prestacionAscensor = new PrestacionDeServicio();
+        prestacionAscensor.setServicio(this.ascensor);
+        prestacionAscensor.setCantidad(2);
         this.prestacionAscensor.setFunciona(true);
 
     }

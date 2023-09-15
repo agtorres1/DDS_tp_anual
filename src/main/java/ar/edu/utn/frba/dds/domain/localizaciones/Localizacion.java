@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.domain.localizaciones;
 
 import ar.edu.utn.frba.dds.domain.services_api.georef.ServicioGeoref;
 import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;
+import javax.persistence.Embeddable;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -15,13 +16,11 @@ public class Localizacion{
     private static Integer maxMunicipios = 200;
     private static Integer maxDepartamentos = 135;
 
-    public Localizacion(String provincia) throws IOException {
+    public Localizacion() throws IOException {
         this.servicioGeoref = ServicioGeoref.getInstance();
-        if(this.servicioGeoref.buscarProvincia(provincia) == null){
-            throw new IllegalArgumentException("No es una provincia del listado requerido");
-        }
-        this.provincia = this.servicioGeoref.buscarProvincia(provincia);
+
     }
+
 
     public void setProvincia(String provincia) throws IOException {
         if(this.servicioGeoref.buscarProvincia(provincia) == null){

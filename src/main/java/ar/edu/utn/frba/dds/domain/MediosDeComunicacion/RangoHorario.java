@@ -1,24 +1,32 @@
 package ar.edu.utn.frba.dds.domain.MediosDeComunicacion;
 
 import java.time.LocalTime;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 
+@Entity
+@Table(name = "Rangos_horarios")
+@Getter
+@Setter
 public class RangoHorario {
-
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(name = "hora_inicio")
     public LocalTime horaInicio;
+    @Column(name = "hora_fin")
     public LocalTime horaFin;
 
-  public LocalTime getHoraFin() {
-    return horaFin;
-  }
 
-  public LocalTime getHoraInicio() {
-    return horaInicio;
-  }
+  public RangoHorario() {
 
-  public RangoHorario(LocalTime inicio, LocalTime fin) {
-      this.horaInicio = inicio;
-      this.horaFin = fin;
     }
 
 

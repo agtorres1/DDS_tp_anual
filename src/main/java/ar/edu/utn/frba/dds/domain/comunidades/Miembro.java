@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import lombok.Getter;
@@ -38,7 +39,7 @@ public class Miembro {
   private List<Interes> intereses;
   @Transient
   private Localizacion localizacion;
-  @Transient
+  @OneToOne
   public MedioDeNotificacion medioDeNotificacion;
   @Transient
   private Set<Comunidad> comunidades;

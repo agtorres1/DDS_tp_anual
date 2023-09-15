@@ -103,7 +103,8 @@ public class Comunidad{
 
   public void notificarMiembros(Incidente incidente){
     getIncidentes().add(incidente);
-    Notificacion notificacion = new Notificacion(incidente);
+    Notificacion notificacion = new Notificacion();
+    notificacion.crearNotificacion(incidente);
     this.miembros.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())
                           .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
     System.out.println("Se ha enviado notificacion al WhatssApp - ");

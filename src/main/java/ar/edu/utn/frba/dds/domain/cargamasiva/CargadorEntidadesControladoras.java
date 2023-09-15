@@ -20,12 +20,14 @@ public class CargadorEntidadesControladoras {
                 String nombre = dato[0];
                 String descripcion = dato[1];
                 String direccion = dato[2];
-                String localizacion = dato[3];
+                String provincia = dato[3];
+                Localizacion localizacion = new Localizacion();
+                localizacion.setProvincia(provincia);
 
                 EntidadControladora entidadControladora = new EntidadControladora(nombre);
                 entidadControladora.setDescripcion(descripcion);
                 entidadControladora.setDireccion(direccion);
-                entidadControladora.setLocalizacion(new Localizacion(localizacion));
+                entidadControladora.setLocalizacion(localizacion);
                 entidadesDeControl.add(entidadControladora);
             }
         }catch (Exception e) {
