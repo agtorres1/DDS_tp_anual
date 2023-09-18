@@ -39,8 +39,10 @@ public class Incidente {
     @Column(name = "estaAbierto")
     private Boolean abierto;
     @OneToOne
+    @JoinColumn(name = "id_abridor")
     private Miembro abridor;
     @OneToOne
+    @JoinColumn(name = "id_cerrador")
     private Miembro cerrador;
 
 

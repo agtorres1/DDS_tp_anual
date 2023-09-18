@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
+@Table(name = "entidad")
 @Setter @Getter
 public class Entidad {
   @Id

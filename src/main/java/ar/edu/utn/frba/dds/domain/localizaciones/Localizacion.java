@@ -15,11 +15,17 @@ public class Localizacion{
     @Id
     @GeneratedValue
     private Long id;
+
     @ManyToOne
+    @JoinColumn(name = "id_provincia",referencedColumnName = "id")
     private Provincia provincia;
+
     @ManyToOne
+    @JoinColumn(name = "id_municipio",referencedColumnName = "id")
     private Municipio municipio;
+
     @ManyToOne
+    @JoinColumn(name = "id_departamento",referencedColumnName = "id")
     private Departamento departamento;
     @Transient
     private ServicioGeoref servicioGeoref;

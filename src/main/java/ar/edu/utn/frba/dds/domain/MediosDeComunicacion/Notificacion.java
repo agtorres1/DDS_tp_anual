@@ -6,13 +6,8 @@ import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import java.beans.ConstructorProperties;
 import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 @Entity
@@ -22,6 +17,8 @@ public class Notificacion {
   @Id
   @GeneratedValue
   private Long id;
+
+
 
 
   //public String observaciones;

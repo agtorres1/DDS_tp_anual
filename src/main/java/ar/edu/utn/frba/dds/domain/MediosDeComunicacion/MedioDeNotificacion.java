@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "Medio_de_notificacion")
 @DiscriminatorColumn(name = "tipo")
-
 public abstract class MedioDeNotificacion {
   @Id
   @GeneratedValue
