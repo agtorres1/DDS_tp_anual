@@ -35,10 +35,10 @@ public class PrestacionDeServicio {
     private List<Miembro> interesados;
 
 
-    public PrestacionDeServicio(Servicio servicio, Integer cantidad){
-        this.servicio = servicio;
-        this.cantidad = cantidad;
+    public PrestacionDeServicio() {
+
         this.interesados = new ArrayList<>();
 
     }
 
+}

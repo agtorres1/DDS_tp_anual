@@ -82,7 +82,13 @@ public class EntidadTest {
 
     @Test
     @DisplayName("Instanciar establecimientos a la lista de una entidad, pero una de estas con un diferente provincia configurada a la de la entidad")
-    public void instanciarEstablecimientosIncorrectos2(){
+    public void instanciarEstablecimientosIncorrectos2()throws IOException {
+
+        Localizacion localizacion3 = new Localizacion();
+        localizacion3.setProvincia("Buenos Aires");
+        Localizacion localizacion4 = new Localizacion();
+        localizacion4.setProvincia("Chaco");
+
         Assertions.assertThrows(LocalizacionEstablecimientoInvalidaExcepcion.class,()->{
             Establecimiento establecimientoIncorrecto = establecimientoBuilder.conNombre("Soy malo").
                     conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(localizacion3).construir();
