@@ -28,7 +28,7 @@ public class Miembro {
   @Column(name = "usuario")
   private String usuario;
   @OneToMany
-  @JoinColumn(name = "interes_id", referencedColumnName = "id")
+  @JoinColumn(name = "miembro_id", referencedColumnName = "id")
   private List<Interes> intereses;
   @OneToOne
   @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
@@ -38,7 +38,7 @@ public class Miembro {
   public MedioDeNotificacion medioDeNotificacion;
 
   @OneToMany
-  @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
+  @JoinColumn(name = "miembro_id", referencedColumnName = "id")
   private Set<Comunidad> comunidades;
 
 

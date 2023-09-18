@@ -23,8 +23,10 @@ public class CargadorOrganismoDeControl {
                 Localizacion localizacion = new Localizacion();
                 localizacion.setProvincia(provincia);
 
+                OrganismoDeControl oc1 = new OrganismoDeControl();
+                oc1.setNombre(nombre);
 
-                OrganismoDeControl organismoDeControl = new OrganismoDeControl(nombre);
+                OrganismoDeControl organismoDeControl = oc1;
                 organismoDeControl.setDescripcion(descripcion);
                 organismoDeControl.setLocalizacion(localizacion);
                 organismosDeControl.add(organismoDeControl);

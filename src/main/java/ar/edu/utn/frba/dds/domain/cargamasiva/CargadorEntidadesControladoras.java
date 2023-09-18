@@ -24,7 +24,11 @@ public class CargadorEntidadesControladoras {
                 Localizacion localizacion = new Localizacion();
                 localizacion.setProvincia(provincia);
 
-                EntidadControladora entidadControladora = new EntidadControladora(nombre);
+                EntidadControladora entidad1 = new EntidadControladora();
+                entidad1.setNombre(nombre);
+
+
+                EntidadControladora entidadControladora = entidad1;
                 entidadControladora.setDescripcion(descripcion);
                 entidadControladora.setDireccion(direccion);
                 entidadControladora.setLocalizacion(localizacion);

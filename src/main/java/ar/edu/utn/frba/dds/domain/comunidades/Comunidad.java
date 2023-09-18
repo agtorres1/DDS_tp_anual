@@ -60,7 +60,7 @@ public class Comunidad{
     this.incidentes = new ArrayList<>();
   }
 
-   //esto s para fijarse el estado de los incidentes abiertos
+   //esto es para fijarse el estado de los incidentes abiertos
   public void imprimirIncidentes(TipoFiltrado tipoFiltrado) {
     for (Incidente incidente : incidentes) {
       if (tipoFiltrado == TipoFiltrado.SOLO_ABIERTOS && incidente.getAbierto()) {
@@ -74,8 +74,6 @@ public class Comunidad{
   }
   
 /*
-
-
 
   public void ingresarServicioNuevo(Establecimiento establecimiento, Miembro administrador, String nombre, String descripcion, int cantidad) throws NoEsAdministradorExcepcion {
     this.verificarQueEsAdministrador(administrador);
