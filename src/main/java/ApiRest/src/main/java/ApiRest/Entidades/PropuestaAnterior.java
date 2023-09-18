@@ -15,6 +15,7 @@ public class PropuestaAnterior {
         this.fecha = fecha;
     }
     public PropuestaAnterior(){}
+
     public LocalDate getFechaComoLocalDate(){
         return LocalDate.parse(fecha);
     }

@@ -3,8 +3,11 @@ import ApiRest.Entidades.*;
 import ApiRest.controladores.AnalizarFusionController;
 import ApiRest.controladores.FusionarComunidadesController;
 import ApiRest.serializadorMagico.LocalDateSerializer;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import io.javalin.Javalin;
 import io.javalin.http.HttpStatus;
 import io.restassured.RestAssured;
@@ -26,7 +29,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class ApiRestTest {
     private Javalin app;
-    private Integer port = Integer.parseInt(System.getProperty("port", "8082"));
+    private Integer port = Integer.parseInt(System.getProperty("port", "8080"));
     private Comunidad comunidad1;
     private Comunidad comunidad2;
     private Comunidad comunidad3;
@@ -44,8 +47,8 @@ public class ApiRestTest {
         comunidad1.getUsuarios().addAll(Arrays.asList(1L,2L,27L));
         comunidad1.getEstablecimientos().addAll(Arrays.asList(1L,2L,27L));
         comunidad1.getServicios().addAll(Arrays.asList(1L,2L,27L));
-        comunidad1.getPropuestasAnteriores().put(2L, LocalDate.of(2023, 4, 25));
-        comunidad1.getPropuestasAnteriores().put(4L, LocalDate.of(1999, 4, 25));
+        comunidad1.getPropuestasAnteriores().add(new PropuestaAnterior(2L, "2023-04-25"));
+        comunidad1.getPropuestasAnteriores().add(new PropuestaAnterior(4L, "1999-04-25"));
         comunidad1.setGradoConfianza(3);
 
         comunidad2 = new Comunidad();
@@ -82,7 +85,7 @@ public class ApiRestTest {
     }
 
     @Test
-    public void testAnalizarFusionPropuestos() {
+    public void testAnalizarFusionPropuestos() throws JsonProcessingException {
 
         comunidadSugerencia1.setParComunidad(comunidad1,comunidad3);
         comunidadSugerencia2.setParComunidad(comunidad2,comunidad4);
@@ -102,7 +105,7 @@ public class ApiRestTest {
     }
 
     @Test
-    public void testAnalizarFusionGrado() {
+    public void testAnalizarFusionGrado() throws JsonProcessingException {
         comunidad1.setGradoConfianza(4);
         comunidadSugerencia2.setParComunidad(comunidad2,comunidad3);
         List<ComunidadSugerencia> comunidadesSugerencias = new ArrayList<>();
@@ -121,7 +124,7 @@ public class ApiRestTest {
     }
 
     @Test
-    public void testAnalizarFusionCoincidentes() {
+    public void testAnalizarFusionCoincidentes() throws JsonProcessingException {
         comunidad1.setEstablecimientos(Arrays.asList(1L,2L,3L));
         comunidadSugerencia1.setParComunidad(comunidad2,comunidad3);
         List<ComunidadSugerencia> comunidadesSugerencias = new ArrayList<>();
@@ -149,14 +152,19 @@ public class ApiRestTest {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
                 .create();
-        String jsonEsperado = gson.toJson(comunidad1);
-        ApiResponse response = new ApiResponse();
-        response.setResultado(given()
+        comunidad3.setId(null);
+        String jsonEsperado = gson.toJson(comunidad3);
+        Response response=(given()
                 .contentType(ContentType.JSON)
                 .body(fusionRequest)
                 .when()
                 .post("/api/fusionar-comunidades"));
+        String responseBody = response.getBody().asString();
+        /*JsonObject respuestaJson = JsonParser.parseString(responseBody).getAsJsonObject();
+        JsonObject resultadoJsonObj = respuestaJson.getAsJsonObject("resultado");
 
-        assertThat(response, equalTo(jsonEsperado));
+        // Elimina el campo "id" del JSON de resultado para la comparación
+        resultadoJsonObj.remove("id");*/
+        assertThat(responseBody, equalTo(jsonEsperado));
     }
 }
