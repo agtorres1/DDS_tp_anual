@@ -28,6 +28,16 @@ import lombok.Setter;
 @Table(name = "Comunidades")
 @Getter @Setter
 public class Comunidad{
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY) // Opciones: IDENTITY, SEQUENCE, TABLE, etc.
+  @Column(name = "id")
+  private Long id;
+  @ManyToMany
+  @JoinTable(name = "administradores_por_comunidad",
+          joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
+  )
   private List<Miembro> administradores;
   @ManyToMany
   @JoinTable(name = "miembros_por_comunidad",
@@ -35,8 +45,11 @@ public class Comunidad{
       inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   )
   private List<Miembro> miembros;
+
   @OneToMany
+  @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private List<Incidente> incidentes;
+
   @Column(name = "nombre")
   private String nombre;
 

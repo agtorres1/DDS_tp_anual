@@ -6,7 +6,6 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@MappedSuperclass
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "tipoDeServicio")
 @DiscriminatorColumn(name = "tipo")

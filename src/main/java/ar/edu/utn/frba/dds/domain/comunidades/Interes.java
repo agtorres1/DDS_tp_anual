@@ -22,9 +22,10 @@ public class Interes {
     private Long id;
     @Transient
     private Entidad entidad;
+    @Transient
     private Set<InteresEnPrestacion> prestacionesDeInteres;
-    public Interes(Entidad entidad){
-        this.entidad = entidad;
+    public Interes(){
+
         this.prestacionesDeInteres = new HashSet<>();
     }
 

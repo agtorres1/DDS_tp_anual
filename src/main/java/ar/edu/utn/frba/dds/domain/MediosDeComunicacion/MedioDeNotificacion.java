@@ -8,20 +8,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "Medio_de_notificacion")
 @DiscriminatorColumn(name = "tipo")
+
 public abstract class MedioDeNotificacion {
   @Id
   @GeneratedValue
@@ -30,6 +23,8 @@ public abstract class MedioDeNotificacion {
   @OneToMany
   List<Notificacion> notificacionesRecientes;
 
+  @OneToMany
+  @JoinColumn(name = "rangoHorarioID", referencedColumnName = "id")
   List<RangoHorario> rangosHorariosElegidos;
 
   public MedioDeNotificacion(){

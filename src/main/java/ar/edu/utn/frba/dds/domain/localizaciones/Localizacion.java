@@ -2,18 +2,30 @@ package ar.edu.utn.frba.dds.domain.localizaciones;
 
 import ar.edu.utn.frba.dds.domain.services_api.georef.ServicioGeoref;
 import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;
-import javax.persistence.Embeddable;
+
+import javax.persistence.*;
+
 import lombok.Getter;
 
 import java.io.IOException;
 
+@Entity
 @Getter
 public class Localizacion{
+    @Id
+    @GeneratedValue
+    private Long id;
+    @ManyToOne
     private Provincia provincia;
+    @ManyToOne
     private Municipio municipio;
+    @ManyToOne
     private Departamento departamento;
+    @Transient
     private ServicioGeoref servicioGeoref;
+    @Transient
     private static Integer maxMunicipios = 200;
+    @Transient
     private static Integer maxDepartamentos = 135;
 
     public Localizacion() throws IOException {

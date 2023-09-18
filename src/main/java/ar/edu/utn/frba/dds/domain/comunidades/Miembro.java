@@ -10,15 +10,9 @@ import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.excepciones.NoEsUnaPrestacionValidaExcepcion;
 import ar.edu.utn.frba.dds.excepciones.PrestacionFuncionaExcepcion;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,16 +26,19 @@ public class Miembro {
   @GeneratedValue
   private Long id;
   @Column(name = "usuario")
- private String usuario;
-  @Column(name = "clave")
- private String clave;
+  private String usuario;
   @OneToMany
+  @JoinColumn(name = "interes_id", referencedColumnName = "id")
   private List<Interes> intereses;
-  @Transient
+  @OneToOne
+  @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
   private Localizacion localizacion;
   @OneToOne
+  @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   public MedioDeNotificacion medioDeNotificacion;
-  @Transient
+
+  @OneToMany
+  @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private Set<Comunidad> comunidades;
 
 

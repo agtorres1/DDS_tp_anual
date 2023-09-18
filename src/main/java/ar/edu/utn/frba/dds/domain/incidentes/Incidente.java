@@ -5,15 +5,9 @@ import ar.edu.utn.frba.dds.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
@@ -22,17 +16,29 @@ import java.time.LocalDateTime;
 
 @Setter @Getter
 public class Incidente {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(name = "fechayHoraApertura")
     private LocalDateTime fachaYHoraApertura;
+
     @Column(name = "fechayHoraCierre")
     private LocalDateTime fechaYHoraCierre;
+
     @ManyToOne
     @JoinColumn(name = "servicio_id", referencedColumnName = "id")
     private PrestacionDeServicio prestacionDeServicio;
+
     @Transient
     private Establecimiento establecimiento;
+    @Column(name = "observaciones")
     private String observaciones;
+    @Column(name = "estaAbierto")
     private Boolean abierto;
+    @OneToOne
     private Miembro abridor;
+    @OneToOne
     private Miembro cerrador;
 
 
