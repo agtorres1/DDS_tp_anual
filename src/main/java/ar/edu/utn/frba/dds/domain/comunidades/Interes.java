@@ -4,11 +4,9 @@ import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import javax.persistence.*;
+
 import lombok.Getter;
 
 import java.io.IOException;
@@ -20,7 +18,10 @@ public class Interes {
     @Id
     @GeneratedValue
     private Long id;
-    @Transient
+    @Column(name = "descripcion",columnDefinition = "TEXT")
+    private String descripcion;
+    @ManyToOne
+    @JoinColumn(name = "entidad_id", referencedColumnName = "id")
     private Entidad entidad;
     @Transient
     private Set<InteresEnPrestacion> prestacionesDeInteres;

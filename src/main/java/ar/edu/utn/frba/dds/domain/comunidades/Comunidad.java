@@ -53,6 +53,9 @@ public class Comunidad{
   @Column(name = "nombre")
   private String nombre;
 
+  @Column(name = "descripcion", columnDefinition = "TEXT")
+  private String descripcion;
+
   public Comunidad() {
     this.nombre = "HOLA";
     this.administradores = new ArrayList<>();

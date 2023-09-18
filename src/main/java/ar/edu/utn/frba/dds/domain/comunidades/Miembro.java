@@ -27,8 +27,7 @@ public class Miembro {
   private Long id;
   @Column(name = "usuario")
   private String usuario;
-  @OneToMany
-  @JoinColumn(name = "miembro_id", referencedColumnName = "id")
+  @ManyToMany
   private List<Interes> intereses;
   @OneToOne
   @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
@@ -37,8 +36,7 @@ public class Miembro {
   @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   public MedioDeNotificacion medioDeNotificacion;
 
-  @OneToMany
-  @JoinColumn(name = "miembro_id", referencedColumnName = "id")
+  @Transient
   private Set<Comunidad> comunidades;
 
 

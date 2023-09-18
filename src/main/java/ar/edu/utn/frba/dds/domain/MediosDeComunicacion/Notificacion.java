@@ -33,7 +33,7 @@ public class Notificacion {
   private LocalDateTime fachaYHoraApertura;
   @Column(name = "prestacion_De_servicio")
   private String prestacionDeServicio;
-  @Column(name = "establecimiento")
+  @Column(name = "estaclecimiento")
   private String establecimiento;
   @Column(name = "observaciones", columnDefinition = "text")
   private String observaciones;
