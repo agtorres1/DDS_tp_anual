@@ -44,6 +44,4 @@ public class EntidadControladora {
             this.entidades.remove(entidad);
         }
     }
-
-
 }

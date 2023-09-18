@@ -27,13 +27,15 @@ public class Incidente {
     private LocalDateTime fechaYHoraCierre;
 
     @ManyToOne
-    @JoinColumn(name = "servicio_id", referencedColumnName = "id")
+    @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private PrestacionDeServicio prestacionDeServicio;
 
     @Transient
     private Establecimiento establecimiento;
-    @Column(name = "observaciones")
+
+    @Column(name = "observaciones",columnDefinition = "TEXT")
     private String observaciones;
+
     @Column(name = "estaAbierto")
     private Boolean abierto;
     @OneToOne
