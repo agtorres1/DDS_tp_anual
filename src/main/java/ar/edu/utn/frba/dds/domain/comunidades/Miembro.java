@@ -77,7 +77,7 @@ public class Miembro {
     }
     notificador.notificar(this,aperturaIncidente);
 
-
+//
   }
 
 
