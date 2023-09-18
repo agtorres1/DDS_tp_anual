@@ -29,7 +29,9 @@ public class PrestacionDeServicio {
     private Integer cantidad;
     @Transient
     private Boolean funciona;
+    @Transient
     private String nombreServicio;
+    @Transient
     private List<Miembro> interesados;
 
 
