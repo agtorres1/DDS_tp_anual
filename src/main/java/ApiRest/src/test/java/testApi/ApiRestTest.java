@@ -4,10 +4,7 @@ import ApiRest.controladores.AnalizarFusionController;
 import ApiRest.controladores.FusionarComunidadesController;
 import ApiRest.serializadorMagico.LocalDateSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import io.javalin.Javalin;
 import io.javalin.http.HttpStatus;
 import io.restassured.RestAssured;
@@ -89,24 +86,36 @@ public class ApiRestTest {
 
         comunidadSugerencia1.setParComunidad(comunidad1,comunidad3);
         comunidadSugerencia2.setParComunidad(comunidad2,comunidad4);
-        List<ComunidadSugerencia> comunidadesSugerencias = new ArrayList<>();
-        comunidadesSugerencias.addAll(Arrays.asList(comunidadSugerencia1,comunidadSugerencia2));
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
-                .create();
-        String jsonEsperado = gson.toJson(comunidadesSugerencias);
+
         Response response = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(sugerenciaRequest)
                 .when()
                 .post("/api/analizar-fusion");
 
-        assertThat(response.getBody().toString(), equalTo(jsonEsperado));
+        List<ComunidadSugerencia> comunidadesSugerencias = new ArrayList<>();
+        comunidadesSugerencias.addAll(Arrays.asList(comunidadSugerencia1,comunidadSugerencia2));
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
+                .create();
+        String jsonEsperado = gson.toJson(comunidadesSugerencias);
+
+
+        String responseBody = response.getBody().asString();
+        JsonElement resultadoJson = JsonParser.parseString(responseBody).getAsJsonObject().get("resultado");
+
+        assertThat(resultadoJson.toString(), equalTo(jsonEsperado));
     }
 
     @Test
     public void testAnalizarFusionGrado() throws JsonProcessingException {
         comunidad1.setGradoConfianza(4);
+        Response response = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(sugerenciaRequest)
+                .when()
+                .post("/api/analizar-fusion");
+
         comunidadSugerencia2.setParComunidad(comunidad2,comunidad3);
         List<ComunidadSugerencia> comunidadesSugerencias = new ArrayList<>();
         comunidadesSugerencias.addAll(Arrays.asList(comunidadSugerencia2));
@@ -114,34 +123,41 @@ public class ApiRestTest {
                 .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
                 .create();
         String jsonEsperado = gson.toJson(comunidadesSugerencias);
-        Response response = RestAssured.given()
+
+
+        String responseBody = response.getBody().asString();
+        JsonElement resultadoJson = JsonParser.parseString(responseBody).getAsJsonObject().get("resultado");
+
+        assertThat(resultadoJson.toString(), equalTo(jsonEsperado));
+    }
+
+    @Test
+    public void testAnalizarFusionCoincidentes() throws JsonProcessingException {
+
+        comunidad1.setEstablecimientos(Arrays.asList(1L, 2L, 3L));
+
+        Response response = given()
                 .contentType(ContentType.JSON)
                 .body(sugerenciaRequest)
                 .when()
                 .post("/api/analizar-fusion");
 
-        assertThat(response, equalTo(jsonEsperado));
-    }
-
-    @Test
-    public void testAnalizarFusionCoincidentes() throws JsonProcessingException {
-        comunidad1.setEstablecimientos(Arrays.asList(1L,2L,3L));
-        comunidadSugerencia1.setParComunidad(comunidad2,comunidad3);
+        comunidadSugerencia1.setParComunidad(comunidad2, comunidad3);
         List<ComunidadSugerencia> comunidadesSugerencias = new ArrayList<>();
         comunidadesSugerencias.addAll(Arrays.asList(comunidadSugerencia1));
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
                 .create();
         String jsonEsperado = gson.toJson(comunidadesSugerencias);
-        Response response = RestAssured.given()
-                .contentType(ContentType.JSON)
-                .body(sugerenciaRequest)
-                .when()
-                .post("/api/analizar-fusion");
 
-        assertThat(response, equalTo(jsonEsperado));
+
+
+        // Extraer el campo "resultado" de la respuesta JSON
+        String responseBody = response.getBody().asString();
+        JsonElement resultadoJson = JsonParser.parseString(responseBody).getAsJsonObject().get("resultado");
+
+        assertThat(resultadoJson.toString(), equalTo(jsonEsperado));
     }
-
 
 
     @Test

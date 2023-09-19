@@ -17,9 +17,7 @@ public class Comunidad {
     private List<Long> servicios;
     private List<Long> usuarios;
     private List<Long> incidentes;
-
-    private List<PropuestaAnterior> propuestasAnteriores; // String sea idComunidad
-
+    private List<PropuestaAnterior> propuestasAnteriores;
     private double gradoConfianza;
 
     public Comunidad(){
