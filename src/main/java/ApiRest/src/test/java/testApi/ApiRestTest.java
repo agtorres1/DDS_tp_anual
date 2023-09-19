@@ -160,11 +160,11 @@ public class ApiRestTest {
                 .when()
                 .post("/api/fusionar-comunidades"));
         String responseBody = response.getBody().asString();
-        /*JsonObject respuestaJson = JsonParser.parseString(responseBody).getAsJsonObject();
+        JsonObject respuestaJson = JsonParser.parseString(responseBody).getAsJsonObject();
         JsonObject resultadoJsonObj = respuestaJson.getAsJsonObject("resultado");
 
         // Elimina el campo "id" del JSON de resultado para la comparación
-        resultadoJsonObj.remove("id");*/
-        assertThat(responseBody, equalTo(jsonEsperado));
+        resultadoJsonObj.remove("id");
+        assertThat(resultadoJsonObj.toString(), equalTo(jsonEsperado));
     }
 }

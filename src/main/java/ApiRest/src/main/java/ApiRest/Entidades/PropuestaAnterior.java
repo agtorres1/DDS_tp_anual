@@ -1,5 +1,6 @@
 package ApiRest.Entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ public class PropuestaAnterior {
     }
     public PropuestaAnterior(){}
 
+    @JsonIgnore
     public LocalDate getFechaComoLocalDate(){
         return LocalDate.parse(fecha);
     }
