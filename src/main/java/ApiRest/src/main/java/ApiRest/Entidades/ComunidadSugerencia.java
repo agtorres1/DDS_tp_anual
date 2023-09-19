@@ -17,15 +17,13 @@ public class ComunidadSugerencia {
     private Comunidad comunidad1;
     private Comunidad comunidad2;
 
-    public void setParComunidad(Comunidad primerComunidad, Comunidad segundaComunidad) throws JsonProcessingException {
-
-        actualizarPropuesta(primerComunidad.getPropuestasAnteriores(),segundaComunidad.getId());
-        actualizarPropuesta(segundaComunidad.getPropuestasAnteriores(),primerComunidad.getId());
-
+    public void setParComunidad(Comunidad primerComunidad, Comunidad segundaComunidad){
         setComunidad1(primerComunidad);
         setComunidad2(segundaComunidad);
+        actualizarPropuesta(comunidad1.getPropuestasAnteriores(),comunidad2.getId());
+        actualizarPropuesta(comunidad2.getPropuestasAnteriores(),comunidad1.getId());
 
-        Map<String, Object> jsonResponse = new HashMap<>();
+ /*       Map<String, Object> jsonResponse = new HashMap<>();
         jsonResponse.put("comunidad1", primerComunidad);
         jsonResponse.put("comunidad2", segundaComunidad);
 
@@ -33,7 +31,7 @@ public class ComunidadSugerencia {
         objectMapper.registerModule(new JavaTimeModule());
 
         String jsonResponseString = objectMapper.writeValueAsString(jsonResponse);
-
+*/
     }
 
     public void actualizarPropuesta(List<PropuestaAnterior> propuestas, Long idBuscado){
@@ -43,7 +41,6 @@ public class ComunidadSugerencia {
             if (propuestaAnterior.getIdComunidad() == idBuscado) {
                 propuestaAnterior.setFecha(LocalDate.now().toString());
                 encontrado = true;
-                break;
             }
         }
         if (!encontrado) {
@@ -51,4 +48,5 @@ public class ComunidadSugerencia {
         }
 
     }
+
 }

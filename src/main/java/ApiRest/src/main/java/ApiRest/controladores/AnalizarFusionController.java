@@ -1,9 +1,6 @@
 package ApiRest.controladores;
 
-import ApiRest.Entidades.ApiResponse;
-import ApiRest.Entidades.Comunidad;
-import ApiRest.Entidades.ComunidadSugerencia;
-import ApiRest.Entidades.SugerenciaRequest;
+import ApiRest.Entidades.*;
 import ApiRest.criterios.Criterio;
 import ApiRest.criterios.CriterioCoincidencia;
 import ApiRest.criterios.CriterioGradoDeConfiabilidad;
@@ -13,6 +10,7 @@ import io.javalin.http.Handler;
 import io.javalin.http.HttpStatus;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -34,20 +32,22 @@ public class AnalizarFusionController implements Handler {
             SugerenciaRequest request = context.bodyAsClass(SugerenciaRequest.class);
             List<Comunidad> comunidades = request.getComunidades();
             List<ComunidadSugerencia> sugerencias = new ArrayList<>();
-            Set<Comunidad> comunidadesSugeridas = new HashSet<>(); // Conjunto de comunidades ya sugeridas
+            Set<Comunidad> comunidadesYaPropuestas = new HashSet<>(); // Conjunto de comunidades ya sugeridas
 
             for(int i = 0; i < comunidades.size(); i++){
                 Comunidad comunidad1 = comunidades.get(i);
                 for(int j = i + 1; j < comunidades.size(); j++){
                     Comunidad comunidad2 = comunidades.get(j);
 
-                    if(!comunidadesSugeridas.contains(comunidad1) && !comunidadesSugeridas.contains(comunidad2)
+                    if(!comunidadesYaPropuestas.contains(comunidad1) && !comunidadesYaPropuestas.contains(comunidad2)
                             && cumplenCriterios(comunidad1, comunidad2)){
+
                         ComunidadSugerencia sugerencia = new ComunidadSugerencia();
                         sugerencia.setParComunidad(comunidad1, comunidad2);
                         sugerencias.add(sugerencia);
-                        comunidadesSugeridas.add(comunidad1);
-                        comunidadesSugeridas.add(comunidad2);
+                        comunidadesYaPropuestas.add(comunidad1);
+                        comunidadesYaPropuestas.add(comunidad2);
+
                     }
                 }
             }

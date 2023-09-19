@@ -82,10 +82,7 @@ public class ApiRestTest {
     }
 
     @Test
-    public void testAnalizarFusionPropuestos() throws JsonProcessingException {
-
-        comunidadSugerencia1.setParComunidad(comunidad1,comunidad3);
-        comunidadSugerencia2.setParComunidad(comunidad2,comunidad4);
+    public void testAnalizarFusionPropuestos(){
 
         Response response = RestAssured.given()
                 .contentType(ContentType.JSON)
@@ -93,6 +90,8 @@ public class ApiRestTest {
                 .when()
                 .post("/api/analizar-fusion");
 
+        comunidadSugerencia1.setParComunidad(comunidad1,comunidad3);
+        comunidadSugerencia2.setParComunidad(comunidad2,comunidad4);
         List<ComunidadSugerencia> comunidadesSugerencias = new ArrayList<>();
         comunidadesSugerencias.addAll(Arrays.asList(comunidadSugerencia1,comunidadSugerencia2));
         Gson gson = new GsonBuilder()

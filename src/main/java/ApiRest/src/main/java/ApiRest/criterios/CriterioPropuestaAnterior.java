@@ -6,6 +6,7 @@ import ApiRest.Entidades.PropuestaAnterior;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Optional;
 
 public class CriterioPropuestaAnterior implements Criterio{
@@ -13,19 +14,22 @@ public class CriterioPropuestaAnterior implements Criterio{
 
     @Override
     public Boolean validarCriterio(Comunidad comunidad1, Comunidad comunidad2) {
-
-        Optional<PropuestaAnterior> propuestaAnterior = comunidad1.getPropuestasAnteriores()
-                .stream()
-                .filter(prop -> prop.getIdComunidad() == comunidad2.getId())
-                .findFirst();
-
-        if(propuestaAnterior.isPresent()){
-            LocalDate fechaPropuesta = propuestaAnterior.get().getFechaComoLocalDate();
-            long diferenciaMeses = ChronoUnit.MONTHS.between(fechaPropuesta, LocalDate.now());
-
-            return diferenciaMeses >= MIN_DIFERENCIA_PROPUESTA_MESES;
+        return corroboroPropuesta(comunidad1.getPropuestasAnteriores(),comunidad2.getId())
+                && corroboroPropuesta(comunidad2.getPropuestasAnteriores(),comunidad1.getId());
+    }
+    private Boolean corroboroPropuesta(List<PropuestaAnterior> propuestas, Long idBuscado){
+        for (PropuestaAnterior propuestaAnterior : propuestas) {
+            if (propuestaAnterior.getIdComunidad() == idBuscado) {
+                return distanciaMesesEntre(propuestaAnterior.getFechaComoLocalDate(),LocalDate.now()) >= MIN_DIFERENCIA_PROPUESTA_MESES;
+            }
         }
-
         return true;
     }
+
+    private Integer distanciaMesesEntre(LocalDate fecha1, LocalDate fecha2) {
+        int diferenciaAnios = fecha1.getYear() - fecha2.getYear();
+        int diferenciaMeses = fecha1.getMonthValue() - fecha2.getMonthValue();
+        return Math.abs(diferenciaAnios * 12 + diferenciaMeses);
+    }
+
 }
