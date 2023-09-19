@@ -6,23 +6,30 @@ import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+@Entity
+@Table(name = "entidad")
 @Setter @Getter
 public class Entidad {
-  private Localizacion localizacion;
-  private TipoEntidad tipoEntidad;
-  private TipoEstablecimiento tipoEstablecimiento;
-  private String nombre;
-  private List<Establecimiento> establecimientos;
+  @Id
+  @GeneratedValue
+  private Long id;
 
+  @ManyToOne
+  @JoinColumn(name = "id_localizacion",referencedColumnName = "id")
+  private Localizacion localizacion;
+
+  @Transient
+  private String nombre;
+  @OneToMany(mappedBy = "entidad")
+  private List<Establecimiento> establecimientos;
   public void agregarEstablecimientos(Establecimiento... establecimientos) throws TipoEstablecimientoInvalidoExcepcion {
-    if(Arrays.stream(establecimientos).anyMatch(e->e.getTipoEstablecimiento()!=this.tipoEstablecimiento)){
-      throw new TipoEstablecimientoInvalidoExcepcion();
-    }
+
     if(Arrays.stream(establecimientos).anyMatch(e->e.getLocalizacion().getProvincia()!=this.localizacion.getProvincia())){
       throw new LocalizacionEstablecimientoInvalidaExcepcion();
     }

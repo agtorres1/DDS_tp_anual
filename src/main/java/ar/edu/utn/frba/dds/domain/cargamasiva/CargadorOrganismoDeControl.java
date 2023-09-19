@@ -19,11 +19,16 @@ public class CargadorOrganismoDeControl {
                 String[] dato = linea.split(",");
                 String nombre = dato[0];
                 String descripcion = dato[1];
-                String localizacion = dato[2];
+                String provincia = dato[2];
+                Localizacion localizacion = new Localizacion();
+                localizacion.setProvincia(provincia);
 
-                OrganismoDeControl organismoDeControl = new OrganismoDeControl(nombre);
+                OrganismoDeControl oc1 = new OrganismoDeControl();
+                oc1.setNombre(nombre);
+
+                OrganismoDeControl organismoDeControl = oc1;
                 organismoDeControl.setDescripcion(descripcion);
-                organismoDeControl.setLocalizacion(new Localizacion(localizacion));
+                organismoDeControl.setLocalizacion(localizacion);
                 organismosDeControl.add(organismoDeControl);
             }
         }catch (Exception e) {

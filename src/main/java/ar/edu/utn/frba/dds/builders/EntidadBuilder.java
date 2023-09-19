@@ -19,10 +19,7 @@ public class EntidadBuilder {
         this.entidad.setNombre(nombre);
         return this;
     }
-    public EntidadBuilder conTipo(TipoEstablecimiento tipoEstablecimiento){
-        this.entidad.setTipoEstablecimiento(tipoEstablecimiento);
-        return this;
-    }
+
     public EntidadBuilder conLocalizacion(Localizacion localizacion){
         this.entidad.setLocalizacion(localizacion);
         return this;
@@ -31,9 +28,7 @@ public class EntidadBuilder {
         if(this.entidad.getNombre() == null){
             throw new SinNombreExcepcion();
         }
-        if(this.entidad.getTipoEstablecimiento() == null){
-            throw new SinTipoExcepcion();
-        }
+
         if(this.entidad.getLocalizacion() == null){
             throw new SinLocalizacionValida();
         }

@@ -2,26 +2,43 @@ package ar.edu.utn.frba.dds.domain.localizaciones;
 
 import ar.edu.utn.frba.dds.domain.services_api.georef.ServicioGeoref;
 import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;
+
+import javax.persistence.*;
+
 import lombok.Getter;
 
 import java.io.IOException;
 
+@Entity
 @Getter
 public class Localizacion{
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_provincia",referencedColumnName = "id")
     private Provincia provincia;
+
+    @ManyToOne
+    @JoinColumn(name = "id_municipio",referencedColumnName = "id")
     private Municipio municipio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_departamento",referencedColumnName = "id")
     private Departamento departamento;
+    @Transient
     private ServicioGeoref servicioGeoref;
+    @Transient
     private static Integer maxMunicipios = 200;
+    @Transient
     private static Integer maxDepartamentos = 135;
 
-    public Localizacion(String provincia) throws IOException {
+    public Localizacion() throws IOException {
         this.servicioGeoref = ServicioGeoref.getInstance();
-        if(this.servicioGeoref.buscarProvincia(provincia) == null){
-            throw new IllegalArgumentException("No es una provincia del listado requerido");
-        }
-        this.provincia = this.servicioGeoref.buscarProvincia(provincia);
+
     }
+
 
     public void setProvincia(String provincia) throws IOException {
         if(this.servicioGeoref.buscarProvincia(provincia) == null){

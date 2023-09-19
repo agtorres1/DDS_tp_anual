@@ -5,8 +5,20 @@ import com.twilio.rest.api.v2010.account.Message;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Getter
+@Setter
+@Entity
+@DiscriminatorValue("wsp")
 public class Whatsapp extends MedioDeNotificacion{
+
+  @Id
+  @GeneratedValue
+  private Long id;
 
   private String telefono;
 
@@ -15,9 +27,6 @@ public class Whatsapp extends MedioDeNotificacion{
   public static final String AUTH_TOKEN = "fa45e420a9fe4186a4fe2f8e35a7c139";
 
 
-  public Whatsapp (String numeroTelefonico){
-    telefono = numeroTelefonico;
-  }
 
 
   @Override

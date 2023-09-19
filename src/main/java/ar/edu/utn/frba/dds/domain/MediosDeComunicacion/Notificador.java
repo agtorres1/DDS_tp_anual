@@ -20,8 +20,10 @@ public class Notificador {
         for(Comunidad comunidad : emisor.getComunidades()){
             Incidente incidente = new Incidente();
             incidente.meAbro(emisor,aperturaIncidente);
+            Notificacion notificacion = new Notificacion();
+            notificacion.crearNotificacion(incidente);
             filtrarYaNotificados(comunidad.getMiembros(),incidente)
-                    .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(new Notificacion(incidente)));
+                    .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
             comunidad.getIncidentes().add(incidente);
         }
 
@@ -30,8 +32,10 @@ public class Notificador {
     public void notificarInteresados(Miembro emisor, AperturaIncidente aperturaIncidente){
         Incidente incidente = new Incidente();
         incidente.meAbro(emisor,aperturaIncidente);
+        Notificacion notificacion = new Notificacion();
+        notificacion.crearNotificacion(incidente);
         filtrarYaNotificados(aperturaIncidente.getPrestacionDeServicio().getInteresados(),incidente)
-                .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(new Notificacion(incidente)));
+                .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
     }
 
     public List<Miembro> filtrarYaNotificados(List<Miembro> notificables,Incidente incidente){

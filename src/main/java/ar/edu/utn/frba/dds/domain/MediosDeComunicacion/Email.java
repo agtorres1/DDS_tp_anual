@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.domain.MediosDeComunicacion;
 
 
+import javax.persistence.*;
 import javax.swing.*;
 import java.util.Date;
 import java.util.Properties;
@@ -12,9 +13,13 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+@Entity
+@DiscriminatorValue("email")
 public class Email extends MedioDeNotificacion  {
-
-
+  @Id
+  @GeneratedValue
+  private Long id;
+  @Column(name = "email")
   public String email;
 
 

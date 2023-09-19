@@ -8,13 +8,22 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.persistence.*;
 
-
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "Medio_de_notificacion")
+@DiscriminatorColumn(name = "tipo")
 public abstract class MedioDeNotificacion {
+  @Id
+  @GeneratedValue
+  private Long id;
 
-
+  @OneToMany
   List<Notificacion> notificacionesRecientes;
 
+  @OneToMany
+          @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   List<RangoHorario> rangosHorariosElegidos;
 
   public MedioDeNotificacion(){

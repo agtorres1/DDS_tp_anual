@@ -44,19 +44,28 @@ public class ComunidadTest {
         this.ubicacion = new Ubicacion();
         this.ubicacion.setLatitud(1.00);
         this.ubicacion.setLongitud(-1.00);
-
+        Localizacion localizacion5 = new Localizacion();
+        localizacion5.setProvincia("Buenos Aires");
         this.establecimiento = establecimientoBuilder.conNombre("Flores").conTipo(TipoEstablecimiento.ESTACION).
-                conLocalizacion(new Localizacion("Buenos Aires")).construir();
+                conLocalizacion(localizacion5).construir();
         this.establecimiento.setCentroide(ubicacion);
 
-        this.cualquiera = miembroBuilder.conCuenta("Thompson","Nosejaja").conLocalizacion(new Localizacion("Chaco")).construir();
-        this.administrador = miembroBuilder.conCuenta("adminResponsable","cuidador123").conLocalizacion(new Localizacion("Chaco")).
-            conMedioDeNotidicacion(new Whatsapp("1144134775")).construir();
+        Localizacion localizacion6 = new Localizacion();
+        localizacion5.setProvincia("chaco");
+        this.cualquiera = miembroBuilder.conCuenta("Thompson","Nosejaja").conLocalizacion(localizacion6).construir();
+        Whatsapp whatsapp = new Whatsapp();
+        whatsapp.setTelefono("1144134775");
+
+        Localizacion localizacion7 = new Localizacion();
+        localizacion7   .setProvincia("Chaco");
+
+        this.administrador = miembroBuilder.conCuenta("adminResponsable","cuidador123").conLocalizacion(localizacion7).
+            conMedioDeNotidicacion(whatsapp).construir();
             /*conMedioDeNotidicacion(new Email("tomas.neznajko@gmail.com")).construir();*/
 
 
 
-        this.comunidad = new Comunidad("ComunidadMuySegura");
+        this.comunidad = new Comunidad();
     }
 
     @Test

@@ -10,20 +10,35 @@ import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.excepciones.NoEsUnaPrestacionValidaExcepcion;
 import ar.edu.utn.frba.dds.excepciones.PrestacionFuncionaExcepcion;
+
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
 import java.util.*;
-
+@Entity
+@Table(name = "Miembros")
 @Setter @Getter
 public class Miembro {
+  @Id
+  @GeneratedValue
+  private Long id;
+  @Column(name = "usuario")
   private String usuario;
-  private String clave;
+  @ManyToMany
   private List<Interes> intereses;
+  @OneToOne
+  @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
   private Localizacion localizacion;
+  @OneToOne
+  @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   public MedioDeNotificacion medioDeNotificacion;
+
+  @Transient
   private Set<Comunidad> comunidades;
+
 
   public Miembro(){
     this.comunidades = new HashSet<>();
@@ -60,7 +75,7 @@ public class Miembro {
     }
     notificador.notificar(this,aperturaIncidente);
 
-
+//
   }
 
 

@@ -9,25 +9,61 @@ import java.util.List;
 
 import ar.edu.utn.frba.dds.domain.incidentes.TipoFiltrado;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
-
+@Entity
+@Table(name = "Comunidades")
 @Getter @Setter
 public class Comunidad{
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY) // Opciones: IDENTITY, SEQUENCE, TABLE, etc.
+  @Column(name = "id")
+  private Long id;
+  @ManyToMany
+  @JoinTable(name = "administradores_por_comunidad",
+          joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
+  )
   private List<Miembro> administradores;
+  @ManyToMany
+  @JoinTable(name = "miembros_por_comunidad",
+      joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
+  )
   private List<Miembro> miembros;
+
+  @OneToMany
+  @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private List<Incidente> incidentes;
+
+  @Column(name = "nombre")
   private String nombre;
 
-  public Comunidad(String nombre) {
-    this.nombre = nombre;
-    // this.administradores = new ArrayList<>();
+  @Column(name = "descripcion", columnDefinition = "TEXT")
+  private String descripcion;
+
+  public Comunidad() {
+    this.nombre = "HOLA";
+    this.administradores = new ArrayList<>();
     this.miembros = new ArrayList<>();
     this.incidentes = new ArrayList<>();
   }
 
-   //esto s para fijarse el estado de los incidentes abiertos
+   //esto es para fijarse el estado de los incidentes abiertos
   public void imprimirIncidentes(TipoFiltrado tipoFiltrado) {
     for (Incidente incidente : incidentes) {
       if (tipoFiltrado == TipoFiltrado.SOLO_ABIERTOS && incidente.getAbierto()) {
@@ -41,8 +77,6 @@ public class Comunidad{
   }
   
 /*
-
-
 
   public void ingresarServicioNuevo(Establecimiento establecimiento, Miembro administrador, String nombre, String descripcion, int cantidad) throws NoEsAdministradorExcepcion {
     this.verificarQueEsAdministrador(administrador);
@@ -83,7 +117,8 @@ public class Comunidad{
 
   public void notificarMiembros(Incidente incidente){
     getIncidentes().add(incidente);
-    Notificacion notificacion = new Notificacion(incidente);
+    Notificacion notificacion = new Notificacion();
+    notificacion.crearNotificacion(incidente);
     this.miembros.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())
                           .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
     System.out.println("Se ha enviado notificacion al WhatssApp - ");

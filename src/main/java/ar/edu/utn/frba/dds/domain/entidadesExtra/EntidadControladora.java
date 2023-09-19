@@ -5,18 +5,34 @@ import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Entity
+@Table(name ="EntidadControladora")
 public class EntidadControladora {
-    String nombre;
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(name = "nombre")
+    @Setter private String nombre;
+
+    @Column(name = "descripcion",columnDefinition = "TEXT")
     @Setter String descripcion;
+
+    @Column(name = "direccion")
     @Setter String direccion;
+
+    @Transient
     @Setter Localizacion localizacion;
+
+    @OneToMany
+    @JoinColumn(name = "id_entidadControladora", referencedColumnName = "id")
     @Getter List<Entidad> entidades;
-    public EntidadControladora(String nombre){
-        this.nombre = nombre;
+    public EntidadControladora(){
+
         this.entidades = new ArrayList<>();
     }
     public void agregarEntidades(Entidad ... entidades ){
@@ -28,6 +44,4 @@ public class EntidadControladora {
             this.entidades.remove(entidad);
         }
     }
-
-
 }
