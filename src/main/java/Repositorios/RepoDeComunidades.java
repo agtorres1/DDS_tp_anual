@@ -1,6 +1,7 @@
 package Repositorios;
 
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
+import ApiRest.src.main.java.org.example.Entidades.Comunidad;
+import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityTransaction;
@@ -8,30 +9,30 @@ import java.util.List;
 
 public class RepoDeComunidades  implements WithSimplePersistenceUnit {
 
-    public void agregar(Establecimiento establecimiento){
+    public void agregar(Comunidad comunidad){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().persist(establecimiento);
+        entityManager().persist(comunidad);
         tx.commit();
     }
-    public void eliminar(Establecimiento establecimiento){
+    public void eliminar(Comunidad comunidad){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().remove(establecimiento);
+        entityManager().remove(comunidad);
         tx.commit();
     }
 
-    public void modificar(Establecimiento establecimiento){
+    public void modificar(Comunidad comunidad){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().merge(establecimiento);
+        entityManager().merge(comunidad);
         tx.commit();
     }
-    public Establecimiento buscarPorId(Integer id){
-        return entityManager().find(Establecimiento.class,id);
+    public Comunidad buscarPorId(Integer id){
+        return entityManager().find(Comunidad.class,id);
     }
-    public List<Establecimiento> buscarTodos(){
-        return entityManager().createQuery("from " + Establecimiento.class.getName()).getResultList();
+    public List<Comunidad> buscarTodos(){
+        return entityManager().createQuery("from " + Comunidad.class.getName()).getResultList();
 
     }
 }

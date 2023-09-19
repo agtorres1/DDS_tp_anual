@@ -1,38 +1,39 @@
 package Repositorios;
 
 import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
+import ar.edu.utn.frba.dds.domain.serviciospublicos.Entidad;
 import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityTransaction;
 import java.util.List;
 
-public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
+public class RepoDeEntidades implements WithSimplePersistenceUnit {
 
-    public void agregar(Incidente incidente){
+    public void agregar(Entidad entidad){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().persist(incidente);
+        entityManager().persist(entidad);
         tx.commit();
     }
-    public void eliminar(Incidente incidente){
+    public void eliminar(Entidad entidad){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().remove(incidente);
+        entityManager().remove(entidad);
         tx.commit();
     }
 
-    public void modificar(Incidente incidente){
+    public void modificar(Entidad entidad){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().merge(incidente);
+        entityManager().merge(entidad);
         tx.commit();
     }
-    public Incidente buscarPorId(Integer id){
-        return entityManager().find(Incidente.class,id);
+    public Entidad buscarPorId(Integer id){
+        return entityManager().find(Entidad.class,id);
     }
-    public List<Incidente> buscarTodos(){
-        return entityManager().createQuery("from " + Establecimiento.class.getName()).getResultList();
+    public List<Entidad> buscarTodos(){
+        return entityManager().createQuery("from " + Entidad.class.getName()).getResultList();
 
     }
 }

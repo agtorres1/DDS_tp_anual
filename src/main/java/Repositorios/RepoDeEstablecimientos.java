@@ -7,31 +7,31 @@ import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 
-public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
+public class RepoDeEstablecimientos implements WithSimplePersistenceUnit {
 
-    public void agregar(Incidente incidente){
+    public void agregar(Establecimiento establecimiento){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().persist(incidente);
+        entityManager().persist(establecimiento);
         tx.commit();
     }
-    public void eliminar(Incidente incidente){
+    public void eliminar(Establecimiento establecimiento){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().remove(incidente);
+        entityManager().remove(establecimiento);
         tx.commit();
     }
 
-    public void modificar(Incidente incidente){
+    public void modificar(Establecimiento establecimiento){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
-        entityManager().merge(incidente);
+        entityManager().merge(establecimiento);
         tx.commit();
     }
-    public Incidente buscarPorId(Integer id){
-        return entityManager().find(Incidente.class,id);
+    public Establecimiento buscarPorId(Integer id){
+        return entityManager().find(Establecimiento.class,id);
     }
-    public List<Incidente> buscarTodos(){
+    public List<Establecimiento> buscarTodos(){
         return entityManager().createQuery("from " + Establecimiento.class.getName()).getResultList();
 
     }
