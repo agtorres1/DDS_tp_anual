@@ -1,4 +1,4 @@
-package ApiRest.serializadorMagico;
+package FusionadorDeComunidades.serializadorMagico;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;

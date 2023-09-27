@@ -1,16 +1,16 @@
-package ApiRest.controladores;
+package FusionadorDeComunidades.controladores;
 
-import ApiRest.Entidades.*;
-import ApiRest.criterios.Criterio;
-import ApiRest.criterios.CriterioCoincidencia;
-import ApiRest.criterios.CriterioGradoDeConfiabilidad;
-import ApiRest.criterios.CriterioPropuestaAnterior;
+import FusionadorDeComunidades.Entidades.*;
+import FusionadorDeComunidades.criterios.Criterio;
+import FusionadorDeComunidades.criterios.CriterioCoincidencia;
+import FusionadorDeComunidades.criterios.CriterioGradoDeConfiabilidad;
+import FusionadorDeComunidades.criterios.CriterioPropuestaAnterior;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import io.javalin.http.HttpStatus;
+import io.javalin.openapi.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,10 +25,25 @@ public class AnalizarFusionController implements Handler {
         criterios.add(new CriterioPropuestaAnterior());
     }
 
+    @OpenApi(
+            summary = "Sugerir fusiones de comunidades",
+            operationId = "analizarFusionDeComunidades",
+            path = "/api/analizar-fusion",
+            methods = HttpMethod.POST,
+            tags = {"Sugerencia de fusiones"},
+            requestBody = @OpenApiRequestBody(content = {@OpenApiContent(from = SugerenciaRequest.class)}),
+            responses = {
+                    @OpenApiResponse(status = "201", content = @OpenApiContent(from = ApiResponse.class)),
+                    @OpenApiResponse(status = "400", content = @OpenApiContent(from = ApiResponse.class)),
+                    @OpenApiResponse(status = "500", content = @OpenApiContent(from = ApiResponse.class))
+            }
+    )
     @Override
-    public void handle(@NotNull Context context) throws Exception {
+    public void handle(Context context) throws Exception {
+
         ApiResponse respuesta = new ApiResponse();
         try{
+
             SugerenciaRequest request = context.bodyAsClass(SugerenciaRequest.class);
             List<Comunidad> comunidades = request.getComunidades();
             List<ComunidadSugerencia> sugerencias = new ArrayList<>();

@@ -1,10 +1,12 @@
-package ApiRest.controladores;
+package FusionadorDeComunidades.controladores;
 
-import ApiRest.Entidades.ApiResponse;
-import ApiRest.Entidades.Comunidad;
-import ApiRest.Entidades.FusionRequest;
+import FusionadorDeComunidades.Entidades.ApiResponse;
+import FusionadorDeComunidades.Entidades.Comunidad;
+import FusionadorDeComunidades.Entidades.FusionRequest;
+import FusionadorDeComunidades.Entidades.SugerenciaRequest;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
+import io.javalin.openapi.*;
 import org.jetbrains.annotations.NotNull;
 import io.javalin.http.HttpStatus;
 
@@ -12,6 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FusionarComunidadesController implements Handler {
+
+    @OpenApi(
+            summary = "Realizar fusion de comunidad",
+            operationId = "fusionarComunidades",
+            path = "/api/fusionar-comunidades",
+            methods = HttpMethod.POST,
+            tags = {"Fusion de comunidades"},
+            requestBody = @OpenApiRequestBody(content = {@OpenApiContent(from = FusionRequest.class)}),
+            responses = {
+                    @OpenApiResponse(status = "201", content = @OpenApiContent(from = ApiResponse.class)),
+                    @OpenApiResponse(status = "400", content = @OpenApiContent(from = ApiResponse.class)),
+                    @OpenApiResponse(status = "500", content = @OpenApiContent(from = ApiResponse.class))
+            }
+    )
     @Override
     public void handle(@NotNull Context context) throws Exception {
         ApiResponse<Comunidad> respuesta = new ApiResponse<>();

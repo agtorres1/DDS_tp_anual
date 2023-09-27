@@ -1,6 +1,6 @@
-package ApiRest.criterios;
+package FusionadorDeComunidades.criterios;
 
-import ApiRest.Entidades.Comunidad;
+import FusionadorDeComunidades.Entidades.Comunidad;
 
 import java.util.List;
 

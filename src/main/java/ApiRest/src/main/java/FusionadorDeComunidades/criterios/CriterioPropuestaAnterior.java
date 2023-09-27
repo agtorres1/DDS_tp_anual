@@ -1,13 +1,10 @@
-package ApiRest.criterios;
+package FusionadorDeComunidades.criterios;
 
-import ApiRest.Entidades.Comunidad;
-import ApiRest.Entidades.PropuestaAnterior;
+import FusionadorDeComunidades.Entidades.Comunidad;
+import FusionadorDeComunidades.Entidades.PropuestaAnterior;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
 
 public class CriterioPropuestaAnterior implements Criterio{
     private static final Integer MIN_DIFERENCIA_PROPUESTA_MESES = 6;

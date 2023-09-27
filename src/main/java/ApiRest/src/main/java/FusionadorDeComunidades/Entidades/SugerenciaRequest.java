@@ -1,4 +1,4 @@
-package ApiRest.Entidades;
+package FusionadorDeComunidades.Entidades;
 
 import lombok.Getter;
 import lombok.Setter;

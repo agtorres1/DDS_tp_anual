@@ -1,12 +1,11 @@
 package testApi;
-import ApiRest.Entidades.*;
-import ApiRest.controladores.AnalizarFusionController;
-import ApiRest.controladores.FusionarComunidadesController;
-import ApiRest.serializadorMagico.LocalDateSerializer;
+import FusionadorDeComunidades.Entidades.*;
+import FusionadorDeComunidades.controladores.AnalizarFusionController;
+import FusionadorDeComunidades.controladores.FusionarComunidadesController;
+import FusionadorDeComunidades.serializadorMagico.LocalDateSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.*;
 import io.javalin.Javalin;
-import io.javalin.http.HttpStatus;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

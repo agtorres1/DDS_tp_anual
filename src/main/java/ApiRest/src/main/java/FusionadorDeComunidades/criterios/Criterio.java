@@ -1,6 +1,6 @@
-package ApiRest.criterios;
+package FusionadorDeComunidades.criterios;
 
-import ApiRest.Entidades.Comunidad;
+import FusionadorDeComunidades.Entidades.Comunidad;
 
 public interface Criterio {
     Boolean validarCriterio(Comunidad comunidad1, Comunidad comunidad2);

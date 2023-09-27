@@ -1,5 +1,5 @@
-package ApiRest.src.main.java.org.example;
-import ApiRest.controladores.*;
+package FusionadorDeComunidades.src.main.java.org.example;
+import FusionadorDeComunidades.controladores.*;
 
 import io.javalin.Javalin;
 

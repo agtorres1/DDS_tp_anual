@@ -1,4 +1,4 @@
-package ApiRest.Entidades;
+package FusionadorDeComunidades.Entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

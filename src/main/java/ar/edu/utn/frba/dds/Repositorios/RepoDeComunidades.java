@@ -1,7 +1,6 @@
 package Repositorios;
 
-import ApiRest.src.main.java.org.example.Entidades.Comunidad;
-import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
+import ar.edu.utn.frba.dds.domain.comunidades.Comunidad;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityTransaction;

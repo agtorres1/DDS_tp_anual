@@ -1,14 +1,9 @@
-package ApiRest.Entidades;
+package FusionadorDeComunidades.Entidades;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 
 import java.time.LocalDate;
 

@@ -1,14 +1,10 @@
-package ApiRest.Entidades;
+package FusionadorDeComunidades.Entidades;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Getter @Setter
 public class Comunidad {
