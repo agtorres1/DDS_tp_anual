@@ -1,13 +1,8 @@
-import ar.edu.utn.frba.dds.domain.comunidades.Comunidad;
-import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
+import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 
 
 public class MainExample implements WithSimplePersistenceUnit {

@@ -1,11 +1,15 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.builders.EstablecimientoBuilder;
-import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
-import ar.edu.utn.frba.dds.domain.servicios.*;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.TipoEstablecimiento;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Ubicacion;
+import ar.edu.utn.frba.dds.models.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.servicios.Banio;
+import ar.edu.utn.frba.dds.models.domain.servicios.Escalador;
+import ar.edu.utn.frba.dds.models.domain.servicios.Genero;
+import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
+import ar.edu.utn.frba.dds.models.domain.servicios.TipoTraslado;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.TipoEstablecimiento;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

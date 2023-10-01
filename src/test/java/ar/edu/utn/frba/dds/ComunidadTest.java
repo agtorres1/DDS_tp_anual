@@ -1,32 +1,21 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.builders.EstablecimientoBuilder;
-import ar.edu.utn.frba.dds.builders.MiembroBuilder;
-import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Email;
-import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.MedioDeNotificacion;
-import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.RangoHorario;
-import ar.edu.utn.frba.dds.domain.MediosDeComunicacion.Whatsapp;
-import ar.edu.utn.frba.dds.domain.comunidades.Comunidad;
-import ar.edu.utn.frba.dds.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.domain.incidentes.Incidente;
-import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
-import ar.edu.utn.frba.dds.domain.servicios.Banio;
-import ar.edu.utn.frba.dds.domain.servicios.PrestacionDeServicio;
-import ar.edu.utn.frba.dds.domain.servicios.Servicio;
-import ar.edu.utn.frba.dds.excepciones.NoEsAdministradorExcepcion;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Establecimiento;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.TipoEstablecimiento;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.Ubicacion;
-import ar.edu.utn.frba.dds.excepciones.PrestacionFuncionaExcepcion;
+import ar.edu.utn.frba.dds.models.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.models.builders.MiembroBuilder;
+import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
+import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.excepciones.NoEsAdministradorExcepcion;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.TipoEstablecimiento;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ComunidadTest {
     private Comunidad comunidad;

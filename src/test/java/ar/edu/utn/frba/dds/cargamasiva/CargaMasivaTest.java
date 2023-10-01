@@ -1,8 +1,8 @@
 package ar.edu.utn.frba.dds.cargamasiva;
-import ar.edu.utn.frba.dds.domain.cargamasiva.CargadorEntidadesControladoras;
-import ar.edu.utn.frba.dds.domain.cargamasiva.CargadorOrganismoDeControl;
-import ar.edu.utn.frba.dds.domain.entidadesExtra.EntidadControladora;
-import ar.edu.utn.frba.dds.domain.entidadesExtra.OrganismoDeControl;
+import ar.edu.utn.frba.dds.models.domain.cargamasiva.CargadorEntidadesControladoras;
+import ar.edu.utn.frba.dds.models.domain.cargamasiva.CargadorOrganismoDeControl;
+import ar.edu.utn.frba.dds.models.domain.entidadesExtra.EntidadControladora;
+import ar.edu.utn.frba.dds.models.domain.entidadesExtra.OrganismoDeControl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

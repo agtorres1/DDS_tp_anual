@@ -1,11 +1,14 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.builders.EntidadBuilder;
-import ar.edu.utn.frba.dds.builders.EstablecimientoBuilder;
-import ar.edu.utn.frba.dds.excepciones.LocalizacionEstablecimientoInvalidaExcepcion;
-import ar.edu.utn.frba.dds.excepciones.TipoEstablecimientoInvalidoExcepcion;
-import ar.edu.utn.frba.dds.domain.localizaciones.Localizacion;
-import ar.edu.utn.frba.dds.domain.serviciospublicos.*;
+import ar.edu.utn.frba.dds.models.builders.EntidadBuilder;
+import ar.edu.utn.frba.dds.models.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Entidad;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.TipoEstablecimiento;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;
+import ar.edu.utn.frba.dds.models.excepciones.LocalizacionEstablecimientoInvalidaExcepcion;
+import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepcion;
+import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
