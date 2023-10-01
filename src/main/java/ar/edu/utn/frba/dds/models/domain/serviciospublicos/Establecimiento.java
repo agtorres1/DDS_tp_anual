@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.serviciospublicos;
 
-import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 
 import java.util.*;
@@ -32,6 +32,10 @@ public class Establecimiento {
   @ManyToOne
   @JoinColumn(name = "id_entidad", referencedColumnName = "id")
   Entidad entidad;
+
+
+  Ubicacion ubicacion;
+
 
   public void agregarPrestaciones(PrestacionDeServicio... prestacionDeServicios) {
     Collections.addAll(this.prestacionesDeServicios, prestacionDeServicios);

@@ -1,6 +1,6 @@
 package Repositorios;
 
-import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityTransaction;

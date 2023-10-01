@@ -24,7 +24,7 @@ public class Router {
         ));
 
 
-
+        /*Ejemplo de manipulacion de servicios:
         Server.app().routes(() -> {
             get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index);
             get("servicios/crear", ((ServiciosController) FactoryController.controller("Servicios"))::create);
@@ -38,6 +38,6 @@ public class Router {
                 get(((TareasController) FactoryController.controller("Tareas"))::index);
                 //TODO
             });
-        });
+        });*/
     }
 }

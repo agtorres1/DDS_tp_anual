@@ -1,3 +1,5 @@
+package ar.edu.utn.frba.dds;
+
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;

@@ -5,7 +5,7 @@ import ar.edu.utn.frba.dds.models.builders.MiembroBuilder;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.excepciones.NoEsAdministradorExcepcion;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.TipoEstablecimiento;

@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.entidadesExtra;
 
-import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Entidad;
 import lombok.Getter;
 import lombok.Setter;

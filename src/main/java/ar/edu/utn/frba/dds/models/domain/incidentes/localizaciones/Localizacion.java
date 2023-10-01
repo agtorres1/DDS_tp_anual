@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.models.domain.localizaciones;
+package ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones;
 
 import ar.edu.utn.frba.dds.models.domain.services_api.georef.ServicioGeoref;
 import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;

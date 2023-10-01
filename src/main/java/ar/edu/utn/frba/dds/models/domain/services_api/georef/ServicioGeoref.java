@@ -1,6 +1,4 @@
 package ar.edu.utn.frba.dds.models.domain.services_api.georef;
-
-import ar.edu.utn.frba.dds.domain.services_api.georef.entities.*;
 import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Departamento;
 import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.GeorefLlamadas;
 import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.ListadoDeDepartamentosDeProvincia;

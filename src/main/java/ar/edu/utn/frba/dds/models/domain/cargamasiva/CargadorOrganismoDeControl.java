@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.cargamasiva;
 import ar.edu.utn.frba.dds.models.domain.entidadesExtra.OrganismoDeControl;
-import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 
 import java.io.BufferedReader;
 import java.io.File;

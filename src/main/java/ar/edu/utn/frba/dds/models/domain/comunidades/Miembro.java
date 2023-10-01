@@ -1,13 +1,12 @@
 package ar.edu.utn.frba.dds.models.domain.comunidades;
-
-
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
-import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;
 import ar.edu.utn.frba.dds.models.excepciones.NoEsUnaPrestacionValidaExcepcion;
 import ar.edu.utn.frba.dds.models.excepciones.PrestacionFuncionaExcepcion;
 
@@ -38,6 +37,11 @@ public class Miembro {
 
   @Transient
   private Set<Comunidad> comunidades;
+
+
+  Ubicacion ubicacion;
+
+
 
 
   public Miembro(){

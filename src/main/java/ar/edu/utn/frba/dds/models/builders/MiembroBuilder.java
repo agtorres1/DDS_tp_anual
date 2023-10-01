@@ -2,7 +2,7 @@ package ar.edu.utn.frba.dds.models.builders;
 
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.excepciones.*;
 import ar.edu.utn.frba.dds.models.excepciones.SinLocalizacionValida;
 import ar.edu.utn.frba.dds.models.excepciones.SinUsuarioExcepcion;
