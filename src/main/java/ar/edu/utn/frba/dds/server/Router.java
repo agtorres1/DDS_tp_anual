@@ -1,6 +1,8 @@
 package ar.edu.utn.frba.dds.server;
 
 
+import org.hsqldb.Server;
+
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Router {
