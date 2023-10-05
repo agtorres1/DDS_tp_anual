@@ -15,6 +15,7 @@ public class Router {
         Server.app().routes(() ->{
            get("/login",((UsuariosController) FactoryController.controller("Usuarios"))::login);
            post("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::loginPost);
+           get("/usuarios", ((UsuariosController) FactoryController.controller("Usuarios"))::index);
         });
 
         Server.app().get("/", ctx -> {
