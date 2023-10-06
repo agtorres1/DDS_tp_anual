@@ -35,4 +35,5 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
         return entityManager().createQuery("from " + Establecimiento.class.getName()).getResultList();
 
     }
+
 }

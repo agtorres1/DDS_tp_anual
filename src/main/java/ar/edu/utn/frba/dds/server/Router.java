@@ -1,10 +1,11 @@
 package ar.edu.utn.frba.dds.server;
 
-import proservices.controllers.FactoryController;
-import proservices.controllers.ServiciosController;
-import proservices.controllers.TareasController;
+
+import ar.edu.utn.frba.dds.controllers.FactoryController;
+import ar.edu.utn.frba.dds.controllers.incidentes.IncidentesController;
 
 import static io.javalin.apibuilder.ApiBuilder.path;
+import static org.apache.http.util.CharsetUtils.get;
 
 public class Router {
 
@@ -24,20 +25,25 @@ public class Router {
         ));
 
 
-        /*Ejemplo de manipulacion de servicios:
+
         Server.app().routes(() -> {
-            get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index);
+            get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::index);
+            get("incidentes/crear", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
+
+        });
+
+            /*get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index);
             get("servicios/crear", ((ServiciosController) FactoryController.controller("Servicios"))::create);
             get("servicios/{id}", ((ServiciosController) FactoryController.controller("Servicios"))::show);
             get("servicios/{id}/editar", ((ServiciosController) FactoryController.controller("Servicios"))::edit);
             post("servicios/{id}", ((ServiciosController) FactoryController.controller("Servicios"))::update);
             post("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::save);
             delete("servicios/{id}", ((ServiciosController) FactoryController.controller("Servicios"))::delete);
-
+*/
             path("servicios/{id}/tareas", () -> {
                 get(((TareasController) FactoryController.controller("Tareas"))::index);
                 //TODO
             });
-        });*/
+        });
     }
 }
