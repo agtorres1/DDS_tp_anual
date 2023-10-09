@@ -33,7 +33,7 @@ public class Establecimiento {
   @JoinColumn(name = "id_entidad", referencedColumnName = "id")
   Entidad entidad;
 
-
+  @Transient
   Ubicacion ubicacion;
 
 

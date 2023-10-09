@@ -1,30 +1,21 @@
 package ar.edu.utn.frba.dds.server;
-import static io.javalin.apibuilder.ApiBuilder.path;
-import static org.apache.http.util.CharsetUtils.get;
+import ar.edu.utn.frba.dds.controllers.FactoryController;
+import ar.edu.utn.frba.dds.controllers.incidentes.IncidentesController;
+
+import static io.javalin.apibuilder.ApiBuilder.*;
+
 
 public class Router {
 
     public static void init() {
-        Server.app().get("/", ctx -> {
-            ctx.sessionAttribute("item1", "Cosa 1");
-            ctx.result("Hola mundo");
-        });
-        Server.app().get("/saluda", ctx -> {
-            ctx.result("Hola "
-                    + ctx.queryParam("nombre")
-                    + ", " + ctx.sessionAttribute("item1")
-            );
-        });
-        Server.app().get("/saludo-para/{nombre}", ctx ->
-                                                    ctx.result("Hola " + ctx.pathParam("nombre")
-        ));
-
-
-
         Server.app().routes(() -> {
             get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::index);
             get("incidentes/crear", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
-
+            get("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
+            get("incidentes/{id}/editar", ((IncidentesController) FactoryController.controller("Incidentes"))::edit);
+            post("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::update);
+            post("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::save);
+            delete("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::delete);
         });
 
             /*get("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::index);
@@ -35,10 +26,12 @@ public class Router {
             post("servicios", ((ServiciosController) FactoryController.controller("Servicios"))::save);
             delete("servicios/{id}", ((ServiciosController) FactoryController.controller("Servicios"))::delete);
 */
-            path("servicios/{id}/tareas", () -> {
+/*            path("servicios/{id}/tareas", () -> {
                 get(((TareasController) FactoryController.controller("Tareas"))::index);
                 //TODO
             });
-        });
+        });*/
     }
+
+
 }

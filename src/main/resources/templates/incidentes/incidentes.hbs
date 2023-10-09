@@ -1,0 +1,21 @@
+{{#partial "contenido" }}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>Nombre</th>
+                <th>Cant. Tareas</th>
+                <th>Acciones</th>
+            </tr>
+            <tbody>
+            {{#each incidentes}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>Hola</td>
+                    <td>Cómo va</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/partial}}
+{{> templates/base }}

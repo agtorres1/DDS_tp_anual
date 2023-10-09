@@ -32,7 +32,7 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
         return entityManager().find(Incidente.class,id);
     }
     public List<Incidente> buscarTodos(){
-        return entityManager().createQuery("from " + Establecimiento.class.getName()).getResultList();
+        return entityManager().createQuery("from " + Incidente.class.getName()).getResultList();
 
     }
 

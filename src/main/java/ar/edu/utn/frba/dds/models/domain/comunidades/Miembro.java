@@ -38,7 +38,7 @@ public class Miembro {
   @Transient
   private Set<Comunidad> comunidades;
 
-
+  @Transient
   Ubicacion ubicacion;
 
 
