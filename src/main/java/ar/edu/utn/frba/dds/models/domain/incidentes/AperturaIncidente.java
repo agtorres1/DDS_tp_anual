@@ -3,8 +3,9 @@ package ar.edu.utn.frba.dds.models.domain.incidentes;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 public class AperturaIncidente {
     private String observaciones;
     private Establecimiento establecimiento;

@@ -24,7 +24,7 @@ public class Email extends MedioDeNotificacion  {
 
 
   public Email(String mail) {
-    email = mail;
+    this.email = mail;
   }
 
 

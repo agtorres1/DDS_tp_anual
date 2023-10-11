@@ -10,6 +10,7 @@ import ar.edu.utn.frba.dds.models.domain.servicios.TipoTraslado;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.TipoEstablecimiento;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;
+import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,7 @@ public class EstablecimientoTest {
         this.banio = new Banio();
         this.banio.setGenero(Genero.HOMBRE);
         this.banio.setDiscapacitado(true);
-        PrestacionDeServicio prestacionBanio = new PrestacionDeServicio();
+        this.prestacionBanio = new PrestacionDeServicio();
         prestacionBanio.setServicio(this.banio);
         prestacionBanio.setCantidad(3);
         this.prestacionBanio.setFunciona(true);
@@ -48,9 +49,9 @@ public class EstablecimientoTest {
         this.ascensor = new Escalador();
         this.ascensor.setOrigen(TipoTraslado.CALLE);
         this.ascensor.setDestino(TipoTraslado.BARRERA);
-        PrestacionDeServicio prestacionAscensor = new PrestacionDeServicio();
-        prestacionAscensor.setServicio(this.ascensor);
-        prestacionAscensor.setCantidad(2);
+        this.prestacionAscensor = new PrestacionDeServicio();
+        this.prestacionAscensor.setServicio(this.ascensor);
+        this.prestacionAscensor.setCantidad(2);
         this.prestacionAscensor.setFunciona(true);
 
     }
@@ -59,5 +60,9 @@ public class EstablecimientoTest {
     public void EstacionAgregaDosPrestacionesYEliminaUno(){
         establecimiento.agregarPrestaciones(this.prestacionAscensor,this.prestacionBanio);
         establecimiento.darDeBajaPrestaciones(this.prestacionAscensor);
+
+        Assert.assertFalse(establecimiento.getPrestacionesDeServicios().contains(prestacionAscensor));
     }
+
+
 }

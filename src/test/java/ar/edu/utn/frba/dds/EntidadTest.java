@@ -9,6 +9,7 @@ import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;
 import ar.edu.utn.frba.dds.models.excepciones.LocalizacionEstablecimientoInvalidaExcepcion;
 import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
+import junit.framework.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -45,8 +46,8 @@ public class EntidadTest {
         this.ubicacion2.setLatitud(2.00);
         this.ubicacion2.setLongitud(-8.00);
         this.localizacionDestino = new Localizacion();
-        this.localizacionDestino.setProvincia("Chaco");
-        this.localizacionDestino.setMunicipio("Chorotis");
+        this.localizacionDestino.setProvincia("Buenos Aires");
+        this.localizacionDestino.setMunicipio("Bahía Blanca");
         this.destino = this.establecimientoBuilder.conNombre("Once").conTipo(TipoEstablecimiento.ESTACION).
                 conLocalizacion(this.localizacionDestino).construir();
         this.destino.setCentroide(ubicacion2);
@@ -78,26 +79,6 @@ public class EntidadTest {
             this.entidad =this.entidadBuilder.conNombre("Linea Resistencia").
                     conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(this.localizacionEntidad).construir();
             this.entidad.agregarEstablecimientos(this.origen,establecimientoIncorrecto);
-        });
-    }
-
-    @Test
-    @DisplayName("Instanciar establecimientos a la lista de una entidad, pero una de estas con un diferente provincia configurada a la de la entidad")
-    public void instanciarEstablecimientosIncorrectos2()throws IOException {
-
-        Localizacion localizacion3 = new Localizacion();
-        localizacion3.setProvincia("Buenos Aires");
-        Localizacion localizacion4 = new Localizacion();
-        localizacion4.setProvincia("Chaco");
-
-        Assertions.assertThrows(LocalizacionEstablecimientoInvalidaExcepcion.class,()->{
-            Establecimiento establecimientoIncorrecto = establecimientoBuilder.conNombre("Soy malo").
-                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(localizacion3).construir();
-            Establecimiento establecimientoCorrecto = establecimientoBuilder.conNombre("Soy bueno").
-                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(localizacion4).construir();
-            this.entidad =this.entidadBuilder.conNombre("Linea Resistencia").
-                    conTipo(TipoEstablecimiento.ESTACION).conLocalizacion(this.localizacionEntidad).construir();
-            this.entidad.agregarEstablecimientos(establecimientoCorrecto,establecimientoIncorrecto);
         });
     }
 

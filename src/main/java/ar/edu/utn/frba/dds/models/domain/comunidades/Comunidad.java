@@ -94,6 +94,7 @@ public class Comunidad{
 */
   public void agregarUsuarios(Miembro... miembros) {
     this.miembros.addAll(Arrays.asList(miembros));
+    this.miembros.forEach(miembro -> miembro.getComunidades().add(this));
   }
 
   public void agregarAdministradores(Miembro... administradores) {
