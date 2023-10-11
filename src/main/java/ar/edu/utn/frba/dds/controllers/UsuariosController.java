@@ -23,6 +23,7 @@ public class UsuariosController {
 
     public void index(Context context){
         //TODO
+        /*
         Map<String, Object> modelo = new HashMap<>();
         List<Miembro> usuarios = new ArrayList<>();
         Miembro test = new Miembro();
@@ -36,4 +37,6 @@ public class UsuariosController {
         modelo.put("usuarios", usuarios);
         context.render("Usuarios/index.hbs",modelo);
     }
-}
+
+         */
+}}

@@ -24,10 +24,19 @@ public class Miembro {
   @Id
   @GeneratedValue
   private Long id;
+
+  @Column(name = "mail")
+  private String mail;
+
+  @Column(name = "contrasenia")
+  private String contrasenia;
+
   @Column(name = "usuario")
   private String usuario;
+
   @ManyToMany
   private List<Interes> intereses;
+
   @OneToOne
   @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
   private Localizacion localizacion;
@@ -38,9 +47,8 @@ public class Miembro {
   @Transient
   private Set<Comunidad> comunidades;
 
-
+  @Transient
   Ubicacion ubicacion;
-
 
 
 
