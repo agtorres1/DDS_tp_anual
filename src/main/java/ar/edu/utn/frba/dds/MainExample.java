@@ -25,9 +25,9 @@ public class MainExample implements WithSimplePersistenceUnit {
         incidente.setFachaYHoraApertura(fechayhora);
 
         entityManager().getTransaction().begin();
-       // entityManager().persist(miembro);
-      //  entityManager().persist(comunidad);
-       // entityManager().persist(incidente);
+        entityManager().persist(miembro);
+        entityManager().persist(comunidad);
+        entityManager().persist(incidente);
         entityManager().getTransaction().commit();
     }
 

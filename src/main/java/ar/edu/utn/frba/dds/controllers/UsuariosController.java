@@ -1,13 +1,17 @@
 package ar.edu.utn.frba.dds.controllers;
+import ar.edu.utn.frba.dds.models.domain.ValidadorContrasenias.ValidadorDeContrasenias;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
+import ar.edu.utn.frba.dds.models.repositories.RepoDeMiembros;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.javalin.http.Context;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
 public class UsuariosController {
-    public UsuariosController(){
-
+    private RepoDeMiembros repoMiembros;
+    public UsuariosController(RepoDeMiembros repoMiembros){
+        this.repoMiembros = repoMiembros;
     }
 
     public void login(Context context){
@@ -24,7 +28,24 @@ public class UsuariosController {
     public void register(Context context){context.render("Usuarios/register.hbs");}
 
     public void registerPost(Context context){
-        //TODO
+        String contrasenia = context.formParam("contrasenia");
+        String nombreDeUsuario = context.formParam("nombreDeUsuario");
+        String email = context.formParam("email");
+
+        if(!(new ValidadorDeContrasenias().esValida(contrasenia))){
+            context.render("Usuarios/register.hbs");
+        }
+
+        Miembro miembro = new Miembro();
+        miembro.setUsuario(nombreDeUsuario);
+        miembro.setMail(email);
+        String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
+        miembro.setContrasenia(contraseniaHASH);
+
+        repoMiembros.agregar(miembro);
+
+        context.render("usuarios/login.hbs");
+
     }
 
     public void index(Context context){
