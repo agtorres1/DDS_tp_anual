@@ -1,4 +1,4 @@
-package Repositorios;
+//package Repositorios;
 
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 
-public class RepoDeMiembros  implements WithSimplePersistenceUnit {
+/*public class RepoDeMiembros  implements WithSimplePersistenceUnit {
 
     public Miembro buscarPorNombreUsuarioYContrasenia(String nombreUsuario, String constrasenia){
         return EntityManagerHelper.getEntityManager().
@@ -44,4 +44,4 @@ public class RepoDeMiembros  implements WithSimplePersistenceUnit {
         return entityManager().createQuery("from " + Miembro.class.getName()).getResultList();
 
     }
-}
+}*/
