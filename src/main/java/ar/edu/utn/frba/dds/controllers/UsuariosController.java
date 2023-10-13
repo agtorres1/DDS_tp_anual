@@ -43,9 +43,9 @@ public class UsuariosController {
         miembro.setContrasenia(contraseniaHASH);
 
         repoMiembros.agregar(miembro);
-
-        context.render("usuarios/login.hbs");
-
+        Map<String, Object> modelo = new HashMap<>();
+        modelo.put("exito", "Usuario registrado con exito");
+        context.render("Usuarios/login.hbs", modelo);
     }
 
     public void index(Context context){
