@@ -21,7 +21,8 @@ public class UsuariosController {
     public void loginPost(Context context){
         String contrasenia = context.formParam("contrasenia");
         String username = context.formParam("nombreDeUsuario");
-        //TODO
+        String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
+
         context.render("base.hbs");
     }
 
@@ -49,17 +50,8 @@ public class UsuariosController {
     }
 
     public void index(Context context){
-        //TODO
         Map<String, Object> modelo = new HashMap<>();
-        List<Miembro> usuarios = new ArrayList<>();
-        Miembro test = new Miembro();
-        test.setUsuario("test");
-        test.setId(1L);
-        Miembro test2 = new Miembro();
-        test2.setUsuario("test2");
-        test2.setId(2L);
-        usuarios.add(test);
-        usuarios.add(test2);
+        List<Miembro> usuarios = repoMiembros.buscarTodos();
         modelo.put("usuarios", usuarios);
         context.render("Usuarios/index.hbs",modelo);
     }
