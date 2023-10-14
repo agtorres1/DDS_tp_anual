@@ -14,25 +14,24 @@ public class UsuariosController {
         this.repoMiembros = repoMiembros;
     }
 
-    public void login(Context context){
-        context.render("Usuarios/login.hbs");
-    }
+    public void login(Context context){context.render("Usuarios/login.hbs");}
 
     public void loginPost(Context context){
         String contrasenia = context.formParam("contrasenia");
-        String username = context.formParam("nombreDeUsuario");
+        String nombreDeUsuario = context.formParam("nombreDeUsuario");
         String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
 
-        Miembro miembro = this.repoMiembros.buscar(username);
+        Miembro miembro = this.repoMiembros.buscarPor("usuario", nombreDeUsuario);
 
         if(contraseniaHASH != miembro.getContrasenia() || miembro == null)
         {
             Map<String, Object> modelo = new HashMap<>();
-            modelo.put("error", "Username o contraseña incorrecta");
+            modelo.put("error", "Nombre de usuario o contraseña incorrecta");
             context.render("Usuarios/login.hbs", modelo);
         }
 
-        context.cookieStore().set(miembro.getId().toString(), miembro.getRol().getTipo());
+        //TODO
+        //context.cookieStore().set(miembro.getId().toString(), miembro.getRol().getTipo());
 
         context.render("base.hbs");
     }
@@ -40,24 +39,41 @@ public class UsuariosController {
     public void register(Context context){context.render("Usuarios/register.hbs");}
 
     public void registerPost(Context context){
-        String contrasenia = context.formParam("contrasenia");
-        String nombreDeUsuario = context.formParam("nombreDeUsuario");
-        String email = context.formParam("email");
+            Map<String, Object> modelo = new HashMap<>();
 
-        if(!(new ValidadorDeContrasenias().esValida(contrasenia))){
-            context.render("Usuarios/register.hbs");
-        }
+            String contrasenia = context.formParam("contrasenia");
+            String nombreDeUsuario = context.formParam("nombreDeUsuario");
+            String email = context.formParam("email");
 
-        Miembro miembro = new Miembro();
-        miembro.setUsuario(nombreDeUsuario);
-        miembro.setMail(email);
-        String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
-        miembro.setContrasenia(contraseniaHASH);
+            if (!(new ValidadorDeContrasenias().esValida(contrasenia))) {
+                modelo.put("error", "La contraseña no es valida");
+                context.render("Usuarios/register.hbs", modelo);
+                return;
+            }
 
-        repoMiembros.agregar(miembro);
-        Map<String, Object> modelo = new HashMap<>();
-        modelo.put("exito", "Usuario registrado con exito");
-        context.render("Usuarios/login.hbs", modelo);
+            Miembro miembroPorUsername = this.repoMiembros.buscarPor("usuario", nombreDeUsuario);
+            if (miembroPorUsername != null) {
+                modelo.put("error", "El nombre de usuario ya existe.");
+                context.render("Usuarios/register.hbs", modelo);
+                return;
+            }
+
+            Miembro miembroPorEmail = this.repoMiembros.buscarPor("mail", email);
+            if (miembroPorEmail != null) {
+                modelo.put("error", "El email ya está registrado.");
+                context.render("Usuarios/register.hbs", modelo);
+                return;
+            }
+
+            Miembro miembro = new Miembro();
+            miembro.setUsuario(nombreDeUsuario);
+            miembro.setMail(email);
+            String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
+            miembro.setContrasenia(contraseniaHASH);
+
+            repoMiembros.agregar(miembro);
+            modelo.put("exito", "Usuario registrado con exito");
+            context.render("Usuarios/login.hbs", modelo);
     }
 
     public void index(Context context){

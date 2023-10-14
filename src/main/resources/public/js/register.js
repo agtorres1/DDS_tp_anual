@@ -19,8 +19,8 @@ $(document).ready(function () {
         if (!digitoER.test(contrasenia)) {
             mensajesError.push('<li>Debe contener al menos un número.</li>');
         }
-        if (contrasenia.length < 8) {
-            mensajesError.push('<li>Debe contener al menos 8 caracteres.</li>');
+        if (contrasenia.length < 9) {
+            mensajesError.push('<li>Debe contener al menos 9 caracteres.</li>');
         }
 
         if (mensajesError.length > 0) {

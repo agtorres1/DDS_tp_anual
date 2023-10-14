@@ -5,15 +5,22 @@ import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class RepoDeMiembros  implements WithSimplePersistenceUnit {
 
-    public Miembro buscar(String nombreDeUsuario) {
-        return entityManager().find(Miembro.class, nombreDeUsuario);
+    public Miembro buscarPor(String atributo, String valor) {
+        String query = "FROM " + Miembro.class.getName() + " user WHERE user." + atributo + " = :valor";
+        try {
+            return (Miembro) entityManager()
+                    .createQuery(query)
+                    .setParameter("valor", valor)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
-
-
 
     public void agregar(Miembro miembro){
         EntityTransaction tx = entityManager().getTransaction();

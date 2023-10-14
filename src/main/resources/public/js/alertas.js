@@ -6,4 +6,12 @@ function mostrarAlertaExito(exito) {
             showConfirmButton: false,
             timer: 2000
         });
-}
+};
+
+function mostrarAlertaError(error) {
+    Swal.fire({
+        icon: 'error',
+        title: "Error",
+        text: error
+    });
+};
