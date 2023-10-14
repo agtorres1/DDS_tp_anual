@@ -7,6 +7,7 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;
+import ar.edu.utn.frba.dds.models.domain.usuario.Rol;
 import ar.edu.utn.frba.dds.models.excepciones.NoEsUnaPrestacionValidaExcepcion;
 import ar.edu.utn.frba.dds.models.excepciones.PrestacionFuncionaExcepcion;
 
@@ -24,6 +25,9 @@ public class Miembro {
   @Id
   @GeneratedValue
   private Long id;
+
+  @ManyToOne
+  private Rol rol;
 
   @Column(name = "mail")
   private String mail;

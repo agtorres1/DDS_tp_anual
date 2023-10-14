@@ -1,11 +1,13 @@
 package ar.edu.utn.frba.dds.server.middlewares;
 
+import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
+import ar.edu.utn.frba.dds.server.exceptions.AccessDeniedException;
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.Context;
 
 
 public class AuthMiddleware {
-/*
+
     public static void apply(JavalinConfig config) {
         config.accessManager(((handler, context, routeRoles) -> {
             TipoRol userRole = getUserRoleType(context);
@@ -24,5 +26,5 @@ public class AuthMiddleware {
                 TipoRol.valueOf(context.sessionAttribute("tipo_rol")) : null;
     }
 
- */
+
 }

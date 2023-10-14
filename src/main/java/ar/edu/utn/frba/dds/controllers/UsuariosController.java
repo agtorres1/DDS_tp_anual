@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds.controllers;
 import ar.edu.utn.frba.dds.models.domain.ValidadorContrasenias.ValidadorDeContrasenias;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.models.repositories.RepoDeMiembros;
+import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.javalin.http.Context;
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +22,17 @@ public class UsuariosController {
         String contrasenia = context.formParam("contrasenia");
         String username = context.formParam("nombreDeUsuario");
         String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
+
+        Miembro miembro = this.repoMiembros.buscar(username);
+
+        if(contraseniaHASH != miembro.getContrasenia() || miembro == null)
+        {
+            Map<String, Object> modelo = new HashMap<>();
+            modelo.put("error", "Username o contraseña incorrecta");
+            context.render("Usuarios/login.hbs", modelo);
+        }
+
+        context.cookieStore().set(miembro.getId().toString(), miembro.getRol().getTipo());
 
         context.render("base.hbs");
     }
