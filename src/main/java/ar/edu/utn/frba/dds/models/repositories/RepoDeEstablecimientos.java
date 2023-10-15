@@ -27,7 +27,7 @@ public class RepoDeEstablecimientos implements WithSimplePersistenceUnit {
         entityManager().merge(establecimiento);
         tx.commit();
     }
-    public Establecimiento buscarPorId(Integer id){
+    public Establecimiento buscarPorId(Long id){
         return entityManager().find(Establecimiento.class,id);
     }
     public List<Establecimiento> buscarTodos(){

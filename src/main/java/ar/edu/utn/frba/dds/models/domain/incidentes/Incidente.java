@@ -28,7 +28,8 @@ public class Incidente {
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private PrestacionDeServicio prestacionDeServicio;
 
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "id_establecimiento", referencedColumnName = "id")
     private Establecimiento establecimiento;
 
     @Column(name = "observaciones",columnDefinition = "TEXT")
@@ -50,7 +51,7 @@ public class Incidente {
         setObservaciones(aperturaIncidente.getObservaciones());
         setEstablecimiento(aperturaIncidente.getEstablecimiento());
         setPrestacionDeServicio(aperturaIncidente.getPrestacionDeServicio());
-        setFachaYHoraApertura(LocalDateTime.now());
+        setFachaYHoraApertura(aperturaIncidente.getFechaYHoraApertura());
         setAbierto(true);
 
 
@@ -58,6 +59,7 @@ public class Incidente {
     public void meCierro(Miembro cerrador){
         this.setFechaYHoraCierre(LocalDateTime.now());
         this.setCerrador(cerrador);
+        this.setAbierto(false);
     }
 
      @Override

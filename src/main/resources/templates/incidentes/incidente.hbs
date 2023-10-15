@@ -1,8 +1,0 @@
-{{#partial "contenido" }}
-<form method="POST" {{#if incidente}} action="/incidentes/{{incidente.id}}" {{else}} action="/incidentes" {{/if}}>
-	<div class="form-group">
-	</div>
-	<button type="submit" class="btn btn-primary">Guardar</button>
-</form>
-{{/partial}}
-{{> templates/base }}

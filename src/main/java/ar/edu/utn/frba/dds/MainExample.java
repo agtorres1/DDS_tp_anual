@@ -39,8 +39,7 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     private void start() throws TipoEstablecimientoInvalidoExcepcion, IOException {
 
-        RepoDeMunicipios repoDeMunicipios = new RepoDeMunicipios();
-        RepoDeProvincias repoDeProvincias = new RepoDeProvincias();
+/*        RepoDeProvincias repoDeProvincias = new RepoDeProvincias();
         RepoDeLocalizaciones repoDeLocalizaciones = new RepoDeLocalizaciones();
         RepoDeMediosDeNotificacion repoDeMediosDeNotificacion = new RepoDeMediosDeNotificacion();
 
@@ -111,11 +110,15 @@ public class MainExample implements WithSimplePersistenceUnit {
 
         RepoDePrestacionDeServicio repoDePrestacionDeServicio = new RepoDePrestacionDeServicio();
         PrestacionDeServicio prestacionBanio = new PrestacionDeServicio();
+        prestacionBanio.setNombreServicio("Baño unisex");
+        prestacionBanio.setCantidad(2);
         prestacionBanio.setFunciona(false);
         prestacionBanio.setServicio(banio);
         repoDePrestacionDeServicio.agregar(prestacionBanio);
 
         PrestacionDeServicio prestacionEscalador = new PrestacionDeServicio();
+        prestacionEscalador.setNombreServicio("Escalera mecánica");
+        prestacionEscalador.setCantidad(2);
         prestacionEscalador.setFunciona(true);
         prestacionEscalador.setServicio(escalador);
         repoDePrestacionDeServicio.agregar(prestacionEscalador);
@@ -126,8 +129,11 @@ public class MainExample implements WithSimplePersistenceUnit {
 
         Localizacion localizacionEstablecimiento = new Localizacion();
         localizacionEstablecimiento.setProvincia("Chaco");
-/*         localizacionEstablecimiento.setMunicipio("Isla del Cerrito");
-       repoDeMunicipios.agregar(localizacionEntidad.getMunicipio());*/
+
+
+         localizacionEstablecimiento.setMunicipio("Isla del Cerrito");
+       repoDeMunicipios.agregar(localizacionEntidad.getMunicipio());
+
 
         repoDeLocalizaciones.agregar(localizacionEstablecimiento);
 
@@ -162,14 +168,18 @@ public class MainExample implements WithSimplePersistenceUnit {
         RepoDeIncidentes repoDeIncidentes = new RepoDeIncidentes();
         repoDeIncidentes.agregar(comunidad.getIncidentes().get(0));
 
-        RepoDeComunidades repoDeComunidades = new RepoDeComunidades();
-        repoDeComunidades.agregar(comunidad);
+
+        repoDeComunidades.agregar(comunidad);*/
+
+
+
+        }
+
+
+
 
     }
 
-    private void persistirIncidentes(List<Incidente> incidentes) {
-
-    }
 
 
-}
+

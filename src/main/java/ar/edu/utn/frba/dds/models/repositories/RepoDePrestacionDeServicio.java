@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.models.repositories;
 
+import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
@@ -27,8 +28,15 @@ public class RepoDePrestacionDeServicio  implements WithSimplePersistenceUnit {
         entityManager().merge(prestacionDeServicio);
         tx.commit();
     }
-    public PrestacionDeServicio buscarPorId(Integer id){
+    public PrestacionDeServicio buscarPorId(Long id){
         return entityManager().find(PrestacionDeServicio.class,id);
+    }
+
+    public List<PrestacionDeServicio> buscarPorFuncionamiento(Boolean funciona){
+        String consultaSQL = "SELECT p FROM PrestacionDeServicio p WHERE p.funciona = :parametro";
+        return entityManager().createQuery(consultaSQL, PrestacionDeServicio.class)
+                .setParameter("parametro", funciona)
+                .getResultList();
     }
     public List<PrestacionDeServicio> buscarTodos(){
         return entityManager().createQuery("from " + PrestacionDeServicio.class.getName()).getResultList();

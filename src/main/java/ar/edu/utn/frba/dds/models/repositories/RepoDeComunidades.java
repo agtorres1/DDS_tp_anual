@@ -27,7 +27,7 @@ public class RepoDeComunidades  implements WithSimplePersistenceUnit {
         entityManager().merge(comunidad);
         tx.commit();
     }
-    public Comunidad buscarPorId(Integer id){
+    public Comunidad buscarPorId(Long id){
         return entityManager().find(Comunidad.class,id);
     }
     public List<Comunidad> buscarTodos(){
