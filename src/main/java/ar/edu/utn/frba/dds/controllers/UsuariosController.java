@@ -19,19 +19,21 @@ public class UsuariosController {
     public void loginPost(Context context){
         String contrasenia = context.formParam("contrasenia");
         String nombreDeUsuario = context.formParam("nombreDeUsuario");
-        String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
 
         Miembro miembro = this.repoMiembros.buscarPor("usuario", nombreDeUsuario);
 
-        if(contraseniaHASH != miembro.getContrasenia() || miembro == null)
+        boolean esMismaContrasenia = BCrypt.verifyer().verify(contrasenia.getBytes(), miembro.getContrasenia().getBytes()).verified;
+
+        if(!esMismaContrasenia || miembro == null)
         {
             Map<String, Object> modelo = new HashMap<>();
             modelo.put("error", "Nombre de usuario o contraseña incorrecta");
             context.render("Usuarios/login.hbs", modelo);
+            return;
         }
 
-        //TODO
-        //context.cookieStore().set(miembro.getId().toString(), miembro.getRol().getTipo());
+        context.sessionAttribute("usuario_id", miembro.getId());
+        context.sessionAttribute("tipo_rol", miembro.getRol().getTipo());
 
         context.render("base.hbs");
     }

@@ -22,14 +22,13 @@ $(document).ready(function () {
         if (contrasenia.length < 9) {
             mensajesError.push('<li>Debe contener al menos 9 caracteres.</li>');
         }
+        if(contrasenia !== confirmarContrasenia) {
+            mensajesError.push('<li>Las contraseñas no coinciden.</li>');
+        }
 
         if (mensajesError.length > 0) {
             e.preventDefault();
             $('#errorContrasenia').html(mensajesError.join(' '));
-        }
-        else if (contrasenia !== confirmarContrasenia) {
-            e.preventDefault();
-            $('#errorContrasenia').html('<li>Las contraseñas no coinciden</li>');
         }
         else {
             $('#errorContrasenia').html('');
