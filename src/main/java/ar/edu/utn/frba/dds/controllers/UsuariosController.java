@@ -84,4 +84,14 @@ public class UsuariosController {
         modelo.put("usuarios", usuarios);
         context.render("Usuarios/index.hbs",modelo);
     }
+
+    public void mostrarUsuario(Context context){
+        int idUsuario = Integer.parseInt(context.pathParam("id"));
+        Miembro usuario = repoMiembros.buscarPorId(idUsuario);
+        Map<String, Object> modelo = new HashMap<>();
+        modelo.put("usuario", usuario);
+
+        //todo
+    }
+
 }
