@@ -22,8 +22,9 @@ public class AuthMiddleware {
     }
 
     private static TipoRol getUserRoleType(Context context) {
-        return context.sessionAttribute("tipo_rol") != null?
-                TipoRol.valueOf(context.sessionAttribute("tipo_rol")) : null;
+        String tipoRolValue = context.sessionAttribute("tipo_rol");
+
+        return tipoRolValue != null ? TipoRol.valueOf(tipoRolValue) : null;
     }
 
 

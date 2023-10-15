@@ -33,7 +33,7 @@ public class UsuariosController {
         }
 
         context.sessionAttribute("usuario_id", miembro.getId());
-        context.sessionAttribute("tipo_rol", miembro.getRol().getTipo());
+        context.sessionAttribute("tipo_rol", miembro.getRol().getTipo().toString());
 
         context.render("base.hbs");
     }
