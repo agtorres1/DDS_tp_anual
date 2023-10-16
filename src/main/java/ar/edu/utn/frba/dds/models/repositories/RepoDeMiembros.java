@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.models.repositories;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;
 
@@ -33,5 +34,10 @@ public class RepoDeMiembros  implements WithSimplePersistenceUnit {
     public List<Miembro> buscarTodos(){
         return entityManager().createQuery("from " + Miembro.class.getName()).getResultList();
 
+    }
+
+    public boolean existeMiembroConNombreMiembro (String nombreMiembro){
+
+        return true;
     }
 }

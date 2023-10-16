@@ -28,7 +28,7 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
         entityManager().merge(incidente);
         tx.commit();
     }
-    public Incidente buscarPorId(Integer id){
+    public Incidente buscarPorId(Long id){
         return entityManager().find(Incidente.class,id);
     }
     public List<Incidente> buscarTodos(){

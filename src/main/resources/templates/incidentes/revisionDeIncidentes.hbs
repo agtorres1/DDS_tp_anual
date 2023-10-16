@@ -1,0 +1,28 @@
+{{#partial "contenido" }}
+    <button id="obtenerUbicacion">Obtener Ubicación</button>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>Numero</th>
+                <th>Estado</th>
+            </tr>
+            <tbody>
+            {{#each incidentes}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>
+                        {{#if this.abierto}}
+                            Abierto
+                        {{else}}
+                            Cerrado
+                        {{/if}}
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+{{/partial}}
+{{> templates/base }}
