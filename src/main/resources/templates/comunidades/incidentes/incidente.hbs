@@ -99,6 +99,7 @@
             </article>
         </section>
         {{#if incidente.abierto}}
+            <!--{{#if rol}}-->
             <form class="container button-along" action="/comunidades/{{comunidad.id}}/incidentes/{{incidente.id}}" method="post">
                 <button type="submit" class="btn btn-danger">Cerrar incidente</button>
             </form>
