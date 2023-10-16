@@ -86,7 +86,7 @@ public class UsuariosController {
     }
 
     public void mostrarUsuario(Context context){
-        int idUsuario = Integer.parseInt(context.pathParam("id"));
+        Long idUsuario = Long.parseLong(context.pathParam("id"));
         Miembro usuario = repoMiembros.buscarPorId(idUsuario);
         Map<String, Object> modelo = new HashMap<>();
         modelo.put("usuario", usuario);
