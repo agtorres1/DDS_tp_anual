@@ -72,17 +72,13 @@ public class IncidentesController {
     public void save(Context context) {
         AperturaIncidente aperturaIncidente = new AperturaIncidente();
         this.asignarParametros(aperturaIncidente, context);
-        System.out.println(aperturaIncidente.getFechaYHoraApertura());
 
         Comunidad comunidadX = this.repoDeComunidades.buscarPorId(4L);
         comunidadX.getMiembros().get(0).abrirIncidente(aperturaIncidente,new Notificador());
         List<Incidente> incidentes = comunidadX.getMiembros().get(0).buscarIncidentes(aperturaIncidente);
         System.out.println(incidentes);
-        for(Incidente incidente : incidentes){
 
-            this.repoDePrestacionDeServicio.modificar(incidente.getPrestacionDeServicio());
-            this.repoDeEstablecimientos.modificar(incidente.getEstablecimiento());
-            this.repoDeMiembros.modificar(incidente.getAbridor());
+        for(Incidente incidente : incidentes){
             this.repoDeIncidentes.agregar(incidente);
         }
 
@@ -91,13 +87,10 @@ public class IncidentesController {
     }
 
     public void close(Context context){
-        System.out.println("Estoy en close -----------------------------");
         Incidente incidente = this.repoDeIncidentes.buscarPorId(Long.parseLong(context.pathParam("idIncidente")));
         Comunidad comunidad = this.repoDeComunidades.buscarPorId(Long.parseLong(context.pathParam("idComunidad")));
         comunidad.cerrarIncidente(comunidad.getMiembros().get(0),incidente);
         this.repoDeIncidentes.modificar(incidente);
-
-        System.out.println(incidente.getAbierto());
 
         context.status(HttpStatus.CREATED);
         context.redirect("/comunidades/"+comunidad.getId()+"/incidentes");

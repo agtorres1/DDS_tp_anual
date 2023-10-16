@@ -18,17 +18,17 @@ public class Incidente {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "fechayHoraApertura")
+    @Column(name = "fechayHoraApertura",columnDefinition = "TIMESTAMP")
     private LocalDateTime fachaYHoraApertura;
 
-    @Column(name = "fechayHoraCierre")
+    @Column(name = "fechayHoraCierre",columnDefinition = "TIMESTAMP")
     private LocalDateTime fechaYHoraCierre;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private PrestacionDeServicio prestacionDeServicio;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_establecimiento", referencedColumnName = "id")
     private Establecimiento establecimiento;
 
@@ -37,10 +37,10 @@ public class Incidente {
 
     @Column(name = "estaAbierto")
     private Boolean abierto;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_abridor")
     private Miembro abridor;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cerrador")
     private Miembro cerrador;
 
