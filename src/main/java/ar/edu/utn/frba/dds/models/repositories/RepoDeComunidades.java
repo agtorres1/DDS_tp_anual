@@ -1,4 +1,4 @@
-package Repositorios;
+package ar.edu.utn.frba.dds.models.repositories;
 
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
@@ -27,7 +27,7 @@ public class RepoDeComunidades  implements WithSimplePersistenceUnit {
         entityManager().merge(comunidad);
         tx.commit();
     }
-    public Comunidad buscarPorId(Integer id){
+    public Comunidad buscarPorId(Long id){
         return entityManager().find(Comunidad.class,id);
     }
     public List<Comunidad> buscarTodos(){

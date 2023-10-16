@@ -5,11 +5,15 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Notificador {
     private Set<Miembro> miembrosNotificados;
+    public Notificador(){
+        this.miembrosNotificados = new HashSet<>();
+    }
     public void notificar(Miembro emisor, AperturaIncidente aperturaIncidente){
         notificarComunidades(emisor,aperturaIncidente);
         notificarInteresados(emisor,aperturaIncidente);
@@ -40,7 +44,8 @@ public class Notificador {
 
     public List<Miembro> filtrarYaNotificados(List<Miembro> notificables,Incidente incidente){
         miembrosNotificados.addAll(notificables);
-        return (List<Miembro>) notificables.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario());
+        notificables.removeIf(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario());
+        return notificables;
     }
 
 }

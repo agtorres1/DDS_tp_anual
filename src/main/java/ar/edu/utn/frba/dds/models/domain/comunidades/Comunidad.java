@@ -55,7 +55,6 @@ public class Comunidad{
   private String descripcion;
 
   public Comunidad() {
-    this.nombre = "HOLA";
     this.administradores = new ArrayList<>();
     this.miembros = new ArrayList<>();
     this.incidentes = new ArrayList<>();
@@ -94,10 +93,7 @@ public class Comunidad{
 */
   public void agregarUsuarios(Miembro... miembros) {
     this.miembros.addAll(Arrays.asList(miembros));
-  }
-
-  public void agregarAdministradores(Miembro... administradores) {
-    this.administradores.addAll(Arrays.asList(administradores));
+    this.miembros.forEach(miembro -> miembro.getComunidades().add(this));
   }
 
   public void removerUsuarios(Miembro... miembros) {
@@ -105,10 +101,13 @@ public class Comunidad{
       this.miembros.remove(value);
     }
   }
-  public void removerAdministradores(Miembro... administradores) {
-      for (Miembro value : administradores){
-        this.administradores.remove(value);
-      }
+
+  public int cantidadDeMiembros(){
+    return this.miembros.size();
+  }
+
+  public int cantidadDeIncidentes(){
+    return this.incidentes.size();
   }
 
 

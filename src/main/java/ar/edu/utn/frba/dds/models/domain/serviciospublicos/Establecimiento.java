@@ -19,8 +19,6 @@ public class Establecimiento {
   private Long id;
   @Column(name = "nombre")
   String nombre;
-  @Transient
-  Ubicacion centroide;
   @OneToMany
   @JoinColumn(name = "id_establecimiento",referencedColumnName = "id")
   Set<PrestacionDeServicio> prestacionesDeServicios;
@@ -33,12 +31,25 @@ public class Establecimiento {
   @JoinColumn(name = "id_entidad", referencedColumnName = "id")
   Entidad entidad;
 
+<<<<<<< HEAD
   @Transient
   Ubicacion ubicacion;
 
 
   public void agregarPrestaciones(PrestacionDeServicio... prestacionDeServicios) {
     Collections.addAll(this.prestacionesDeServicios, prestacionDeServicios);
+=======
+  @Embedded
+  Ubicacion centroide;
+
+  public Establecimiento(){
+    this.prestacionesDeServicios = new HashSet<>();
+  }
+  public void agregarPrestaciones(PrestacionDeServicio... prestacionesDeServicios) {
+    for (PrestacionDeServicio value : prestacionesDeServicios) {
+      this.prestacionesDeServicios.add(value);
+    }
+>>>>>>> arquitecturaMVC
   }
 
 

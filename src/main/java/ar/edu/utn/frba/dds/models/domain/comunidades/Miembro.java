@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.models.domain.comunidades;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
+import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
@@ -48,10 +49,14 @@ public class Miembro {
   @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   public MedioDeNotificacion medioDeNotificacion;
 
-  @Transient
+  @ManyToMany
+  @JoinTable(name = "miembros_por_comunidad",
+          joinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"))
   private Set<Comunidad> comunidades;
 
-  @Transient
+
+  @Embedded
   Ubicacion ubicacion;
 
 
@@ -91,8 +96,21 @@ public class Miembro {
     }
     notificador.notificar(this,aperturaIncidente);
 
-//
   }
+
+  public List<Incidente> buscarIncidentes(AperturaIncidente aperturaIncidente){
+    List<Incidente> incidentesCoincidentes = new ArrayList<>();
+    for(Comunidad comunidad : this.comunidades){
+      for (Incidente incidente : comunidad.getIncidentes()){
+        if(incidente.getFachaYHoraApertura().isEqual(aperturaIncidente.getFechaYHoraApertura())){
+          incidentesCoincidentes.add(incidente);
+        }
+      }
+    }
+
+    return incidentesCoincidentes;
+  }
+
 
 
   /**

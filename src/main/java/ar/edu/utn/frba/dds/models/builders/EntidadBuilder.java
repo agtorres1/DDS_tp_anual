@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.models.builders;
 
 import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Entidad;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.TipoEstablecimiento;
 import ar.edu.utn.frba.dds.models.excepciones.SinLocalizacionValida;
 import ar.edu.utn.frba.dds.models.excepciones.SinNombreExcepcion;
 
@@ -20,6 +21,11 @@ public class EntidadBuilder {
         this.entidad.setLocalizacion(localizacion);
         return this;
     }
+
+    public EntidadBuilder conTipo(TipoEstablecimiento tipoEstablecimiento) {
+        this.entidad.setTipoEstablecimientos(tipoEstablecimiento);
+        return this;
+    }
     public Entidad construir(){
         if(this.entidad.getNombre() == null){
             throw new SinNombreExcepcion();
@@ -31,4 +37,6 @@ public class EntidadBuilder {
         this.entidad.setEstablecimientos(new ArrayList<>());
         return this.entidad;
     }
+
+
 }

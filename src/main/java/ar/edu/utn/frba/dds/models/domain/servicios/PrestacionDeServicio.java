@@ -30,9 +30,7 @@ public class PrestacionDeServicio {
 
 
     public PrestacionDeServicio() {
-
         this.interesados = new ArrayList<>();
-
     }
 
 }
