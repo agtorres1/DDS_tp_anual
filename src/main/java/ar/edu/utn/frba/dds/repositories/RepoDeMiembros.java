@@ -48,4 +48,9 @@ public class RepoDeMiembros  implements WithSimplePersistenceUnit {
         return entityManager().createQuery("from " + Miembro.class.getName()).getResultList();
 
     }
+
+    public boolean existeMiembroConNombreMiembro (String nombreMiembro){
+
+        return true;
+    }
 }

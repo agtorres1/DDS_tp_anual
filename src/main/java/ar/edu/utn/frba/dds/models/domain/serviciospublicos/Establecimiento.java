@@ -31,14 +31,6 @@ public class Establecimiento {
   @JoinColumn(name = "id_entidad", referencedColumnName = "id")
   Entidad entidad;
 
-<<<<<<< HEAD
-  @Transient
-  Ubicacion ubicacion;
-
-
-  public void agregarPrestaciones(PrestacionDeServicio... prestacionDeServicios) {
-    Collections.addAll(this.prestacionesDeServicios, prestacionDeServicios);
-=======
   @Embedded
   Ubicacion centroide;
 
@@ -49,7 +41,6 @@ public class Establecimiento {
     for (PrestacionDeServicio value : prestacionesDeServicios) {
       this.prestacionesDeServicios.add(value);
     }
->>>>>>> arquitecturaMVC
   }
 
 

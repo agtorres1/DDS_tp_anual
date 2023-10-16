@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.server;
 import ar.edu.utn.frba.dds.controllers.ComunidadesController.ComunidadesController;
 import ar.edu.utn.frba.dds.controllers.FactoryController;
+
 import ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes.IncidentesController;
 
 import ar.edu.utn.frba.dds.controllers.EntidadControladoraController;
@@ -8,6 +9,11 @@ import ar.edu.utn.frba.dds.controllers.EntidadControladoraController;
 import ar.edu.utn.frba.dds.controllers.OrganismoDeControlController;
 import ar.edu.utn.frba.dds.controllers.UsuariosController;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -30,26 +36,62 @@ public class Router {
             post("/cargar/entidadesControlaras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargarPost, TipoRol.ADMINISTRADOR);
             get("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::index);
             post("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::join);
-            get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
-            post("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::save);
+
 
 
             path("comunidades/{idComunidad}/incidentes", () -> {
                 get(((IncidentesController) FactoryController.controller("Incidentes"))::index);
                 get("{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
                 post("{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::close);
+
+            });
+            path("incidentes", () -> {
+                get(((IncidentesController) FactoryController.controller("Incidentes"))::create);
+                get("revisarIncidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::revisarIncidentes);
+                post(((IncidentesController) FactoryController.controller("Incidentes"))::save);
+            });
+
+            post("/ubicacion", ctx -> {
+                // Obtén el cuerpo de la solicitud como una cadena JSON
+                String body = ctx.body();
+
+                // Convierte la cadena JSON en un objeto Java usando una biblioteca como Jackson o Gson
+                ObjectMapper objectMapper = new ObjectMapper(); // Jackson ObjectMapper
+                Map<String, String> ubicacionData = objectMapper.readValue(body, new TypeReference<Map<String, String>>() {});
+
+                String latitud = ubicacionData.get("latitud");
+                String longitud = ubicacionData.get("longitud");
+
+                // Haz algo con la ubicación (almacenar en una base de datos, procesar, etc.)
+                System.out.println("Ubicación recibida - Latitud: " + latitud + ", Longitud: " + longitud);
+
+                // Responde al cliente
+                ctx.json(new HashMap<String, String>() {
+                    {
+                        put("mensaje", "Ubicación recibida correctamente");
+                    }});
             });
         });
 
+
+//            get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::index);
+//          get("incidentes/crear", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
+//            get("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
+//            get("incidentes/{id}/editar", ((IncidentesController) FactoryController.controller("Incidentes"))::edit);
+//            post("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::update);
+//            post("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::save);
+//            delete("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::delete);
+//            path("login", () -> {
+//
+//                get();
+//
+//
+//            });
+
+
+
+
+
+
     }
-
-/*
-        Server.app().get("/", ctx -> {  //pantalla de inicio
-                    ctx.sessionAttribute("item1", "Cosa 1");
-                    ctx.render("base.hbs");
-
-    }
-*/
-
-
 }
