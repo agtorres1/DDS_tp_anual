@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.models.repositories;
+package ar.edu.utn.frba.dds.repositories;
 
 import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Departamento;
 import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Municipio;

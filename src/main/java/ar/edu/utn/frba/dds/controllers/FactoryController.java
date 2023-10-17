@@ -2,10 +2,10 @@ package ar.edu.utn.frba.dds.controllers;
 
 import ar.edu.utn.frba.dds.controllers.ComunidadesController.ComunidadesController;
 import ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes.IncidentesController;
-import ar.edu.utn.frba.dds.models.repositories.RepoDeComunidades;
-import ar.edu.utn.frba.dds.models.repositories.RepoDeEstablecimientos;
-import ar.edu.utn.frba.dds.models.repositories.RepoDeIncidentes;
-import ar.edu.utn.frba.dds.models.repositories.RepoDePrestacionDeServicio;
+import ar.edu.utn.frba.dds.repositories.RepoDeComunidades;
+import ar.edu.utn.frba.dds.repositories.RepoDeEstablecimientos;
+import ar.edu.utn.frba.dds.repositories.RepoDeIncidentes;
+import ar.edu.utn.frba.dds.repositories.RepoDePrestacionDeServicio;
 import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
 import ar.edu.utn.frba.dds.repositories.RepoEntidadControladora;
 import ar.edu.utn.frba.dds.repositories.RepoOrganismoDeControl;

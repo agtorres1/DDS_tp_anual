@@ -5,6 +5,7 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,16 +15,21 @@ public class Notificador {
     public Notificador(){
         this.miembrosNotificados = new HashSet<>();
     }
-    public void notificar(Miembro emisor, AperturaIncidente aperturaIncidente){
-        notificarComunidades(emisor,aperturaIncidente);
-        notificarInteresados(emisor,aperturaIncidente);
+    public List<Incidente> notificar(Miembro emisor, AperturaIncidente aperturaIncidente){
+        List<Incidente> incidentes = new ArrayList<>();
+        notificarComunidades(emisor,aperturaIncidente,incidentes);
+        notificarInteresados(emisor,aperturaIncidente,incidentes);
         miembrosNotificados.clear();
+        return incidentes;
     }
 
-    public void notificarComunidades(Miembro emisor, AperturaIncidente aperturaIncidente){
+    public void notificarComunidades(Miembro emisor, AperturaIncidente aperturaIncidente,List<Incidente> incidentes){
+
         for(Comunidad comunidad : emisor.getComunidades()){
             Incidente incidente = new Incidente();
             incidente.meAbro(emisor,aperturaIncidente);
+            incidentes.add(incidente);
+
             Notificacion notificacion = new Notificacion();
             notificacion.crearNotificacion(incidente);
             filtrarYaNotificados(comunidad.getMiembros(),incidente)
@@ -33,9 +39,10 @@ public class Notificador {
 
     }
 
-    public void notificarInteresados(Miembro emisor, AperturaIncidente aperturaIncidente){
+    public void notificarInteresados(Miembro emisor, AperturaIncidente aperturaIncidente,List<Incidente> incidentes){
         Incidente incidente = new Incidente();
         incidente.meAbro(emisor,aperturaIncidente);
+        incidentes.add(incidente);
         Notificacion notificacion = new Notificacion();
         notificacion.crearNotificacion(incidente);
         filtrarYaNotificados(aperturaIncidente.getPrestacionDeServicio().getInteresados(),incidente)

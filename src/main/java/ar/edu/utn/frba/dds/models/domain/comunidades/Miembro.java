@@ -90,11 +90,11 @@ public class Miembro {
   }
 
 
-  public void abrirIncidente(AperturaIncidente aperturaIncidente, Notificador notificador){
+  public List<Incidente> abrirIncidente(AperturaIncidente aperturaIncidente, Notificador notificador){
     if(actualizarPrestacionDeServicio(aperturaIncidente.getEstablecimiento(),aperturaIncidente.getPrestacionDeServicio())){
       throw new PrestacionFuncionaExcepcion();
     }
-    notificador.notificar(this,aperturaIncidente);
+    return notificador.notificar(this,aperturaIncidente);
 
   }
 

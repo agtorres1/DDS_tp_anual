@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.models.repositories;
+package ar.edu.utn.frba.dds.repositories;
 
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;

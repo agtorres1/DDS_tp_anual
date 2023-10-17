@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.models.repositories;
+package ar.edu.utn.frba.dds.repositories;
 
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
@@ -33,13 +33,13 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
         return entityManager().find(Incidente.class,id);
     }
 
-    public List<Incidente> buscarPorFecha(LocalDateTime localDateTime){
+/*    public List<Incidente> buscarPorFecha(LocalDateTime localDateTime){
         String consultaSQL = "SELECT i FROM Incidente i WHERE i.fachaYHoraApertura = :parametro";
 
         return entityManager().createQuery(consultaSQL, Incidente.class)
                 .setParameter("parametro", localDateTime)
                 .getResultList();
-    }
+    }*/
 
     public List<Incidente> buscarTodos(){
         return entityManager().createQuery("from " + Incidente.class.getName()).getResultList();

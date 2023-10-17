@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.models.repositories;
+package ar.edu.utn.frba.dds.repositories;
 
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;

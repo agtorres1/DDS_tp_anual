@@ -2,13 +2,11 @@ package ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes;
 
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
-import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
-import ar.edu.utn.frba.dds.models.repositories.*;
-import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
+import ar.edu.utn.frba.dds.repositories.*;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 
@@ -83,8 +81,7 @@ public class IncidentesController {
         this.asignarParametros(aperturaIncidente, context);
 
         Comunidad comunidadX = this.repoDeComunidades.buscarPorId(4L);
-        comunidadX.getMiembros().get(0).abrirIncidente(aperturaIncidente,new Notificador());
-        List<Incidente> incidentes = comunidadX.getMiembros().get(0).buscarIncidentes(aperturaIncidente);
+        List<Incidente> incidentes = comunidadX.getMiembros().get(0).abrirIncidente(aperturaIncidente,new Notificador());
         System.out.println(incidentes);
 
         for(Incidente incidente : incidentes){
