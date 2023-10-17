@@ -15,7 +15,7 @@ import java.util.List;
 public class OrganismoDeControl {
     @Id
     @GeneratedValue
-    private String id;
+    private Long id;
     @Column(name = "nombre")
     @Setter  private String nombre;
     @Column(name = "descripcion",columnDefinition = "TEXT")
