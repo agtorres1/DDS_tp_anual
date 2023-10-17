@@ -18,7 +18,7 @@ public class Notificador {
     public List<Incidente> notificar(Miembro emisor, AperturaIncidente aperturaIncidente){
         List<Incidente> incidentes = new ArrayList<>();
         notificarComunidades(emisor,aperturaIncidente,incidentes);
-        notificarInteresados(emisor,aperturaIncidente,incidentes);
+        notificarInteresados(emisor,aperturaIncidente);
         miembrosNotificados.clear();
         return incidentes;
     }
@@ -39,10 +39,9 @@ public class Notificador {
 
     }
 
-    public void notificarInteresados(Miembro emisor, AperturaIncidente aperturaIncidente,List<Incidente> incidentes){
+    public void notificarInteresados(Miembro emisor, AperturaIncidente aperturaIncidente){
         Incidente incidente = new Incidente();
         incidente.meAbro(emisor,aperturaIncidente);
-        incidentes.add(incidente);
         Notificacion notificacion = new Notificacion();
         notificacion.crearNotificacion(incidente);
         filtrarYaNotificados(aperturaIncidente.getPrestacionDeServicio().getInteresados(),incidente)

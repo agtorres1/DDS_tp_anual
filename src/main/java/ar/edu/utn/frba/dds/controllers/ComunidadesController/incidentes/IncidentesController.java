@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes;
 
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
@@ -80,11 +81,13 @@ public class IncidentesController {
         AperturaIncidente aperturaIncidente = new AperturaIncidente();
         this.asignarParametros(aperturaIncidente, context);
 
-        Comunidad comunidadX = this.repoDeComunidades.buscarPorId(4L);
-        List<Incidente> incidentes = comunidadX.getMiembros().get(0).abrirIncidente(aperturaIncidente,new Notificador());
+        Miembro miembroActual = this.repoDeMiembros.buscarPorId(context.sessionAttribute("usuario_id"));
+        List<Incidente> incidentes = miembroActual.abrirIncidente(aperturaIncidente,new Notificador());
         System.out.println(incidentes);
+        System.out.println(miembroActual.getComunidades());
 
         for(Incidente incidente : incidentes){
+            System.out.println(incidente);
             this.repoDeIncidentes.agregar(incidente);
         }
 

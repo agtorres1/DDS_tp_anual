@@ -11,7 +11,10 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.servicios.*;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.*;
 import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepcion;
-import ar.edu.utn.frba.dds.models.repositories.*;
+import ar.edu.utn.frba.dds.repositories.RepoDeMediosDeNotificacion;
+import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
+import ar.edu.utn.frba.dds.repositories.RepoDePrestacionDeServicio;
+import ar.edu.utn.frba.dds.repositories.RepoDeProvincias;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import java.io.IOException;
@@ -21,13 +24,13 @@ import java.util.HashSet;
 import java.util.List;
 
 
-/*
+
 public class MainExample implements WithSimplePersistenceUnit {
 
     public static void main(String[] args) throws IOException, TipoEstablecimientoInvalidoExcepcion {
 
-        new MainExample().start();
-    }
+        //new MainExample().start();
+    }}
 
     public void somosDeChaco(RepoDeLocalizaciones repoDeLocalizaciones,Miembro... miembros) throws IOException {
         for(Miembro miembro : miembros){
@@ -40,8 +43,7 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     private void start() throws TipoEstablecimientoInvalidoExcepcion, IOException {
 
-*/
-/*        RepoDeProvincias repoDeProvincias = new RepoDeProvincias();
+       RepoDeProvincias repoDeProvincias = new RepoDeProvincias();
         RepoDeLocalizaciones repoDeLocalizaciones = new RepoDeLocalizaciones();
         RepoDeMediosDeNotificacion repoDeMediosDeNotificacion = new RepoDeMediosDeNotificacion();
 
@@ -133,8 +135,8 @@ public class MainExample implements WithSimplePersistenceUnit {
         localizacionEstablecimiento.setProvincia("Chaco");
 
 
-         localizacionEstablecimiento.setMunicipio("Isla del Cerrito");
-       repoDeMunicipios.agregar(localizacionEntidad.getMunicipio());
+        localizacionEstablecimiento.setMunicipio("Isla del Cerrito");
+        repoDeMunicipios.agregar(localizacionEntidad.getMunicipio());
 
 
         repoDeLocalizaciones.agregar(localizacionEstablecimiento);
@@ -170,28 +172,16 @@ public class MainExample implements WithSimplePersistenceUnit {
         RepoDeIncidentes repoDeIncidentes = new RepoDeIncidentes();
         repoDeIncidentes.agregar(comunidad.getIncidentes().get(0));
 
-
-        repoDeComunidades.agregar(comunidad);*//*
+        repoDeIncidentes.agregar(incidente);
+        repoDeComunidades.agregar(comunidad);
 
 
 
 
         }
+}
 
 
 
 
-<<<<<<< HEAD
-        entityManager().getTransaction().begin();
-        entityManager().persist(miembro);
-        entityManager().persist(comunidad);
-        entityManager().persist(incidente);
-        entityManager().getTransaction().commit();
-=======
->>>>>>> arquitecturaMVC
-    }
 
-
-
-
-*/
