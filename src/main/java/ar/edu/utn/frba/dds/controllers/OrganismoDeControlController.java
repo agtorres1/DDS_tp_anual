@@ -24,35 +24,35 @@ public class OrganismoDeControlController {
         context.render("OrganismosDeControl/cargar.hbs");
     }
 
-    public void cargarPost(Context context){
+    public void cargarPost(Context context) {
         Map<String, Object> modelo = new HashMap<>();
         UploadedFile archivo = context.uploadedFile("archivocsv");
 
-        if(archivo== null){
+        if (archivo == null) {
             modelo.put("error", "No se ha seleccionado ningún archivo.");
             context.render("OrganismosDeControl/cargar.hbs", modelo);
             return;
         }
         String nombreArchivo = archivo.filename();
-        if(!nombreArchivo.endsWith(".txt")){
+        if (!nombreArchivo.endsWith(".txt")) {
             modelo.put("error", "El archivo debe ser de extension .txt");
             context.render("OrganismosDeControl/cargar.hbs", modelo);
             return;
         }
-        try{
+        try {
             File archivoFile = convertirUploadedFileAFile(archivo);
             List<OrganismoDeControl> organismosDeControl = CargadorOrganismoDeControl.obtenerOrganismosDeControl(archivoFile);
 
-            for(OrganismoDeControl organismo : organismosDeControl){
+            for (OrganismoDeControl organismo : organismosDeControl) {
                 repoOrganismoDeControl.agregar(organismo);
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             modelo.put("error", "Error al leer el archivo.");
             context.render("OrganismosDeControl/cargar.hbs", modelo);
             return;
         }
-        modelo.put("exito","Organismos de control cargados exitosamente");
-        context.render("OrganismosDeControl/cargar.hbs", modelo);
+        modelo.put("exito", "Organismos de control cargados exitosamente");
+        context.render("OrganismosDeControl/cargar.hbs",modelo);
     }
 
     private File convertirUploadedFileAFile(UploadedFile uploadedFile) throws IOException {
