@@ -11,7 +11,6 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.servicios.*;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.*;
 import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepcion;
-import ar.edu.utn.frba.dds.models.repositories.*;
 import ar.edu.utn.frba.dds.repositories.RepoDeMediosDeNotificacion;
 import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
 import ar.edu.utn.frba.dds.repositories.RepoDePrestacionDeServicio;
@@ -30,8 +29,8 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     public static void main(String[] args) throws IOException, TipoEstablecimientoInvalidoExcepcion {
 
-        new MainExample().start();
-    }
+        //new MainExample().start();
+    }}
 
     public void somosDeChaco(RepoDeLocalizaciones repoDeLocalizaciones,Miembro... miembros) throws IOException {
         for(Miembro miembro : miembros){
@@ -136,8 +135,8 @@ public class MainExample implements WithSimplePersistenceUnit {
         localizacionEstablecimiento.setProvincia("Chaco");
 
 
-/*        localizacionEstablecimiento.setMunicipio("Isla del Cerrito");
-        repoDeMunicipios.agregar(localizacionEntidad.getMunicipio());*/
+        localizacionEstablecimiento.setMunicipio("Isla del Cerrito");
+        repoDeMunicipios.agregar(localizacionEntidad.getMunicipio());
 
 
         repoDeLocalizaciones.agregar(localizacionEstablecimiento);
@@ -173,7 +172,7 @@ public class MainExample implements WithSimplePersistenceUnit {
         RepoDeIncidentes repoDeIncidentes = new RepoDeIncidentes();
         repoDeIncidentes.agregar(comunidad.getIncidentes().get(0));
 
-        repoDeIncidentes.agregar(incidente)
+        repoDeIncidentes.agregar(incidente);
         repoDeComunidades.agregar(comunidad);
 
 
@@ -185,4 +184,4 @@ public class MainExample implements WithSimplePersistenceUnit {
 
 
 
-*/
+
