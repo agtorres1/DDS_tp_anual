@@ -1,5 +1,8 @@
-package ar.edu.utn.frba.dds.models.domain.services_api.georef.entities;
+package ar.edu.utn.frba.dds.models.domain.services_api.georef;
 
+import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.ListadoDeDepartamentosDeProvincia;
+import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.ListadoDeMunicipiosDeProvincia;
+import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.ListadoDeProvincias;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

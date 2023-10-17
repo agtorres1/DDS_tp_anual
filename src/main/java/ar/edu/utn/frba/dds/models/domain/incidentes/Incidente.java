@@ -37,9 +37,11 @@ public class Incidente {
 
     @Column(name = "estaAbierto")
     private Boolean abierto;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_abridor")
     private Miembro abridor;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cerrador")
     private Miembro cerrador;

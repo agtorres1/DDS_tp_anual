@@ -2,7 +2,6 @@ package ar.edu.utn.frba.dds.models.converts;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
