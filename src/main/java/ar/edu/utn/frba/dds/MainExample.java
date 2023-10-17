@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 
 
-
+/*
 public class MainExample implements WithSimplePersistenceUnit {
 
     public static void main(String[] args) throws IOException, TipoEstablecimientoInvalidoExcepcion {
@@ -180,6 +180,6 @@ public class MainExample implements WithSimplePersistenceUnit {
 }
 
 
-
+*/
 
 

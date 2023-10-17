@@ -6,6 +6,7 @@ import ar.edu.utn.frba.dds.repositories.RepoOrganismoDeControl;
 import io.javalin.http.UploadedFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
@@ -32,7 +33,8 @@ public class OrganismoDeControlController {
             context.render("OrganismosDeControl/cargar.hbs", modelo);
             return;
         }
-        if(!archivo.extension().equalsIgnoreCase("txt")){
+        String nombreArchivo = archivo.filename();
+        if(!nombreArchivo.endsWith(".txt")){
             modelo.put("error", "El archivo debe ser de extension .txt");
             context.render("OrganismosDeControl/cargar.hbs", modelo);
             return;
@@ -56,7 +58,9 @@ public class OrganismoDeControlController {
     private File convertirUploadedFileAFile(UploadedFile uploadedFile) throws IOException {
         File archivoTemporal = File.createTempFile("temp", ".txt");
 
-        uploadedFile.content().transferTo((OutputStream) archivoTemporal.toPath());
+        OutputStream outputStream = new FileOutputStream(archivoTemporal);
+        uploadedFile.content().transferTo(outputStream);
+
         return archivoTemporal;
     }
 
