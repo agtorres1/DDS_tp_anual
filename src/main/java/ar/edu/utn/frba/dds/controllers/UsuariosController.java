@@ -82,6 +82,14 @@ public class UsuariosController {
 
         if("telefono".equals(medioNotificacion)){
             String telefono = context.formParam("telefono");
+
+            MedioDeNotificacion existe = repoDeMediosDeNotificacion.buscarPor("telefono", telefono);
+            if(existe != null){
+                modelo.put("error", "El teléfono ya está registrado.");
+                context.render("Usuarios/register.hbs", modelo);
+                return;
+            }
+
             atributo = "telefono";
             valor = telefono;
             medioDeNotificacion = new Whatsapp(telefono);
