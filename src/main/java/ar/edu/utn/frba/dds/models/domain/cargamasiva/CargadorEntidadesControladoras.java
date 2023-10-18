@@ -14,15 +14,13 @@ public class CargadorEntidadesControladoras {
         String linea;
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-            br.readLine();
+
             while ((linea = br.readLine()) != null) {
                 String[] dato = linea.split(",");
                 String nombre = dato[0];
                 String descripcion = dato[1];
                 String direccion = dato[2];
                 String provincia = dato[3];
-                Localizacion localizacion = new Localizacion();
-                localizacion.setProvincia(provincia);
 
                 EntidadControladora entidad1 = new EntidadControladora();
                 entidad1.setNombre(nombre);
@@ -31,7 +29,6 @@ public class CargadorEntidadesControladoras {
                 EntidadControladora entidadControladora = entidad1;
                 entidadControladora.setDescripcion(descripcion);
                 entidadControladora.setDireccion(direccion);
-                entidadControladora.setLocalizacion(localizacion);
                 entidadesDeControl.add(entidadControladora);
             }
         }catch (Exception e) {

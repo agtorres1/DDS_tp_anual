@@ -30,10 +30,10 @@ public class Router {
             post("/register", ((UsuariosController) FactoryController.controller("Usuarios"))::registerPost);
             get("/usuarios", ((UsuariosController) FactoryController.controller("Usuarios"))::index, TipoRol.ADMINISTRADOR);
             get("/usuarios/{id}", ((UsuariosController) FactoryController.controller("Usuarios"))::mostrarUsuario);
-            get("/cargar/organismosDeControl", ((OrganismoDeControlController) FactoryController.controller("OrganismosDeControl"))::cargar, TipoRol.ADMINISTRADOR);
-            post("/cargar/organismosDeControl", ((OrganismoDeControlController) FactoryController.controller("OrganismosDeControl"))::cargarPost, TipoRol.ADMINISTRADOR);
-            get("/cargar/entidadesControlaras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargar, TipoRol.ADMINISTRADOR);
-            post("/cargar/entidadesControlaras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargarPost, TipoRol.ADMINISTRADOR);
+            get("/cargar/organismosDeControl", ((OrganismoDeControlController) FactoryController.controller("OrganismosDeControl"))::cargar);
+            post("/cargar/organismosDeControl", ((OrganismoDeControlController) FactoryController.controller("OrganismosDeControl"))::cargarPost);
+            get("/cargar/entidadesControladoras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargar);
+            post("/cargar/entidadesControladoras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargarPost);
             get("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::index);
             post("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::join);
 

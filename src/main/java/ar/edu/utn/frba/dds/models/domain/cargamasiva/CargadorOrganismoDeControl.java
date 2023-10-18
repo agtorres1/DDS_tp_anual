@@ -14,7 +14,6 @@ public class CargadorOrganismoDeControl {
         String linea;
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-            br.readLine();
             while ((linea = br.readLine()) != null) {
                 String[] dato = linea.split(",");
                 String nombre = dato[0];
@@ -23,12 +22,11 @@ public class CargadorOrganismoDeControl {
                 Localizacion localizacion = new Localizacion();
                 localizacion.setProvincia(provincia);
 
-                OrganismoDeControl oc1 = new OrganismoDeControl();
-                oc1.setNombre(nombre);
-
-                OrganismoDeControl organismoDeControl = oc1;
+                OrganismoDeControl organismoDeControl = new OrganismoDeControl();
+                organismoDeControl.setNombre(nombre);
                 organismoDeControl.setDescripcion(descripcion);
                 organismoDeControl.setLocalizacion(localizacion);
+
                 organismosDeControl.add(organismoDeControl);
             }
         }catch (Exception e) {

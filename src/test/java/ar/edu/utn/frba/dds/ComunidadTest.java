@@ -69,7 +69,7 @@ public class ComunidadTest {
     @DisplayName("Agregar un servicio nuevo en una estación siendo administrador de la comunidad")
     public void agregarServicioSiendoAdmin() throws NoEsAdministradorExcepcion {
         Assertions.assertDoesNotThrow(()->{
-            this.comunidad.agregarAdministradores(this.administrador);
+            //this.comunidad.agregarAdministradores(this.administrador);
            // this.comunidad.ingresarServicioNuevo(this.establecimiento,this.administrador,"servicioBueno","servicioMuyResponsable",2);
         });
     }

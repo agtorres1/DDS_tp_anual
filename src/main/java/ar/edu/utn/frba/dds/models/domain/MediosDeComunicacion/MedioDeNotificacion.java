@@ -1,5 +1,7 @@
 package ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion;
 
+import lombok.Getter;
+
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import javax.persistence.*;
 public abstract class MedioDeNotificacion {
   @Id
   @GeneratedValue
+  @Getter
   private Long id;
 
   @OneToMany

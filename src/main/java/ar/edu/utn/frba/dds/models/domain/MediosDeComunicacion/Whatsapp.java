@@ -26,8 +26,11 @@ public class Whatsapp extends MedioDeNotificacion{
 
   public static final String AUTH_TOKEN = "fa45e420a9fe4186a4fe2f8e35a7c139";
 
+  public Whatsapp(){}
 
-
+  public Whatsapp(String numero){
+    this.telefono = numero;
+  }
 
   @Override
   public void enviarNotificacion() {

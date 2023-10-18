@@ -35,3 +35,17 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function() {
+    $('#medioNotificacion').change(function() {
+        if ($(this).val() === 'telefono') {
+            $('#telefonoInput').show();
+            $('#telefonoLabel').show();
+            $('#telefonoInput input').attr("required", true);
+        } else {
+            $('#telefonoInput').hide();
+            $('#telefonoLabel').hide();
+            $('#telefonoInput input').attr("required", false);
+        }
+    });
+});
