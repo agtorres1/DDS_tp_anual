@@ -1,6 +1,8 @@
 package ar.edu.utn.frba.dds.models.domain.incidentes;
 
+import ar.edu.utn.frba.dds.models.builders.puntajes.IncidentePuntajeBuilder;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 
@@ -76,6 +78,12 @@ public class Incidente {
             ", abridor=" + abridor +
            ", cerrador=" + cerrador +
             '}';
+    }
+
+    public IncidentePuntaje incidentePuntaje(){
+        return new IncidentePuntajeBuilder().conId(this.getId()).conAbridor(this.getAbridor().getId()).
+                conCerrador(this.getCerrador().getId()).conServicio(this.getPrestacionDeServicio().getId()).
+                conFechaApertura(this.getFachaYHoraApertura()).conFechaCierre(this.fechaYHoraCierre).construir();
     }
 
 }

@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class UsuariosController {
+    private static final Double puntajeInicial = 5.00;
     private RepoDeMiembros repoMiembros;
     public UsuariosController(RepoDeMiembros repoMiembros){
         this.repoMiembros = repoMiembros;
@@ -70,6 +71,7 @@ public class UsuariosController {
             Miembro miembro = new Miembro();
             miembro.setUsuario(nombreDeUsuario);
             miembro.setMail(email);
+            miembro.setPuntaje(this.puntajeInicial);
             String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
             miembro.setContrasenia(contraseniaHASH);
 

@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.serviciospublicos;
 
-import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.excepciones.LocalizacionEstablecimientoInvalidaExcepcion;
 import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Entity

@@ -11,5 +11,4 @@ import java.util.List;
 public class RequestComunidadPuntaje {
     List<IncidentePuntaje> incidentesPuntaje;
     ComunidadPuntaje comunidadPuntaje;
-
 }
