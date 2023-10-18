@@ -1,0 +1,25 @@
+{{#partial "contenido" }}
+<div class="container-sm mt-3">
+    <div class="card bg-dark text-white mx-auto p-3" style="border-radius: 1rem; max-width:600px;">
+        <div class="card-body">
+        <h1 class="text-center mb-3">Ranking</h1>
+        <hr/>
+        <table>
+            <tr>
+                <th>Entidad</th>
+                <th>Cantidad X</th>
+            </tr>
+            {{#each ranking}}
+                <tr>
+                    <td>{{@index}}</td>
+                {{#with entidad}}
+                    <td>{{nombre}}</td>
+                {{/with}}
+                </tr>
+            {{/each}}
+        </table>
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{> templates/base }}

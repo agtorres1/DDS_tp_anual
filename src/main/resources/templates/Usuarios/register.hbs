@@ -19,6 +19,24 @@
                     </span>
                         <input required name="email" type="email" class="form-control" placeholder="Email" />
                 </div>
+                <label class="form-label">Medio de Notificación</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                    </span>
+                    <select required name="medioNotificacion" id="medioNotificacion" class="form-select">
+                        <option selected disabled>Seleccionar Medio</option>
+                        <option value="email">Email</option>
+                        <option value="telefono">Telefono</option>
+                    </select>
+                </div>
+                <label class="form-label" id="telefonoLabel" style="display: none;">Teléfono</label>
+                <div class="input-group mb-3" id="telefonoInput" style="display: none;">
+                    <span class="input-group-text">
+                        <span class="fa-solid fa-phone"></span>
+                    </span>
+                    <input required name="telefono" type="number" class="form-control" inputmode="numeric" placeholder="Teléfono" />
+                </div>
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <label class="form-label">Contraseña</label>

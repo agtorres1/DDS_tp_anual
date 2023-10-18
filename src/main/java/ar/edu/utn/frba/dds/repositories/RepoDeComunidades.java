@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RepoDeComunidades  implements WithSimplePersistenceUnit {
-
-    public void agregar(Comunidad comunidad){
+    public void agregar(Comunidad comunidad) {
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
         entityManager().persist(comunidad);
@@ -40,6 +39,5 @@ public class RepoDeComunidades  implements WithSimplePersistenceUnit {
     }
     public List<Comunidad> buscarTodos(){
         return entityManager().createQuery("from " + Comunidad.class.getName()).getResultList();
-
     }
 }
