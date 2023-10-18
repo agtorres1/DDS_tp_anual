@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class UsuariosController {
+    private static final Double puntajeInicial = 5.00;
     private RepoDeMiembros repoMiembros;
     private RepoDeMediosDeNotificacion repoDeMediosDeNotificacion;
     public UsuariosController(RepoDeMiembros repoMiembros, RepoDeMediosDeNotificacion repoDeMediosDeNotificacion){
@@ -89,6 +90,7 @@ public class UsuariosController {
                 context.render("Usuarios/register.hbs", modelo);
                 return;
             }
+
 
             atributo = "telefono";
             valor = telefono;

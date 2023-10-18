@@ -1,10 +1,12 @@
 package ar.edu.utn.frba.dds.models.domain.comunidades;
+import ar.edu.utn.frba.dds.models.builders.puntajes.MiembroPuntajeBuilder;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
-import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 
+import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;
@@ -38,6 +40,9 @@ public class Miembro {
 
   @Column(name = "usuario")
   private String usuario;
+
+  @Column("puntaje")
+  private Puntaje puntaje;
 
   @ManyToMany
   private List<Interes> intereses;
@@ -98,18 +103,10 @@ public class Miembro {
 
   }
 
-  public List<Incidente> buscarIncidentes(AperturaIncidente aperturaIncidente){
-    List<Incidente> incidentesCoincidentes = new ArrayList<>();
-    for(Comunidad comunidad : this.comunidades){
-      for (Incidente incidente : comunidad.getIncidentes()){
-        if(incidente.getFachaYHoraApertura().isEqual(aperturaIncidente.getFechaYHoraApertura())){
-          incidentesCoincidentes.add(incidente);
-        }
-      }
-    }
-
-    return incidentesCoincidentes;
+  public MiembroPuntaje miembroPuntaje(){
+    return new MiembroPuntajeBuilder().conId(this.getId()).conPuntaje(this.getPuntaje()).construir();
   }
+
 
 
 

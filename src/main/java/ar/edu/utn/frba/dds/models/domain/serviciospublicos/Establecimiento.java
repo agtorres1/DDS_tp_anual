@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.serviciospublicos;
 
-import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 
 import java.util.*;

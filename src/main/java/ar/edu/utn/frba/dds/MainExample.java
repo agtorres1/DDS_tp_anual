@@ -1,3 +1,4 @@
+/*
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Email;
@@ -132,9 +133,6 @@ public class MainExample implements WithSimplePersistenceUnit {
         localizacionEstablecimiento.setProvincia("Chaco");
 
 
-        RepoDeMunicipios repoDeMunicipios = new RepoDeMunicipios();
-        localizacionEstablecimiento.setMunicipio("Isla del Cerrito");
-        repoDeMunicipios.agregar(localizacionEntidad.getMunicipio());
 
         repoDeLocalizaciones.agregar(localizacionEstablecimiento);
 
@@ -179,6 +177,7 @@ public class MainExample implements WithSimplePersistenceUnit {
         }
 }
 
+*/
 
 */
 

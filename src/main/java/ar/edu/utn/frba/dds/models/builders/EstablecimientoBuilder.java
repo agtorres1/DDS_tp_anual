@@ -3,7 +3,7 @@ package ar.edu.utn.frba.dds.models.builders;
 import ar.edu.utn.frba.dds.models.excepciones.SinLocalizacionValida;
 import ar.edu.utn.frba.dds.models.excepciones.SinNombreExcepcion;
 import ar.edu.utn.frba.dds.models.excepciones.SinTipoExcepcion;
-import ar.edu.utn.frba.dds.models.domain.incidentes.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.TipoEstablecimiento;
 

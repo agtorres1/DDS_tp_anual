@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.comunidades;
 
+import ar.edu.utn.frba.dds.models.builders.puntajes.ComunidadPuntajeBuilder;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificacion;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 
@@ -19,6 +20,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -72,6 +76,11 @@ public class Comunidad{
       }
     }
   }
+
+  public List<> incidentesSemanales(TipoFiltrado tipoFiltrado) {
+
+  }
+
   
 /*
 
@@ -125,5 +134,10 @@ public class Comunidad{
     incidente.meCierro(autor);
     this.notificarMiembros(incidente);
   }
+  public ComunidadPuntaje comunidadPuntaje(double puntajeComunidad){
+    return new ComunidadPuntajeBuilder().conId(getId()).conPuntaje(puntajeComunidad).construir();
+  }
+
+
 
 }
