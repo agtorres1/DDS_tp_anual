@@ -11,10 +11,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class GradoDeConfianza {
 
-    @Column(name = "Tipo de grado")
+    @Column(name = "Tipo_de_grado")
     private TipoDeGrado nombre;
 
-    @Column(name = "Nivel del grado")
+    @Column(name = "Nivel_del_grado")
     private Integer nivel;
 
     public void calcularNivel(double puntajeNuevo){

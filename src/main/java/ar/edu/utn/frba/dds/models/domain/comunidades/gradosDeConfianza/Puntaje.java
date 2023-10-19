@@ -21,6 +21,9 @@ public class Puntaje {
         this.gradoDeConfianza = new GradoDeConfianza();
     }
 
+    public Puntaje() {
+
+    }
 
 
     public void actualizarPuntaje(double puntajeNuevo){
