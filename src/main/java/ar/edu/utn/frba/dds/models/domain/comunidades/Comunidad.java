@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.models.domain.comunidades;
 
 import ar.edu.utn.frba.dds.models.builders.puntajes.ComunidadPuntajeBuilder;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificacion;
+import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 
 import java.util.ArrayList;
@@ -10,16 +11,7 @@ import java.util.List;
 
 import ar.edu.utn.frba.dds.models.domain.incidentes.TipoFiltrado;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
@@ -35,12 +27,14 @@ public class Comunidad{
   @GeneratedValue(strategy = GenerationType.IDENTITY) // Opciones: IDENTITY, SEQUENCE, TABLE, etc.
   @Column(name = "id")
   private Long id;
+
   @ManyToMany
   @JoinTable(name = "administradores_por_comunidad",
           joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   )
   private List<Miembro> administradores;
+
   @ManyToMany
   @JoinTable(name = "miembros_por_comunidad",
       joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
@@ -57,6 +51,9 @@ public class Comunidad{
 
   @Column(name = "descripcion", columnDefinition = "TEXT")
   private String descripcion;
+
+  @Embedded
+  private Puntaje puntaje;
 
   public Comunidad() {
     this.administradores = new ArrayList<>();
@@ -77,9 +74,6 @@ public class Comunidad{
     }
   }
 
-  public List<> incidentesSemanales(TipoFiltrado tipoFiltrado) {
-
-  }
 
   
 /*
@@ -121,23 +115,39 @@ public class Comunidad{
 
 
 
+
+
   public void notificarMiembros(Incidente incidente){
     getIncidentes().add(incidente);
     Notificacion notificacion = new Notificacion();
     notificacion.crearNotificacion(incidente);
     this.miembros.stream().filter(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario())
                           .forEach(m->m.getMedioDeNotificacion().evaluarEnvioDeNotificacion(notificacion));
-    System.out.println("Se ha enviado notificacion al WhatssApp - ");
+/*    System.out.println("Se ha enviado notificacion al WhatssApp - ");*/
   }
 
   public void cerrarIncidente(Miembro autor,Incidente incidente){
     incidente.meCierro(autor);
     this.notificarMiembros(incidente);
   }
-  public ComunidadPuntaje comunidadPuntaje(double puntajeComunidad){
-    return new ComunidadPuntajeBuilder().conId(getId()).conPuntaje(puntajeComunidad).construir();
+  public ComunidadPuntaje comunidadPuntaje(){
+    return new ComunidadPuntajeBuilder().conId(this.getId()).conPuntaje(this.puntaje.getValor()).conMiembros(this.getMiembros()).construir();
   }
 
+  public void actualizarPuntajes(ComunidadPuntaje comunidadPuntaje){
+    this.puntaje.actualizarPuntaje(comunidadPuntaje.puntaje);
+    actualizarPuntajesMiembros(comunidadPuntaje);
+  }
+
+  private void actualizarPuntajesMiembros(ComunidadPuntaje comunidadPuntaje) {
+    for(MiembroPuntaje miembroPuntaje : comunidadPuntaje.miembros){
+      for(Miembro miembro : this.miembros){
+        if(miembro.getId() == miembroPuntaje.id){
+          miembro.getPuntaje().actualizarPuntaje(miembroPuntaje.puntaje);
+        }
+      }
+    }
+  }
 
 
 }

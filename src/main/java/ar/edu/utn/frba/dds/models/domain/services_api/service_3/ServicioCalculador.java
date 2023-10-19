@@ -1,6 +1,6 @@
-package ar.edu.utn.frba.dds.models.domain.services_api.service_2;
+package ar.edu.utn.frba.dds.models.domain.services_api.service_3;
 
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadPuntaje;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;

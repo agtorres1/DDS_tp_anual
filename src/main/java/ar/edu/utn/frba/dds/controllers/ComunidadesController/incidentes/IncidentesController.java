@@ -83,11 +83,9 @@ public class IncidentesController {
 
         Miembro miembroActual = this.repoDeMiembros.buscarPorId(context.sessionAttribute("usuario_id"));
         List<Incidente> incidentes = miembroActual.abrirIncidente(aperturaIncidente,new Notificador());
-        System.out.println(incidentes);
-        System.out.println(miembroActual.getComunidades());
+
 
         for(Incidente incidente : incidentes){
-            System.out.println(incidente);
             this.repoDeIncidentes.agregar(incidente);
         }
 

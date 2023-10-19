@@ -1,7 +1,7 @@
-package ar.edu.utn.frba.dds.models.domain.services_api.service_2;
+package ar.edu.utn.frba.dds.models.domain.services_api.service_3;
 
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.IncidentePuntaje;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;

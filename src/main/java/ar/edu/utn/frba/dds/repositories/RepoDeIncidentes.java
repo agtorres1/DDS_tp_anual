@@ -33,13 +33,12 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
         return entityManager().find(Incidente.class,id);
     }
 
-/*    public List<Incidente> buscarPorFecha(LocalDateTime localDateTime){
-        String consultaSQL = "SELECT i FROM Incidente i WHERE i.fachaYHoraApertura = :parametro";
+    public List<Incidente> buscarPorSemana(){
+        String consultaSQL = "SELECT i FROM Incidente i WHERE DATEDIFF(CURDATE(), i.fachaYHoraApertura) <= 7";
 
         return entityManager().createQuery(consultaSQL, Incidente.class)
-                .setParameter("parametro", localDateTime)
                 .getResultList();
-    }*/
+    }
 
     public List<Incidente> buscarTodos(){
         return entityManager().createQuery("from " + Incidente.class.getName()).getResultList();

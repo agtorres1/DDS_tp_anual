@@ -1,6 +1,5 @@
-package ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities;
+package ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities;
 
-import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;

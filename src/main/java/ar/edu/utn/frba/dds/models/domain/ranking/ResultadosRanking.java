@@ -13,6 +13,7 @@ import java.util.Map;
 @Getter @Setter
 public class ResultadosRanking {
 
+
     private Map<Ranking, List<Entidad>> resultados;
     private LocalDateTime fechaCreacion;
 

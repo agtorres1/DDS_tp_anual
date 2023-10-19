@@ -22,7 +22,8 @@ public class Email extends MedioDeNotificacion  {
   @Column(name = "email")
   public String email;
 
-
+  public Email(){
+  }
   public Email(String mail) {
     this.email = mail;
   }

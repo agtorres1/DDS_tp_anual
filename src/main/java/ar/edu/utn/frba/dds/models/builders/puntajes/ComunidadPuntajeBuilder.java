@@ -1,9 +1,13 @@
 package ar.edu.utn.frba.dds.models.builders.puntajes;
 
+import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinIdValidoExcepcion;
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinPuntajeExcepcion;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ComunidadPuntajeBuilder {
     private ComunidadPuntaje comunidadPuntaje = new ComunidadPuntaje();
@@ -18,6 +22,11 @@ public class ComunidadPuntajeBuilder {
         return this;
     }
 
+    public ComunidadPuntajeBuilder conMiembros(List<Miembro> miembros) {
+       this.comunidadPuntaje.miembros = miembros.stream().map(Miembro::miembroPuntaje).collect(Collectors.toList());
+       return this;
+    }
+
     public ComunidadPuntaje construir(){
         if(this.comunidadPuntaje.id < 0){
             throw new SinIdValidoExcepcion();
@@ -25,4 +34,6 @@ public class ComunidadPuntajeBuilder {
 
         return this.comunidadPuntaje;
     }
+
+
 }

@@ -42,7 +42,7 @@ public class IncidentePuntajeBuilder {
     }
 
     public IncidentePuntaje construir(){
-        if(idValidos(this.incidentePuntaje.incidenteId,this.incidentePuntaje.abiertoPorId,this.incidentePuntaje.codigoServicio)){
+        if(!idValidos(this.incidentePuntaje.incidenteId,this.incidentePuntaje.abiertoPorId,this.incidentePuntaje.codigoServicio)){
             throw new SinIdValidoExcepcion();
         }
 
@@ -70,6 +70,7 @@ public class IncidentePuntajeBuilder {
     }
 
     private boolean idValidos(int... ids) {
+
         return Arrays.stream(ids).allMatch(id->id>=1);
     }
 }

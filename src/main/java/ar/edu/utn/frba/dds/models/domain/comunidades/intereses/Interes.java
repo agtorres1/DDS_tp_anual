@@ -1,5 +1,6 @@
-package ar.edu.utn.frba.dds.models.domain.comunidades;
+package ar.edu.utn.frba.dds.models.domain.comunidades.intereses;
 
+import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Entidad;
