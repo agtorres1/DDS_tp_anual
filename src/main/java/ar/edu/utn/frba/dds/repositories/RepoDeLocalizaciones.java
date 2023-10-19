@@ -1,7 +1,5 @@
 package ar.edu.utn.frba.dds.repositories;
 
-
-import ar.edu.utn.frba.dds.models.domain.comunidades.Interes;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 

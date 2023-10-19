@@ -1,5 +1,6 @@
 const menus = document.querySelectorAll('.dropdown-toggle');
 
+/*
 menus.forEach(menu => {
   menu.addEventListener('click', () => {
     console.log('box clicked');
@@ -10,4 +11,4 @@ menus.forEach(menu => {
         menu.classList.add("open");
     }
 });
-});
+});*/

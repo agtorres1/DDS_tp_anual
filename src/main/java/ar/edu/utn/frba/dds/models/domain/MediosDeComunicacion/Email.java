@@ -21,15 +21,11 @@ public class Email extends MedioDeNotificacion  {
   private Long id;
   @Column(name = "email")
   public String email;
-
   public Email(){}
 
   public Email(String mail) {
     this.email = mail;
   }
-
-
-
 
   @Override
   public void enviarNotificacion() {

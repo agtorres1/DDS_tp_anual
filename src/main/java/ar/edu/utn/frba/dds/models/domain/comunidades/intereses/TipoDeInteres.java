@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.models.domain.comunidades;
+package ar.edu.utn.frba.dds.models.domain.comunidades.intereses;
 
 public enum TipoDeInteres 
 {

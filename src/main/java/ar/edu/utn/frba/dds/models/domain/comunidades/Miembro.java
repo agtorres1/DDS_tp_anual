@@ -2,6 +2,8 @@ package ar.edu.utn.frba.dds.models.domain.comunidades;
 import ar.edu.utn.frba.dds.models.builders.puntajes.MiembroPuntajeBuilder;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
+import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
+import ar.edu.utn.frba.dds.models.domain.comunidades.intereses.Interes;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
@@ -41,8 +43,9 @@ public class Miembro {
   @Column(name = "usuario")
   private String usuario;
 
-  //@Column("puntaje")
-  //private Puntaje puntaje;
+
+  @Embedded
+  private Puntaje puntaje;
 
   @ManyToMany
   private List<Interes> intereses;
@@ -103,10 +106,10 @@ public class Miembro {
 
   }
 
-  //public MiembroPuntaje miembroPuntaje(){
-    //return new MiembroPuntajeBuilder().conId(this.getId()).conPuntaje(this.getPuntaje()).construir();
-  //}
 
+  public MiembroPuntaje miembroPuntaje(){
+    return new MiembroPuntajeBuilder().conId(this.getId()).conPuntaje(this.puntaje.getValor()).construir();
+  }
 
 
 
