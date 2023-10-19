@@ -14,14 +14,14 @@ import javax.persistence.Transient;
 @Setter
 public class Puntaje {
 
-    @Column("puntaje")
-    private Double valor;
+    //@Column("puntaje")
+    //private Double valor;
 
-    @Column("grado_de_confianza")
-    private GradoDeConfianza gradoDeConfianza;
+    //@Column("grado_de_confianza")
+    //private GradoDeConfianza gradoDeConfianza;
 
     public void actualizarPuntaje(double puntajeNuevo){
-        this.valor = puntajeNuevo;
+        //this.valor = puntajeNuevo;
 
     }
 

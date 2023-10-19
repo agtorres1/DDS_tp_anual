@@ -24,6 +24,7 @@ public class Router {
     public static void init() {
 
         Server.app().routes(() -> {
+            get("/", (ctx) -> ctx.render("base.hbs"));
             get("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::login);
             post("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::loginPost);
             get("/register", ((UsuariosController) FactoryController.controller("Usuarios"))::register);

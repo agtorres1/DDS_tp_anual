@@ -77,9 +77,9 @@ public class Comunidad{
     }
   }
 
-  public List<> incidentesSemanales(TipoFiltrado tipoFiltrado) {
+  /*public List<> incidentesSemanales(TipoFiltrado tipoFiltrado) {
 
-  }
+  }*/
 
   
 /*

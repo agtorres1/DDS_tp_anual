@@ -41,8 +41,8 @@ public class Miembro {
   @Column(name = "usuario")
   private String usuario;
 
-  @Column("puntaje")
-  private Puntaje puntaje;
+  //@Column("puntaje")
+  //private Puntaje puntaje;
 
   @ManyToMany
   private List<Interes> intereses;
@@ -103,9 +103,9 @@ public class Miembro {
 
   }
 
-  public MiembroPuntaje miembroPuntaje(){
-    return new MiembroPuntajeBuilder().conId(this.getId()).conPuntaje(this.getPuntaje()).construir();
-  }
+  //public MiembroPuntaje miembroPuntaje(){
+    //return new MiembroPuntajeBuilder().conId(this.getId()).conPuntaje(this.getPuntaje()).construir();
+  //}
 
 
 

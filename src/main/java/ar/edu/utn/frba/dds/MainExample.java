@@ -179,6 +179,6 @@ public class MainExample implements WithSimplePersistenceUnit {
 
 */
 
-*/
+
 
 
