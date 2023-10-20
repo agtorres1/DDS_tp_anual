@@ -1,5 +1,8 @@
 package ar.edu.utn.frba.dds.server;
 
+import ar.edu.utn.frba.dds.models.domain.usuario.Rol;
+import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
+import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
 import ar.edu.utn.frba.dds.server.handlers.AppHandlers;
 import ar.edu.utn.frba.dds.server.middlewares.AuthMiddleware;
 import com.github.jknack.handlebars.Handlebars;
@@ -32,6 +35,7 @@ public class Server {
             Integer port = Integer.parseInt(System.getProperty("port", "8080"));
             app = Javalin.create(config()).start(port);
             initTemplateEngine();
+            initRoles();
             AppHandlers.applyHandlers(app);
             Router.init();
         }
@@ -64,5 +68,22 @@ public class Server {
                     }
                 }, ".hbs" // Extensión del archivo de template
         );
+    }
+
+    private static void initRoles(){
+        RepoDeRoles repo = new RepoDeRoles();
+        String borrar = TipoRol.ADMINISTRADOR.toString();
+        Rol rolAdministrador = repo.buscarPorTipoRol(TipoRol.ADMINISTRADOR);
+        if(rolAdministrador == null){
+            rolAdministrador = new Rol();
+            rolAdministrador.setNombre(TipoRol.ADMINISTRADOR.toString());
+            rolAdministrador.setTipo(TipoRol.ADMINISTRADOR);
+            repo.agregar(rolAdministrador);
+
+            Rol rolNormal = new Rol();
+            rolNormal.setNombre(TipoRol.NORMAL.toString());
+            rolNormal.setTipo(TipoRol.NORMAL);
+            repo.agregar(rolNormal);
+        }
     }
 }

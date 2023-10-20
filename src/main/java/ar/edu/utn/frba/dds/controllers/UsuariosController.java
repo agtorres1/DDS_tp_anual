@@ -4,8 +4,10 @@ import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacio
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.ValidadorContrasenias.ValidadorDeContrasenias;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
+import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import ar.edu.utn.frba.dds.repositories.RepoDeMediosDeNotificacion;
 import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
+import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.javalin.http.Context;
 import org.jetbrains.annotations.NotNull;
@@ -16,9 +18,11 @@ public class UsuariosController {
     private static final Double puntajeInicial = 5.00;
     private RepoDeMiembros repoMiembros;
     private RepoDeMediosDeNotificacion repoDeMediosDeNotificacion;
-    public UsuariosController(RepoDeMiembros repoMiembros, RepoDeMediosDeNotificacion repoDeMediosDeNotificacion){
+    private RepoDeRoles repoDeRoles;
+    public UsuariosController(RepoDeMiembros repoMiembros, RepoDeMediosDeNotificacion repoDeMediosDeNotificacion, RepoDeRoles repoDeRoles){
         this.repoMiembros = repoMiembros;
         this.repoDeMediosDeNotificacion = repoDeMediosDeNotificacion;
+        this.repoDeRoles = repoDeRoles;
     }
 
     public void login(Context context){context.render("Usuarios/login.hbs");}
@@ -26,7 +30,7 @@ public class UsuariosController {
     public void loginPost(Context context){
         String contrasenia = context.formParam("contrasenia");
         String nombreDeUsuario = context.formParam("nombreDeUsuario");
-        
+
         Miembro miembro = this.repoMiembros.buscarPor("usuario", nombreDeUsuario);
 
         boolean esMismaContrasenia = BCrypt.verifyer().verify(contrasenia.getBytes(), miembro.getContrasenia().getBytes()).verified;
@@ -109,6 +113,8 @@ public class UsuariosController {
         miembro.medioDeNotificacion = medio;
         miembro.setUsuario(nombreDeUsuario);
         miembro.setMail(email);
+
+        miembro.setRol(repoDeRoles.buscarPorTipoRol(TipoRol.NORMAL));
         String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
         miembro.setContrasenia(contraseniaHASH);
         repoMiembros.agregar(miembro);
