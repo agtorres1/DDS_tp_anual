@@ -55,6 +55,8 @@ public class UsuariosController implements ICrudViewsHandler {
     public void registerPost(Context context){
         Map<String, Object> modelo = new HashMap<>();
 
+        String nombre = context.formParam("nombre");
+        String apellido = context.formParam("apellido");
         String contrasenia = context.formParam("contrasenia");
         String nombreDeUsuario = context.formParam("nombreDeUsuario");
         String email = context.formParam("email");
@@ -114,6 +116,8 @@ public class UsuariosController implements ICrudViewsHandler {
         miembro.medioDeNotificacion = medio;
         miembro.setUsuario(nombreDeUsuario);
         miembro.setMail(email);
+        miembro.setNombre(nombre);
+        miembro.setApellido(apellido);
 
         miembro.setRol(repoDeRoles.buscarPorTipoRol(TipoRol.NORMAL));
         String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());

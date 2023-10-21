@@ -84,6 +84,11 @@ public class Server {
             rolNormal.setNombre(TipoRol.NORMAL.toString());
             rolNormal.setTipo(TipoRol.NORMAL);
             repo.agregar(rolNormal);
+
+            Rol rolEntidad = new Rol();
+            rolEntidad.setNombre(TipoRol.ENTIDAD.toString());
+            rolEntidad.setTipo(TipoRol.ENTIDAD);
+            repo.agregar(rolEntidad);
         }
     }
 }
