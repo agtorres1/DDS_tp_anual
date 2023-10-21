@@ -16,14 +16,19 @@ import java.util.*;
 @Table(name = "Intereses")
 @Getter
 public class Interes {
+
+
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(name = "descripcion",columnDefinition = "TEXT")
     private String descripcion;
+
     @ManyToOne
     @JoinColumn(name = "entidad_id", referencedColumnName = "id")
     private Entidad entidad;
+
     @Transient
     private Set<InteresEnPrestacion> prestacionesDeInteres;
     public Interes(){

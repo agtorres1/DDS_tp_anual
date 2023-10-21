@@ -31,6 +31,14 @@ public class Miembro {
   @GeneratedValue
   private Long id;
 
+  @Column(name = "nombre")
+  private String nombre;
+
+  @Column(name = "apellido")
+  private String apellido;
+
+
+
   @ManyToOne
   private Rol rol;
 
