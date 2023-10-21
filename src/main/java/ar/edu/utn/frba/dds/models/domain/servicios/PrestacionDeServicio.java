@@ -19,7 +19,7 @@ public class PrestacionDeServicio {
 
     @OneToOne
     private Servicio servicio;
-   @Column(name = "cantidadDisponible")
+    @Column(name = "cantidadDisponible")
     private Integer cantidad;
     @Column(name = "funciona")
     private Boolean funciona;

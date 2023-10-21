@@ -41,6 +41,8 @@ public class RepoDeMiembros  implements WithSimplePersistenceUnit {
         entityManager().merge(miembro);
         tx.commit();
     }
+
+
     public Miembro buscarPorId(Long id){
         return entityManager().find(Miembro.class,id);
     }
@@ -53,4 +55,6 @@ public class RepoDeMiembros  implements WithSimplePersistenceUnit {
 
         return true;
     }
+
+
 }

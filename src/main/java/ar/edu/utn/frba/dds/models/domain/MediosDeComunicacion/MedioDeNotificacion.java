@@ -22,6 +22,9 @@ public abstract class MedioDeNotificacion {
   @Getter
   private Long id;
 
+
+  private String name;
+
   @OneToMany
   List<Notificacion> notificacionesRecientes;
 

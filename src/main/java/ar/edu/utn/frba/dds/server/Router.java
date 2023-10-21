@@ -45,7 +45,7 @@ public class Router {
             post("/usuario",((UsuariosController) FactoryController.controller("Usuarios")) :: save);
             post("/usuario/{id}",((UsuariosController) FactoryController.controller("Usuarios")) :: update);
             get("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
-
+            post("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
 
             path("comunidades/{idComunidad}/incidentes", () -> {
                 get(((IncidentesController) FactoryController.controller("Incidentes"))::index);

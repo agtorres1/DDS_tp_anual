@@ -8,7 +8,7 @@ import io.javalin.http.Context;
 
 public class AuthMiddleware {
 
-    private static final String[] rutasPermitidas = {"/","/login", "/register","/comunidades","/comunidades/{idComunidad}/incidentes", "/cargar/organismosDeControl", "/cargar/entidadesControladoras"};
+    private static final String[] rutasPermitidas = {"/","/login", "/register","/comunidades","/comunidades/{idComunidad}/incidentes", "/cargar/organismosDeControl", "/cargar/entidadesControladoras","/usuario/1","/usuario/1/editar"};
 
     public static void apply(JavalinConfig config) {
         config.accessManager(((handler, context, routeRoles) -> {

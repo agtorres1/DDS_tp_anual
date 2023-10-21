@@ -21,6 +21,8 @@ public class Email extends MedioDeNotificacion  {
   private Long id;
   @Column(name = "email")
   public String email;
+
+  private int codHarc = 1;
   public Email(){}
 
   public Email(String mail) {

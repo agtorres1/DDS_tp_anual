@@ -20,6 +20,10 @@ public class Whatsapp extends MedioDeNotificacion{
   @GeneratedValue
   private Long id;
 
+
+  private int codHarc = 0;
+
+
   private String telefono;
 
   public static final String ACCOUNT_SID = "AC8248ee633b83070844ab4267e9269cb8";
