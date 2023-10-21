@@ -8,13 +8,14 @@ import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import ar.edu.utn.frba.dds.repositories.RepoDeMediosDeNotificacion;
 import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
 import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
+import ar.edu.utn.frba.dds.server.utils.ICrudViewsHandler;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.javalin.http.Context;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class UsuariosController {
+public class UsuariosController implements ICrudViewsHandler {
     private static final Double puntajeInicial = 5.00;
     private RepoDeMiembros repoMiembros;
     private RepoDeMediosDeNotificacion repoDeMediosDeNotificacion;
@@ -128,6 +129,36 @@ public class UsuariosController {
         List<Miembro> usuarios = repoMiembros.buscarTodos();
         modelo.put("usuarios", usuarios);
         context.render("Usuarios/index.hbs",modelo);
+    }
+
+    @Override
+    public void show(Context context) {
+
+    }
+
+    @Override
+    public void create(Context context) {
+
+    }
+
+    @Override
+    public void save(Context context) {
+
+    }
+
+    @Override
+    public void edit(Context context) {
+
+    }
+
+    @Override
+    public void update(Context context) {
+
+    }
+
+    @Override
+    public void delete(Context context) {
+
     }
 
     public void mostrarUsuario(Context context){

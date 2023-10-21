@@ -40,6 +40,13 @@ public class Router {
 
 
 
+            get("/usuario/{id}",((UsuariosController) FactoryController.controller("Usuarios")) :: show);
+            get("/usuario/{id}/editar",((UsuariosController) FactoryController.controller("Usuarios")) :: edit);
+            post("/usuario",((UsuariosController) FactoryController.controller("Usuarios")) :: save);
+            post("/usuario/{id}",((UsuariosController) FactoryController.controller("Usuarios")) :: update);
+            get("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
+
+
             path("comunidades/{idComunidad}/incidentes", () -> {
                 get(((IncidentesController) FactoryController.controller("Incidentes"))::index);
                 get("{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
