@@ -28,7 +28,7 @@ import java.util.*;
 @Setter @Getter
 public class Miembro {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(name = "nombre")
@@ -60,14 +60,14 @@ public class Miembro {
   private List<Interes> intereses;
 
 
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
   private Localizacion localizacion;
-  @OneToOne(cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   public MedioDeNotificacion medioDeNotificacion;
 
-  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "miembros")
+  @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "miembros")
   /*@JoinTable(name = "miembros_por_comunidad",
           joinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"))

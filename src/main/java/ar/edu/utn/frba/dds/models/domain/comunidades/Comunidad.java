@@ -34,14 +34,14 @@ public class Comunidad{
   @Column(name = "id")
   private Long id;
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(name = "administradores_por_comunidad",
           joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   )
   private List<Miembro> administradores;
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(name = "miembros_por_comunidad",
       joinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id")
@@ -51,7 +51,7 @@ public class Comunidad{
   @Transient
   private List<PropuestaFusion> propuestasFusion;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private List<Incidente> incidentes;
 
