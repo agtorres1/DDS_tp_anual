@@ -55,8 +55,8 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     Comunidad comunidad2 = new Comunidad();
     Puntaje puntaje2 = new Puntaje();
-    puntaje1.setValor(5.00);
-    comunidad1.setPuntaje(puntaje2);
+    puntaje2.setValor(5.00);
+    comunidad2.setPuntaje(puntaje2);
     comunidad2.setDescripcion("Que linda se ve mi comunidad");
     comunidad2.setNombre("No videntes");
 
@@ -105,11 +105,11 @@ public class MainExample implements WithSimplePersistenceUnit {
     somosDeChaco(repoDeLocalizaciones, miembro2, miembro3, miembro4, miembro5);
 
     RepoDeMiembros miembros = new RepoDeMiembros();
-    miembros.modificar(miembro1);
-    miembros.modificar(miembro2);
-    miembros.modificar(miembro3);
-    miembros.modificar(miembro4);
-    miembros.modificar(miembro5);
+    miembros.agregar(miembro1);
+    miembros.agregar(miembro2);
+    miembros.agregar(miembro3);
+    miembros.agregar(miembro4);
+    miembros.agregar(miembro5);
 
 
     RepoDeServicios repoDeServicios = new RepoDeServicios();
@@ -183,8 +183,6 @@ public class MainExample implements WithSimplePersistenceUnit {
     RepoDeComunidades repoDeComunidades = new RepoDeComunidades();
     repoDeComunidades.agregar(comunidad1);
     repoDeComunidades.agregar(comunidad2);
-
-    App.main(new String[]{""});
   }}
 
 
