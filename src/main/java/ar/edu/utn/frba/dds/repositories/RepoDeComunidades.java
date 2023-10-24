@@ -6,6 +6,7 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,11 +34,22 @@ public class RepoDeComunidades  implements WithSimplePersistenceUnit {
         return entityManager().find(Comunidad.class,id);
     }
 
-    public List<Comunidad> buscarRestantes(Miembro miembro){
-        List<Comunidad> comunidades = buscarTodos();
-        return comunidades.stream().filter(comunidad -> !comunidad.getMiembros().contains(miembro)).collect(Collectors.toList());
-    }
+/*    public List<Comunidad> buscarRestantes(Miembro miembro){
+        String query = "FROM " + Comunidad.class.getName() + " comunidad WHERE comunidad." + atributo + " = :valor";
+        try {
+            return (Miembro) entityManager()
+                    .createQuery(query)
+                    .setParameter("valor", valor)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }*/
     public List<Comunidad> buscarTodos(){
         return entityManager().createQuery("from " + Comunidad.class.getName()).getResultList();
+    }
+
+    public List<Comunidad> buscarRestantesA(Miembro miembroActual) {
+        return this.buscarTodos().stream().filter(comunidad -> !comunidad.getMiembros().contains(miembroActual)).collect(Collectors.toList());
     }
 }

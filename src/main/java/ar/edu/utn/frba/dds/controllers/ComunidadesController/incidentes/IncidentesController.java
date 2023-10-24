@@ -104,23 +104,6 @@ public class IncidentesController {
     }
 
 
-/*    public void edit(Context context) {
-        Incidente incidente = this.repoDeIncidentes.buscarPorId((Long) Long.parseLong(context.pathParam("id")));
-        Map<String, Object> model = new HashMap<>();
-        model.put("incidente", incidente);
-        context.render("incidentes/incidente.hbs", model);
-    }
-
-
-    public void update(Context context) {
-        Incidente incidente = (Incidente) this.repoDeIncidentes.buscarPorId((Long) Long.parseLong(context.pathParam("id")));
-        this.asignarParametros(incidente, context);
-        this.repoDeIncidentes.modificar(incidente);
-        context.redirect("/incidentes");
-    }*/
-
-
-
 
     public void delete(Context context) {
         Incidente incidente = (Incidente) this.repoDeIncidentes.buscarPorId(Long.parseLong(context.pathParam("id")));

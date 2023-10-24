@@ -9,25 +9,20 @@ import javax.persistence.*;
 
 @Embeddable
 public class Puntaje {
-    @Setter
+
     @Column(name = "puntaje")
     private Double valor;
 
     @Embedded
     private GradoDeConfianza gradoDeConfianza;
 
-    public Puntaje(Double valor){
-        this.valor = valor;
+    public Puntaje(){
         this.gradoDeConfianza = new GradoDeConfianza();
     }
 
-    public Puntaje() {
-
-    }
 
 
-    public void actualizarPuntaje(double puntajeNuevo){
-
+    public void setValor(double puntajeNuevo){
         this.valor = puntajeNuevo;
         calcularGrado(puntajeNuevo);
     }

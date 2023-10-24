@@ -18,7 +18,7 @@ public class FactoryController {
                 controller = new OrganismoDeControlController(new RepoOrganismoDeControl());
                 break;
             case "Comunidades":
-                controller = new ComunidadesController(new RepoDeComunidades(), new RepoDeMiembros());
+                controller = new ComunidadesController(new RepoDeComunidades(), new RepoDeMiembros(),new RepoDeIncidentes(),new RepoDePropuestasFusion());
                 break;
             case "Incidentes":
                 controller = new IncidentesController(new RepoDeComunidades(), new RepoDeIncidentes(), new RepoDePrestacionDeServicio(), new RepoDeEstablecimientos(), new RepoDeMiembros());

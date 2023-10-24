@@ -4,10 +4,13 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.comunidades.PropuestaFusion;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
-import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.ServicioFusionador;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.*;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesAnalizables;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesFusionables;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.responses.ResponseComunidadFusionada;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.responses.ResponseComunidadesAnalizables;
 import ar.edu.utn.frba.dds.models.domain.servicios.Banio;
 import ar.edu.utn.frba.dds.models.domain.servicios.Genero;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
@@ -65,13 +68,17 @@ public class servicio_3 {
         this.comunidad1 = new Comunidad();
         this.comunidad1.setId(1L);
         this.comunidad1.agregarUsuarios(miembro1);
-        this.comunidad1.setPuntaje(new Puntaje(3.00));
+        Puntaje puntaje1 = new Puntaje();
+        puntaje1.setValor(3.00);
+        this.comunidad1.setPuntaje(puntaje1);
         this.comunidad1.getIncidentes().add(incidente);
 
         this.comunidad2 = new Comunidad();
         this.comunidad2.setId(2L);
         this.comunidad2.agregarUsuarios(miembro1);
-        this.comunidad2.setPuntaje(new Puntaje(3.00));
+        Puntaje puntaje2 = new Puntaje();
+        puntaje2.setValor(3.00);
+        this.comunidad2.setPuntaje(puntaje2);
         this.comunidad2.getIncidentes().add(incidente);
 
         this.propuestaFusion = new PropuestaFusion();

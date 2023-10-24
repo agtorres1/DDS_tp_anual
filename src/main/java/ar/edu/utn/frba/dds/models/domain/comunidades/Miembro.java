@@ -66,8 +66,8 @@ public class Miembro {
   @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   public MedioDeNotificacion medioDeNotificacion;
 
-  @ManyToMany
-  @JoinTable(name = "miembros_por_comunidad",
+  @ManyToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+  @JoinTable(name = "comunidades_por_miembro",
           joinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"))
   private Set<Comunidad> comunidades;
