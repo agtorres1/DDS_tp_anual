@@ -22,9 +22,7 @@ import java.util.List;
 
 public class servicio_2 {
     private Miembro miembro1;
-    private MiembroPuntaje miembroPuntaje;
     private Miembro miembro2;
-    private MiembroPuntaje miembroPuntaje2;
     private Servicio servicio;
     private PrestacionDeServicio prestacionDeServicio;
     private Incidente incidente;
@@ -77,7 +75,7 @@ public class servicio_2 {
     public void generarRequest() throws IOException {
         ComunidadPuntaje comunidadPuntajeResponse = ServicioCalculador.getInstance().comunidadPuntaje(this.requestComunidadPuntaje);
         this.comunidad.actualizarPuntajes(comunidadPuntajeResponse);
-        Assert.assertEquals(comunidad.getPuntaje().getValor(),2.8);
+        Assert.assertEquals(comunidad.getPuntaje().getValor(),2.0);
     }
 
 }

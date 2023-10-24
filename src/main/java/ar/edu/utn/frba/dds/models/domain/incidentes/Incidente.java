@@ -11,6 +11,8 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "incidentes")
 
@@ -85,5 +87,6 @@ public class Incidente {
                 conCerrador(this.getCerrador().getId()).conServicio(this.getPrestacionDeServicio().getId()).
                 conFechaApertura(this.getFachaYHoraApertura()).conFechaCierre(this.fechaYHoraCierre).construir();
     }
+
 
 }

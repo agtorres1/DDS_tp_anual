@@ -27,6 +27,7 @@ public class Puntaje {
 
 
     public void actualizarPuntaje(double puntajeNuevo){
+
         this.valor = puntajeNuevo;
         calcularGrado(puntajeNuevo);
     }

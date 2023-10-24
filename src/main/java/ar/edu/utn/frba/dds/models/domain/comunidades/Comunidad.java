@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.comunidades;
 
+import ar.edu.utn.frba.dds.models.builders.fusionesDeComunidades.ComunidadFusionableBuilder;
 import ar.edu.utn.frba.dds.models.builders.puntajes.ComunidadPuntajeBuilder;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificacion;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
@@ -8,6 +9,8 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import ar.edu.utn.frba.dds.models.domain.incidentes.TipoFiltrado;
 
@@ -15,6 +18,9 @@ import javax.persistence.*;
 
 import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
+import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
+import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,6 +48,9 @@ public class Comunidad{
   )
   private List<Miembro> miembros;
 
+  @Transient
+  private List<PropuestaFusion> propuestasFusion;
+
   @OneToMany
   @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private List<Incidente> incidentes;
@@ -59,6 +68,7 @@ public class Comunidad{
     this.administradores = new ArrayList<>();
     this.miembros = new ArrayList<>();
     this.incidentes = new ArrayList<>();
+    this.propuestasFusion = new ArrayList<>();
   }
 
    //esto es para fijarse el estado de los incidentes abiertos
@@ -131,6 +141,19 @@ public class Comunidad{
   }
   public ComunidadPuntaje comunidadPuntaje(){
     return new ComunidadPuntajeBuilder().conId(this.getId()).conPuntaje(this.puntaje.getValor()).conMiembros(this.getMiembros()).construir();
+  }
+
+  public ComunidadFusionable comunidadFusionable(){
+    return new ComunidadFusionableBuilder().conId(this.id).conIncidentes(this.incidentes).conEstablecimientos(establecimientosDeIncidentes())
+            .conServicios(serviciosDeIncidentes()).conUsuarios(this.miembros).conPropuestasAnteriores(this.propuestasFusion)
+            .conGradoDeConfianza(this.puntaje.getValor()).construir();
+  }
+  private List<Establecimiento> establecimientosDeIncidentes(){
+    return this.incidentes.stream().map(Incidente::getEstablecimiento).collect(Collectors.toList());
+  }
+
+  private List<PrestacionDeServicio> serviciosDeIncidentes() {
+    return this.incidentes.stream().map(Incidente::getPrestacionDeServicio).collect(Collectors.toList());
   }
 
   public void actualizarPuntajes(ComunidadPuntaje comunidadPuntaje){
