@@ -19,15 +19,15 @@ public class Establecimiento {
   private Long id;
   @Column(name = "nombre")
   String nombre;
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "id_establecimiento",referencedColumnName = "id")
   Set<PrestacionDeServicio> prestacionesDeServicios;
   @Enumerated(EnumType.STRING)
   TipoEstablecimiento tipoEstablecimiento;
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "id_localizacion",referencedColumnName = "id")
   Localizacion localizacion;
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "id_entidad", referencedColumnName = "id")
   Entidad entidad;
 
