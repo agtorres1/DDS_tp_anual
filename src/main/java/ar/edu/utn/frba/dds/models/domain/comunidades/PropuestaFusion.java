@@ -4,13 +4,23 @@ import ar.edu.utn.frba.dds.models.builders.fusionesDeComunidades.PropuestaAnteri
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.PropuestaAnterior;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "propuestas_fusiones")
 
 @Setter
 public class PropuestaFusion {
+    @Id
+    @GeneratedValue
+    private Long id;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_comunidad_propuesta", referencedColumnName = "id")
     private Comunidad comunidad;
+
+    @Column(name = "fecha_solicitada")
     private LocalDate fechaSolicitada;
 
     public PropuestaAnterior propuestaAnterior(){

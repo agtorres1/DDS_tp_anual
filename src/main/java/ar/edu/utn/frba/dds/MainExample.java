@@ -6,6 +6,7 @@ import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
+import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
@@ -50,7 +51,21 @@ public class MainExample implements WithSimplePersistenceUnit {
     RepoDeComunidades repoDeComunidades = new RepoDeComunidades();
     RepoDeMiembros miembros = new RepoDeMiembros();
 
-    Comunidad comunidad = new Comunidad();
+    Comunidad comunidad1 = new Comunidad();
+    Puntaje puntaje1 = new Puntaje();
+    puntaje1.setValor(5.00);
+    comunidad1.setPuntaje(puntaje1);
+    comunidad1.setDescripcion("RUM RUM RUUUUUM");
+    comunidad1.setNombre("Sillas de ruedas");
+
+    Comunidad comunidad2 = new Comunidad();
+    Puntaje puntaje2 = new Puntaje();
+    puntaje1.setValor(5.00);
+    comunidad1.setPuntaje(puntaje2);
+    comunidad2.setDescripcion("Que linda se ve mi comunidad");
+    comunidad2.setNombre("No videntes");
+
+
     Miembro miembro1 = new Miembro();
     miembro1.setUsuario("Pepe");
     Whatsapp wpp1 = new Whatsapp();
@@ -61,6 +76,7 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     Miembro miembro2 = new Miembro();
     miembro2.setUsuario("Fede");
+    miembro2.setContrasenia("12345678");
     miembros.agregar(miembro2);
     Whatsapp wpp2 = new Whatsapp();
     wpp2.setTelefono("1140253180");
@@ -91,8 +107,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     repoDeMediosDeNotificacion.agregar(wpp5);
     miembro5.setMedioDeNotificacion(wpp5);
 
-    comunidad.agregarUsuarios(miembro1, miembro2, miembro3, miembro4);
-    //comunidad.agregarUsuarios(miembro1);
+    comunidad1.agregarUsuarios(miembro1, miembro2, miembro3, miembro4);
     Localizacion localizacion = new Localizacion();
     localizacion.setProvincia("Chaco");
     System.out.println("Inserto provincia.");
@@ -177,14 +192,13 @@ public class MainExample implements WithSimplePersistenceUnit {
     aperturaIncidente.setPrestacionDeServicio(prestacionBanio);
     aperturaIncidente.setEstablecimiento(establecimiento);
 
-    miembro1.abrirIncidente(aperturaIncidente, new Notificador());
+    List<Incidente> incidentes = miembro1.abrirIncidente(aperturaIncidente, new Notificador());
     RepoDeIncidentes repoDeIncidentes = new RepoDeIncidentes();
-    Incidente incidente = comunidad.getIncidentes().get(0);
+    incidentes.forEach(repoDeIncidentes::agregar);
 
-    System.out.println("Inserto incidente.");
-    repoDeIncidentes.agregar(incidente);
     System.out.println("Inserto comunidad.");
-    repoDeComunidades.agregar(comunidad);
+    repoDeComunidades.agregar(comunidad1);
+    repoDeComunidades.agregar(comunidad2);
 
     App.main(new String[]{""});
   }

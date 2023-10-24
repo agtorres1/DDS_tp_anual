@@ -48,7 +48,8 @@ public class Comunidad{
   )
   private List<Miembro> miembros;
 
-  @Transient
+  @OneToMany
+  @JoinColumn(name = "comunidad_fusionable_id", referencedColumnName = "id")
   private List<PropuestaFusion> propuestasFusion;
 
   @OneToMany(cascade = CascadeType.PERSIST)
@@ -157,7 +158,7 @@ public class Comunidad{
   }
 
   public void actualizarPuntajes(ComunidadPuntaje comunidadPuntaje){
-    this.puntaje.actualizarPuntaje(comunidadPuntaje.puntaje);
+    this.puntaje.setValor(comunidadPuntaje.puntaje);
     actualizarPuntajesMiembros(comunidadPuntaje);
   }
 
@@ -165,7 +166,7 @@ public class Comunidad{
     for(MiembroPuntaje miembroPuntaje : comunidadPuntaje.miembros){
       for(Miembro miembro : this.miembros){
         if(miembro.getId() == miembroPuntaje.id){
-          miembro.getPuntaje().actualizarPuntaje(miembroPuntaje.puntaje);
+          miembro.getPuntaje().setValor(miembroPuntaje.puntaje);
         }
       }
     }
