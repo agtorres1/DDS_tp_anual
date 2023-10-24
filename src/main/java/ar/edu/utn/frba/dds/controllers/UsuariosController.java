@@ -10,12 +10,14 @@ import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
 import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
 import ar.edu.utn.frba.dds.server.utils.ICrudViewsHandler;
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import io.javalin.http.Context;
+import javax.persistence.EntityTransaction;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class UsuariosController implements ICrudViewsHandler {
+public class UsuariosController implements WithSimplePersistenceUnit, ICrudViewsHandler {
     private static final Double puntajeInicial = 5.00;
     private RepoDeMiembros repoMiembros;
     private RepoDeMediosDeNotificacion repoDeMediosDeNotificacion;
@@ -55,6 +57,8 @@ public class UsuariosController implements ICrudViewsHandler {
     public void registerPost(Context context){
         Map<String, Object> modelo = new HashMap<>();
 
+        String nombre = context.formParam("nombre");
+        String apellido = context.formParam("apellido");
         String contrasenia = context.formParam("contrasenia");
         String nombreDeUsuario = context.formParam("nombreDeUsuario");
         String email = context.formParam("email");
@@ -114,10 +118,13 @@ public class UsuariosController implements ICrudViewsHandler {
         miembro.medioDeNotificacion = medio;
         miembro.setUsuario(nombreDeUsuario);
         miembro.setMail(email);
+        miembro.setNombre(nombre);
+        miembro.setApellido(apellido);
 
         miembro.setRol(repoDeRoles.buscarPorTipoRol(TipoRol.NORMAL));
         String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
         miembro.setContrasenia(contraseniaHASH);
+
         repoMiembros.agregar(miembro);
 
         modelo.put("exito", "Usuario registrado con exito");
@@ -133,8 +140,13 @@ public class UsuariosController implements ICrudViewsHandler {
 
     @Override
     public void show(Context context) {
+        Map<String, Object> modelo = new HashMap<>();
+        long idUsuario = Integer.parseInt(context.pathParam("id"));
+        Miembro usuario = repoMiembros.buscarPorId(idUsuario);
 
-    }
+        modelo.put("usuario", usuario);
+        context.render("Usuarios/show.hbs",modelo);
+}
 
     @Override
     public void create(Context context) {
@@ -148,16 +160,96 @@ public class UsuariosController implements ICrudViewsHandler {
 
     @Override
     public void edit(Context context) {
+        Miembro usuario = (Miembro) this.repoMiembros.buscarPorId(Long.parseLong(context.pathParam("id")));
+        Map<String, Object> model = new HashMap<>();
+        model.put("usuario", usuario);
+        context.render("Usuarios/admin.hbs", model);
 
     }
 
     @Override
     public void update(Context context) {
+        Miembro usuario = (Miembro) this.repoMiembros.buscarPorId(Long.parseLong(context.pathParam("id")));
 
+        this.asignarParametros(usuario, context);
+
+        this.repoMiembros.modificar(usuario);
+
+        long id = Long.parseLong(context.pathParam("id"));
+
+
+
+        String redirectTo = "/usuario/" + id;
+
+        context.redirect(redirectTo);
+
+
+    }
+
+
+    public void actualizar(Object o) {
+        EntityTransaction tx = entityManager().getTransaction();
+        if(!tx.isActive())
+            tx.begin();
+        entityManager().merge(o);
+        tx.commit();
     }
 
     @Override
     public void delete(Context context) {
+
+    }
+
+    private void asignarParametros(Miembro usuario, Context context) {
+        Map<String, Object> modelo = new HashMap<>();
+
+        String nombre = context.formParam("nombre");
+        String apellido = context.formParam("apellido");
+        String email = context.formParam("email");
+        String medioNotificacion = context.formParam("medioSelect");
+
+        Miembro miembroPorEmail = this.repoMiembros.buscarPor("mail", email);
+        if (miembroPorEmail != null && usuario.getId() != miembroPorEmail.getId()) {
+            modelo.put("error", "El email ya está registrado.");
+            context.render("Usuarios/admin.hbs", modelo);
+            return;
+        }
+
+        MedioDeNotificacion medioDeNotificacion;
+        String atributo;
+        String valor;
+
+        if("telefono".equals(medioNotificacion)){
+            String telefono = context.formParam("telefono");
+
+            MedioDeNotificacion existe = repoDeMediosDeNotificacion.buscarPor("telefono", telefono);
+            if(existe != null){
+                modelo.put("error", "El teléfono ya está registrado.");
+                context.render("Usuarios/admin.hbs", modelo);
+                return;
+            }
+
+            atributo = "telefono";
+            valor = telefono;
+            medioDeNotificacion = new Whatsapp(telefono);
+        }
+        else{
+            medioDeNotificacion = new Email(email);
+            atributo = "email";
+            valor = email;
+        }
+
+        repoDeMediosDeNotificacion.agregar(medioDeNotificacion);
+
+        MedioDeNotificacion medio = repoDeMediosDeNotificacion.buscarPor(atributo, valor);
+
+        usuario.medioDeNotificacion = medio;
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        usuario.setMail(email);
+
+
+
 
     }
 

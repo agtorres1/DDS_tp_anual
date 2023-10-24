@@ -37,7 +37,8 @@ public class Miembro {
   @Column(name = "apellido")
   private String apellido;
 
-
+  @Column(name = "descripcion",columnDefinition = "TEXT")
+  private String descripcion;
 
   @ManyToOne
   private Rol rol;
@@ -81,6 +82,9 @@ public class Miembro {
     this.comunidades = new HashSet<>();
     this.intereses = new ArrayList<>();
   }
+
+  public int cantIntereses() { return this.intereses.size(); }
+
   public void agregarIntereses(Interes ... interes){
     Collections.addAll(this.intereses,interes);
   }
