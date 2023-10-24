@@ -34,7 +34,7 @@ public class Comunidad{
   @Column(name = "id")
   private Long id;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "administradores_por_comunidad",
           joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
@@ -43,8 +43,8 @@ public class Comunidad{
 
   @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinTable(name = "miembros_por_comunidad",
-      joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
-      inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
+      joinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id"),
+      inverseJoinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id")
   )
   private List<Miembro> miembros;
 
@@ -52,7 +52,7 @@ public class Comunidad{
   @JoinColumn(name = "comunidad_fusionable_id", referencedColumnName = "id")
   private List<PropuestaFusion> propuestasFusion;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private List<Incidente> incidentes;
 

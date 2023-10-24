@@ -6,7 +6,7 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.PropuestaFusion;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.ServicioFusionador;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.*;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesAnalizables;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesFusionables;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.responses.ResponseComunidadFusionada;
