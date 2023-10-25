@@ -41,6 +41,7 @@ public class Router {
             get("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::index);
             post("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::join);
             get("comunidades/analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);
+            post("comunidades/fusionar", ((ComunidadesController) FactoryController.controller("Comunidades"))::fusion);
 
 
 

@@ -1,5 +1,3 @@
-
-
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
@@ -108,6 +106,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     miembro5.setMedioDeNotificacion(wpp5);
 
     comunidad1.agregarUsuarios(miembro1, miembro2, miembro3, miembro4);
+    comunidad2.agregarUsuarios(miembro1,miembro2,miembro3);
     Localizacion localizacion = new Localizacion();
     localizacion.setProvincia("Chaco");
     System.out.println("Inserto provincia.");

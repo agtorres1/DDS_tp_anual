@@ -1,3 +1,8 @@
+.container-main{
+    padding: 10rem;
+}
+
+
 .separate{
     display: flex;
     flex-direction: column;
@@ -36,8 +41,50 @@
     margin-bottom: 15rem;
 }
 
-.advice{
+
+.advice__box{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    gap: 3rem;
 }
+
+.item__box{
+    padding: 1rem;
+}
+
+.item__img img{
+    height: 15rem;
+    width: 18rem;
+}
+
+.item__text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.item__title{
+    font-family: sans-serif;
+    font-size: x-large;
+    font-weight: 800;
+}
+
+.item__description{
+    font-family: sans-serif;
+    font-size: large;
+    font-weight: 600;
+}
+
+
+.comunidades__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+
+
+

@@ -50,7 +50,7 @@ public class RepoDeMiembros  implements WithSimplePersistenceUnit {
     public Miembro buscarPorId(Long id){
         return entityManager().find(Miembro.class,id);
     }
-    public List<Miembro> buscarPorListadoId(List<Long> ids){
+/*    public List<Miembro> buscarPorListadoId(List<Long> ids){
         String idsSQL = this.convertString.converterListToString(ids);
 
         String query = "FROM " + Miembro.class.getName() + " miembro WHERE miembro.id in :idsSQL";
@@ -59,7 +59,7 @@ public class RepoDeMiembros  implements WithSimplePersistenceUnit {
                 .createQuery(query)
                 .setParameter("idsSQL", idsSQL)
                 .getResultList();
-    }
+    }*/
     public List<Miembro> buscarTodos(){
         return entityManager().createQuery("from " + Miembro.class.getName()).getResultList();
 

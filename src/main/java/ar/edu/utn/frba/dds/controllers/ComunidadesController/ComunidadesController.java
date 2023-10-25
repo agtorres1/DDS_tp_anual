@@ -8,6 +8,7 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.ServicioFusionador;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.PropuestaAnterior;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.SugerenciaFusion;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesAnalizables;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesFusionables;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.responses.ResponseComunidadFusionada;
@@ -57,13 +58,21 @@ public class ComunidadesController extends Controller {
 
     public void analysis(Context context) throws IOException {
         Map<String, Object> model = new HashMap<>();
-        List<ComunidadFusionable> comunidades = this.repoDeComunidades.buscarTodos().stream().map(Comunidad::comunidadFusionable).collect(Collectors.toList());
+        List<ComunidadFusionable> comunidadesFusion = this.repoDeComunidades.buscarTodos().stream().map(Comunidad::comunidadFusionable).collect(Collectors.toList());
         RequestComunidadesAnalizables requestComunidadesAnalizables = new RequestComunidadesAnalizables();
-        requestComunidadesAnalizables.setComunidades(comunidades);
+        requestComunidadesAnalizables.setComunidades(comunidadesFusion);
 
         ResponseComunidadesAnalizables responseComunidadesAnalizables = ServicioFusionador.getInstance().responseComunidadesAnalizables(requestComunidadesAnalizables);
-        model.put("comunidades",responseComunidadesAnalizables.resultado);
+        List<List<Comunidad>> comunidades = responseComunidadesAnalizables.resultado.stream().map(this::comunidadesSugeridas).collect(Collectors.toList());
+        model.put("comunidades",comunidades);
         context.render("comunidades/comunidadesFusionables.hbs", model);
+    }
+
+    private List<Comunidad> comunidadesSugeridas(SugerenciaFusion sugerenciaFusion) {
+        List<Comunidad> comunidades = new ArrayList<>();
+        comunidades.add(this.repoDeComunidades.buscarPorId((long) sugerenciaFusion.comunidad1.id));
+        comunidades.add(this.repoDeComunidades.buscarPorId((long) sugerenciaFusion.comunidad2.id));
+        return comunidades;
     }
 
     public void fusion(Context context) throws IOException {
@@ -75,6 +84,8 @@ public class ComunidadesController extends Controller {
             requestComunidadesFusionables.setComunidad2(comunidad2.comunidadFusionable());
             ResponseComunidadFusionada responseComunidadesFusionadas = ServicioFusionador.getInstance().responseComunidadesFusionadas(requestComunidadesFusionables);
             Comunidad comunidadFusionada = asignarAtributos(comunidad1,comunidad2,responseComunidadesFusionadas);
+            this.repoDeComunidades.eliminar(comunidad1);
+            this.repoDeComunidades.eliminar(comunidad2);
             this.repoDeComunidades.agregar(comunidadFusionada);
         }
         context.status(HttpStatus.CREATED);
@@ -84,10 +95,10 @@ public class ComunidadesController extends Controller {
     private Comunidad asignarAtributos(Comunidad comunidad1,Comunidad comunidad2, ResponseComunidadFusionada responseComunidadesFusionadas) {
         if(responseComunidadesFusionadas.exito){
             Comunidad comunidadNueva = new Comunidad();
-            comunidadNueva.setMiembros(this.repoDeMiembros.buscarPorListadoId(listIntegerToLong(responseComunidadesFusionadas.resultado.usuarios)));
-            comunidadNueva.setIncidentes(this.repoDeIncidentes.buscarPorListadoId(listIntegerToLong(responseComunidadesFusionadas.resultado.incidentes)));
+            comunidadNueva.setMiembros(buscarMiembros(listIntegerToLong(responseComunidadesFusionadas.resultado.usuarios)));
+            comunidadNueva.setIncidentes(buscarIncidentes(listIntegerToLong(responseComunidadesFusionadas.resultado.incidentes)));
             comunidadNueva.setNombre("Fusión de "+comunidad1.getNombre()+" y "+comunidad2.getNombre());
-            comunidadNueva.setDescripcion("Comunidad 1: "+comunidad1.getDescripcion() + "\\n"
+            comunidadNueva.setDescripcion("Comunidad 1: "+comunidad1.getDescripcion() + "\n"
             + "Comunidad 2: "+comunidad2.getDescripcion());
             Puntaje puntaje = new Puntaje();
             puntaje.setValor(responseComunidadesFusionadas.resultado.gradoConfianza);
@@ -95,6 +106,14 @@ public class ComunidadesController extends Controller {
             return comunidadNueva;
         }
         return null;
+    }
+
+    private List<Incidente> buscarIncidentes(List<Long> ids) {
+        return ids.stream().map(id->this.repoDeIncidentes.buscarPorId(id)).collect(Collectors.toList());
+    }
+
+    private List<Miembro> buscarMiembros(List<Long> ids) {
+        return ids.stream().map(id->this.repoDeMiembros.buscarPorId(id)).collect(Collectors.toList());
     }
 
     private List<Long> listIntegerToLong(List<Integer> ids) {
