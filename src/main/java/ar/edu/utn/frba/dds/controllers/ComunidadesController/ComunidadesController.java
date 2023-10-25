@@ -60,21 +60,8 @@ public class ComunidadesController extends Controller {
         List<ComunidadFusionable> comunidades = this.repoDeComunidades.buscarTodos().stream().map(Comunidad::comunidadFusionable).collect(Collectors.toList());
         RequestComunidadesAnalizables requestComunidadesAnalizables = new RequestComunidadesAnalizables();
         requestComunidadesAnalizables.setComunidades(comunidades);
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(0).id);
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(0).usuarios);
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(0).propuestasAnteriores);
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(0).incidentes);
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(0).gradoConfianza);
-
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(1).incidentes);
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(1).usuarios);
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(1).establecimientos);
-        System.out.println(requestComunidadesAnalizables.getComunidades().get(1).gradoConfianza);
-
 
         ResponseComunidadesAnalizables responseComunidadesAnalizables = ServicioFusionador.getInstance().responseComunidadesAnalizables(requestComunidadesAnalizables);
-        System.out.println(responseComunidadesAnalizables);
-
         model.put("comunidades",responseComunidadesAnalizables.resultado);
         context.render("comunidades/comunidadesFusionables.hbs", model);
     }

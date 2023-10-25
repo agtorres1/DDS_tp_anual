@@ -9,16 +9,10 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import io.javalin.Javalin;
 import io.javalin.config.JavalinConfig;
-import io.javalin.http.Context;
-import io.javalin.http.Handler;
 import io.javalin.http.HttpStatus;
 import io.javalin.rendering.JavalinRenderer;
-import io.javalin.security.AccessManager;
-import io.javalin.security.RouteRole;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class Server {

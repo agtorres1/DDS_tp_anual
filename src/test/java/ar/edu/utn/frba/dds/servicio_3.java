@@ -118,13 +118,13 @@ public class servicio_3 {
     @Test
     @DisplayName("Actualizar comunidades")
     public void generarResponse() throws IOException {
-        /*List<ComunidadFusionable> comunidades = this.repoDeComunidades.buscarTodos().stream().map(Comunidad::comunidadFusionable).collect(Collectors.toList());
+        List<ComunidadFusionable> comunidades = this.repoDeComunidades.buscarTodos().stream().map(Comunidad::comunidadFusionable).collect(Collectors.toList());
         RequestComunidadesAnalizables requestComunidadesAnalizables = new RequestComunidadesAnalizables();
         requestComunidadesAnalizables.setComunidades(comunidades);
 
 
         ResponseComunidadFusionada comunidadesAnalizablesResponse = ServicioFusionador.getInstance().responseComunidadesFusionadas(this.requestComunidadesFusionables);
-        System.out.println(comunidadesAnalizablesResponse.resultado.usuarios);*/
+        System.out.println(comunidadesAnalizablesResponse.resultado.usuarios);
 
     }
 }
