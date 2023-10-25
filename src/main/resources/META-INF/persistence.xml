@@ -13,9 +13,9 @@
             <property name="hibernate.archive.autodetection" value="class"/>
 
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/dds_tp" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp_dds_2023" />
             <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="46386865"/>
+            <property name="hibernate.connection.password" value=""/>
 
             <!--<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
             <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
@@ -25,7 +25,7 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="use_sql_comments" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
 
     </persistence-unit>

@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.incidentes;
 
+import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
@@ -9,6 +10,8 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "incidentes")
 
@@ -46,6 +49,9 @@ public class Incidente {
     @JoinColumn(name = "id_cerrador")
     private Miembro cerrador;
 
+    @ManyToOne
+    @JoinColumn(name = "comunidad_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Comunidad comunidad;
 
 
     public void meAbro(Miembro abridor,AperturaIncidente aperturaIncidente){

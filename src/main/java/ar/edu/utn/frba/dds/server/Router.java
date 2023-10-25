@@ -24,6 +24,8 @@ public class Router {
     public static void init() {
 
         Server.app().routes(() -> {
+            get("/",((IncidentesController) FactoryController.controller("Incidentes"))::revisarIncidentes);
+            post("/",((IncidentesController) FactoryController.controller("Incidentes"))::setearMapa );
             get("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::login);
             post("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::loginPost);
             get("/register", ((UsuariosController) FactoryController.controller("Usuarios"))::register);

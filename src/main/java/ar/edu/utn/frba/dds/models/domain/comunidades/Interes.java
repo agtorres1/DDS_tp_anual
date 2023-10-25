@@ -8,12 +8,14 @@ import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import javax.persistence.*;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.util.*;
 @Entity
 @Table(name = "Intereses")
 @Getter
+@Setter
 public class Interes {
     @Id
     @GeneratedValue
