@@ -7,26 +7,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.Getter;
 
 public class GeneradorRanking {
     private List<Ranking> rankings;
-    private Map<Ranking, List<Entidad>> resultadosPorRanking;
 
+    @Getter
+    private ResultadosRanking resultadosRanking;
+    private static GeneradorRanking instance;
+
+    public static GeneradorRanking getInstance() {
+        if (instance == null) {
+            instance = new GeneradorRanking();
+        }
+        return instance;
+    }
     public GeneradorRanking() {
         this.rankings = new ArrayList<>();
-        this.resultadosPorRanking = new HashMap<>();
+        this.resultadosRanking = new ResultadosRanking();
     }
-    public void agregarRanking(Ranking ranking){
+
+    public void agregarRanking(Ranking ranking) {
         this.rankings.add(ranking);
     }
 
-    public Map<Ranking, List<Entidad>> generarRankings(List<Comunidad> comunidades, List<Entidad> entidades){
+    public ResultadosRanking generarRankings(List<Comunidad> comunidades, List<Entidad> entidades){
         for(Ranking ranking : this.rankings){
             List<Entidad> resultados = ranking.generarRanking(comunidades, entidades);
-            resultadosPorRanking.put(ranking, resultados);
+            resultadosRanking.agregarRanking(ranking, resultados);
         }
 
-        return resultadosPorRanking;
+        return resultadosRanking;
     }
-
 }

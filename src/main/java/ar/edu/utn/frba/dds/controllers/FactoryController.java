@@ -23,6 +23,9 @@ public class FactoryController {
             case "Incidentes":
                 controller = new IncidentesController(new RepoDeComunidades(), new RepoDeIncidentes(), new RepoDePrestacionDeServicio(), new RepoDeEstablecimientos(), new RepoDeMiembros());
                 break;
+            case "Rankings":
+                controller = new RankingController();
+                break;
         }
         return controller;
     }

@@ -7,6 +7,7 @@ import ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes.Incident
 import ar.edu.utn.frba.dds.controllers.EntidadControladoraController;
 
 import ar.edu.utn.frba.dds.controllers.OrganismoDeControlController;
+import ar.edu.utn.frba.dds.controllers.RankingController;
 import ar.edu.utn.frba.dds.controllers.UsuariosController;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -43,7 +44,7 @@ public class Router {
             get("comunidades/analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);
             post("comunidades/fusionar", ((ComunidadesController) FactoryController.controller("Comunidades"))::fusion);
 
-
+            get("/ranking", ((RankingController) FactoryController.controller("Rankings"))::ranking);
 
             get("/usuario/{id}",((UsuariosController) FactoryController.controller("Usuarios")) :: show);
             get("/usuario/{id}/editar",((UsuariosController) FactoryController.controller("Usuarios")) :: edit);

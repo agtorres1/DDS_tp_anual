@@ -9,7 +9,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RankingMayorCantidadIncidentes implements Ranking{
+public class RankingMayorCantidadIncidentes implements Ranking {
+    private static RankingMayorCantidadIncidentes instance;
+
+    public static RankingMayorCantidadIncidentes getInstance() {
+        if (instance == null) {
+            instance = new RankingMayorCantidadIncidentes();
+        }
+        return instance;
+    }
 
     @Override
     public List<Entidad> generarRanking(List<Comunidad> comunidades, List<Entidad> entidades) {

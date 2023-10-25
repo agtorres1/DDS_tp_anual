@@ -10,6 +10,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RankingMayorGradoImpactoProblematicas implements Ranking{
+
+    private static RankingMayorGradoImpactoProblematicas instance;
+
+    public static RankingMayorGradoImpactoProblematicas getInstance() {
+        if (instance == null) {
+            instance = new RankingMayorGradoImpactoProblematicas();
+        }
+        return instance;
+    }
+
     @Override
     public List<Entidad> generarRanking(List<Comunidad> comunidades, List<Entidad> entidades) {
         Map<Entidad, Double> promedioImpactoPorEntidad = entidades.stream()
