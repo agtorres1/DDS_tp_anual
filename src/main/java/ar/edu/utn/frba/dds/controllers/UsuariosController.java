@@ -36,7 +36,7 @@ public class UsuariosController implements WithSimplePersistenceUnit, ICrudViews
 
         Miembro miembro = this.repoMiembros.buscarPor("usuario", nombreDeUsuario);
 
-        if(miembro == null || BCrypt.verifyer().verify(contrasenia.getBytes(), miembro.getContrasenia().getBytes()).verified)
+        if(miembro == null || !BCrypt.verifyer().verify(contrasenia.getBytes(), miembro.getContrasenia().getBytes()).verified)
         {
             Map<String, Object> modelo = new HashMap<>();
             modelo.put("error", "Nombre de usuario o contraseña incorrecta");

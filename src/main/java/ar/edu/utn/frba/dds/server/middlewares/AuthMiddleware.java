@@ -9,7 +9,7 @@ import io.javalin.http.Context;
 
 public class AuthMiddleware {
 
-    private static final String[] rutasPermitidas = {"/","/login", "/register","/usuario/1","/usuario/1/editar"};
+    private static final String[] rutasPermitidas = {"/","/login", "/register","/usuario/\\d+","/usuario/\\d+/editar"};
 
 
     public static void apply(JavalinConfig config) {
@@ -39,7 +39,7 @@ public class AuthMiddleware {
 
     private static boolean rutaNoRequiereAutenticacion(String path) {
         for (String ruta : rutasPermitidas) {
-            if (path.equals(ruta)) {
+            if (path.matches(ruta)) {
                 return true;
             }
         }

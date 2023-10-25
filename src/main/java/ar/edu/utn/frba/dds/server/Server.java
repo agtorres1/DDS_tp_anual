@@ -5,6 +5,7 @@ import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
 import ar.edu.utn.frba.dds.server.handlers.AppHandlers;
 //import ar.edu.utn.frba.dds.server.middlewares.AuthMiddleware;
+import ar.edu.utn.frba.dds.server.middlewares.AuthMiddleware;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
@@ -43,7 +44,7 @@ public class Server {
                 staticFiles.hostedPath = "/";
                 staticFiles.directory = "/public";
             });
-//            AuthMiddleware.apply(config);
+            AuthMiddleware.apply(config);
         };
     }
 
@@ -73,7 +74,6 @@ public class Server {
 
     private static void initRoles(){
         RepoDeRoles repo = new RepoDeRoles();
-        String borrar = TipoRol.ADMINISTRADOR.toString();
         Rol rolAdministrador = repo.buscarPorTipoRol(TipoRol.ADMINISTRADOR);
         if(rolAdministrador == null){
             rolAdministrador = new Rol();
