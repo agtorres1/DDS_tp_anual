@@ -5,17 +5,19 @@
         <h1 class="text-center mb-3">Ranking</h1>
         <hr/>
         <table>
-            <tr>
-                <th>Entidad</th>
-                <th>Cantidad X</th>
-            </tr>
-            {{#each ranking}}
+            <thead>
                 <tr>
-                    <td>{{@index}}</td>
-                {{#with entidad}}
-                    <td>{{nombre}}</td>
-                {{/with}}
+                    <th>Puesto</th>
+                    <th>Entidad</th>
                 </tr>
+            </thead>
+            {{#each ranking}}
+            <tbody>
+                <tr>
+                    <td>{{inc @index}}</td>
+                    <td>{{this.nombre}}</td>
+                </tr>
+            </tbody>
             {{/each}}
         </table>
         </div>

@@ -12,6 +12,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RankingMayorPromedioCierre implements Ranking{
+
+    private static RankingMayorPromedioCierre instance;
+
+    public static RankingMayorPromedioCierre getInstance() {
+        if (instance == null) {
+            instance = new RankingMayorPromedioCierre();
+        }
+        return instance;
+    }
     @Override
     public List<Entidad> generarRanking(List<Comunidad> comunidades, List<Entidad> entidades){
         Map<Entidad, Duration> promedioCierrePorEntidad = entidades.stream()

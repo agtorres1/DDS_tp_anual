@@ -6,6 +6,8 @@ import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
 import ar.edu.utn.frba.dds.server.handlers.AppHandlers;
 import ar.edu.utn.frba.dds.server.middlewares.AuthMiddleware;
 import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Helper;
+import com.github.jknack.handlebars.Options;
 import com.github.jknack.handlebars.Template;
 import io.javalin.Javalin;
 import io.javalin.config.JavalinConfig;
@@ -56,6 +58,11 @@ public class Server {
         JavalinRenderer.register(
                 (path, model, context) -> { // Función que renderiza el template
                     Handlebars handlebars = new Handlebars();
+                    handlebars.registerHelper("inc", new Helper<Integer>() {
+                       public Integer apply(Integer value, Options options) {
+                           return value + 1;
+                       }
+                    });
                     Template template = null;
                     try {
                         template = handlebars.compile(

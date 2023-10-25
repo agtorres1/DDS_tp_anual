@@ -81,7 +81,7 @@ body.dark {
 
 .sidebar {
     background-color: var(--white-color);
-    width: 260px;
+    width: 300px;
     position: fixed;
     top: 0;
     left: 0;
@@ -276,6 +276,10 @@ body.dark {
 
 #sidebarOpen {
     display: none;
+}
+
+.mt-4 {
+    padding: 50px 100px 0 300px;
 }
 
 @media screen and (max-width: 768px) {

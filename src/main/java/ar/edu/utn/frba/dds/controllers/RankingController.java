@@ -17,25 +17,15 @@ public class RankingController extends Controller {
     private RepoDeComunidades repoDeComunidades;
     private RepoDeEntidades repoDeEntidades;
     private GeneradorRanking generadorRanking;
-    private List<Ranking> rankings;
-    public RankingController (RepoDeComunidades repoDeComunidades, RepoDeEntidades repoDeEntidades) {
-        this.repoDeComunidades = repoDeComunidades;
-        this.repoDeEntidades = repoDeEntidades;
-        this.generadorRanking = new GeneradorRanking();
-        this.rankings.add(new RankingMayorCantidadIncidentes());
-        this.rankings.add(new RankingMayorPromedioCierre());
-        this.rankings.add(new RankingMayorGradoImpactoProblematicas());
-        for (Ranking ranking : rankings) {
-            this.generadorRanking.agregarRanking(ranking);
-        }
+    public RankingController() {
+        this.generadorRanking = GeneradorRanking.getInstance();
     }
     public void ranking(Context context) {
         Map<String, Object> model = new HashMap<>();
         model.put
                 ("ranking",
-                 this.generadorRanking.
-                         generarRankings(this.repoDeComunidades.buscarTodos(), this.repoDeEntidades.buscarTodos()).
-                         get(this.rankings.get(0))
+                 this.generadorRanking.getResultadosRanking().
+                         getResultados().get(RankingMayorCantidadIncidentes.getInstance())
                 );
         context.render("ranking/ranking.hbs", model);
     }
