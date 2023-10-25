@@ -9,6 +9,6 @@ public class Controller implements WithSimplePersistenceUnit {
         if(ctx.sessionAttribute("usuario_id") == null)
             return null;
         return entityManager()
-                .find(Miembro.class, Long.parseLong(ctx.sessionAttribute("usuario_id")));
+                .find(Miembro.class, ctx.sessionAttribute("usuario_id"));
     }
 }
