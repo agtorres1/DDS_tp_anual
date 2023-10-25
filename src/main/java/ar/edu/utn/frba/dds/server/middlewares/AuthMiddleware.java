@@ -1,3 +1,4 @@
+
 package ar.edu.utn.frba.dds.server.middlewares;
 
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
@@ -8,7 +9,7 @@ import io.javalin.http.Context;
 
 public class AuthMiddleware {
 
-    private static final String[] rutasPermitidas = {"/","/login", "/register","/comunidades","/comunidades/{idComunidad}/incidentes","/usuario/1","/usuario/1/editar"};
+    private static final String[] rutasPermitidas = {"/","/login", "/register","/usuario/1","/usuario/1/editar"};
 
 
     public static void apply(JavalinConfig config) {
@@ -47,3 +48,4 @@ public class AuthMiddleware {
 
 
 }
+

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <body>
 
 <!-- navbar -->
@@ -44,7 +45,7 @@
         <img src="/images/userLogo.png" alt="" class="profile" />
     </div>
 </nav>
-
+<div class="container">
 <!-- sidebar -->
 <nav class="sidebar">
     <div class="menu_content">
@@ -138,7 +139,11 @@
         {{#block "contenido"}}
         {{/block}}
     </div>
+    <div id="map"></div>
 </div>
+
+</div>
+
 
 
 <!-- JavaScript Bundle with Popper -->
@@ -150,6 +155,7 @@
 <script src="/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/alertas.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 {{#if exito}}
 <script type="text/javascript">
     mostrarAlertaExito("{{exito}}");
@@ -161,4 +167,11 @@
 </script>
 {{/if}}
 </body>
+
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+            defer
+    ></script>
+    <script src="script.js"></script>
+
 </html>

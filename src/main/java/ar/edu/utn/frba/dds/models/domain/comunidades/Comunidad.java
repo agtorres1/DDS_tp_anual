@@ -34,6 +34,7 @@ public class Comunidad{
   @Column(name = "id")
   private Long id;
 
+
   @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(name = "administradores_por_comunidad",
           joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),

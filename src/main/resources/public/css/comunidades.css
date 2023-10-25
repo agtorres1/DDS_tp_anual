@@ -35,3 +35,9 @@
 .open{
     margin-bottom: 15rem;
 }
+
+.advice{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

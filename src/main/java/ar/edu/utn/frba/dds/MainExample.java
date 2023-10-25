@@ -1,14 +1,16 @@
 
+
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Email;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
+
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
+
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.ranking.GeneradorRanking;
 import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorCantidadIncidentes;
@@ -16,8 +18,10 @@ import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorGradoImpactoProblem
 import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorPromedioCierre;
 import ar.edu.utn.frba.dds.models.domain.servicios.*;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.*;
+
 import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import ar.edu.utn.frba.dds.repositories.*;
+
 import ar.edu.utn.frba.dds.server.App;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
@@ -25,6 +29,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -57,7 +62,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     RepoDeEntidades repoDeEntidades = new RepoDeEntidades();
     RepoDePrestacionDeServicio repoDePrestacionDeServicio = new RepoDePrestacionDeServicio();
     RepoDeComunidades repoDeComunidades = new RepoDeComunidades();
-    RepoDeMiembros miembros = new RepoDeMiembros();
+
 
     Comunidad comunidad1 = new Comunidad();
     Puntaje puntaje1 = new Puntaje();
@@ -68,8 +73,8 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     Comunidad comunidad2 = new Comunidad();
     Puntaje puntaje2 = new Puntaje();
-    puntaje1.setValor(5.00);
-    comunidad1.setPuntaje(puntaje2);
+    puntaje2.setValor(5.00);
+    comunidad2.setPuntaje(puntaje2);
     comunidad2.setDescripcion("Que linda se ve mi comunidad");
     comunidad2.setNombre("No videntes");
 
@@ -79,6 +84,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     wpp1.setTelefono("1140253180");
     System.out.println("Inserto medio de notificación.");
     //repoDeMediosDeNotificacion.agregar(wpp1);
+    repoDeMediosDeNotificacion.agregar(wpp1);
     miembro1.setMedioDeNotificacion(wpp1);
 
     Miembro miembro2 = new Miembro();
@@ -133,6 +139,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     miembros.agregar(miembro4);
     miembros.agregar(miembro5);
      */
+
 
     RepoDeServicios repoDeServicios = new RepoDeServicios();
 
@@ -218,4 +225,17 @@ public class MainExample implements WithSimplePersistenceUnit {
     System.out.println(generadorRanking.getResultadosRanking().getResultados().get(RankingMayorCantidadIncidentes.getInstance()).get(0).getNombre());
     App.main(new String[]{""});
   }
+
+
+
+
+
+
+
 }
+
+
+
+
+
+

@@ -20,6 +20,18 @@
 
   <dependencies>
 
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20210307</version> <!-- Utiliza la versión más reciente de la biblioteca -->
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.15.2</version> <!-- Verifica la última versión en el repositorio de Maven -->
+    </dependency>
+
     <!-- handlebars -->
     <dependency>
       <groupId>com.github.jknack</groupId>
@@ -171,6 +183,11 @@
       <groupId>at.favre.lib</groupId>
       <artifactId>bcrypt</artifactId>
       <version>0.10.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.classgraph</groupId>
+      <artifactId>classgraph</artifactId>
+      <version>4.8.83</version>
     </dependency>
 
 

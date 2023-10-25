@@ -1,0 +1,22 @@
+{{#partial "contenido" }}
+    <main class="container separate">
+        {{#if comunidades}}
+        
+        {{else}}
+            <div class="advice">
+                <picture>
+                    <img src="/images/apu.png" alt="Apu TP">
+                </picture>
+                <p>
+                    No hay comunidades disponibles!!!
+                </p>
+                <a class="btn btn-dark" href="/comunidades">Regresar <iconify-icon icon="ri:arrow-go-back-line" style="color: white;"></iconify-icon></a>
+            </div>
+        {{/if}}
+
+    </main>
+
+    <script src="/js/comunidades.js"></script>
+
+{{/partial}}
+{{> templates/base}}

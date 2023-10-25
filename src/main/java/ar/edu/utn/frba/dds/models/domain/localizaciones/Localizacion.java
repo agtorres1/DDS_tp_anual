@@ -8,6 +8,7 @@ import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Provincia;
 import javax.persistence.*;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 

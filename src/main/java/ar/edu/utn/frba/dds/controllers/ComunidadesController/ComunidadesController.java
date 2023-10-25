@@ -8,8 +8,10 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.ServicioFusionador;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.PropuestaAnterior;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesAnalizables;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesFusionables;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.responses.ResponseComunidadFusionada;
+import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.responses.ResponseComunidadesAnalizables;
 import ar.edu.utn.frba.dds.repositories.RepoDeComunidades;
 import ar.edu.utn.frba.dds.repositories.RepoDeIncidentes;
 import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
@@ -35,7 +37,7 @@ public class ComunidadesController extends Controller {
 
     public void index(Context context){
         Map<String, Object> model = new HashMap<>();
-        Miembro miembroActual = buscarMiembroActual(context);
+        Miembro miembroActual = miembroEnSesion(context);
         List<Comunidad> comunidades = this.repoDeComunidades.buscarRestantesA(miembroActual);
         model.put("comunidadesMiembro", miembroActual.getComunidades());
         model.put("comunidades",comunidades);
@@ -44,7 +46,7 @@ public class ComunidadesController extends Controller {
 
     public void join(Context context){
         if(!Objects.equals(context.formParam("comunidad"), null)) {
-            Miembro miembroActual = buscarMiembroActual(context);
+            Miembro miembroActual = miembroEnSesion(context);
             Comunidad comunidad = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad")));
             comunidad.agregarUsuarios(miembroActual);
             this.repoDeComunidades.modificar(comunidad);
@@ -53,7 +55,18 @@ public class ComunidadesController extends Controller {
         context.redirect("/comunidades");
     }
 
-/*    public void fusion(Context context) throws IOException {
+    public void analysis(Context context) throws IOException {
+        Map<String, Object> model = new HashMap<>();
+        List<ComunidadFusionable> comunidades = this.repoDeComunidades.buscarTodos().stream().map(Comunidad::comunidadFusionable).collect(Collectors.toList());
+        RequestComunidadesAnalizables requestComunidadesAnalizables = new RequestComunidadesAnalizables();
+        requestComunidadesAnalizables.setComunidades(comunidades);
+
+        ResponseComunidadesAnalizables responseComunidadesAnalizables = ServicioFusionador.getInstance().responseComunidadesAnalizables(requestComunidadesAnalizables);
+        model.put("comunidades",responseComunidadesAnalizables.resultado);
+        context.render("comunidades/comunidadesFusionables.hbs", model);
+    }
+
+    public void fusion(Context context) throws IOException {
         if(!Objects.equals(context.formParam("comunidad1"), null) && !Objects.equals(context.formParam("comunidad2"), null)) {
             Comunidad comunidad1 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad1")));
             Comunidad comunidad2 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad2")));
@@ -61,33 +74,32 @@ public class ComunidadesController extends Controller {
             requestComunidadesFusionables.setComunidad1(comunidad1.comunidadFusionable());
             requestComunidadesFusionables.setComunidad2(comunidad2.comunidadFusionable());
             ResponseComunidadFusionada responseComunidadesFusionadas = ServicioFusionador.getInstance().responseComunidadesFusionadas(requestComunidadesFusionables);
-            Comunidad comunidadFusionada = asignarAtributos(new Comunidad(),responseComunidadesFusionadas);
+            Comunidad comunidadFusionada = asignarAtributos(comunidad1,comunidad2,responseComunidadesFusionadas);
             this.repoDeComunidades.agregar(comunidadFusionada);
         }
         context.status(HttpStatus.CREATED);
         context.redirect("/comunidades");
-    }*/
+    }
 
-/*    private Comunidad asignarAtributos(Comunidad comunidad, ResponseComunidadFusionada responseComunidadesFusionadas) {
+    private Comunidad asignarAtributos(Comunidad comunidad1,Comunidad comunidad2, ResponseComunidadFusionada responseComunidadesFusionadas) {
         if(responseComunidadesFusionadas.exito){
-            comunidad.setMiembros(this.repoDeMiembros.buscarPorListadoId(listIntegerToLong(responseComunidadesFusionadas.resultado.usuarios)));
-            comunidad.setIncidentes(this.repoDeIncidentes.buscarPorListadoId(listIntegerToLong(responseComunidadesFusionadas.resultado.incidentes)));
-            comunidad.setPropuestasFusion(this.repoDePropuestasFusion.buscarPorComunidades(responseComunidadesFusionadas.resultado);
-            comunidad.setPuntaje(new Puntaje(responseComunidadesFusionadas.resultado.gradoConfianza));
+            Comunidad comunidadNueva = new Comunidad();
+            comunidadNueva.setMiembros(this.repoDeMiembros.buscarPorListadoId(listIntegerToLong(responseComunidadesFusionadas.resultado.usuarios)));
+            comunidadNueva.setIncidentes(this.repoDeIncidentes.buscarPorListadoId(listIntegerToLong(responseComunidadesFusionadas.resultado.incidentes)));
+            comunidadNueva.setNombre("Fusión de "+comunidad1.getNombre()+" y "+comunidad2.getNombre());
+            comunidadNueva.setDescripcion("Comunidad 1: "+comunidad1.getDescripcion() + "\\n"
+            + "Comunidad 2: "+comunidad2.getDescripcion());
+            Puntaje puntaje = new Puntaje();
+            puntaje.setValor(responseComunidadesFusionadas.resultado.gradoConfianza);
+            comunidadNueva.setPuntaje(puntaje);
+            return comunidadNueva;
         }
-        return comunidad;
-    }*/
-
-/*    private List<Long> listPropuestaToLong(List<PropuestaAnterior> propuestasAnteriores) {
-        return propuestasAnteriores.stream().map(propuestaAnterior -> propuestaAnterior)
-    }*/
+        return null;
+    }
 
     private List<Long> listIntegerToLong(List<Integer> ids) {
         return ids.stream().map(Long::valueOf).collect(Collectors.toList());
     }
 
-    private Miembro buscarMiembroActual(Context context) {
-        return this.repoDeMiembros.buscarPorId(context.sessionAttribute("usuario_id"));
-    }
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 public class RequestComunidadesAnalizables {
 
-    @SerializedName("comunidadesAnalizables")
+    @SerializedName("comunidades")
     public List<ComunidadFusionable> comunidades;
 
 }

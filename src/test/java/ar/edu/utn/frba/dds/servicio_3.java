@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class servicio_3 {
     private Comunidad comunidad1;
@@ -40,6 +41,8 @@ public class servicio_3 {
 
     private RequestComunidadesAnalizables requestComunidadesAnalizables;
     private RequestComunidadesFusionables requestComunidadesFusionables;
+
+    private RepoDeComunidades repoDeComunidades;
     @BeforeEach
     public void init() throws IOException {
         this.servicio = new Banio();
@@ -91,6 +94,8 @@ public class servicio_3 {
         comunidadesFusionables.add(comunidad1.comunidadFusionable());
         comunidadesFusionables.add(comunidad2.comunidadFusionable());
 
+        this.repoDeComunidades = new RepoDeComunidades();
+
         this.requestComunidadesAnalizables = new RequestComunidadesAnalizables();
         this.requestComunidadesAnalizables.setComunidades(comunidadesFusionables);
 
@@ -113,8 +118,13 @@ public class servicio_3 {
     @Test
     @DisplayName("Actualizar comunidades")
     public void generarResponse() throws IOException {
-        ResponseComunidadFusionada comunidadesAnalizablesResponse = ServicioFusionador.getInstance().responseComunidadesFusionadas(this.requestComunidadesFusionables);
+        List<ComunidadFusionable> comunidades = this.repoDeComunidades.buscarTodos().stream().map(Comunidad::comunidadFusionable).collect(Collectors.toList());
+        RequestComunidadesAnalizables requestComunidadesAnalizables = new RequestComunidadesAnalizables();
+        requestComunidadesAnalizables.setComunidades(comunidades);
 
-        System.out.println(comunidadesAnalizablesResponse.resultado.propuestasAnteriores);
+
+        ResponseComunidadFusionada comunidadesAnalizablesResponse = ServicioFusionador.getInstance().responseComunidadesFusionadas(this.requestComunidadesFusionables);
+        System.out.println(comunidadesAnalizablesResponse.resultado.usuarios);
+
     }
 }

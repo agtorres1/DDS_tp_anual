@@ -63,7 +63,8 @@ public class Miembro {
   @OneToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
   private Localizacion localizacion;
-  @OneToOne(cascade = CascadeType.PERSIST)
+
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   public MedioDeNotificacion medioDeNotificacion;
 

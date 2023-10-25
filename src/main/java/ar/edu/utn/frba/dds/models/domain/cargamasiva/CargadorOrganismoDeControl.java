@@ -1,6 +1,8 @@
 package ar.edu.utn.frba.dds.models.domain.cargamasiva;
+
 import ar.edu.utn.frba.dds.models.domain.entidadesExtra.OrganismoDeControl;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Provincia;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,8 +21,10 @@ public class CargadorOrganismoDeControl {
                 String nombre = dato[0];
                 String descripcion = dato[1];
                 String provincia = dato[2];
+                Provincia provincia1 = new Provincia();
+                provincia1.nombre = provincia;
                 Localizacion localizacion = new Localizacion();
-                localizacion.setProvincia(provincia);
+                localizacion.setProvincia(provincia1.nombre);
 
                 OrganismoDeControl organismoDeControl = new OrganismoDeControl();
                 organismoDeControl.setNombre(nombre);

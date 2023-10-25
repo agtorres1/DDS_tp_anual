@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.models.domain.incidentes;
 
 import ar.edu.utn.frba.dds.models.builders.puntajes.IncidentePuntajeBuilder;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
@@ -50,6 +51,9 @@ public class Incidente {
     @JoinColumn(name = "id_cerrador")
     private Miembro cerrador;
 
+    @ManyToOne
+    @JoinColumn(name = "comunidad_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Comunidad comunidad;
 
 
     public void meAbro(Miembro abridor,AperturaIncidente aperturaIncidente){

@@ -4,23 +4,17 @@ import ar.edu.utn.frba.dds.models.domain.usuario.Rol;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
 import ar.edu.utn.frba.dds.server.handlers.AppHandlers;
-import ar.edu.utn.frba.dds.server.middlewares.AuthMiddleware;
+//import ar.edu.utn.frba.dds.server.middlewares.AuthMiddleware;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.Options;
 import com.github.jknack.handlebars.Template;
 import io.javalin.Javalin;
 import io.javalin.config.JavalinConfig;
-import io.javalin.http.Context;
-import io.javalin.http.Handler;
 import io.javalin.http.HttpStatus;
 import io.javalin.rendering.JavalinRenderer;
-import io.javalin.security.AccessManager;
-import io.javalin.security.RouteRole;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class Server {
@@ -49,7 +43,7 @@ public class Server {
                 staticFiles.hostedPath = "/";
                 staticFiles.directory = "/public";
             });
-            AuthMiddleware.apply(config);
+//            AuthMiddleware.apply(config);
         };
     }
 

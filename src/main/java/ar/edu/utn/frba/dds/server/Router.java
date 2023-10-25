@@ -25,7 +25,10 @@ public class Router {
     public static void init() {
 
         Server.app().routes(() -> {
+
             get("/", (ctx) -> ctx.render("base.hbs"));
+            /*get("/",((IncidentesController) FactoryController.controller("Incidentes"))::revisarIncidentes);*/
+            post("/",((IncidentesController) FactoryController.controller("Incidentes"))::setearMapa );
             get("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::login);
             post("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::loginPost);
             get("/register", ((UsuariosController) FactoryController.controller("Usuarios"))::register);
@@ -38,6 +41,7 @@ public class Router {
             post("/cargar/entidadesControladoras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargarPost, TipoRol.ENTIDAD, TipoRol.ADMINISTRADOR);
             get("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::index);
             post("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::join);
+            get("comunidades/analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);
 
             get("/ranking", ((RankingController) FactoryController.controller("Rankings"))::ranking);
 
