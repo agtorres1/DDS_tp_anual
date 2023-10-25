@@ -19,7 +19,7 @@ import java.util.List;
 @Setter @Getter
 public class Incidente {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "fechayHoraApertura",columnDefinition = "TIMESTAMP")
@@ -28,11 +28,11 @@ public class Incidente {
     @Column(name = "fechayHoraCierre",columnDefinition = "TIMESTAMP")
     private LocalDateTime fechaYHoraCierre;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private PrestacionDeServicio prestacionDeServicio;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_establecimiento", referencedColumnName = "id")
     private Establecimiento establecimiento;
 
@@ -42,11 +42,11 @@ public class Incidente {
     @Column(name = "estaAbierto")
     private Boolean abierto;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_abridor")
     private Miembro abridor;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_cerrador")
     private Miembro cerrador;
 
@@ -59,8 +59,6 @@ public class Incidente {
         setPrestacionDeServicio(aperturaIncidente.getPrestacionDeServicio());
         setFachaYHoraApertura(aperturaIncidente.getFechaYHoraApertura());
         setAbierto(true);
-
-
     }
     public void meCierro(Miembro cerrador){
         this.setFechaYHoraCierre(LocalDateTime.now());
