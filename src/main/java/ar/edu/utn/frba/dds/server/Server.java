@@ -4,7 +4,7 @@ import ar.edu.utn.frba.dds.models.domain.usuario.Rol;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
 import ar.edu.utn.frba.dds.server.handlers.AppHandlers;
-import ar.edu.utn.frba.dds.server.middlewares.AuthMiddleware;
+//import ar.edu.utn.frba.dds.server.middlewares.AuthMiddleware;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import io.javalin.Javalin;
@@ -41,7 +41,7 @@ public class Server {
                 staticFiles.hostedPath = "/";
                 staticFiles.directory = "/public";
             });
-            AuthMiddleware.apply(config);
+//            AuthMiddleware.apply(config);
         };
     }
 

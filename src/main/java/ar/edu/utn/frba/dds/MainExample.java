@@ -1,26 +1,30 @@
-/*
+
 
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Email;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
+
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
+
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+
 import ar.edu.utn.frba.dds.models.domain.servicios.*;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.*;
+
 import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import ar.edu.utn.frba.dds.repositories.*;
-import ar.edu.utn.frba.dds.server.App;
+
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -50,7 +54,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     RepoDeEntidades repoDeEntidades = new RepoDeEntidades();
     RepoDePrestacionDeServicio repoDePrestacionDeServicio = new RepoDePrestacionDeServicio();
     RepoDeComunidades repoDeComunidades = new RepoDeComunidades();
-    RepoDeMiembros miembros = new RepoDeMiembros();
+
 
     Comunidad comunidad1 = new Comunidad();
     Puntaje puntaje1 = new Puntaje();
@@ -71,14 +75,12 @@ public class MainExample implements WithSimplePersistenceUnit {
     miembro1.setUsuario("Pepe");
     Whatsapp wpp1 = new Whatsapp();
     wpp1.setTelefono("1140253180");
-    System.out.println("Inserto medio de notificación.");
     repoDeMediosDeNotificacion.agregar(wpp1);
     miembro1.setMedioDeNotificacion(wpp1);
 
     Miembro miembro2 = new Miembro();
     miembro2.setUsuario("Fede");
     miembro2.setContrasenia("12345678");
-    miembros.agregar(miembro2);
     Whatsapp wpp2 = new Whatsapp();
     wpp2.setTelefono("1140253180");
     miembro2.setMedioDeNotificacion(wpp2);
@@ -86,7 +88,6 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     Miembro miembro3 = new Miembro();
     miembro3.setUsuario("Agus");
-    miembros.agregar(miembro3);
     Whatsapp wpp3 = new Whatsapp();
     wpp3.setTelefono("1140253180");
     repoDeMediosDeNotificacion.agregar(wpp3);
@@ -94,7 +95,6 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     Miembro miembro4 = new Miembro();
     miembro4.setUsuario("Facu");
-    miembros.agregar(miembro4);
     Whatsapp wpp4 = new Whatsapp();
     wpp4.setTelefono("1140253180");
     repoDeMediosDeNotificacion.agregar(wpp4);
@@ -102,7 +102,6 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     Miembro miembro5 = new Miembro();
     miembro5.setUsuario("Tomi");
-    miembros.agregar(miembro5);
     Whatsapp wpp5 = new Whatsapp();
     wpp5.setTelefono("1140253180");
     repoDeMediosDeNotificacion.agregar(wpp5);
@@ -118,22 +117,13 @@ public class MainExample implements WithSimplePersistenceUnit {
     somosDeChaco(repoDeLocalizaciones, miembro2, miembro3, miembro4, miembro5);
     miembro1.setLocalizacion(localizacion);
 
-<<<<<<< HEAD
     RepoDeMiembros miembros = new RepoDeMiembros();
     miembros.agregar(miembro1);
     miembros.agregar(miembro2);
     miembros.agregar(miembro3);
     miembros.agregar(miembro4);
     miembros.agregar(miembro5);
-=======
-    System.out.println("Inserto miembro.");
->>>>>>> refs/remotes/origin/MVCabgf
 
-    miembros.agregar(miembro1);
-    miembros.agregar(miembro2);
-    miembros.agregar(miembro3);
-    miembros.agregar(miembro4);
-    miembros.agregar(miembro5);
 
     RepoDeServicios repoDeServicios = new RepoDeServicios();
 
@@ -217,12 +207,10 @@ public class MainExample implements WithSimplePersistenceUnit {
 
 
 
-
-
-
-
-
-
 }
 
-*/
+
+
+
+
+

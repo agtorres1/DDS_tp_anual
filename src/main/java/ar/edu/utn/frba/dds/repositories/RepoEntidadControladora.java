@@ -6,6 +6,7 @@ import java.util.List;
 
 public class RepoEntidadControladora implements WithSimplePersistenceUnit {
     public void agregar(EntidadControladora entidadControladora) {
+
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();
         entityManager().persist(entidadControladora);
