@@ -13,6 +13,7 @@ import javax.persistence.Enumerated;
 @Embeddable
 public class GradoDeConfianza {
 
+
     @Enumerated(EnumType.STRING)
     @Column(name = "Tipo_de_grado")
     private TipoDeGrado nombre;

@@ -16,13 +16,11 @@ import javax.mail.internet.MimeMessage;
 @Entity
 @DiscriminatorValue("email")
 public class Email extends MedioDeNotificacion  {
-  @Id
-  @GeneratedValue
-  private Long id;
+
   @Column(name = "email")
   public String email;
 
-  private int codHarc = 1;
+
   public Email(){}
 
   public Email(String mail) {

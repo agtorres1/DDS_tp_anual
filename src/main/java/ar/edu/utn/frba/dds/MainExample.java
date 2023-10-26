@@ -30,9 +30,13 @@ import java.util.Collection;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.List;//
+
+import javax.persistence.EntityTransaction;
+
 import java.util.ListIterator;
 import org.jetbrains.annotations.NotNull;
+
 
 
 public class MainExample implements WithSimplePersistenceUnit {

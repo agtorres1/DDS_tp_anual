@@ -16,9 +16,6 @@ import javax.persistence.Id;
 @DiscriminatorValue("wsp")
 public class Whatsapp extends MedioDeNotificacion{
 
-  @Id
-  @GeneratedValue
-  private Long id;
 
 
   private int codHarc = 0;

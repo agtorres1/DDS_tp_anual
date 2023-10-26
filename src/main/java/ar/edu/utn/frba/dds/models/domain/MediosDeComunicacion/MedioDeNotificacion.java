@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 
 import java.time.LocalTime;
@@ -11,6 +12,7 @@ import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.persistence.*;
+import lombok.Setter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -20,7 +22,11 @@ public abstract class MedioDeNotificacion {
   @Id
   @GeneratedValue
   @Getter
+  @Setter
   private Long id;
+
+  private int codHarc = 1;
+
 
 
   private String name;
@@ -108,4 +114,6 @@ public abstract class MedioDeNotificacion {
 
   }
   protected abstract void enviarNotificacion();
+
+
 }

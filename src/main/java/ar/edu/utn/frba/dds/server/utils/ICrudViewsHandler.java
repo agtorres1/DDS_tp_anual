@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.server.utils;
 
+import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import io.javalin.http.Context;
 
 public interface ICrudViewsHandler {
@@ -10,4 +11,5 @@ public interface ICrudViewsHandler {
     void edit(Context context);
     void update(Context context);
     void delete(Context context);
+
 }
