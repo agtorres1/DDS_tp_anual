@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds.controllers;
 
-import ar.edu.utn.frba.dds.controllers.ComunidadesController.ComunidadesController;
-import ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes.IncidentesController;
+import ar.edu.utn.frba.dds.controllers.comunidadesController.ComunidadesController;
+import ar.edu.utn.frba.dds.controllers.comunidadesController.incidentes.IncidentesController;
 import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorCantidadIncidentes;
 import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorGradoImpactoProblematicas;
 import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorPromedioCierre;

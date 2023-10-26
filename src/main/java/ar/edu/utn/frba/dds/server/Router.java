@@ -1,21 +1,18 @@
 package ar.edu.utn.frba.dds.server;
-import ar.edu.utn.frba.dds.controllers.ComunidadesController.ComunidadesController;
+import ar.edu.utn.frba.dds.controllers.comunidadesController.ComunidadesController;
 import ar.edu.utn.frba.dds.controllers.FactoryController;
 
-import ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes.IncidentesController;
+import ar.edu.utn.frba.dds.controllers.comunidadesController.incidentes.IncidentesController;
 
 import ar.edu.utn.frba.dds.controllers.EntidadControladoraController;
 
 import ar.edu.utn.frba.dds.controllers.OrganismoDeControlController;
 import ar.edu.utn.frba.dds.controllers.RankingController;
 import ar.edu.utn.frba.dds.controllers.UsuariosController;
-import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.javalin.http.UploadedFile;
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,8 +26,8 @@ public class Router {
 
         Server.app().routes(() -> {
 
-            get("/", (ctx) -> ctx.redirect("/login"));
-            //get("/", (ctx) -> ctx.render("base.hbs"));
+            get("/", (ctx) -> ctx.redirect("/comunidades"));
+            /*get("/", (ctx) -> ctx.render("base.hbs"));*/
             /*get("/",((IncidentesController) FactoryController.controller("Incidentes"))::revisarIncidentes);*/
             post("/",((IncidentesController) FactoryController.controller("Incidentes"))::setearMapa );
             get("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::login);

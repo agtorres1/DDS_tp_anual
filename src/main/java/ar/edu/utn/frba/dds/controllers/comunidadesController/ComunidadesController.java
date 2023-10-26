@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.controllers.ComunidadesController;
+package ar.edu.utn.frba.dds.controllers.comunidadesController;
 
 import ar.edu.utn.frba.dds.controllers.Controller;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
@@ -7,7 +7,6 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.ServicioFusionador;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.PropuestaAnterior;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.SugerenciaFusion;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesAnalizables;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesFusionables;
@@ -88,9 +87,10 @@ public class ComunidadesController extends Controller {
             requestComunidadesFusionables.setComunidad2(comunidad2.comunidadFusionable());
             ResponseComunidadFusionada responseComunidadesFusionadas = ServicioFusionador.getInstance().responseComunidadesFusionadas(requestComunidadesFusionables);
             Comunidad comunidadFusionada = asignarAtributos(comunidad1,comunidad2,responseComunidadesFusionadas);
-            System.out.println(comunidadFusionada);
+
             this.repoDeComunidades.eliminar(comunidad1);
             this.repoDeComunidades.eliminar(comunidad2);
+
             this.repoDeComunidades.agregar(comunidadFusionada);
         }
         context.status(HttpStatus.CREATED);

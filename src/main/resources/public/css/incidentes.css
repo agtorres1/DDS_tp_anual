@@ -25,6 +25,11 @@
     padding: 2rem;
 }
 
+.container-main{
+    display: flex;
+    flex-direction: column;
+}
+
 .section{
     display: flex;
     padding: 1.5625rem;

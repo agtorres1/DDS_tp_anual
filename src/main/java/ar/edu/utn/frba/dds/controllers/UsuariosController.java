@@ -240,7 +240,7 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         if (fotoFile != null) {
             String fotoFileName = fotoFile.filename();
             String rutaDestino = "/update";
-            String rutaTotal = "upload/" + fotoFileName;
+            String rutaTotal = "/upload/" + fotoFileName;
 
             try (InputStream fotoInputStream = fotoFile.content()) {
                 File destino = new File(rutaDestino, fotoFileName);
