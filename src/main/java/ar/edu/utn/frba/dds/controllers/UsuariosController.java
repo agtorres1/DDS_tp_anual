@@ -239,7 +239,7 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         UploadedFile fotoFile = context.uploadedFile("foto");
         if (fotoFile != null) {
             String fotoFileName = fotoFile.filename();
-            String rutaDestino = "/update";
+            String rutaDestino = "src/main/resources/public/upload/";
             String rutaTotal = "upload/" + fotoFileName;
 
             try (InputStream fotoInputStream = fotoFile.content()) {
@@ -255,10 +255,6 @@ public class UsuariosController implements WithSimplePersistenceUnit {
                 System.out.println("Ha ocurrido un error al guardar el archivo: " + e.getMessage());
             }
         }
-
-
-
-
 
         Miembro miembroPorEmail = this.repoMiembros.buscarPor("mail", email);
 
