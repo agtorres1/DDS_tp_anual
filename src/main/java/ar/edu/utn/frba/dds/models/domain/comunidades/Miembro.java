@@ -28,7 +28,7 @@ import java.util.*;
 @Setter @Getter
 public class Miembro {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue
   private Long id;
 
   @Column(name = "nombre")
