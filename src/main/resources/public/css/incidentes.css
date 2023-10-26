@@ -1,7 +1,14 @@
 .main-title{
-    font-family: sans-serif;
-    text-align: center;
+    font-size: 2.5em; /* Tamaño grande de fuente */
+    font-weight: bold; /* Texto en negrita */
+    color: green; /* Color azul */
+    text-align: center; /* Centrar el texto en el medio de la página */
+    text-transform: uppercase; /* Convierte el texto en mayúsculas */
+    margin-top: 20px; /* Espacio superior para separarlo del contenido anterior */
+    margin-bottom: 30px; /* Espacio inferior para darle aire al título */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 
 .border-table{
     border-radius: .25rem;
@@ -15,7 +22,7 @@
 .container{
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .section{

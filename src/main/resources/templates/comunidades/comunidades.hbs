@@ -1,6 +1,6 @@
 {{#partial "contenido" }}
     <main class="container separate">
-        <h1 class="main-title">Comunidades</h1>
+        <h1 class="main-title-comunidad">Comunidades</h1>
 
         <section class="comunidades">
             {{#each comunidadesMiembro}}
@@ -14,6 +14,14 @@
                             <span class="box__line line__summary">
                                 <p class="summary__text">Descripción</p>
                                 <p>{{this.descripcion}}</p>
+                            </span>
+                            <span class="box__line line__summary">
+                                <p class="summary__text">Puntaje</p>
+                                <p>{{this.puntaje.valor}}</p>
+                            </span>
+                            <span class="box__line line__summary">
+                                <p class="summary__text">Grado de confianza</p>
+                                <p>{{this.puntaje.gradoDeConfianza.nombre}}{{#if this.puntaje.gradoDeConfianza.nivel}} - {{this.puntaje.gradoDeConfianza.nivel}}{{/if}}</p>
                             </span>
                             <span class="box__line line__summary">
                                 <p class="summary__text">Cantidad de miembros</p>
@@ -38,7 +46,7 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Unirse a nueva comunidad
             </button>
-            <a class="btn btn-success" href="/incidentes">Abrir nuevo incidente</a>
+            <a class="btn btn-dark" href="/comunidades/analizadas">Ver posibles fusiones</a>
         </section>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

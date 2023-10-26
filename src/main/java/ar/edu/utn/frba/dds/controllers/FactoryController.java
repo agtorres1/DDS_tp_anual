@@ -2,6 +2,9 @@ package ar.edu.utn.frba.dds.controllers;
 
 import ar.edu.utn.frba.dds.controllers.ComunidadesController.ComunidadesController;
 import ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes.IncidentesController;
+import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorCantidadIncidentes;
+import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorGradoImpactoProblematicas;
+import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorPromedioCierre;
 import ar.edu.utn.frba.dds.repositories.*;
 
 public class FactoryController {
@@ -18,10 +21,19 @@ public class FactoryController {
                 controller = new OrganismoDeControlController(new RepoOrganismoDeControl());
                 break;
             case "Comunidades":
-                controller = new ComunidadesController(new RepoDeComunidades(), new RepoDeMiembros());
+                controller = new ComunidadesController(new RepoDeComunidades(), new RepoDeMiembros(),new RepoDeIncidentes(),new RepoDePropuestasFusion());
                 break;
             case "Incidentes":
                 controller = new IncidentesController(new RepoDeComunidades(), new RepoDeIncidentes(), new RepoDePrestacionDeServicio(), new RepoDeEstablecimientos(), new RepoDeMiembros());
+                break;
+            case "Ranking/cantIncidentes":
+                controller = new RankingController(RankingMayorCantidadIncidentes.getInstance());
+                break;
+            case "Ranking/gradoImpacto":
+                controller = new RankingController(RankingMayorGradoImpactoProblematicas.getInstance());
+                break;
+            case "Ranking/promCierre":
+                controller = new RankingController(RankingMayorPromedioCierre.getInstance());
                 break;
         }
         return controller;

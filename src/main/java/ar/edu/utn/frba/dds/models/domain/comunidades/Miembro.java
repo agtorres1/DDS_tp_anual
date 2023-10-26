@@ -40,7 +40,7 @@ public class Miembro {
   @Column(name = "descripcion",columnDefinition = "TEXT")
   private String descripcion;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   private Rol rol;
 
   @Column(name = "mail")
@@ -56,26 +56,30 @@ public class Miembro {
   @Embedded
   private Puntaje puntaje;
 
+
   @ElementCollection
   @CollectionTable(name = "usuario_fotos1", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id") )
   @Column(name = "path")
   private List<String> fotos;
 
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<Interes> intereses;
 
-  @OneToOne
+
+  @OneToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
   private Localizacion localizacion;
-  @OneToOne
+
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   public MedioDeNotificacion medioDeNotificacion;
 
-  @ManyToMany
-  @JoinTable(name = "miembros_por_comunidad",
+  @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "miembros")
+  /*@JoinTable(name = "miembros_por_comunidad",
           joinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"))
+   */
   private Set<Comunidad> comunidades;
 
 

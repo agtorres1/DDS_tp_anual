@@ -12,6 +12,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RankingMayorPromedioCierre implements Ranking{
+
+    private static RankingMayorPromedioCierre instance;
+
+    public static RankingMayorPromedioCierre getInstance() {
+        if (instance == null) {
+            instance = new RankingMayorPromedioCierre();
+        }
+        return instance;
+    }
     @Override
     public List<Entidad> generarRanking(List<Comunidad> comunidades, List<Entidad> entidades){
         Map<Entidad, Duration> promedioCierrePorEntidad = entidades.stream()
@@ -23,6 +32,11 @@ public class RankingMayorPromedioCierre implements Ranking{
                 .collect(Collectors.toList());
 
         return resultados;
+    }
+
+    @Override
+    public String name() {
+        return "Promedio de Cierre de Incidentes";
     }
 
     private Duration obtenerDuracionPromedioCierre(Entidad entidad, List<Comunidad> comunidades){

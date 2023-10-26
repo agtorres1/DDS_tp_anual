@@ -9,7 +9,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RankingMayorCantidadIncidentes implements Ranking{
+public class RankingMayorCantidadIncidentes implements Ranking {
+    private static RankingMayorCantidadIncidentes instance;
+
+    public static RankingMayorCantidadIncidentes getInstance() {
+        if (instance == null) {
+            instance = new RankingMayorCantidadIncidentes();
+        }
+        return instance;
+    }
 
     @Override
     public List<Entidad> generarRanking(List<Comunidad> comunidades, List<Entidad> entidades) {
@@ -19,6 +27,11 @@ public class RankingMayorCantidadIncidentes implements Ranking{
         return entidades.stream()
                 .sorted(Comparator.comparingInt(entidad -> obtenerCantidadIncidentes(entidad, comunidades, fechaDesde, fechaHasta)))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String name() {
+        return "Cantidad de Incidentes";
     }
 
     private int obtenerCantidadIncidentes(Entidad entidad, List<Comunidad> comunidades, LocalDateTime fechaDesde, LocalDateTime fechaHasta){

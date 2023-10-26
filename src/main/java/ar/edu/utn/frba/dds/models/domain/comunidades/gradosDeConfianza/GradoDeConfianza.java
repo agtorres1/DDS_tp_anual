@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Setter
 @Getter
@@ -12,6 +14,7 @@ import javax.persistence.Embeddable;
 public class GradoDeConfianza {
 
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "Tipo_de_grado")
     private TipoDeGrado nombre;
 

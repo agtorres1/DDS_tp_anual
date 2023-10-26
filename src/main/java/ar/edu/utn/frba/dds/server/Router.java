@@ -7,6 +7,7 @@ import ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes.Incident
 import ar.edu.utn.frba.dds.controllers.EntidadControladoraController;
 
 import ar.edu.utn.frba.dds.controllers.OrganismoDeControlController;
+import ar.edu.utn.frba.dds.controllers.RankingController;
 import ar.edu.utn.frba.dds.controllers.UsuariosController;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
@@ -27,7 +28,11 @@ public class Router {
     public static void init() {
 
         Server.app().routes(() -> {
-            get("/", (ctx) -> ctx.render("base.hbs"));
+
+            get("/", (ctx) -> ctx.redirect("/login"));
+            //get("/", (ctx) -> ctx.render("base.hbs"));
+            /*get("/",((IncidentesController) FactoryController.controller("Incidentes"))::revisarIncidentes);*/
+            post("/",((IncidentesController) FactoryController.controller("Incidentes"))::setearMapa );
             get("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::login);
             post("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::loginPost);
             get("/register", ((UsuariosController) FactoryController.controller("Usuarios"))::register);
@@ -40,8 +45,12 @@ public class Router {
             post("/cargar/entidadesControladoras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargarPost, TipoRol.ENTIDAD, TipoRol.ADMINISTRADOR);
             get("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::index);
             post("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::join);
+            get("comunidades/analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);
+            post("comunidades/fusionar", ((ComunidadesController) FactoryController.controller("Comunidades"))::fusion);
 
-
+            get("/ranking/cantIncidentes", ((RankingController) FactoryController.controller("Ranking/cantIncidentes"))::ranking);
+            get("/ranking/gradoImpacto", ((RankingController) FactoryController.controller("Ranking/gradoImpacto"))::ranking);
+            get("/ranking/promCierre", ((RankingController) FactoryController.controller("Ranking/promCierre"))::ranking);
 
             get("/usuario",((UsuariosController) FactoryController.controller("Usuarios")) :: show);
             get("/usuario/{id}/editar",((UsuariosController) FactoryController.controller("Usuarios")) :: edit);

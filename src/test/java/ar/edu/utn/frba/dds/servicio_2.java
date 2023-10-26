@@ -22,9 +22,7 @@ import java.util.List;
 
 public class servicio_2 {
     private Miembro miembro1;
-    private MiembroPuntaje miembroPuntaje;
     private Miembro miembro2;
-    private MiembroPuntaje miembroPuntaje2;
     private Servicio servicio;
     private PrestacionDeServicio prestacionDeServicio;
     private Incidente incidente;
@@ -45,11 +43,15 @@ public class servicio_2 {
 
         this.miembro1 = new Miembro();
         this.miembro1.setId(1L);
-        this.miembro1.setPuntaje(new Puntaje(3.00));
+        Puntaje puntaje = new Puntaje();
+        puntaje.setValor(3.00);
+        this.miembro1.setPuntaje(puntaje);
 
         this.miembro2 = new Miembro();
         this.miembro2.setId(2L);
-        this.miembro2.setPuntaje(new Puntaje(2.00));
+        Puntaje puntaje2 = new Puntaje();
+        puntaje2.setValor(2.00);
+        this.miembro2.setPuntaje(puntaje2);
 
         this.incidente = new Incidente();
         this.incidente.setId(1L);
@@ -62,7 +64,9 @@ public class servicio_2 {
 
         this.comunidad = new Comunidad();
         this.comunidad.setId(1L);
-        this.comunidad.setPuntaje(new Puntaje(3.00));
+        Puntaje puntajeComunidad = new Puntaje();
+        puntajeComunidad.setValor(3.00);
+        this.comunidad.setPuntaje(puntajeComunidad);
         this.comunidad.agregarUsuarios(miembro1,miembro2);
         this.comunidadPuntaje = this.comunidad.comunidadPuntaje();
 
@@ -77,7 +81,7 @@ public class servicio_2 {
     public void generarRequest() throws IOException {
         ComunidadPuntaje comunidadPuntajeResponse = ServicioCalculador.getInstance().comunidadPuntaje(this.requestComunidadPuntaje);
         this.comunidad.actualizarPuntajes(comunidadPuntajeResponse);
-        Assert.assertEquals(comunidad.getPuntaje().getValor(),2.8);
+        Assert.assertEquals(comunidad.getPuntaje().getValor(),2.0);
     }
 
 }

@@ -4,9 +4,6 @@ import ar.edu.utn.frba.dds.controllers.Controller;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.ranking.*;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Entidad;
-import ar.edu.utn.frba.dds.repositories.RepoDeComunidades;
-import ar.edu.utn.frba.dds.repositories.RepoDeEntidades;
-import ar.edu.utn.frba.dds.repositories.RepoEntidadControladora;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import java.util.HashMap;
@@ -14,28 +11,24 @@ import java.util.List;
 import java.util.Map;
 
 public class RankingController extends Controller {
-    private RepoDeComunidades repoDeComunidades;
-    private RepoDeEntidades repoDeEntidades;
+    private Ranking ranking;
     private GeneradorRanking generadorRanking;
-    private List<Ranking> rankings;
-    public RankingController (RepoDeComunidades repoDeComunidades, RepoDeEntidades repoDeEntidades) {
-        this.repoDeComunidades = repoDeComunidades;
-        this.repoDeEntidades = repoDeEntidades;
-        this.generadorRanking = new GeneradorRanking();
-        this.rankings.add(new RankingMayorCantidadIncidentes());
-        this.rankings.add(new RankingMayorPromedioCierre());
-        this.rankings.add(new RankingMayorGradoImpactoProblematicas());
-        for (Ranking ranking : rankings) {
-            this.generadorRanking.agregarRanking(ranking);
-        }
+    public RankingController(Ranking ranking) {
+        this.ranking = ranking;
+        this.generadorRanking = GeneradorRanking.getInstance();
     }
     public void ranking(Context context) {
+        if (miembroEnSesion(context) == null) {
+            context.redirect("/login");
+        }
         Map<String, Object> model = new HashMap<>();
+        List<Entidad> listaRanking = this.generadorRanking.getResultadosRanking().
+                                          getResultados().
+                                          get(ranking);
+        model.put("titulo", ranking.name());
         model.put
                 ("ranking",
-                 this.generadorRanking.
-                         generarRankings(this.repoDeComunidades.buscarTodos(), this.repoDeEntidades.buscarTodos()).
-                         get(this.rankings.get(0))
+                    listaRanking.subList(0, Integer.min(9, listaRanking.size())) // Recortar la lista hasta que solo hayan 10 elementos?
                 );
         context.render("ranking/ranking.hbs", model);
     }

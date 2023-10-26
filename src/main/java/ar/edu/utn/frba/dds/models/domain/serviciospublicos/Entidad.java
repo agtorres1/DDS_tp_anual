@@ -19,7 +19,7 @@ public class Entidad {
   @GeneratedValue
   private Long id;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "id_localizacion",referencedColumnName = "id")
   private Localizacion localizacion;
 
@@ -34,7 +34,7 @@ public class Entidad {
   @Column(name = "tipoEstablecimientos")
   private TipoEstablecimiento tipoEstablecimientos;
 
-  @OneToMany(mappedBy = "entidad")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "entidad")
   private List<Establecimiento> establecimientos;
 
   public Entidad(){

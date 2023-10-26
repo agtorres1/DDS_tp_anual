@@ -35,7 +35,7 @@ public abstract class MedioDeNotificacion {
   List<Notificacion> notificacionesRecientes;
 
   @OneToMany
-          @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
+  @JoinColumn(name = "medioDeNotificacion_id", referencedColumnName = "id")
   List<RangoHorario> rangosHorariosElegidos;
 
   public MedioDeNotificacion(){

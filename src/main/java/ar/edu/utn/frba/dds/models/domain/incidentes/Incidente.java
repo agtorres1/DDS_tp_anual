@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.models.domain.incidentes;
 
 import ar.edu.utn.frba.dds.models.builders.puntajes.IncidentePuntajeBuilder;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
@@ -11,13 +12,15 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "incidentes")
 
 @Setter @Getter
 public class Incidente {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "fechayHoraApertura",columnDefinition = "TIMESTAMP")
@@ -26,11 +29,11 @@ public class Incidente {
     @Column(name = "fechayHoraCierre",columnDefinition = "TIMESTAMP")
     private LocalDateTime fechaYHoraCierre;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_servicio", referencedColumnName = "id")
     private PrestacionDeServicio prestacionDeServicio;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_establecimiento", referencedColumnName = "id")
     private Establecimiento establecimiento;
 
@@ -40,14 +43,17 @@ public class Incidente {
     @Column(name = "estaAbierto")
     private Boolean abierto;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_abridor")
     private Miembro abridor;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_cerrador")
     private Miembro cerrador;
 
+    @ManyToOne
+    @JoinColumn(name = "comunidad_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Comunidad comunidad;
 
 
     public void meAbro(Miembro abridor,AperturaIncidente aperturaIncidente){
@@ -57,8 +63,6 @@ public class Incidente {
         setPrestacionDeServicio(aperturaIncidente.getPrestacionDeServicio());
         setFachaYHoraApertura(aperturaIncidente.getFechaYHoraApertura());
         setAbierto(true);
-
-
     }
     public void meCierro(Miembro cerrador){
         this.setFechaYHoraCierre(LocalDateTime.now());
@@ -85,5 +89,6 @@ public class Incidente {
                 conCerrador(this.getCerrador().getId()).conServicio(this.getPrestacionDeServicio().getId()).
                 conFechaApertura(this.getFachaYHoraApertura()).conFechaCierre(this.fechaYHoraCierre).construir();
     }
+
 
 }

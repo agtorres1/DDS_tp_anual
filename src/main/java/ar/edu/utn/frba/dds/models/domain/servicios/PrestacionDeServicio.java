@@ -17,7 +17,7 @@ public class PrestacionDeServicio {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Servicio servicio;
     @Column(name = "cantidadDisponible")
     private Integer cantidad;
@@ -25,7 +25,7 @@ public class PrestacionDeServicio {
     private Boolean funciona;
     @Column(name = "nombre")
     private String nombreServicio;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Miembro> interesados;
 
 

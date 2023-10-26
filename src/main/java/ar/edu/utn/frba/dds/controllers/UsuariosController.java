@@ -11,7 +11,7 @@ import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
 import ar.edu.utn.frba.dds.server.utils.ICrudViewsHandler;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
-import io.javalin.http.Context;
+import io.javalin.http.Context; //
 import io.javalin.http.UploadedFile;
 import io.javalin.util.FileUtil;
 import java.io.File;
@@ -20,8 +20,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import javax.persistence.EntityTransaction;
-import org.jetbrains.annotations.NotNull;
+import io.javalin.http.HttpStatus; //
+import javax.persistence.EntityTransaction; //
+import org.jetbrains.annotations.NotNull; //
 
 import java.util.*;
 
@@ -36,7 +37,9 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         this.repoDeRoles = repoDeRoles;
     }
 
-    public void login(Context context){context.render("Usuarios/login.hbs");}
+    public void login(Context context){
+        context.render("Usuarios/login.hbs");
+    }
 
     public void loginPost(Context context){
         String contrasenia = context.formParam("contrasenia");
@@ -44,9 +47,7 @@ public class UsuariosController implements WithSimplePersistenceUnit {
 
         Miembro miembro = this.repoMiembros.buscarPor("usuario", nombreDeUsuario);
 
-        boolean esMismaContrasenia = BCrypt.verifyer().verify(contrasenia.getBytes(), miembro.getContrasenia().getBytes()).verified;
-
-        if(!esMismaContrasenia || miembro == null)
+        if(miembro == null || !BCrypt.verifyer().verify(contrasenia.getBytes(), miembro.getContrasenia().getBytes()).verified)
         {
             Map<String, Object> modelo = new HashMap<>();
             modelo.put("error", "Nombre de usuario o contraseña incorrecta");

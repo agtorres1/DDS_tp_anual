@@ -3,8 +3,10 @@ package ar.edu.utn.frba.dds.models.domain.comunidades.intereses;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class InteresEnPrestacion 
 {
     private PrestacionDeServicio prestacion;
