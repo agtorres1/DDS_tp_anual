@@ -36,19 +36,20 @@
                                             <p>{{this.cantidadDeIncidentes}}</p>
                                         </span>
                                         <span class="box__line line__summary">
-                                            <a href="comunidades/{{this.id}}/incidentes">Ver incidentes</a>
+                                            <a href="/comunidades/{{this.id}}/incidentes">Ver incidentes</a>
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         {{/each}}
 
-                        <form class="container__boton" action="/comunidades/fusionar" method="post">
+                        <form class="container button-along container__boton" action="/comunidades/fusionar" method="post">
                             {{#each this}}
-                                <input type="hidden" name="comunidad{{this.id}}" value="{{this.id}}">
+                                <input type="hidden" name="comunidad{{@index}}" value="{{this.id}}">
                             {{/each}}
-                            <button type="submit" class="btn btn-danger boton">Fusionar</button>
+                            <button type="submit" class="btn btn-danger">Fusionar</button>
                         </form>
+
 
                     </div>
 
@@ -56,8 +57,6 @@
                 {{/each}}
             </section>
 
-
-        
         {{else}}
             <div class="prod__box advice__box">
                 <picture class="item__box item__img">

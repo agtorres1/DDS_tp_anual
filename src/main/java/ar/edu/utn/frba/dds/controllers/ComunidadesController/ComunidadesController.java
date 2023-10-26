@@ -80,14 +80,15 @@ public class ComunidadesController extends Controller {
     }
 
     public void fusion(Context context) throws IOException {
-        if(!Objects.equals(context.formParam("comunidad1"), null) && !Objects.equals(context.formParam("comunidad2"), null)) {
-            Comunidad comunidad1 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad1")));
-            Comunidad comunidad2 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad2")));
+        if(!Objects.equals(context.formParam("comunidad0"), null) && !Objects.equals(context.formParam("comunidad1"), null)) {
+            Comunidad comunidad1 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad0")));
+            Comunidad comunidad2 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad1")));
             RequestComunidadesFusionables requestComunidadesFusionables = new RequestComunidadesFusionables();
             requestComunidadesFusionables.setComunidad1(comunidad1.comunidadFusionable());
             requestComunidadesFusionables.setComunidad2(comunidad2.comunidadFusionable());
             ResponseComunidadFusionada responseComunidadesFusionadas = ServicioFusionador.getInstance().responseComunidadesFusionadas(requestComunidadesFusionables);
             Comunidad comunidadFusionada = asignarAtributos(comunidad1,comunidad2,responseComunidadesFusionadas);
+            System.out.println(comunidadFusionada);
             this.repoDeComunidades.eliminar(comunidad1);
             this.repoDeComunidades.eliminar(comunidad2);
             this.repoDeComunidades.agregar(comunidadFusionada);

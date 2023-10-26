@@ -70,6 +70,16 @@
     padding: 1rem;
 }
 
+
+.advice__box{
+    display: flex;
+    padding: 3rem;
+    gap: 3rem;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
 .item__img img{
     height: 15rem;
     width: 18rem;

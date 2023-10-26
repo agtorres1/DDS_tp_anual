@@ -40,10 +40,7 @@ public class Router {
             post("/cargar/organismosDeControl", ((OrganismoDeControlController) FactoryController.controller("OrganismosDeControl"))::cargarPost, TipoRol.ENTIDAD, TipoRol.ADMINISTRADOR);
             get("/cargar/entidadesControladoras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargar, TipoRol.ENTIDAD, TipoRol.ADMINISTRADOR);
             post("/cargar/entidadesControladoras", ((EntidadControladoraController) FactoryController.controller("EntidadesControladoras"))::cargarPost, TipoRol.ENTIDAD, TipoRol.ADMINISTRADOR);
-            get("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::index);
-            post("comunidades", ((ComunidadesController) FactoryController.controller("Comunidades"))::join);
-            get("comunidades/analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);
-            post("comunidades/fusionar", ((ComunidadesController) FactoryController.controller("Comunidades"))::fusion);
+
 
             get("/ranking/cantIncidentes", ((RankingController) FactoryController.controller("Ranking/cantIncidentes"))::ranking);
             get("/ranking/gradoImpacto", ((RankingController) FactoryController.controller("Ranking/gradoImpacto"))::ranking);
@@ -56,10 +53,14 @@ public class Router {
             get("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
             post("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
 
-            path("comunidades/{idComunidad}/incidentes", () -> {
-                get(((IncidentesController) FactoryController.controller("Incidentes"))::index);
-                get("{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
-                post("{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::close);
+            path("comunidades", () -> {
+                get(((ComunidadesController) FactoryController.controller("Comunidades"))::index);
+                post(((ComunidadesController) FactoryController.controller("Comunidades"))::join);
+                get("analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);
+                get("{idComunidad}/incidentes",((IncidentesController) FactoryController.controller("Incidentes"))::index);
+                get("{idComunidad}/incidentes/{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
+                post("fusionar", ((ComunidadesController) FactoryController.controller("Comunidades"))::fusion);
+                post("{idComunidad}/incidentes/{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::close);
 
             });
             path("incidentes", () -> {
