@@ -9,6 +9,7 @@ import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -32,7 +33,7 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
         entityManager().remove(incidente);
         tx.commit();
     }
-    public List<Incidente> obtenerIncidentesPorLocalidadYProvincia(String localidad, String provincia) {
+    public List<IncidenteResumido> obtenerIncidentesPorLocalidadYProvincia(String localidad, String provincia) {
         TypedQuery<Incidente> query = entityManager().createQuery(
                 "SELECT i FROM Incidente i " +
                         "JOIN i.establecimiento e " +
@@ -42,14 +43,29 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
                         "JOIN i.abridor a " +
                         "WHERE m.nombre = :localidad " +
                         "AND p.nombre = :provincia " +
-                        " AND i.abierto" +
+                        " AND i.abierto = true" +
                         " ORDER BY a.id , i.fachaYHoraApertura", Incidente.class);
 
         query.setParameter("localidad", localidad);
         query.setParameter("provincia", provincia);
 
-        return query.getResultList();
+
+
+
+
+//        List<Incidente> incidentes = new ArrayList<>();
+//
+//        incidentes.add(incidente);
+
+        return this.agruparIncidentes(query.getResultList());
+
+
+
+
+       // return this.agruparIncidentes(incidentes);
     }
+
+
     public void modificar(Incidente incidente){
         EntityTransaction tx = entityManager().getTransaction();
         tx.begin();

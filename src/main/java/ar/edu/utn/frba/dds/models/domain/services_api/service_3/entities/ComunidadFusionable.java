@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.persistence.Column;
 import java.util.List;
 
 public class ComunidadFusionable {
@@ -22,6 +23,6 @@ public class ComunidadFusionable {
     @SerializedName("propuestasAnteriores")
     public List<PropuestaAnterior> propuestasAnteriores;
 
-    @SerializedName("gradoConfianza")
+    @Column(name = "Nivel_del_grado")
     public double gradoConfianza;
 }

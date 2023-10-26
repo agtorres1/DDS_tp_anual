@@ -9,6 +9,7 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 
+import ar.edu.utn.frba.dds.models.domain.incidentes.IncidenteResumido;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.ranking.GeneradorRanking;
 import ar.edu.utn.frba.dds.models.domain.ranking.RankingMayorCantidadIncidentes;
@@ -45,7 +46,14 @@ public class MainExample implements WithSimplePersistenceUnit {
         new MainExample().start();
     }
 
-  public void somosDeChaco(RepoDeLocalizaciones repoDeLocalizaciones, Miembro... miembros) throws IOException {
+    private void start2() throws TipoEstablecimientoInvalidoExcepcion, IOException {
+        RepoDeIncidentes repoDeIncidentes = new RepoDeIncidentes();
+
+        List<IncidenteResumido> incidente = repoDeIncidentes.obtenerIncidentesPorLocalidadYProvincia("Floresta", "CABA");
+        System.out.println(incidente.get(0).getComunidades());
+    }
+
+    public void somosDeChaco(RepoDeLocalizaciones repoDeLocalizaciones, Miembro... miembros) throws IOException {
     for(Miembro miembro : miembros){
       Localizacion localizacion = new Localizacion();
       localizacion.setProvincia("Chaco");
@@ -61,8 +69,12 @@ public class MainExample implements WithSimplePersistenceUnit {
     RepoDeMediosDeNotificacion repoDeMediosDeNotificacion = new RepoDeMediosDeNotificacion();
     RepoDeEntidades repoDeEntidades = new RepoDeEntidades();
     RepoDeComunidades repoDeComunidades = new RepoDeComunidades();
+<<<<<<< HEAD
     RepoDeMiembros repoDeMiembros = new RepoDeMiembros();
 
+=======
+    RepoDeMiembros miembros = new RepoDeMiembros();
+>>>>>>> MejoraDePantallas
 
     Comunidad comunidad1 = new Comunidad();
     Puntaje puntaje1 = new Puntaje();
@@ -96,6 +108,11 @@ public class MainExample implements WithSimplePersistenceUnit {
     miembro1.setUsuario("Pepe");
     Whatsapp wpp1 = new Whatsapp();
     wpp1.setTelefono("1140253180");
+<<<<<<< HEAD
+=======
+    System.out.println("Inserto medio de notificación.");
+    repoDeMediosDeNotificacion.agregar(wpp1);
+>>>>>>> MejoraDePantallas
     repoDeMediosDeNotificacion.agregar(wpp1);
     miembro1.setMedioDeNotificacion(wpp1);
     Puntaje puntajeMiembro1 = new Puntaje();
@@ -105,16 +122,27 @@ public class MainExample implements WithSimplePersistenceUnit {
     Miembro miembro2 = new Miembro();
     miembro2.setUsuario("Fede");
     miembro2.setContrasenia("12345678");
+<<<<<<< HEAD
+=======
+//    miembros.agregar(miembro2);
+>>>>>>> MejoraDePantallas
     Whatsapp wpp2 = new Whatsapp();
     wpp2.setTelefono("1140253180");
     miembro2.setMedioDeNotificacion(wpp2);
     repoDeMediosDeNotificacion.agregar(wpp2);
+<<<<<<< HEAD
     Puntaje puntajeMiembro2 = new Puntaje();
     puntajeMiembro2.setValor(5.00);
     miembro2.setPuntaje(puntajeMiembro2);
 
     Miembro miembro3 = new Miembro();
     miembro3.setUsuario("Agus");
+=======
+
+    Miembro miembro3 = new Miembro();
+    miembro3.setUsuario("Agus");
+//    miembros.agregar(miembro3);
+>>>>>>> MejoraDePantallas
     Whatsapp wpp3 = new Whatsapp();
     wpp3.setTelefono("1140253180");
     repoDeMediosDeNotificacion.agregar(wpp3);
@@ -125,6 +153,10 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     Miembro miembro4 = new Miembro();
     miembro4.setUsuario("Facu");
+<<<<<<< HEAD
+=======
+//    miembros.agregar(miembro4);
+>>>>>>> MejoraDePantallas
     Whatsapp wpp4 = new Whatsapp();
     wpp4.setTelefono("1140253180");
     repoDeMediosDeNotificacion.agregar(wpp4);
@@ -149,16 +181,34 @@ public class MainExample implements WithSimplePersistenceUnit {
     comunidad4.agregarUsuarios(miembro1,miembro2);
     Localizacion localizacion = new Localizacion();
     localizacion.setProvincia("Chaco");
+<<<<<<< HEAD
     repoDeProvincias.agregar(localizacion.getProvincia());
     repoDeLocalizaciones.agregar(localizacion);
+=======
+    System.out.println("Inserto provincia.");
+    repoDeProvincias.agregar(localizacion.getProvincia());
+    System.out.println("Inserto localización.");
+    repoDeLocalizaciones.agregar(localizacion);
+    somosDeChaco(repoDeLocalizaciones, miembro2, miembro3, miembro4, miembro5);
+>>>>>>> MejoraDePantallas
     miembro1.setLocalizacion(localizacion);
     somosDeChaco(repoDeLocalizaciones, miembro2, miembro3, miembro4, miembro5);
 
+<<<<<<< HEAD
     repoDeMiembros.agregar(miembro1);
     repoDeMiembros.agregar(miembro2);
     repoDeMiembros.agregar(miembro3);
     repoDeMiembros.agregar(miembro4);
     repoDeMiembros.agregar(miembro5);
+=======
+    System.out.println("Inserto miembro.");
+
+    miembros.agregar(miembro1);
+    miembros.agregar(miembro2);
+    miembros.agregar(miembro3);
+    miembros.agregar(miembro4);
+    miembros.agregar(miembro5);
+>>>>>>> MejoraDePantallas
 
 
     RepoDeServicios repoDeServicios = new RepoDeServicios();
@@ -167,13 +217,13 @@ public class MainExample implements WithSimplePersistenceUnit {
     ((Banio) banio).setDiscapacitado(true);
     ((Banio) banio).setGenero(Genero.UNISEX);
     System.out.println("Inserto baño.");
-    //repoDeServicios.agregar(banio);
+    repoDeServicios.agregar(banio);
 
     Servicio escalador = new Escalador();
     ((Escalador) escalador).setOrigen(TipoTraslado.CALLE);
     ((Escalador) escalador).setOrigen(TipoTraslado.BARRERA);
     System.out.println("Inserto escalador.");
-    //repoDeServicios.agregar(escalador);
+    repoDeServicios.agregar(escalador);
 
     PrestacionDeServicio prestacionBanio = new PrestacionDeServicio();
     prestacionBanio.setNombreServicio("Baño unisex");
@@ -181,7 +231,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     prestacionBanio.setFunciona(false);
     prestacionBanio.setServicio(banio);
     System.out.println("Inserto prestación baño.");
-    //repoDePrestacionDeServicio.agregar(prestacionBanio);
+    repoDePrestacionDeServicio.agregar(prestacionBanio);
 
     PrestacionDeServicio prestacionEscalador = new PrestacionDeServicio();
     prestacionEscalador.setNombreServicio("Escalera mecánica");
@@ -189,17 +239,17 @@ public class MainExample implements WithSimplePersistenceUnit {
     prestacionEscalador.setFunciona(true);
     prestacionEscalador.setServicio(escalador);
     System.out.println("Inserto prestación escalador.");
-    //repoDePrestacionDeServicio.agregar(prestacionEscalador);
+    repoDePrestacionDeServicio.agregar(prestacionEscalador);
 
     Localizacion localizacionEntidad = new Localizacion();
     localizacionEntidad.setProvincia("Chaco");
     System.out.println("Inserto localización de entidad.");
-    //repoDeLocalizaciones.agregar(localizacionEntidad);
+    repoDeLocalizaciones.agregar(localizacionEntidad);
 
     Localizacion localizacionEstablecimiento = new Localizacion();
     localizacionEstablecimiento.setProvincia("Chaco");
     System.out.println("Inserto localización de establecimiento.");
-    //repoDeLocalizaciones.agregar(localizacionEstablecimiento);
+    repoDeLocalizaciones.agregar(localizacionEstablecimiento);
 
     Ubicacion ubicacion = new Ubicacion();
     ubicacion.setLatitud(1.00);
@@ -212,7 +262,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     establecimiento.setCentroide(ubicacion);
     establecimiento.setTipoEstablecimiento(TipoEstablecimiento.ESTACION);
     System.out.println("Inserto establecimiento.");
-    //repoDeEstablecimientos.agregar(establecimiento);
+    repoDeEstablecimientos.agregar(establecimiento);
 
     Entidad entidad = new Entidad();
     entidad.setNombre("Tren Sarmiento");
@@ -222,7 +272,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     entidad.agregarEstablecimientos(establecimiento);
     establecimiento.setEntidad(entidad);
     System.out.println("Inserto entidad.");
-    //repoDeEntidades.agregar(entidad);
+    repoDeEntidades.agregar(entidad);
 
     AperturaIncidente aperturaIncidente = new AperturaIncidente();
     aperturaIncidente.setObservaciones("El baño está tapadisimo :c");
@@ -236,8 +286,11 @@ public class MainExample implements WithSimplePersistenceUnit {
     System.out.println("Inserto comunidad.");
     repoDeComunidades.agregar(comunidad1);
     repoDeComunidades.agregar(comunidad2);
+<<<<<<< HEAD
     repoDeComunidades.agregar(comunidad3);
     repoDeComunidades.agregar(comunidad4);
+=======
+>>>>>>> MejoraDePantallas
 
     GeneradorRanking generadorRanking = GeneradorRanking.getInstance();
     generadorRanking.agregarRanking(RankingMayorCantidadIncidentes.getInstance());
@@ -248,6 +301,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     App.main(new String[]{""});
   }
 }
+
 
 
 
