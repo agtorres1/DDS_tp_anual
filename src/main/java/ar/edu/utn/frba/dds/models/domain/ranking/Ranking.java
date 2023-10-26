@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface Ranking {
     List<Entidad> generarRanking(List<Comunidad> comunidades, List<Entidad> entidades);
+    String name();
 }

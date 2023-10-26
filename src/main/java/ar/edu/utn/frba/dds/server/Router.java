@@ -26,7 +26,8 @@ public class Router {
 
         Server.app().routes(() -> {
 
-            get("/", (ctx) -> ctx.render("base.hbs"));
+            get("/", (ctx) -> ctx.redirect("/login"));
+            //get("/", (ctx) -> ctx.render("base.hbs"));
             /*get("/",((IncidentesController) FactoryController.controller("Incidentes"))::revisarIncidentes);*/
             post("/",((IncidentesController) FactoryController.controller("Incidentes"))::setearMapa );
             get("/login", ((UsuariosController) FactoryController.controller("Usuarios"))::login);
@@ -44,7 +45,9 @@ public class Router {
             get("comunidades/analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);
             post("comunidades/fusionar", ((ComunidadesController) FactoryController.controller("Comunidades"))::fusion);
 
-            get("/ranking", ((RankingController) FactoryController.controller("Rankings"))::ranking);
+            get("/ranking/cantIncidentes", ((RankingController) FactoryController.controller("Ranking/cantIncidentes"))::ranking);
+            get("/ranking/gradoImpacto", ((RankingController) FactoryController.controller("Ranking/gradoImpacto"))::ranking);
+            get("/ranking/promCierre", ((RankingController) FactoryController.controller("Ranking/promCierre"))::ranking);
 
             get("/usuario/{id}",((UsuariosController) FactoryController.controller("Usuarios")) :: show);
             get("/usuario/{id}/editar",((UsuariosController) FactoryController.controller("Usuarios")) :: edit);

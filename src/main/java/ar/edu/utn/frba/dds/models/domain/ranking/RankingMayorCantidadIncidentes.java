@@ -29,6 +29,11 @@ public class RankingMayorCantidadIncidentes implements Ranking {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public String name() {
+        return "Cantidad de Incidentes";
+    }
+
     private int obtenerCantidadIncidentes(Entidad entidad, List<Comunidad> comunidades, LocalDateTime fechaDesde, LocalDateTime fechaHasta){
         List<Incidente> incidentesEntidad = filtrarIncidentes(entidad,comunidades,fechaDesde,fechaHasta);
         return incidentesEntidad.size();

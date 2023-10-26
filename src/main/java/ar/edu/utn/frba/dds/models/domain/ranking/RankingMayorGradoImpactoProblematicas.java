@@ -33,6 +33,11 @@ public class RankingMayorGradoImpactoProblematicas implements Ranking{
         return resultados;
     }
 
+    @Override
+    public String name() {
+        return "Grado de Impacto de Problematicas";
+    }
+
     private Double calcularPromedioImpacto(Entidad entidad, List<Comunidad> comunidades){
         List<Incidente> incidentesEntidad = comunidades.stream()
                 .flatMap(comunidad -> comunidad.getIncidentes().stream())
