@@ -49,7 +49,7 @@ public class UsuariosController implements WithSimplePersistenceUnit, ICrudViews
         context.sessionAttribute("usuario_id", miembro.getId());
         context.sessionAttribute("tipo_rol", miembro.getRol().getTipo().toString());
 
-        context.redirect("/");
+        context.redirect("/comunidades");
     }
 
     public void register(Context context){context.render("Usuarios/register.hbs");}

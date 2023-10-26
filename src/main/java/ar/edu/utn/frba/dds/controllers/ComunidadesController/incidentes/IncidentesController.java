@@ -5,6 +5,7 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
+import ar.edu.utn.frba.dds.models.domain.incidentes.IncidenteResumido;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.repositories.*;
@@ -20,10 +21,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class IncidentesController {
     private RepoDeIncidentes repoDeIncidentes;
@@ -62,11 +60,16 @@ public class IncidentesController {
     }
 
     public void revisarIncidentes(Context context) {
-        List<Incidente> incidentes = this.repoDeIncidentes.buscarTodos();
-        Map<String, Object> model = new HashMap<>();
-        model.put("incidente", incidentes);
-        context.render("incidentes/revisionDeIncidentes.hbs", model);
+
+            List<Incidente> incidentes = this.repoDeIncidentes.buscarTodos();
+            Map<String, Object> model = new HashMap<>();
+            model.put("incidente", incidentes);
+            context.render("incidentes/revisionDeIncidentes.hbs", model);
+
+
     }
+
+    
 
     public void setearMapa(Context ctx) throws JsonProcessingException {
 
@@ -92,11 +95,38 @@ public class IncidentesController {
 
 
         System.out.println("Localizacion recibida: -Localidad: " + localizacionRecibida.getLocalidad() + " -Provincia: " + localizacionRecibida.getProvincia());
+
+        List<IncidenteResumido> incidentesResumidos = this.repoDeIncidentes.obtenerIncidentesPorLocalidadYProvincia(
+                        localizacionRecibida.localidad,localizacionRecibida.provincia);
+        /*Test*/
+
+        IncidenteResumido incidenteResumido = new IncidenteResumido();
+
+        incidenteResumido.setObservaciones("No funciona, nunca vas a programar en tu vida");
+        List<Comunidad> comunidades = new ArrayList<>();
+        comunidades.add(this.repoDeComunidades.buscarPorId(1L));
+        comunidades.add(this.repoDeComunidades.buscarPorId(2L));
+        incidenteResumido.setComunidades(comunidades);
+        incidenteResumido.setEstablecimiento(this.repoDeEstablecimientos.buscarPorId(21L));
+
+        System.out.println(incidenteResumido);
+
+        incidentesResumidos.add(incidenteResumido);
+
+
+
+        //--------------------------
+
+
+
         // Responde al cliente
         ctx.json(new HashMap<String, String>() {
             {
                 put("mensaje", "Ubicación recibida correctamente");
             }});
+
+
+
 
     }
 
@@ -269,6 +299,32 @@ public class IncidentesController {
             aperturaIncidente.setObservaciones(context.formParam("observaciones"));
         }
 
+
+    }
+
+    public void test(Context context) {
+        List<IncidenteResumido> incidentesResumidos = this.repoDeIncidentes.obtenerIncidentesPorLocalidadYProvincia(
+                "Floresta","CABA");
+        /*Test*/
+
+        IncidenteResumido incidenteResumido = new IncidenteResumido();
+
+        incidenteResumido.setObservaciones("No funciona, nunca vas a programar en tu vida");
+        List<Comunidad> comunidades = new ArrayList<>();
+        comunidades.add(this.repoDeComunidades.buscarPorId(1L));
+        comunidades.add(this.repoDeComunidades.buscarPorId(2L));
+        incidenteResumido.setComunidades(comunidades);
+        incidenteResumido.setEstablecimiento(this.repoDeEstablecimientos.buscarPorId(21L));
+
+        System.out.println(incidenteResumido);
+
+        incidentesResumidos.add(incidenteResumido);
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("incidentes", incidentesResumidos);
+
+        System.out.println(incidentesResumidos);
+        context.render("incidentes/pruebaIncidenteResumido.hbs", model);
 
     }
 }

@@ -63,9 +63,6 @@ crossorigin="anonymous"
 
 src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
 
-document.getElementById("obtenerUbicacion").addEventListener("click", function() {
-    obtenerUbicacion();
-});
 
 let map, infoWindow;
 
@@ -101,7 +98,7 @@ function initMap() {
                 },
                 () => {
                     handleLocationError(true, infoWindow, map.getCenter());
-                }
+                },
             );
         } else {
             // Browser doesn't support Geolocation
@@ -129,7 +126,7 @@ function enviarUbicacion(latitud, longitud) {
     };
     console.log(data);
 
-    fetch('/', {
+    fetch('/revisarIncidentes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
