@@ -13,13 +13,9 @@
             <property name="hibernate.archive.autodetection" value="class"/>
 
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-<<<<<<< HEAD
             <!--<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/dds_tpa_grupo4" />
             <property name="hibernate.connection.password" value="Biancaduarte777"/>-->
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/dds_tpa_grupo4" />
-=======
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp_dds_2023" />
->>>>>>> MejoraDePantallas
             <property name="hibernate.connection.username" value="root" />
             <property name="hibernate.connection.password" value=""/>
             <!--<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>

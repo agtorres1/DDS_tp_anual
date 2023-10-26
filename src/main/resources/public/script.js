@@ -63,7 +63,6 @@ crossorigin="anonymous"
 
 src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
 
-
 let map, infoWindow;
 
 function initMap() {
