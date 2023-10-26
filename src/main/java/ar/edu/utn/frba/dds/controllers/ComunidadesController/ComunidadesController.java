@@ -37,6 +37,9 @@ public class ComunidadesController extends Controller {
     }
 
     public void index(Context context){
+        if (miembroEnSesion(context) == null) {
+            context.redirect("/login");
+        }
         Map<String, Object> model = new HashMap<>();
         Miembro miembroActual = miembroEnSesion(context);
         List<Comunidad> comunidades = this.repoDeComunidades.buscarRestantesA(miembroActual);

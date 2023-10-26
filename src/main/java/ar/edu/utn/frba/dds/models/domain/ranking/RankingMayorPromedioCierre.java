@@ -34,6 +34,11 @@ public class RankingMayorPromedioCierre implements Ranking{
         return resultados;
     }
 
+    @Override
+    public String name() {
+        return "Promedio de Cierre de Incidentes";
+    }
+
     private Duration obtenerDuracionPromedioCierre(Entidad entidad, List<Comunidad> comunidades){
         LocalDateTime fechaHasta = LocalDateTime.now();
         LocalDateTime fechaDesde = fechaHasta.minusDays(7);

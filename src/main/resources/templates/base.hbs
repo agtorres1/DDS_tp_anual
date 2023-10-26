@@ -91,14 +91,16 @@
             <li class="item">
                 <div href="#" class="nav_link submenu_item">
                         <span class="navlink_icon">
-                <i class="bx bx-star-alt"></i>
+                <i class="bx bxs-star"></i>
               </span>
                     <span class="navlink">Rankings</span>
                     <i class="bx bx-chevron-right arrow-left"></i>
                 </div>
 
                 <ul class="menu_items submenu">
-                    <a href="/ranking" class="nav_link sublink">Mayor Cant. Incidentes</a>
+                    <a href="/ranking/cantIncidentes" class="nav_link sublink">Mayor Cant. Incidentes</a>
+                    <a href="/ranking/gradoImpacto" class="nav_link sublink">Mayor Grado de Impacto</a>
+                    <a href="/ranking/promCierre" class="nav_link sublink">Mayor Promedio de Cierre</a>
                 </ul>
             </li>
             <li class="item">
@@ -133,14 +135,11 @@
 
 
 
-
-<div id="content">
-    <div class="container mt-4">
-        {{#block "contenido"}}
-        {{/block}}
-    </div>
-    {{!-- <div id="map"></div> --}}
+<div id="content" class="container mx-auto mt-3">
+    {{#block "contenido"}}
+    {{/block}}
 </div>
+    {{!-- <div id="map"></div> --}}
 
 </div>
 
@@ -151,9 +150,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
-<script src="/js/generales.js"></script>
 <script src="/js/comunidades.js"></script>
-<script src="/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/alertas.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
@@ -173,6 +170,6 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
             defer
     ></script>
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 
 </html>

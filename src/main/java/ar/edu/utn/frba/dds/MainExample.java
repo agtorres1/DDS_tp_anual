@@ -243,13 +243,6 @@ public class MainExample implements WithSimplePersistenceUnit {
     System.out.println(generadorRanking.getResultadosRanking().getResultados().get(RankingMayorCantidadIncidentes.getInstance()).get(0).getNombre());
     App.main(new String[]{""});
   }
-
-
-
-
-
-
-
 }
 
 

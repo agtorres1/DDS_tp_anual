@@ -1,24 +1,24 @@
 {{#partial "contenido" }}
 <div class="container-sm mt-3">
-    <div class="card bg-dark text-white mx-auto p-3" style="border-radius: 1rem; max-width:600px;">
+    <div class="card mx-auto p-3" style="border-radius: 1rem; max-width:600px;">
         <div class="card-body">
-        <h1 class="text-center mb-3">Ranking</h1>
+        <h1 class="text-center mb-3">{{titulo}}</h1>
         <hr/>
         <table>
             <thead>
                 <tr>
                     <th>Puesto</th>
-                    <th>Entidad</th>
+                    <th style="text-align: right; width: 100%">Entidad</th>
                 </tr>
             </thead>
-            {{#each ranking}}
             <tbody>
+            {{#each ranking}}
                 <tr>
                     <td>{{inc @index}}</td>
-                    <td>{{this.nombre}}</td>
+                    <td style="text-align: right; width: 100%">{{this.nombre}}</td>
                 </tr>
-            </tbody>
             {{/each}}
+            </tbody>
         </table>
         </div>
     </div>
