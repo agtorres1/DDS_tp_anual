@@ -239,13 +239,8 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         UploadedFile fotoFile = context.uploadedFile("foto");
         if (fotoFile != null) {
             String fotoFileName = fotoFile.filename();
-<<<<<<< HEAD
             String rutaDestino = "src/main/resources/public/upload/";
             String rutaTotal = "upload/" + fotoFileName;
-=======
-            String rutaDestino = "/update";
-            String rutaTotal = "/upload/" + fotoFileName;
->>>>>>> b71c6cea4b3a7f785115edecb4e076d38fcb10ad
 
             try (InputStream fotoInputStream = fotoFile.content()) {
                 File destino = new File(rutaDestino, fotoFileName);
