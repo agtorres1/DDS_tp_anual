@@ -38,7 +38,6 @@ import org.jetbrains.annotations.NotNull;
 public class MainExample implements WithSimplePersistenceUnit {
 
     public static void main(String[] args) throws IOException, TipoEstablecimientoInvalidoExcepcion {
-
         new MainExample().start();
     }
 
@@ -56,10 +55,9 @@ public class MainExample implements WithSimplePersistenceUnit {
     RepoDeProvincias repoDeProvincias = new RepoDeProvincias();
     RepoDeLocalizaciones repoDeLocalizaciones = new RepoDeLocalizaciones();
     RepoDeMediosDeNotificacion repoDeMediosDeNotificacion = new RepoDeMediosDeNotificacion();
-    RepoDeEstablecimientos repoDeEstablecimientos = new RepoDeEstablecimientos();
     RepoDeEntidades repoDeEntidades = new RepoDeEntidades();
-    RepoDePrestacionDeServicio repoDePrestacionDeServicio = new RepoDePrestacionDeServicio();
     RepoDeComunidades repoDeComunidades = new RepoDeComunidades();
+    RepoDeMiembros repoDeMiembros = new RepoDeMiembros();
 
 
     Comunidad comunidad1 = new Comunidad();
@@ -76,68 +74,87 @@ public class MainExample implements WithSimplePersistenceUnit {
     comunidad2.setDescripcion("Que linda se ve mi comunidad");
     comunidad2.setNombre("No videntes");
 
+    Comunidad comunidad3 = new Comunidad();
+    Puntaje puntaje3 = new Puntaje();
+    puntaje3.setValor(5.00);
+    comunidad3.setPuntaje(puntaje3);
+    comunidad3.setDescripcion("Nunca vimos una comunidad tan buena");
+    comunidad3.setNombre("No videntes la secuela");
+
+    Comunidad comunidad4 = new Comunidad();
+    Puntaje puntaje4 = new Puntaje();
+    puntaje4.setValor(2.00);
+    comunidad4.setPuntaje(puntaje4);
+    comunidad4.setDescripcion("Profe aprobanos, por favor");
+    comunidad4.setNombre("Con bastones");
+
     Miembro miembro1 = new Miembro();
     miembro1.setUsuario("Pepe");
     Whatsapp wpp1 = new Whatsapp();
     wpp1.setTelefono("1140253180");
-    System.out.println("Inserto medio de notificación.");
-    //repoDeMediosDeNotificacion.agregar(wpp1);
     repoDeMediosDeNotificacion.agregar(wpp1);
     miembro1.setMedioDeNotificacion(wpp1);
+    Puntaje puntajeMiembro1 = new Puntaje();
+    puntajeMiembro1.setValor(5.00);
+    miembro1.setPuntaje(puntajeMiembro1);
 
     Miembro miembro2 = new Miembro();
     miembro2.setUsuario("Fede");
     miembro2.setContrasenia("12345678");
-    //miembros.agregar(miembro2);
     Whatsapp wpp2 = new Whatsapp();
     wpp2.setTelefono("1140253180");
     miembro2.setMedioDeNotificacion(wpp2);
-    //repoDeMediosDeNotificacion.agregar(wpp2);
+    repoDeMediosDeNotificacion.agregar(wpp2);
+    Puntaje puntajeMiembro2 = new Puntaje();
+    puntajeMiembro2.setValor(5.00);
+    miembro2.setPuntaje(puntajeMiembro2);
 
     Miembro miembro3 = new Miembro();
     miembro3.setUsuario("Agus");
-    //miembros.agregar(miembro3);
     Whatsapp wpp3 = new Whatsapp();
     wpp3.setTelefono("1140253180");
-    //repoDeMediosDeNotificacion.agregar(wpp3);
+    repoDeMediosDeNotificacion.agregar(wpp3);
     miembro3.setMedioDeNotificacion(wpp3);
+    Puntaje puntajeMiembro3 = new Puntaje();
+    puntajeMiembro3.setValor(5.00);
+    miembro3.setPuntaje(puntajeMiembro3);
 
     Miembro miembro4 = new Miembro();
     miembro4.setUsuario("Facu");
-    //miembros.agregar(miembro4);
     Whatsapp wpp4 = new Whatsapp();
     wpp4.setTelefono("1140253180");
-    //repoDeMediosDeNotificacion.agregar(wpp4);
+    repoDeMediosDeNotificacion.agregar(wpp4);
     miembro4.setMedioDeNotificacion(wpp4);
+    Puntaje puntajeMiembro4 = new Puntaje();
+    puntajeMiembro4.setValor(5.00);
+    miembro4.setPuntaje(puntajeMiembro4);
 
     Miembro miembro5 = new Miembro();
     miembro5.setUsuario("Tomi");
-    //miembros.agregar(miembro5);
     Whatsapp wpp5 = new Whatsapp();
     wpp5.setTelefono("1140253180");
-    //repoDeMediosDeNotificacion.agregar(wpp5);
+    repoDeMediosDeNotificacion.agregar(wpp5);
     miembro5.setMedioDeNotificacion(wpp5);
+    Puntaje puntajeMiembro5 = new Puntaje();
+    puntajeMiembro5.setValor(5.00);
+    miembro5.setPuntaje(puntajeMiembro5);
 
     comunidad1.agregarUsuarios(miembro1, miembro2, miembro3, miembro4);
     comunidad2.agregarUsuarios(miembro1,miembro2,miembro3);
+    comunidad3.agregarUsuarios(miembro1,miembro2);
+    comunidad4.agregarUsuarios(miembro1,miembro2);
     Localizacion localizacion = new Localizacion();
     localizacion.setProvincia("Chaco");
-    System.out.println("Inserto provincia.");
-    //repoDeProvincias.agregar(localizacion.getProvincia());
-    System.out.println("Inserto localización.");
-    //repoDeLocalizaciones.agregar(localizacion);
-    //somosDeChaco(repoDeLocalizaciones, miembro2, miembro3, miembro4, miembro5);
+    repoDeProvincias.agregar(localizacion.getProvincia());
+    repoDeLocalizaciones.agregar(localizacion);
     miembro1.setLocalizacion(localizacion);
+    somosDeChaco(repoDeLocalizaciones, miembro2, miembro3, miembro4, miembro5);
 
-    System.out.println("Inserto miembro.");
-
-    /*
-    miembros.agregar(miembro1);
-    miembros.agregar(miembro2);
-    miembros.agregar(miembro3);
-    miembros.agregar(miembro4);
-    miembros.agregar(miembro5);
-     */
+    repoDeMiembros.agregar(miembro1);
+    repoDeMiembros.agregar(miembro2);
+    repoDeMiembros.agregar(miembro3);
+    repoDeMiembros.agregar(miembro4);
+    repoDeMiembros.agregar(miembro5);
 
 
     RepoDeServicios repoDeServicios = new RepoDeServicios();
@@ -210,11 +227,13 @@ public class MainExample implements WithSimplePersistenceUnit {
 
     List<Incidente> incidentes = miembro1.abrirIncidente(aperturaIncidente, new Notificador());
     RepoDeIncidentes repoDeIncidentes = new RepoDeIncidentes();
-    //incidentes.forEach(repoDeIncidentes::agregar);
+    incidentes.forEach(repoDeIncidentes::agregar);
 
     System.out.println("Inserto comunidad.");
-    //repoDeComunidades.agregar(comunidad1);
-    //repoDeComunidades.agregar(comunidad2);
+    repoDeComunidades.agregar(comunidad1);
+    repoDeComunidades.agregar(comunidad2);
+    repoDeComunidades.agregar(comunidad3);
+    repoDeComunidades.agregar(comunidad4);
 
     GeneradorRanking generadorRanking = GeneradorRanking.getInstance();
     generadorRanking.agregarRanking(RankingMayorCantidadIncidentes.getInstance());

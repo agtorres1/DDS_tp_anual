@@ -1,5 +1,5 @@
 .container-main{
-    padding: 10rem;
+    padding: 5rem;
 }
 
 
@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding: 3rem;
 }
 
 .flex{
@@ -38,7 +39,7 @@
 }
 
 .open{
-    margin-bottom: 15rem;
+    margin-bottom: 25rem;
 }
 
 
@@ -47,6 +48,15 @@
     justify-content: space-between;
     align-items: center;
     gap: 3rem;
+}
+
+.comunidades__item{
+    padding: 4rem;
+    background-color: white;
+}
+
+.item__comunidad{
+    width: 25rem;
 }
 
 .item__box{

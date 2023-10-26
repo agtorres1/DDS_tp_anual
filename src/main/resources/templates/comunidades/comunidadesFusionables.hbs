@@ -1,5 +1,6 @@
 {{#partial "contenido" }}
     <main class="container-main">
+        <h1 class="main-title">Comunidades fusionables</h1>
         {{#if comunidades}}
 
             <section class="comunidades">
@@ -9,7 +10,7 @@
                         {{#each this}}
 
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle pretty" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle pretty item__comunidad" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Comunidad N°{{this.id}}: {{this.nombre}}
                                 </button>
                                 <div class="dropdown-menu complete" aria-labelledby="dropdownMenuButton">

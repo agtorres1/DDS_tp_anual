@@ -64,6 +64,7 @@ public class ComunidadesController extends Controller {
 
         ResponseComunidadesAnalizables responseComunidadesAnalizables = ServicioFusionador.getInstance().responseComunidadesAnalizables(requestComunidadesAnalizables);
         List<List<Comunidad>> comunidades = responseComunidadesAnalizables.resultado.stream().map(this::comunidadesSugeridas).collect(Collectors.toList());
+        System.out.println(comunidades);
         model.put("comunidades",comunidades);
         context.render("comunidades/comunidadesFusionables.hbs", model);
     }
@@ -98,7 +99,7 @@ public class ComunidadesController extends Controller {
             comunidadNueva.setMiembros(buscarMiembros(listIntegerToLong(responseComunidadesFusionadas.resultado.usuarios)));
             comunidadNueva.setIncidentes(buscarIncidentes(listIntegerToLong(responseComunidadesFusionadas.resultado.incidentes)));
             comunidadNueva.setNombre("Fusión de "+comunidad1.getNombre()+" y "+comunidad2.getNombre());
-            comunidadNueva.setDescripcion("Comunidad 1: "+comunidad1.getDescripcion() + "\n"
+            comunidadNueva.setDescripcion("Comunidad 1: "+comunidad1.getDescripcion() + " - "
             + "Comunidad 2: "+comunidad2.getDescripcion());
             Puntaje puntaje = new Puntaje();
             puntaje.setValor(responseComunidadesFusionadas.resultado.gradoConfianza);
