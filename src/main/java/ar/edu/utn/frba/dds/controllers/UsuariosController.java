@@ -12,12 +12,20 @@ import ar.edu.utn.frba.dds.server.utils.ICrudViewsHandler;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import io.javalin.http.Context;
+import io.javalin.http.UploadedFile;
+import io.javalin.util.FileUtil;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javax.persistence.EntityTransaction;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class UsuariosController implements WithSimplePersistenceUnit, ICrudViewsHandler {
+public class UsuariosController implements WithSimplePersistenceUnit {
     private static final Double puntajeInicial = 5.00;
     private RepoDeMiembros repoMiembros;
     private RepoDeMediosDeNotificacion repoDeMediosDeNotificacion;
@@ -138,27 +146,38 @@ public class UsuariosController implements WithSimplePersistenceUnit, ICrudViews
         context.render("Usuarios/index.hbs",modelo);
     }
 
-    @Override
+    public void imagen(Context context){
+
+            int miembroId = Integer.parseInt(context.pathParam("miembroId"));
+            UploadedFile uploadedFile = context.uploadedFile("imagen");
+            if (uploadedFile != null) {
+                // Procesa y guarda la imagen
+
+//                String nombreArchivo = uploadedFile.getFilename();
+  //              String rutaArchivo = "ruta/donde/guardar/" + nombreArchivo;
+    //            uploadedFile.getContent().transferTo(new File(rutaArchivo));
+
+                // Asocia la ruta de la imagen con el miembro en la base de datos
+      //          Miembro miembro = miembroService.getMiembroById(miembroId);
+        //        miembro.getFotos().add(rutaArchivo);
+          //      miembroService.actualizarMiembro(miembro);
+            }
+       // context.redirect("/exito");
+
+    }
+
+
     public void show(Context context) {
         Map<String, Object> modelo = new HashMap<>();
-        long idUsuario = Integer.parseInt(context.pathParam("id"));
-        Miembro usuario = repoMiembros.buscarPorId(idUsuario);
-
+        //Long idUsuario = Long.parseLong(context.sessionAttribute("id"));
+        Miembro usuario = repoMiembros.buscarPorId(context.sessionAttribute("usuario_id"));
         modelo.put("usuario", usuario);
         context.render("Usuarios/show.hbs",modelo);
 }
 
-    @Override
-    public void create(Context context) {
 
-    }
 
-    @Override
-    public void save(Context context) {
 
-    }
-
-    @Override
     public void edit(Context context) {
         Miembro usuario = (Miembro) this.repoMiembros.buscarPorId(Long.parseLong(context.pathParam("id")));
         Map<String, Object> model = new HashMap<>();
@@ -167,21 +186,23 @@ public class UsuariosController implements WithSimplePersistenceUnit, ICrudViews
 
     }
 
-    @Override
+
     public void update(Context context) {
-        Miembro usuario = (Miembro) this.repoMiembros.buscarPorId(Long.parseLong(context.pathParam("id")));
+        Miembro usuario = repoMiembros.buscarPorId(context.sessionAttribute("usuario_id"));
+        //Miembro usuario = (Miembro) this.repoMiembros.buscarPorId(Long.parseLong(context.pathParam("id")));
 
-        this.asignarParametros(usuario, context);
-
-        this.repoMiembros.modificar(usuario);
-
-        long id = Long.parseLong(context.pathParam("id"));
+        this.asignarParametrosYactualizar(usuario, context);
 
 
 
-        String redirectTo = "/usuario/" + id;
+  //      long id = Long.parseLong(context.pathParam("id"));
 
-        context.redirect(redirectTo);
+
+
+    //    String redirectTo = "/usuario;
+
+
+        context.redirect("/usuario");
 
 
     }
@@ -195,32 +216,64 @@ public class UsuariosController implements WithSimplePersistenceUnit, ICrudViews
         tx.commit();
     }
 
-    @Override
-    public void delete(Context context) {
 
-    }
 
-    private void asignarParametros(Miembro usuario, Context context) {
+    private void asignarParametrosYactualizar(Miembro usuario, Context context) {
         Map<String, Object> modelo = new HashMap<>();
 
         String nombre = context.formParam("nombre");
         String apellido = context.formParam("apellido");
         String email = context.formParam("email");
         String medioNotificacion = context.formParam("medioSelect");
+        String desc = context.formParam("descripcion");
+
+        if(medioNotificacion != null){
+            Long viejo2 =  usuario.medioDeNotificacion.getId();
+            usuario.setMedioDeNotificacion(null);
+            this.repoMiembros.modificar(usuario);
+            MedioDeNotificacion medioc = repoDeMediosDeNotificacion.buscarPorId(viejo2);
+            repoDeMediosDeNotificacion.eliminar(medioc);
+        }
+
+        UploadedFile fotoFile = context.uploadedFile("foto");
+        if (fotoFile != null) {
+            String fotoFileName = fotoFile.filename();
+            String rutaDestino = "/update";
+            String rutaTotal = "upload/" + fotoFileName;
+
+            try (InputStream fotoInputStream = fotoFile.content()) {
+                File destino = new File(rutaDestino, fotoFileName);
+                // Copiar el contenido del archivo al destino
+                Files.copy(fotoInputStream, destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                List<String> nuevasFotos = new ArrayList<>();
+                nuevasFotos.add(rutaTotal);
+                usuario.setFotos(nuevasFotos);
+           //     usuario.setFotos(Collections.singletonList(destino.getAbsolutePath()));
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Ha ocurrido un error al guardar el archivo: " + e.getMessage());
+            }
+        }
+
+
+
+
 
         Miembro miembroPorEmail = this.repoMiembros.buscarPor("mail", email);
-        if (miembroPorEmail != null && usuario.getId() != miembroPorEmail.getId()) {
-            modelo.put("error", "El email ya está registrado.");
+
+        if (miembroPorEmail != null && usuario.getId() != miembroPorEmail.getId()){
+            modelo.put("error", "El email es el registrado / ya se registro ese mail");
             context.render("Usuarios/admin.hbs", modelo);
             return;
-        }
+        }  //mail registrado por otro usuario
+
 
         MedioDeNotificacion medioDeNotificacion;
         String atributo;
         String valor;
 
-        if("telefono".equals(medioNotificacion)){
-            String telefono = context.formParam("telefono");
+        if("whatsapp".equals(medioNotificacion)){
+            String telefono = context.formParam("whatsappInput");
 
             MedioDeNotificacion existe = repoDeMediosDeNotificacion.buscarPor("telefono", telefono);
             if(existe != null){
@@ -232,11 +285,12 @@ public class UsuariosController implements WithSimplePersistenceUnit, ICrudViews
             atributo = "telefono";
             valor = telefono;
             medioDeNotificacion = new Whatsapp(telefono);
+
         }
         else{
-            medioDeNotificacion = new Email(email);
-            atributo = "email";
-            valor = email;
+                medioDeNotificacion = new Email(email);
+                atributo = "email";
+                valor = email;
         }
 
         repoDeMediosDeNotificacion.agregar(medioDeNotificacion);
@@ -247,9 +301,10 @@ public class UsuariosController implements WithSimplePersistenceUnit, ICrudViews
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setMail(email);
+        usuario.setDescripcion(desc);
 
 
-
+        this.repoMiembros.modificar(usuario);
 
     }
 

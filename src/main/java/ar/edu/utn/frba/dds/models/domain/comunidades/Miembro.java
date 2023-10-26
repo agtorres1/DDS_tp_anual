@@ -56,6 +56,12 @@ public class Miembro {
   @Embedded
   private Puntaje puntaje;
 
+  @ElementCollection
+  @CollectionTable(name = "usuario_fotos1", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id") )
+  @Column(name = "path")
+  private List<String> fotos;
+
+
   @ManyToMany
   private List<Interes> intereses;
 
@@ -76,11 +82,14 @@ public class Miembro {
   @Embedded
   Ubicacion ubicacion;
 
+  public int cantComunidades() { return  this.comunidades.size(); }
 
+  public int cantFotos() { return this.fotos.size();}
 
   public Miembro(){
     this.comunidades = new HashSet<>();
     this.intereses = new ArrayList<>();
+    this.fotos = new ArrayList<>();
   }
 
   public int cantIntereses() { return this.intereses.size(); }

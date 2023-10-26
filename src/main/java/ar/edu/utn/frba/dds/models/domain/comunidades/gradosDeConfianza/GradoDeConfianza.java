@@ -11,6 +11,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class GradoDeConfianza {
 
+
     @Column(name = "Tipo_de_grado")
     private TipoDeGrado nombre;
 

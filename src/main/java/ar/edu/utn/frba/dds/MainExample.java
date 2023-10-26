@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import javax.persistence.EntityTransaction;
 
 
 public class MainExample implements WithSimplePersistenceUnit {
@@ -29,6 +30,17 @@ public class MainExample implements WithSimplePersistenceUnit {
         new MainExample().start();
     }
 
+  private void start() {
+
+      Miembro pepe = new Miembro();
+      pepe.setNombre("pepe");
+    EntityTransaction tx = entityManager().getTransaction();
+    tx.begin();
+    entityManager().persist(pepe); //INSERT INTO ....
+    tx.commit();
+  }
+
+    /*
   public void somosDeChaco(RepoDeLocalizaciones repoDeLocalizaciones, Miembro... miembros) throws IOException {
     for(Miembro miembro : miembros){
       Localizacion localizacion = new Localizacion();
@@ -169,7 +181,9 @@ public class MainExample implements WithSimplePersistenceUnit {
     repoDeComunidades.agregar(comunidad);
 
 
-  }}
+     */
+
+  }
 
 
 

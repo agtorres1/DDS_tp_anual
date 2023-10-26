@@ -8,10 +8,13 @@ import ar.edu.utn.frba.dds.controllers.EntidadControladoraController;
 
 import ar.edu.utn.frba.dds.controllers.OrganismoDeControlController;
 import ar.edu.utn.frba.dds.controllers.UsuariosController;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.javalin.http.UploadedFile;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,12 +43,12 @@ public class Router {
 
 
 
-            get("/usuario/{id}",((UsuariosController) FactoryController.controller("Usuarios")) :: show);
+            get("/usuario",((UsuariosController) FactoryController.controller("Usuarios")) :: show);
             get("/usuario/{id}/editar",((UsuariosController) FactoryController.controller("Usuarios")) :: edit);
-            post("/usuario",((UsuariosController) FactoryController.controller("Usuarios")) :: save);
-            post("/usuario/{id}",((UsuariosController) FactoryController.controller("Usuarios")) :: update);
+            post("/usuario",((UsuariosController) FactoryController.controller("Usuarios")) :: update);
             get("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
             post("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
+
 
             path("comunidades/{idComunidad}/incidentes", () -> {
                 get(((IncidentesController) FactoryController.controller("Incidentes"))::index);

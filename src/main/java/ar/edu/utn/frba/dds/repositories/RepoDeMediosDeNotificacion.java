@@ -41,11 +41,16 @@ public class RepoDeMediosDeNotificacion implements WithSimplePersistenceUnit {
         entityManager().merge(medioDeNotificacion);
         tx.commit();
     }
-    public MedioDeNotificacion buscarPorId(Integer id){
+    public MedioDeNotificacion buscarPorId(Long id){
         return entityManager().find(MedioDeNotificacion.class,id);
     }
     public List<MedioDeNotificacion> buscarTodos(){
         return entityManager().createQuery("from " + MedioDeNotificacion.class.getName()).getResultList();
 
     }
+
+
+
+
+
 }
