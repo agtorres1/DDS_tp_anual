@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.controllers.ComunidadesController.incidentes;
+package ar.edu.utn.frba.dds.controllers.comunidadesController.incidentes;
 
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;

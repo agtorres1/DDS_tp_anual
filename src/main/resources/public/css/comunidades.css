@@ -24,6 +24,7 @@
 .comunidades{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2rem;
 }
 
@@ -60,6 +61,7 @@
     background-color: white;
     gap: 3rem;
     border-radius: 5rem;
+    box-shadow: 0 0 .625rem 0 rgb(31, 31, 31, 0.9); 
 }
 
 .item__comunidad{
@@ -68,6 +70,16 @@
 
 .item__box{
     padding: 1rem;
+}
+
+
+.advice__box{
+    display: flex;
+    padding: 3rem;
+    gap: 3rem;
+    justify-content: space-evenly;
+    align-items: center;
+
 }
 
 .item__img img{

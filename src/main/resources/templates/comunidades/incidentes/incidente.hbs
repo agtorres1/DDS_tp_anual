@@ -1,5 +1,5 @@
 {{#partial "contenido" }}
-    <main>
+    <main class="container container-main">
         <h1 class="main-title">Incidente N°{{incidente.id}}</h1>
         <section class="container section">
             <article class="article">
@@ -17,7 +17,10 @@
                         <p class="summary__text">Hora</p>
                         <p>{{incidente.fachaYHoraApertura.toLocalTime}}</p>
                     </span>
-
+                    {{!-- <span class="box__line line__summary">
+                        <p class="summary__text">Comunidad origen</p>
+                        <p>{{incidente.comunidad.nombre}}</p>
+                    </span> --}}
                 </div>
             </article>
             {{#if incidente.abierto}}
@@ -108,4 +111,4 @@
     
 
 {{/partial}}
-{{> templates/comunidades/incidentes/baseIncidentes  }}
+{{> templates/base }}

@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.controllers.ComunidadesController;
+package ar.edu.utn.frba.dds.controllers.comunidadesController;
 
 import ar.edu.utn.frba.dds.controllers.Controller;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
@@ -7,7 +7,6 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.ServicioFusionador;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.PropuestaAnterior;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.SugerenciaFusion;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesAnalizables;
 import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesFusionables;
@@ -80,16 +79,18 @@ public class ComunidadesController extends Controller {
     }
 
     public void fusion(Context context) throws IOException {
-        if(!Objects.equals(context.formParam("comunidad1"), null) && !Objects.equals(context.formParam("comunidad2"), null)) {
-            Comunidad comunidad1 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad1")));
-            Comunidad comunidad2 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad2")));
+        if(!Objects.equals(context.formParam("comunidad0"), null) && !Objects.equals(context.formParam("comunidad1"), null)) {
+            Comunidad comunidad1 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad0")));
+            Comunidad comunidad2 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad1")));
             RequestComunidadesFusionables requestComunidadesFusionables = new RequestComunidadesFusionables();
             requestComunidadesFusionables.setComunidad1(comunidad1.comunidadFusionable());
             requestComunidadesFusionables.setComunidad2(comunidad2.comunidadFusionable());
             ResponseComunidadFusionada responseComunidadesFusionadas = ServicioFusionador.getInstance().responseComunidadesFusionadas(requestComunidadesFusionables);
             Comunidad comunidadFusionada = asignarAtributos(comunidad1,comunidad2,responseComunidadesFusionadas);
+
             this.repoDeComunidades.eliminar(comunidad1);
             this.repoDeComunidades.eliminar(comunidad2);
+
             this.repoDeComunidades.agregar(comunidadFusionada);
         }
         context.status(HttpStatus.CREATED);
