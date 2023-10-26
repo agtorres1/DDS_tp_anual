@@ -1,6 +1,6 @@
 {{#partial "contenido" }}
     <main class="container-main">
-        <h1 class="main-title">Comunidades fusionables</h1>
+        <h1 class="main-title-comunidad">Comunidades fusionables</h1>
         {{#if comunidades}}
 
             <section class="comunidades">
@@ -10,7 +10,7 @@
                         {{#each this}}
 
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle pretty item__comunidad" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class=" btn-secondary dropdown-toggle pretty item__comunidad" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Comunidad N°{{this.id}}: {{this.nombre}}
                                 </button>
                                 <div class="dropdown-menu complete" aria-labelledby="dropdownMenuButton">
@@ -18,6 +18,14 @@
                                         <span class="box__line line__summary">
                                             <p class="summary__text">Descripción</p>
                                             <p>{{this.descripcion}}</p>
+                                        </span>
+                                        <span class="box__line line__summary">
+                                            <p class="summary__text">Puntaje</p>
+                                            <p>{{this.puntaje.valor}}</p>
+                                        </span>
+                                        <span class="box__line line__summary">
+                                            <p class="summary__text">Grado de confianza</p>
+                                            <p>{{this.puntaje.gradoDeConfianza.nombre}}{{#if this.puntaje.gradoDeConfianza.nivel}} - {{this.puntaje.gradoDeConfianza.nivel}}{{/if}}</p>
                                         </span>
                                         <span class="box__line line__summary">
                                             <p class="summary__text">Cantidad de miembros</p>
@@ -35,11 +43,11 @@
                             </div>
                         {{/each}}
 
-                        <form class="container button-along" action="/comunidades/fusionar" method="post">
+                        <form class="container__boton" action="/comunidades/fusionar" method="post">
                             {{#each this}}
                                 <input type="hidden" name="comunidad{{this.id}}" value="{{this.id}}">
                             {{/each}}
-                            <button type="submit" class="btn btn-danger">Fusionar</button>
+                            <button type="submit" class="btn btn-danger boton">Fusionar</button>
                         </form>
 
                     </div>
