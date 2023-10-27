@@ -61,12 +61,10 @@ public class IncidentesController {
 
     public void revisarIncidentes(Context context) {
 
-            List<Incidente> incidentes = this.repoDeIncidentes.buscarTodos();
-            Map<String, Object> model = new HashMap<>();
-            model.put("incidente", incidentes);
-            context.render("incidentes/revisionDeIncidentes.hbs", model);
-
-
+        List<Incidente> incidentes = this.repoDeIncidentes.buscarTodos();
+        Map<String, Object> model = new HashMap<>();
+        model.put("incidente", incidentes);
+        context.render("incidentes/revisionDeIncidentes.hbs", model);
     }
 
     
@@ -124,7 +122,6 @@ public class IncidentesController {
             {
                 put("mensaje", "Ubicación recibida correctamente");
             }});
-
 
 
 
