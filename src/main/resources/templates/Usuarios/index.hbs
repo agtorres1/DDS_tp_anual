@@ -1,0 +1,56 @@
+{{#partial "contenido" }}
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+<div class="container-md mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-center d-block">Listado de Usuarios</h2>
+        </div>
+        <div class="card-body">
+            <table id="datatable" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each usuarios}}
+                        <tr>
+                            <td>{{this.id}}</td>
+                            <td>{{this.usuario}}</td>
+                            <td>{{this.nombre}}</td>
+                            <td>{{this.apellido}}</td>
+                            <td>{{this.mail}}</td>
+                            <td>{{this.rol.tipo}}</td>
+                            <td>
+                                <a href="#" class="btn btn-primary d-block m-1"><i class="fa-regular fa-pen-to-square"></i> Editar</a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="js/datatable.js">
+{{/partial}}
+{{> templates/base }}
