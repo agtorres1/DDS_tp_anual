@@ -129,10 +129,21 @@
     gap: 2rem;
 }
 
-.button-along{
+.button-back{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
+
+.button-along{
+    display: flex;
+    justify-content: space-between ;
+}
+
+.button-close{
+    margin-right: 14rem;
+}
+
 
 .btn{
     padding: 1rem;
