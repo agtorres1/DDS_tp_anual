@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.models.builders.EntidadBuilder;
-import ar.edu.utn.frba.dds.models.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.models.builders.entidades.EntidadBuilder;
+import ar.edu.utn.frba.dds.models.builders.entidades.EstablecimientoBuilder;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Entidad;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.TipoEstablecimiento;

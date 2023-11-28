@@ -272,13 +272,6 @@ public class IncidentesController {
     }
 
 
-
-    public void delete(Context context) {
-        Incidente incidente = (Incidente) this.repoDeIncidentes.buscarPorId(Long.parseLong(context.pathParam("id")));
-        this.repoDeIncidentes.eliminar(incidente);
-        context.redirect("/comunidades/incidentes");
-    }
-
     private void asignarParametros(AperturaIncidente aperturaIncidente, Context context) {
         if(!Objects.equals(context.formParam("prestacion"), "")) {
             PrestacionDeServicio prestacionDeServicio = this.repoDePrestacionDeServicio.buscarPorId(Long.valueOf(context.formParam("prestacion")));

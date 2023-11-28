@@ -109,7 +109,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     repoDeMediosDeNotificacion.agregar(wpp1);
     miembro1.setMedioDeNotificacion(wpp1);
     Puntaje puntajeMiembro1 = new Puntaje();
-    puntajeMiembro1.setValor(5.00);
+    puntajeMiembro1.setValor(3.00);
     miembro1.setPuntaje(puntajeMiembro1);
 
     Miembro miembro2 = new Miembro();
@@ -245,6 +245,7 @@ public class MainExample implements WithSimplePersistenceUnit {
     aperturaIncidente.setEstablecimiento(establecimiento);
 
     List<Incidente> incidentes = miembro1.abrirIncidente(aperturaIncidente, new Notificador());
+    comunidad1.cerrarIncidente(miembro1,incidentes.get(0));
     RepoDeIncidentes repoDeIncidentes = new RepoDeIncidentes();
     incidentes.forEach(repoDeIncidentes::agregar);
 

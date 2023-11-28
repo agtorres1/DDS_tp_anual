@@ -1,10 +1,8 @@
 package ar.edu.utn.frba.dds.models.builders.puntajes;
 
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.ComunidadPuntaje;
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinIdValidoExcepcion;
-import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinPuntajeExcepcion;
 
 import java.util.List;
 import java.util.stream.Collectors;

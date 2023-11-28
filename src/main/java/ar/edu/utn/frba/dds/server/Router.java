@@ -91,24 +91,5 @@ public class Router {
         });
 
 
-//            get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::index);
-//          get("incidentes/crear", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
-//            get("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
-//            get("incidentes/{id}/editar", ((IncidentesController) FactoryController.controller("Incidentes"))::edit);
-//            post("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::update);
-//            post("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::save);
-//            delete("incidentes/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::delete);
-//            path("login", () -> {
-//
-//                get();
-//
-//
-//            });
-
-
-
-
-
-
     }
 }

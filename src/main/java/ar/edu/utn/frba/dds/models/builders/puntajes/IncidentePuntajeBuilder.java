@@ -1,16 +1,13 @@
 package ar.edu.utn.frba.dds.models.builders.puntajes;
 
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinFechaValida;
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinIdValidoExcepcion;
-import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinPuntajeExcepcion;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
-import java.util.Objects;
 
 public class IncidentePuntajeBuilder {
     private IncidentePuntaje incidentePuntaje = new IncidentePuntaje();

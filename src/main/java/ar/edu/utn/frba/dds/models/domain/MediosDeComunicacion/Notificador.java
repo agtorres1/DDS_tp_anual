@@ -5,10 +5,7 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Notificador {
     private Set<Miembro> miembrosNotificados;
@@ -50,7 +47,7 @@ public class Notificador {
 
     public List<Miembro> filtrarYaNotificados(List<Miembro> notificables,Incidente incidente){
         miembrosNotificados.addAll(notificables);
-        notificables.removeIf(miembro -> miembro.getUsuario() != incidente.getAbridor().getUsuario());
+        notificables.removeIf(miembro -> !Objects.equals(miembro.getUsuario(), incidente.getAbridor().getUsuario()));
         return notificables;
     }
 

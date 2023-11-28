@@ -4,11 +4,10 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.RequestComunidadPuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.ServicioCalculador;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.RequestComunidadPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.ServicioCalculador;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.ComunidadPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.*;
 import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class servicio_2 {
+public class servicio_calculadorPuntaje {
     private Miembro miembro1;
     private Miembro miembro2;
     private Servicio servicio;

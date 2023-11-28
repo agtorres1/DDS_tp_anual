@@ -8,7 +8,7 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.AperturaIncidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.MiembroPuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Ubicacion;

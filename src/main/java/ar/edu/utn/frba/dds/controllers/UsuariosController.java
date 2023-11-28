@@ -4,6 +4,9 @@ import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacio
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.ValidadorContrasenias.ValidadorDeContrasenias;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
+import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.GradoDeConfianza;
+import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
+import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.TipoDeGrado;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import ar.edu.utn.frba.dds.repositories.RepoDeMediosDeNotificacion;
 import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
@@ -54,7 +57,12 @@ public class UsuariosController implements WithSimplePersistenceUnit {
             context.render("Usuarios/login.hbs", modelo);
             return;
         }
-
+        else if(miembro.getPuntaje().getGradoDeConfianza().getNombre() == TipoDeGrado.NO_CONFIABLE){
+            Map<String, Object> modelo = new HashMap<>();
+            modelo.put("error", "Usuario considerado no confiable");
+            context.render("Usuarios/login.hbs", modelo);
+            return;
+        }
         context.sessionAttribute("usuario_id", miembro.getId());
         context.sessionAttribute("tipo_rol", miembro.getRol().getTipo().toString());
 
@@ -129,6 +137,10 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         miembro.setMail(email);
         miembro.setNombre(nombre);
         miembro.setApellido(apellido);
+
+        Puntaje puntaje = new Puntaje();
+        puntaje.setValor(5.00);
+        miembro.setPuntaje(puntaje);
 
         miembro.setRol(repoDeRoles.buscarPorTipoRol(TipoRol.NORMAL));
         String contraseniaHASH = BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
