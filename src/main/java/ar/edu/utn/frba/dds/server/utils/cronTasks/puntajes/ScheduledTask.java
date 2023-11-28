@@ -27,8 +27,10 @@ public class ScheduledTask implements Runnable {
     @Override
     public void run() {
         List<Comunidad> comunidades = repoDeComunidades.buscarTodos();
+        System.out.println(comunidades.stream().map(Comunidad::getMiembros).toList());
 
-        System.out.println(comunidades.stream().map(Comunidad::getIncidentes));
+
+        System.out.println(comunidades.stream().map(Comunidad::getIncidentes).toList());
 
         try {
             actualizarComunidades(obtenerRequests(comunidades), comunidades);

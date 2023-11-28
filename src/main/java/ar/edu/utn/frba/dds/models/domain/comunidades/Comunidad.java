@@ -34,14 +34,14 @@ public class Comunidad{
   private Long id;
 
 
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "administradores_por_comunidad",
           joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   )
   private List<Miembro> administradores;
 
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "miembros_por_comunidad",
       joinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id")

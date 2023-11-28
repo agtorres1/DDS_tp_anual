@@ -9,6 +9,7 @@ import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.Servicio
 import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.ComunidadPuntaje;
 import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.*;
+import ar.edu.utn.frba.dds.repositories.RepoDeComunidades;
 import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,6 +30,7 @@ public class servicio_calculadorPuntaje {
     private Comunidad comunidad;
     private ComunidadPuntaje comunidadPuntaje;
     private RequestComunidadPuntaje requestComunidadPuntaje;
+    private RepoDeComunidades repoDeComunidades;
     @BeforeEach
     public void init() throws IOException {
         this.servicio = new Banio();
@@ -72,8 +74,11 @@ public class servicio_calculadorPuntaje {
         this.requestComunidadPuntaje = new RequestComunidadPuntaje();
         List<IncidentePuntaje> incidentesPuntaje = new ArrayList<>();
         incidentesPuntaje.add(incidentePuntaje);
-        this.requestComunidadPuntaje.setIncidentesPuntaje(incidentesPuntaje);
-        this.requestComunidadPuntaje.setComunidadPuntaje(this.comunidadPuntaje);
+
+
+        this.requestComunidadPuntaje.setComunidadPuntaje(this.comunidad.comunidadPuntaje());
+        this.requestComunidadPuntaje.setIncidentesPuntaje(this.comunidad.getIncidentes().stream().map(Incidente::incidentePuntaje).toList());
+
     }
     @Test
     @DisplayName("Generar Request")
