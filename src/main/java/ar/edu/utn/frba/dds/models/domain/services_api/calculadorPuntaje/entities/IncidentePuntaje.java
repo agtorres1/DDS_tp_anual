@@ -2,9 +2,11 @@ package ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entitie
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.UUID;
+
 public class IncidentePuntaje {
     @SerializedName("incidenteId")
-    public int incidenteId;
+    public UUID incidenteId;
     @SerializedName("codigoServicio")
     public int codigoServicio;
     @SerializedName("abiertoPorId")

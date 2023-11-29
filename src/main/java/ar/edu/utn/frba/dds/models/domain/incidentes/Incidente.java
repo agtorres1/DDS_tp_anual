@@ -12,7 +12,10 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "incidentes")
@@ -20,8 +23,10 @@ import java.time.LocalDateTime;
 @Setter @Getter
 public class Incidente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Convert(converter = LocalDateTimeAttributeConverter.class)
     @Column(name = "fechayHoraApertura",columnDefinition = "TIMESTAMP")

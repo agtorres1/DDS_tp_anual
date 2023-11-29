@@ -4,12 +4,13 @@ import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.enti
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinIdValidoExcepcion;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class PropuestaAnteriorBuilder {
     private PropuestaAnterior propuestaAnterior = new PropuestaAnterior();
 
-    public PropuestaAnteriorBuilder conId(Long id){
-        this.propuestaAnterior.idComunidad = Math.toIntExact(id);
+    public PropuestaAnteriorBuilder conId(UUID id){
+        this.propuestaAnterior.idComunidad = id;
         return this;
     }
 
@@ -19,7 +20,7 @@ public class PropuestaAnteriorBuilder {
     }
 
     public PropuestaAnterior construir(){
-        if(this.propuestaAnterior.idComunidad < 0){
+        if(this.propuestaAnterior.idComunidad == null){
             throw new SinIdValidoExcepcion();
         }
 

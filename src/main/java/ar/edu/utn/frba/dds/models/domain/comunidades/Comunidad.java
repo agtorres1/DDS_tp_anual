@@ -9,6 +9,7 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import ar.edu.utn.frba.dds.models.domain.incidentes.TipoFiltrado;
@@ -22,6 +23,7 @@ import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Comunidades")
@@ -29,9 +31,10 @@ import lombok.Setter;
 public class Comunidad{
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY) // Opciones: IDENTITY, SEQUENCE, TABLE, etc.
-  @Column(name = "id")
-  private Long id;
+  @GeneratedValue(generator = "uuid2")
+  @GenericGenerator(name = "uuid2", strategy = "uuid2")
+  @Column(name = "id", columnDefinition = "BINARY(16)")
+  private UUID id;
 
 
   @ManyToMany(cascade = CascadeType.ALL)
