@@ -3,7 +3,7 @@ package ar.edu.utn.frba.dds.models.domain.incidentes;
 import ar.edu.utn.frba.dds.models.builders.puntajes.IncidentePuntajeBuilder;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 
@@ -12,7 +12,6 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "incidentes")

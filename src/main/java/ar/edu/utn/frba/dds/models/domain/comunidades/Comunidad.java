@@ -9,16 +9,15 @@ import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import ar.edu.utn.frba.dds.models.domain.incidentes.TipoFiltrado;
 
 import javax.persistence.*;
 
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.ComunidadPuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.ComunidadPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.MiembroPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.entities.ComunidadFusionable;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import lombok.Getter;
@@ -35,14 +34,14 @@ public class Comunidad{
   private Long id;
 
 
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "administradores_por_comunidad",
           joinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   )
   private List<Miembro> administradores;
 
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "miembros_por_comunidad",
       joinColumns = @JoinColumn(name = "comunidad_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(name = "miembro_id", referencedColumnName = "id")
