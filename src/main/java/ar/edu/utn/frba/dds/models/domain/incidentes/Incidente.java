@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.models.domain.incidentes;
 
 import ar.edu.utn.frba.dds.models.builders.puntajes.IncidentePuntajeBuilder;
+import ar.edu.utn.frba.dds.models.converts.LocalDateTimeAttributeConverter;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.IncidentePuntaje;
@@ -22,9 +23,11 @@ public class Incidente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Convert(converter = LocalDateTimeAttributeConverter.class)
     @Column(name = "fechayHoraApertura",columnDefinition = "TIMESTAMP")
     private LocalDateTime fachaYHoraApertura;
 
+    @Convert(converter = LocalDateTimeAttributeConverter.class)
     @Column(name = "fechayHoraCierre",columnDefinition = "TIMESTAMP")
     private LocalDateTime fechaYHoraCierre;
 

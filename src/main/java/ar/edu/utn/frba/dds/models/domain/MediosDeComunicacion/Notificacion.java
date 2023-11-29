@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion;
 
 
+import ar.edu.utn.frba.dds.models.converts.LocalDateTimeAttributeConverter;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import java.time.LocalDateTime;
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Notificacion {
 //  public String getObservaciones() {
   //  return observaciones;
  // }
+  @Convert(converter = LocalDateTimeAttributeConverter.class)
   @Column(name = "fecha_y_hora_Apertura")
   private LocalDateTime fachaYHoraApertura;
   @Column(name = "prestacion_De_servicio")

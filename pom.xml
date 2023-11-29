@@ -200,6 +200,12 @@
           <version>RELEASE</version>
           <scope>compile</scope>
       </dependency>
+      <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.6.0</version>
+      </dependency>
+
 
 
   </dependencies>
@@ -305,7 +311,20 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>Main</mainClass>
+              <mainClass>ar/edu/utn/frba/dds/server/App</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>ar/edu/utn/frba/dds/server/App</mainClass>
             </manifest>
           </archive>
         </configuration>

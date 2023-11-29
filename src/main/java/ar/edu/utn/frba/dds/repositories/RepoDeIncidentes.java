@@ -113,8 +113,13 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
     return new ArrayList<>(incidentesAgrupados.values());
     }
     public List<Incidente> buscarTodos(){
+        limpiarCache();
         return entityManager().createQuery("from " + Incidente.class.getName()).getResultList();
 
+    }
+
+    public void limpiarCache(){
+        entityManager().clear();
     }
 
 }
