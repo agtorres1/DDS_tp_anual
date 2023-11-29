@@ -5,13 +5,14 @@ import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinIdValidoExcepcion;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class ComunidadPuntajeBuilder {
     private ComunidadPuntaje comunidadPuntaje = new ComunidadPuntaje();
 
-    public ComunidadPuntajeBuilder conId(Long id){
-        this.comunidadPuntaje.id = Math.toIntExact(id);
+    public ComunidadPuntajeBuilder conId(UUID id){
+        this.comunidadPuntaje.id = id;
         return this;
     }
 
@@ -26,7 +27,7 @@ public class ComunidadPuntajeBuilder {
     }
 
     public ComunidadPuntaje construir(){
-        if(this.comunidadPuntaje.id < 0){
+        if(this.comunidadPuntaje.id == null){
             throw new SinIdValidoExcepcion();
         }
 

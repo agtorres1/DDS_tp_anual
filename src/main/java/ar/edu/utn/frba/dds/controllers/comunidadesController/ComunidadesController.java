@@ -49,7 +49,7 @@ public class ComunidadesController extends Controller {
     public void join(Context context) {
         if (!Objects.equals(context.formParam("comunidad"), null)) {
             Miembro miembroActual = miembroEnSesion(context);
-            Comunidad comunidad = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad")));
+            Comunidad comunidad = this.repoDeComunidades.buscarPorId(UUID.fromString(context.formParam("comunidad")));
             comunidad.agregarUsuarios(miembroActual);
             this.repoDeComunidades.modificar(comunidad);
         }
@@ -72,15 +72,15 @@ public class ComunidadesController extends Controller {
 
     private List<Comunidad> comunidadesSugeridas(SugerenciaFusion sugerenciaFusion) {
         List<Comunidad> comunidades = new ArrayList<>();
-        comunidades.add(this.repoDeComunidades.buscarPorId((long) sugerenciaFusion.comunidad1.id));
-        comunidades.add(this.repoDeComunidades.buscarPorId((long) sugerenciaFusion.comunidad2.id));
+        comunidades.add(this.repoDeComunidades.buscarPorId((UUID) sugerenciaFusion.comunidad1.id));
+        comunidades.add(this.repoDeComunidades.buscarPorId((UUID) sugerenciaFusion.comunidad2.id));
         return comunidades;
     }
 
     public void fusion(Context context) throws IOException {
         if (!Objects.equals(context.formParam("comunidad0"), null) && !Objects.equals(context.formParam("comunidad1"), null)) {
-            Comunidad comunidad1 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad0")));
-            Comunidad comunidad2 = this.repoDeComunidades.buscarPorId(Long.valueOf(context.formParam("comunidad1")));
+            Comunidad comunidad1 = this.repoDeComunidades.buscarPorId(UUID.fromString(context.formParam("comunidad0")));
+            Comunidad comunidad2 = this.repoDeComunidades.buscarPorId(UUID.fromString(context.formParam("comunidad1")));
             RequestComunidadesFusionables requestComunidadesFusionables = new RequestComunidadesFusionables();
             requestComunidadesFusionables.setComunidad1(comunidad1.comunidadFusionable());
             requestComunidadesFusionables.setComunidad2(comunidad2.comunidadFusionable());
@@ -100,7 +100,7 @@ public class ComunidadesController extends Controller {
         if (responseComunidadesFusionadas.exito) {
             Comunidad comunidadNueva = new Comunidad();
             comunidadNueva.setMiembros(buscarMiembros(listIntegerToLong(responseComunidadesFusionadas.resultado.usuarios)));
-            comunidadNueva.setIncidentes(buscarIncidentes(listIntegerToLong(responseComunidadesFusionadas.resultado.incidentes)));
+            comunidadNueva.setIncidentes(buscarIncidentes((responseComunidadesFusionadas.resultado.incidentes)));
             comunidadNueva.setNombre("Fusión de " + comunidad1.getNombre() + " y " + comunidad2.getNombre());
             comunidadNueva.setDescripcion("Comunidad 1: " + comunidad1.getDescripcion() + " - "
                     + "Comunidad 2: " + comunidad2.getDescripcion());
@@ -112,7 +112,7 @@ public class ComunidadesController extends Controller {
         return null;
     }
 
-    private List<Incidente> buscarIncidentes(List<Long> ids) {
+    private List<Incidente> buscarIncidentes(List<UUID> ids) {
         return ids.stream().map(id -> this.repoDeIncidentes.buscarPorId(id)).collect(Collectors.toList());
     }
 

@@ -40,7 +40,7 @@ public class IncidentesController {
 
 
     public void index(Context context) {
-        Comunidad comunidad = this.repoDeComunidades.buscarPorId(Long.parseLong(context.pathParam("idComunidad")));
+        Comunidad comunidad = this.repoDeComunidades.buscarPorId(UUID.fromString(context.pathParam("idComunidad")));
         Map<String, Object> model = new HashMap<>();
         model.put("comunidad", comunidad);
         model.put("incidentes", comunidad.getIncidentes());
@@ -51,8 +51,8 @@ public class IncidentesController {
 
 
     public void show(Context context) {
-        Comunidad comunidad = this.repoDeComunidades.buscarPorId(Long.parseLong(context.pathParam("idComunidad")));
-        Incidente incidente = this.repoDeIncidentes.buscarPorId(Long.parseLong(context.pathParam("idIncidente")));
+        Comunidad comunidad = this.repoDeComunidades.buscarPorId(UUID.fromString(context.pathParam("idComunidad")));
+        Incidente incidente = this.repoDeIncidentes.buscarPorId(UUID.fromString(context.pathParam("idIncidente")));
         Map<String, Object> model = new HashMap<>();
         model.put("comunidad",comunidad);
         model.put("incidente", incidente);
@@ -102,8 +102,8 @@ public class IncidentesController {
 
         incidenteResumido.setObservaciones("No funciona, nunca vas a programar en tu vida");
         List<Comunidad> comunidades = new ArrayList<>();
-        comunidades.add(this.repoDeComunidades.buscarPorId(1L));
-        comunidades.add(this.repoDeComunidades.buscarPorId(2L));
+       // comunidades.add(this.repoDeComunidades.buscarPorId(1L));
+      //  comunidades.add(this.repoDeComunidades.buscarPorId(2L));
         incidenteResumido.setComunidades(comunidades);
         incidenteResumido.setEstablecimiento(this.repoDeEstablecimientos.buscarPorId(21L));
 
@@ -262,8 +262,8 @@ public class IncidentesController {
     }
 
     public void close(Context context){
-        Incidente incidente = this.repoDeIncidentes.buscarPorId(Long.parseLong(context.pathParam("idIncidente")));
-        Comunidad comunidad = this.repoDeComunidades.buscarPorId(Long.parseLong(context.pathParam("idComunidad")));
+        Incidente incidente = this.repoDeIncidentes.buscarPorId(UUID.fromString(context.pathParam("idIncidente")));
+        Comunidad comunidad = this.repoDeComunidades.buscarPorId(UUID.fromString(context.pathParam("idComunidad")));
         comunidad.cerrarIncidente(comunidad.getMiembros().get(0),incidente);
         this.repoDeIncidentes.modificar(incidente);
 
@@ -301,8 +301,8 @@ public class IncidentesController {
 
         incidenteResumido.setObservaciones("No funciona, nunca vas a programar en tu vida");
         List<Comunidad> comunidades = new ArrayList<>();
-        comunidades.add(this.repoDeComunidades.buscarPorId(1L));
-        comunidades.add(this.repoDeComunidades.buscarPorId(2L));
+        //comunidades.add(this.repoDeComunidades.buscarPorId(1L));
+        //comunidades.add(this.repoDeComunidades.buscarPorId(2L));
         incidenteResumido.setComunidades(comunidades);
         incidenteResumido.setEstablecimiento(this.repoDeEstablecimientos.buscarPorId(21L));
 

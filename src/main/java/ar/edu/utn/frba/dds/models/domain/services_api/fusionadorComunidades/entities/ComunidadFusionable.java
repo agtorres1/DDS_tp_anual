@@ -4,10 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.Column;
 import java.util.List;
+import java.util.UUID;
 
 public class ComunidadFusionable {
     @SerializedName("id")
-    public int id;
+    public UUID id;
     @SerializedName("establecimientos")
     public List<Integer> establecimientos;
 
@@ -18,7 +19,7 @@ public class ComunidadFusionable {
     public List<Integer> usuarios;
 
     @SerializedName("incidentes")
-    public List<Integer> incidentes;
+    public List<UUID> incidentes;
 
     @SerializedName("propuestasAnteriores")
     public List<PropuestaAnterior> propuestasAnteriores;
