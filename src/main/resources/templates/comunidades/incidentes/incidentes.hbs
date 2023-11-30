@@ -1,11 +1,11 @@
 {{#partial "contenido" }}
     <main class="container container-main">
-        <h1 class="main-title">Historial de incidentes - Comunidad N°{{comunidad.id}}</h1>
+        <h1 class="main-title">Historial de incidentes - Comunidad: {{comunidad.nombre}}</h1>
         <div class="table-responsive border-table ">
             <table class="table table-sm table-shadow">
                 <thead class="table-light">
                 <tr>
-                    <th class="table__item">#</th>
+                    <th class="table__item">Observaciones</th>
                     <th class="table__item">Autor</th>
                     <th class="table__item">Servicio</th>
                     <th class="table__item">Establecimiento</th>
@@ -17,7 +17,7 @@
                 <tbody class="table-group-divider">
                 {{#each incidentes}}
                     <tr class="center">
-                        <td class="table__item">{{this.id}}</td>
+                        <td class="table__item">{{this.observaciones}}</td>
                         <td class="table__item">
                             {{this.abridor.usuario}}
                         </td>
@@ -42,6 +42,9 @@
                 </tbody>
             </table>
         </div>
+        <footer class="container button-along">
+            <a class="btn btn-dark button-back" href="/comunidades">Regresar <iconify-icon icon="ri:arrow-go-back-line" style="color: white;"></iconify-icon></a>
+        </footer>
     </main>
     
 {{/partial}}

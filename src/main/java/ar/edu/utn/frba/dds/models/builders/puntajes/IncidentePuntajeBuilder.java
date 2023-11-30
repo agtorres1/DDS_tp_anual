@@ -1,22 +1,20 @@
 package ar.edu.utn.frba.dds.models.builders.puntajes;
 
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.MiembroPuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinFechaValida;
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinIdValidoExcepcion;
-import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinPuntajeExcepcion;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
-import java.util.Objects;
+import java.util.UUID;
 
 public class IncidentePuntajeBuilder {
     private IncidentePuntaje incidentePuntaje = new IncidentePuntaje();
 
-    public IncidentePuntajeBuilder conId(Long id){
-        this.incidentePuntaje.incidenteId = Math.toIntExact(id);
+    public IncidentePuntajeBuilder conId(UUID id){
+        this.incidentePuntaje.incidenteId = id;
         return this;
     }
 
@@ -42,7 +40,7 @@ public class IncidentePuntajeBuilder {
     }
 
     public IncidentePuntaje construir(){
-        if(!idValidos(this.incidentePuntaje.incidenteId,this.incidentePuntaje.abiertoPorId,this.incidentePuntaje.codigoServicio)){
+        if(!idValidos()){ //TODO idValidos this.incidentePuntaje.incidenteId,this.incidentePuntaje.abiertoPorId,this.incidentePuntaje.codigoServicio
             throw new SinIdValidoExcepcion();
         }
 
@@ -69,8 +67,8 @@ public class IncidentePuntajeBuilder {
         }
     }
 
-    private boolean idValidos(int... ids) {
-
-        return Arrays.stream(ids).allMatch(id->id>=1);
+    private boolean idValidos() {
+        //TODO idValidos
+        return true;
     }
 }

@@ -5,19 +5,18 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.comunidades.PropuestaFusion;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.ServicioFusionador;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesAnalizables;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.requests.RequestComunidadesFusionables;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.responses.ResponseComunidadFusionada;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.responses.ResponseComunidadesAnalizables;
+import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.ServicioFusionador;
+import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.entities.ComunidadFusionable;
+import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.entities.requests.RequestComunidadesAnalizables;
+import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.entities.requests.RequestComunidadesFusionables;
+import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.entities.responses.ResponseComunidadFusionada;
+import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.entities.responses.ResponseComunidadesAnalizables;
 import ar.edu.utn.frba.dds.models.domain.servicios.Banio;
 import ar.edu.utn.frba.dds.models.domain.servicios.Genero;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.servicios.Servicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.repositories.RepoDeComunidades;
-import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class servicio_3 {
+public class servicio_fusionadorComunidades {
     private Comunidad comunidad1;
     private Comunidad comunidad2;
     private Miembro miembro1;
@@ -109,8 +108,6 @@ public class servicio_3 {
     @Test
     @DisplayName("Generar response del analizador")
     public void generarResponseAnalizador() throws IOException {
-        RepoDeComunidades repoDeComunidades = new RepoDeComunidades();
-        Comunidad comunidad1 = repoDeComunidades.buscarPorId(1L);
         ResponseComunidadesAnalizables comunidadesAnalizablesResponse = ServicioFusionador.getInstance().responseComunidadesAnalizables(this.requestComunidadesAnalizables);
         System.out.println(comunidadesAnalizablesResponse.resultado.get(0).comunidad1.gradoConfianza);
     }

@@ -1,6 +1,6 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.models.builders.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.models.builders.entidades.EstablecimientoBuilder;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.servicios.Banio;
 import ar.edu.utn.frba.dds.models.domain.servicios.Escalador;

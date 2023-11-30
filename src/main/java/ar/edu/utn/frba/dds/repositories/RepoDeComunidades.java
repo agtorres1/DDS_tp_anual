@@ -8,6 +8,7 @@ import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class RepoDeComunidades  implements WithSimplePersistenceUnit {
@@ -30,7 +31,7 @@ public class RepoDeComunidades  implements WithSimplePersistenceUnit {
         entityManager().merge(comunidad);
         tx.commit();
     }
-    public Comunidad buscarPorId(Long id){
+    public Comunidad buscarPorId(UUID id){
         return entityManager().find(Comunidad.class,id);
     }
 

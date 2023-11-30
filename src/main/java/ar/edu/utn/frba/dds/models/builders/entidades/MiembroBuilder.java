@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.dds.models.builders;
+package ar.edu.utn.frba.dds.models.builders.entidades;
 
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;

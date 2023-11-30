@@ -1,7 +1,7 @@
 package ar.edu.utn.frba.dds;
 
-import ar.edu.utn.frba.dds.models.builders.EstablecimientoBuilder;
-import ar.edu.utn.frba.dds.models.builders.MiembroBuilder;
+import ar.edu.utn.frba.dds.models.builders.entidades.EstablecimientoBuilder;
+import ar.edu.utn.frba.dds.models.builders.entidades.MiembroBuilder;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;

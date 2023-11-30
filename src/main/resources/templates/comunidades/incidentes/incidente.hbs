@@ -1,6 +1,6 @@
 {{#partial "contenido" }}
     <main class="container container-main">
-        <h1 class="main-title">Incidente N°{{incidente.id}}</h1>
+        <h1 class="main-title">Incidente: {{incidente.observaciones}}</h1>
         <section class="container section">
             <article class="article">
                 <h3 class="section-title">Apertura</h3>
@@ -101,12 +101,16 @@
                 </div>
             </article>
         </section>
-        {{#if incidente.abierto}}
-            <form class="container button-along" action="/comunidades/{{comunidad.id}}/incidentes/{{incidente.id}}" method="post">
-                <button type="submit" class="btn btn-danger">Cerrar incidente</button>
-            </form>
-        {{else}}
-        {{/if}}
+        <footer class="container button-along">
+            <a class="btn btn-dark button-back" href="/comunidades/{{comunidad.id}}/incidentes">Regresar <iconify-icon icon="ri:arrow-go-back-line" style="color: white;"></iconify-icon></a>
+
+            {{#if incidente.abierto}}
+                <form action="/comunidades/{{comunidad.id}}/incidentes/{{incidente.id}}" method="post">
+                    <button type="submit" class="btn btn-danger button-close">Cerrar incidente</button>
+                </form>
+            {{else}}
+            {{/if}}
+        </footer>
     </main>
     
 

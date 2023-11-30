@@ -3,19 +3,20 @@ package ar.edu.utn.frba.dds.models.builders.fusionesDeComunidades;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.comunidades.PropuestaFusion;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_3.entities.ComunidadFusionable;
+import ar.edu.utn.frba.dds.models.domain.services_api.fusionadorComunidades.entities.ComunidadFusionable;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 import ar.edu.utn.frba.dds.models.excepciones.puntajes.SinIdValidoExcepcion;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class ComunidadFusionableBuilder {
     private ComunidadFusionable comunidadFusionable = new ComunidadFusionable();
 
-    public ComunidadFusionableBuilder conId(Long id){
-        this.comunidadFusionable.id = Math.toIntExact(id);
+    public ComunidadFusionableBuilder conId(UUID id){
+        this.comunidadFusionable.id = id;
         return this;
     }
 
@@ -30,7 +31,7 @@ public class ComunidadFusionableBuilder {
     }
 
     public ComunidadFusionableBuilder conIncidentes(List<Incidente> incidentes) {
-        this.comunidadFusionable.incidentes = incidentes.stream().map(incidente -> Math.toIntExact(incidente.getId())).collect(Collectors.toList());
+        this.comunidadFusionable.incidentes = incidentes.stream().map(incidente -> incidente.getId()).collect(Collectors.toList());
         return this;
     }
 
@@ -49,7 +50,7 @@ public class ComunidadFusionableBuilder {
     }
 
     public ComunidadFusionable construir(){
-        if(this.comunidadFusionable.id < 0){
+        if(this.comunidadFusionable.id == null){
             throw new SinIdValidoExcepcion();
         }
 

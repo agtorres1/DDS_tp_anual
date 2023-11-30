@@ -3,7 +3,7 @@ package ar.edu.utn.frba.dds.models.domain.incidentes;
 import ar.edu.utn.frba.dds.models.builders.puntajes.IncidentePuntajeBuilder;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
-import ar.edu.utn.frba.dds.models.domain.services_api.service_2.entities.IncidentePuntaje;
+import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.IncidentePuntaje;
 import ar.edu.utn.frba.dds.models.domain.servicios.PrestacionDeServicio;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.Establecimiento;
 
@@ -11,8 +11,10 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "incidentes")
@@ -20,8 +22,10 @@ import java.util.List;
 @Setter @Getter
 public class Incidente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Column(name = "fechayHoraApertura",columnDefinition = "TIMESTAMP")
     private LocalDateTime fachaYHoraApertura;

@@ -12,7 +12,7 @@
 
                                 <div class="dropdown">
                                     <button class=" btn-secondary dropdown-toggle pretty item__comunidad" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Comunidad N°{{this.id}}: {{this.nombre}}
+                                        Comunidad: {{this.nombre}}
                                     </button>
                                     <div class="dropdown-menu complete" aria-labelledby="dropdownMenuButton">
                                         <div class="prod__box box-summary">
@@ -75,6 +75,11 @@
                     </div>
                 {{/if}}
             </section>
+        {{#if comunidades}}
+            <footer class="container button-along">
+                <a class="btn btn-dark button-back" href="/comunidades">Regresar <iconify-icon icon="ri:arrow-go-back-line" style="color: white;"></iconify-icon></a>
+            </footer>
+        {{/if}}
 
         
 
