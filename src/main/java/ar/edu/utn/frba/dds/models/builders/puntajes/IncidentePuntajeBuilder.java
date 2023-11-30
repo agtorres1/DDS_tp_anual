@@ -14,7 +14,7 @@ public class IncidentePuntajeBuilder {
     private IncidentePuntaje incidentePuntaje = new IncidentePuntaje();
 
     public IncidentePuntajeBuilder conId(UUID id){
-        this.incidentePuntaje.incidenteId = id;
+        this.incidentePuntaje.incidenteId = id.getMostSignificantBits();
         return this;
     }
 

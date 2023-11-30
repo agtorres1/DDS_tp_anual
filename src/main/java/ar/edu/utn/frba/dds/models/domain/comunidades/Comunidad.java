@@ -36,6 +36,8 @@ public class Comunidad{
   @Column(name = "id", columnDefinition = "BINARY(16)")
   private UUID id;
 
+  @Column
+  private Long idAmigable;
 
   @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(name = "administradores_por_comunidad",

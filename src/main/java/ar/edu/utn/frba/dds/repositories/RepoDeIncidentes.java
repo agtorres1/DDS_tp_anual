@@ -1,5 +1,6 @@
 package ar.edu.utn.frba.dds.repositories;
 
+import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
 import ar.edu.utn.frba.dds.models.domain.incidentes.IncidenteResumido;
@@ -8,6 +9,7 @@ import ar.edu.utn.frba.dds.repositories.convertsRepo.ConvertString;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDateTime;
@@ -117,4 +119,15 @@ public class RepoDeIncidentes  implements WithSimplePersistenceUnit {
 
     }
 
+    public Incidente buscarPorIdLong(Long valor) {
+        String query = "FROM " + Comunidad.class.getName() + " c WHERE c.idAmigable" + "= :valor";
+        try {
+            return (Incidente) entityManager()
+                    .createQuery(query)
+                    .setParameter("valor",valor)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }

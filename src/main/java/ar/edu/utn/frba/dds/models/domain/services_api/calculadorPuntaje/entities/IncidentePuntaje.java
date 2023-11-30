@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class IncidentePuntaje {
     @SerializedName("incidenteId")
-    public UUID incidenteId;
+    public Long incidenteId;
     @SerializedName("codigoServicio")
     public int codigoServicio;
     @SerializedName("abiertoPorId")

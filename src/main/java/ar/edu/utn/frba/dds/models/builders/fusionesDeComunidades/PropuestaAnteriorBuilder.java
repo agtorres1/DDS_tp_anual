@@ -10,7 +10,7 @@ public class PropuestaAnteriorBuilder {
     private PropuestaAnterior propuestaAnterior = new PropuestaAnterior();
 
     public PropuestaAnteriorBuilder conId(UUID id){
-        this.propuestaAnterior.idComunidad = id;
+        this.propuestaAnterior.idComunidad = id.getMostSignificantBits();
         return this;
     }
 

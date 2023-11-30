@@ -12,7 +12,7 @@ public class ComunidadPuntajeBuilder {
     private ComunidadPuntaje comunidadPuntaje = new ComunidadPuntaje();
 
     public ComunidadPuntajeBuilder conId(UUID id){
-        this.comunidadPuntaje.id = id;
+        this.comunidadPuntaje.id = id.getMostSignificantBits();
         return this;
     }
 

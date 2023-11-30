@@ -35,6 +35,7 @@ public class RepoDeComunidades  implements WithSimplePersistenceUnit {
         return entityManager().find(Comunidad.class,id);
     }
 
+
 /*    public List<Comunidad> buscarRestantes(Miembro miembro){
         String query = "FROM " + Comunidad.class.getName() + " comunidad WHERE comunidad." + atributo + " = :valor";
         try {
@@ -52,5 +53,17 @@ public class RepoDeComunidades  implements WithSimplePersistenceUnit {
 
     public List<Comunidad> buscarRestantesA(Miembro miembroActual) {
         return this.buscarTodos().stream().filter(comunidad -> !comunidad.getMiembros().contains(miembroActual)).collect(Collectors.toList());
+    }
+
+    public Comunidad buscarPorIdLong(Long valor) {
+        String query = "FROM " + Comunidad.class.getName() + " c WHERE c.idAmigable" + "= :valor";
+        try {
+            return (Comunidad) entityManager()
+                    .createQuery(query)
+                    .setParameter("valor",valor)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class servicio_calculadorPuntaje {
     private Miembro miembro1;
@@ -53,7 +54,7 @@ public class servicio_calculadorPuntaje {
         this.miembro2.setPuntaje(puntaje2);
 
         this.incidente = new Incidente();
-        this.incidente.setId(1L);
+        this.incidente.setId(UUID.randomUUID());
         this.incidente.setAbridor(miembro1);
         this.incidente.setCerrador(miembro2);
         this.incidente.setPrestacionDeServicio(prestacionDeServicio);
@@ -62,7 +63,7 @@ public class servicio_calculadorPuntaje {
         this.incidentePuntaje = this.incidente.incidentePuntaje();
 
         this.comunidad = new Comunidad();
-        this.comunidad.setId(1L);
+        this.comunidad.setId(UUID.randomUUID());
         Puntaje puntajeComunidad = new Puntaje();
         puntajeComunidad.setValor(3.00);
         this.comunidad.setPuntaje(puntajeComunidad);

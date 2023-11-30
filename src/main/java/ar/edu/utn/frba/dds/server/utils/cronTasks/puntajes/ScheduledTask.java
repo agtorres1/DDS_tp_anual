@@ -45,12 +45,12 @@ public class ScheduledTask implements Runnable {
             ComunidadPuntaje comunidadPuntajeActualizada = ServicioCalculador.getInstance().comunidadPuntaje(requestComunidadPuntaje);
             System.out.println("Comunidad "+ comunidadPuntajeActualizada.id+" con " + comunidadPuntajeActualizada.puntaje);
 
-            comunidades.stream().filter(comunidad -> comunidad.getId() == comunidadPuntajeActualizada.id).findFirst().ifPresent(
+            comunidades.stream().filter(comunidad -> comunidad.getId().getMostSignificantBits() == comunidadPuntajeActualizada.id).findFirst().ifPresent(
                     comunidad -> comunidad.actualizarPuntajes(comunidadPuntajeActualizada)
             );
         }
     }
-    public void actualizarComunidades2(List<RequestComunidadPuntaje> requestComunidadesPuntajes, List<Comunidad> comunidades){
+/*    public void actualizarComunidades2(List<RequestComunidadPuntaje> requestComunidadesPuntajes, List<Comunidad> comunidades){
         List<CompletableFuture<Void>> futures = requestComunidadesPuntajes.stream()
                 .map(request -> CompletableFuture.runAsync(() -> {
                     try {
@@ -74,7 +74,7 @@ public class ScheduledTask implements Runnable {
                 comunidad -> comunidad.actualizarPuntajes(comunidadPuntajeActualizada)
         );
 
-    }
+    }*/
 
     public List<RequestComunidadPuntaje> obtenerRequests(List<Comunidad> comunidades) {
         System.out.println(comunidades);

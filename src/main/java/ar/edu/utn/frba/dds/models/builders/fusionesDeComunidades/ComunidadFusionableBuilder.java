@@ -16,7 +16,7 @@ public class ComunidadFusionableBuilder {
     private ComunidadFusionable comunidadFusionable = new ComunidadFusionable();
 
     public ComunidadFusionableBuilder conId(UUID id){
-        this.comunidadFusionable.id = id;
+        this.comunidadFusionable.id = id.getMostSignificantBits();
         return this;
     }
 
@@ -31,7 +31,7 @@ public class ComunidadFusionableBuilder {
     }
 
     public ComunidadFusionableBuilder conIncidentes(List<Incidente> incidentes) {
-        this.comunidadFusionable.incidentes = incidentes.stream().map(incidente -> incidente.getId()).collect(Collectors.toList());
+        this.comunidadFusionable.incidentes = incidentes.stream().map(incidente -> incidente.getId().getMostSignificantBits()).collect(Collectors.toList());
         return this;
     }
 

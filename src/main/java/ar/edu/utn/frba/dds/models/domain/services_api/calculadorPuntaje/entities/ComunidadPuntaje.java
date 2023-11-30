@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class ComunidadPuntaje {
     @SerializedName("id")
-    public UUID id;
+    public Long id;
     @SerializedName("puntaje")
     public double puntaje;
     @SerializedName("miembros")

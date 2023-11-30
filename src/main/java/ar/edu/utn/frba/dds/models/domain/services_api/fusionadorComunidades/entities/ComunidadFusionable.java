@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class ComunidadFusionable {
     @SerializedName("id")
-    public UUID id;
+    public Long id;
     @SerializedName("establecimientos")
     public List<Integer> establecimientos;
 
@@ -19,7 +19,7 @@ public class ComunidadFusionable {
     public List<Integer> usuarios;
 
     @SerializedName("incidentes")
-    public List<UUID> incidentes;
+    public List<Long> incidentes;
 
     @SerializedName("propuestasAnteriores")
     public List<PropuestaAnterior> propuestasAnteriores;

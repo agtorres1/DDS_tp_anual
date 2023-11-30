@@ -7,7 +7,7 @@ import java.util.UUID;
 public class PropuestaAnterior {
 
     @SerializedName("idComunidad")
-    public UUID idComunidad;
+    public Long idComunidad;
 
     @SerializedName("fecha")
     public String fecha;
