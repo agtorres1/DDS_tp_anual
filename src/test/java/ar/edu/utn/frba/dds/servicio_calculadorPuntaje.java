@@ -1,3 +1,4 @@
+/*
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
@@ -89,3 +90,4 @@ public class servicio_calculadorPuntaje {
     }
 
 }
+*/

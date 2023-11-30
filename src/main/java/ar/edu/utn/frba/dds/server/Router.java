@@ -55,10 +55,10 @@ public class Router {
             path("comunidades", () -> {
                 get(((ComunidadesController) FactoryController.controller("Comunidades"))::index);
                 post(((ComunidadesController) FactoryController.controller("Comunidades"))::join);
-                get("analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);
+                /*get("analizadas", ((ComunidadesController) FactoryController.controller("Comunidades"))::analysis);*/
                 get("{idComunidad}/incidentes",((IncidentesController) FactoryController.controller("Incidentes"))::index);
                 get("{idComunidad}/incidentes/{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::show);
-                post("fusionar", ((ComunidadesController) FactoryController.controller("Comunidades"))::fusion);
+                /*post("fusionar", ((ComunidadesController) FactoryController.controller("Comunidades"))::fusion);*/
                 post("{idComunidad}/incidentes/{idIncidente}", ((IncidentesController) FactoryController.controller("Incidentes"))::close);
 
             });

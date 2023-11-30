@@ -57,6 +57,7 @@ public class ComunidadesController extends Controller {
         context.redirect("/comunidades");
     }
 
+/*
     public void analysis(Context context) throws IOException {
         Map<String, Object> model = new HashMap<>();
         List<ComunidadFusionable> comunidadesFusion = this.repoDeComunidades.buscarTodos().stream().map(Comunidad::comunidadFusionable).collect(Collectors.toList());
@@ -70,12 +71,7 @@ public class ComunidadesController extends Controller {
         context.render("comunidades/comunidadesFusionables.hbs", model);
     }
 
-    private List<Comunidad> comunidadesSugeridas(SugerenciaFusion sugerenciaFusion) {
-        List<Comunidad> comunidades = new ArrayList<>();
-        comunidades.add(this.repoDeComunidades.buscarPorId((UUID) sugerenciaFusion.comunidad1.id));
-        comunidades.add(this.repoDeComunidades.buscarPorId((UUID) sugerenciaFusion.comunidad2.id));
-        return comunidades;
-    }
+
 
     public void fusion(Context context) throws IOException {
         if (!Objects.equals(context.formParam("comunidad0"), null) && !Objects.equals(context.formParam("comunidad1"), null)) {
@@ -95,8 +91,15 @@ public class ComunidadesController extends Controller {
         context.status(HttpStatus.CREATED);
         context.redirect("/comunidades");
     }
+*/
 
-    private Comunidad asignarAtributos(Comunidad comunidad1, Comunidad comunidad2, ResponseComunidadFusionada responseComunidadesFusionadas) {
+/*    private List<Comunidad> comunidadesSugeridas(SugerenciaFusion sugerenciaFusion) {
+        List<Comunidad> comunidades = new ArrayList<>();
+        comunidades.add(this.repoDeComunidades.buscarPorId((UUID) sugerenciaFusion.comunidad1.id));
+        comunidades.add(this.repoDeComunidades.buscarPorId((UUID) sugerenciaFusion.comunidad2.id));
+        return comunidades;
+    }*/
+/*    private Comunidad asignarAtributos(Comunidad comunidad1, Comunidad comunidad2, ResponseComunidadFusionada responseComunidadesFusionadas) {
         if (responseComunidadesFusionadas.exito) {
             Comunidad comunidadNueva = new Comunidad();
             comunidadNueva.setMiembros(buscarMiembros(listIntegerToLong(responseComunidadesFusionadas.resultado.usuarios)));
@@ -110,7 +113,7 @@ public class ComunidadesController extends Controller {
             return comunidadNueva;
         }
         return null;
-    }
+    }*/
 
     private List<Incidente> buscarIncidentes(List<UUID> ids) {
         return ids.stream().map(id -> this.repoDeIncidentes.buscarPorId(id)).collect(Collectors.toList());

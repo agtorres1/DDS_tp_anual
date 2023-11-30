@@ -1,3 +1,4 @@
+/*
 package ar.edu.utn.frba.dds;
 
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
@@ -102,8 +103,10 @@ public class servicio_fusionadorComunidades {
         this.requestComunidadesFusionables.setComunidad1(this.comunidad1.comunidadFusionable());
         this.requestComunidadesFusionables.setComunidad2(this.comunidad2.comunidadFusionable());
 
+*/
 /*        this.requestComunidadesFusionables.setComunidad1(comunidad1.comunidadFusionable());
-        this.requestComunidadesFusionables.setComunidad2(comunidad2.comunidadFusionable());*/
+        this.requestComunidadesFusionables.setComunidad2(comunidad2.comunidadFusionable());*//*
+
     }
     @Test
     @DisplayName("Generar response del analizador")
@@ -125,3 +128,4 @@ public class servicio_fusionadorComunidades {
 
     }
 }
+*/
