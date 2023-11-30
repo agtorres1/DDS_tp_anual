@@ -24,8 +24,8 @@ import java.util.UUID;
 public class Incidente {
     @Id
     @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", columnDefinition = "BINARY(16)")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", columnDefinition = "uuid")
     private UUID id;
 
     @Convert(converter = LocalDateTimeAttributeConverter.class)
