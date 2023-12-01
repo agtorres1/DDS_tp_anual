@@ -8,11 +8,11 @@ public class IncidentePuntaje {
     @SerializedName("incidenteId")
     public Long incidenteId;
     @SerializedName("codigoServicio")
-    public int codigoServicio;
+    public Long codigoServicio;
     @SerializedName("abiertoPorId")
-    public int abiertoPorId;
+    public Long abiertoPorId;
     @SerializedName("cerradoPorId")
-    public int cerradoPorId;
+    public Long cerradoPorId;
     @SerializedName("fechaApertura")
     public String fechaApertura;
     @SerializedName("fechaCierre")

@@ -1,6 +1,7 @@
 package ar.edu.utn.frba.dds.models.domain.incidentes;
 
 import ar.edu.utn.frba.dds.models.builders.puntajes.IncidentePuntajeBuilder;
+import ar.edu.utn.frba.dds.models.converts.UUIDAttributeConverter;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.services_api.calculadorPuntaje.entities.IncidentePuntaje;
@@ -26,6 +27,9 @@ public class Incidente {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "BINARY(16)")
     private UUID id;
+
+    @Column(name = "id_amigable")
+    private Long idAmigable;
 
     @Column(name = "fechayHoraApertura",columnDefinition = "TIMESTAMP")
     private LocalDateTime fachaYHoraApertura;
@@ -59,7 +63,10 @@ public class Incidente {
     @JoinColumn(name = "comunidad_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Comunidad comunidad;
 
-
+    @PrePersist
+    public void antesDePersistir(){
+        this.idAmigable = UUIDAttributeConverter.convertUuidToLong(UUID.randomUUID());
+    }
     public void meAbro(Miembro abridor,AperturaIncidente aperturaIncidente){
         setAbridor(abridor);
         setObservaciones(aperturaIncidente.getObservaciones());
@@ -89,7 +96,7 @@ public class Incidente {
     }
 
     public IncidentePuntaje incidentePuntaje(){
-        return new IncidentePuntajeBuilder().conId(this.getId()).conAbridor(this.getAbridor().getId()).
+        return new IncidentePuntajeBuilder().conId(this.getIdAmigable()).conAbridor(this.getAbridor().getId()).
                 conCerrador(this.getCerrador().getId()).conServicio(this.getPrestacionDeServicio().getId()).
                 conFechaApertura(this.getFachaYHoraApertura()).conFechaCierre(this.fechaYHoraCierre).construir();
     }

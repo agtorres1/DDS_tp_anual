@@ -14,8 +14,8 @@ public class ConfigurationTask {
         ScheduledFuture<?> tareaProgramada = scheduler.scheduleAtFixedRate(
                 new ScheduledTask(new RepoDeComunidades()),
                 0,  // Retardo inicial (en este caso, la tarea comienza de inmediato)
-                2,  // Período entre ejecuciones en días
-                TimeUnit.MINUTES
+                7,  // Período entre ejecuciones en días
+                TimeUnit.DAYS
         );
 
     }

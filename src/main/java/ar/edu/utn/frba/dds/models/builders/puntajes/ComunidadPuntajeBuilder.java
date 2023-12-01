@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class ComunidadPuntajeBuilder {
     private ComunidadPuntaje comunidadPuntaje = new ComunidadPuntaje();
 
-    public ComunidadPuntajeBuilder conId(UUID id){
-        this.comunidadPuntaje.id = id.getMostSignificantBits();
+    public ComunidadPuntajeBuilder conId(Long id){
+        this.comunidadPuntaje.id = id;
         return this;
     }
 
@@ -27,7 +27,7 @@ public class ComunidadPuntajeBuilder {
     }
 
     public ComunidadPuntaje construir(){
-        if(this.comunidadPuntaje.id == null){
+        if(this.comunidadPuntaje.id == 0){
             throw new SinIdValidoExcepcion();
         }
 

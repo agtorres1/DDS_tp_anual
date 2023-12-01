@@ -9,8 +9,8 @@ import java.util.UUID;
 public class PropuestaAnteriorBuilder {
     private PropuestaAnterior propuestaAnterior = new PropuestaAnterior();
 
-    public PropuestaAnteriorBuilder conId(UUID id){
-        this.propuestaAnterior.idComunidad = id.getMostSignificantBits();
+    public PropuestaAnteriorBuilder conId(Long id){
+        this.propuestaAnterior.idComunidad = id;
         return this;
     }
 

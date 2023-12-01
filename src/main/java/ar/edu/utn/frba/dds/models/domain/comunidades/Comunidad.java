@@ -2,6 +2,7 @@ package ar.edu.utn.frba.dds.models.domain.comunidades;
 
 import ar.edu.utn.frba.dds.models.builders.fusionesDeComunidades.ComunidadFusionableBuilder;
 import ar.edu.utn.frba.dds.models.builders.puntajes.ComunidadPuntajeBuilder;
+import ar.edu.utn.frba.dds.models.converts.UUIDAttributeConverter;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificacion;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.incidentes.Incidente;
@@ -36,7 +37,7 @@ public class Comunidad{
   @Column(name = "id", columnDefinition = "BINARY(16)")
   private UUID id;
 
-  @Column
+  @Column(name = "id_amigable")
   private Long idAmigable;
 
   @ManyToMany(cascade = CascadeType.PERSIST)
@@ -77,7 +78,12 @@ public class Comunidad{
     this.propuestasFusion = new ArrayList<>();
   }
 
-   //esto es para fijarse el estado de los incidentes abiertos
+  @PrePersist
+  public void antesDePersistir(){
+    this.idAmigable = UUIDAttributeConverter.convertUuidToLong(UUID.randomUUID());
+  }
+
+  //esto es para fijarse el estado de los incidentes abiertos
   public void imprimirIncidentes(TipoFiltrado tipoFiltrado) {
     for (Incidente incidente : incidentes) {
       if (tipoFiltrado == TipoFiltrado.SOLO_ABIERTOS && incidente.getAbierto()) {
@@ -146,11 +152,11 @@ public class Comunidad{
     this.notificarMiembros(incidente);
   }
   public ComunidadPuntaje comunidadPuntaje(){
-    return new ComunidadPuntajeBuilder().conId(this.getId()).conPuntaje(this.puntaje.getValor()).conMiembros(this.getMiembros()).construir();
+    return new ComunidadPuntajeBuilder().conId(this.getIdAmigable()).conPuntaje(this.puntaje.getValor()).conMiembros(this.getMiembros()).construir();
   }
 
   public ComunidadFusionable comunidadFusionable(){
-    return new ComunidadFusionableBuilder().conId(this.id).conIncidentes(this.incidentes).conEstablecimientos(establecimientosDeIncidentes())
+    return new ComunidadFusionableBuilder().conId(this.getIdAmigable()).conIncidentes(this.incidentes).conEstablecimientos(establecimientosDeIncidentes())
             .conServicios(serviciosDeIncidentes()).conUsuarios(this.miembros).conPropuestasAnteriores(this.propuestasFusion)
             .conGradoDeConfianza(this.puntaje.getValor()).construir();
   }

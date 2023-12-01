@@ -45,7 +45,7 @@ public class ScheduledTask implements Runnable {
             ComunidadPuntaje comunidadPuntajeActualizada = ServicioCalculador.getInstance().comunidadPuntaje(requestComunidadPuntaje);
             System.out.println("Comunidad "+ comunidadPuntajeActualizada.id+" con " + comunidadPuntajeActualizada.puntaje);
 
-            comunidades.stream().filter(comunidad -> comunidad.getId().getMostSignificantBits() == comunidadPuntajeActualizada.id).findFirst().ifPresent(
+            comunidades.stream().filter(comunidad -> comunidad.getIdAmigable() == comunidadPuntajeActualizada.id).findFirst().ifPresent(
                     comunidad -> comunidad.actualizarPuntajes(comunidadPuntajeActualizada)
             );
         }

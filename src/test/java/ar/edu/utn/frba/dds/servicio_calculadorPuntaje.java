@@ -54,7 +54,7 @@ public class servicio_calculadorPuntaje {
         this.miembro2.setPuntaje(puntaje2);
 
         this.incidente = new Incidente();
-        this.incidente.setId(UUID.randomUUID());
+        this.incidente.setIdAmigable(1L);
         this.incidente.setAbridor(miembro1);
         this.incidente.setCerrador(miembro2);
         this.incidente.setPrestacionDeServicio(prestacionDeServicio);
@@ -63,7 +63,7 @@ public class servicio_calculadorPuntaje {
         this.incidentePuntaje = this.incidente.incidentePuntaje();
 
         this.comunidad = new Comunidad();
-        this.comunidad.setId(UUID.randomUUID());
+        this.comunidad.setIdAmigable(1L);
         Puntaje puntajeComunidad = new Puntaje();
         puntajeComunidad.setValor(3.00);
         this.comunidad.setPuntaje(puntajeComunidad);

@@ -62,14 +62,14 @@ public class servicio_fusionadorComunidades {
         this.miembro1.setId(1L);
 
         this.incidente = new Incidente();
-        this.incidente.setId(UUID.randomUUID());
+        this.incidente.setIdAmigable(1L);
         this.incidente.setFachaYHoraApertura(LocalDateTime.now());
         this.incidente.setPrestacionDeServicio(this.prestacionDeServicio);
         this.incidente.setEstablecimiento(this.establecimiento);
         this.incidente.setAbridor(this.miembro1);
 
         this.comunidad1 = new Comunidad();
-        this.comunidad1.setId(UUID.randomUUID());
+        this.comunidad1.setIdAmigable(1L);
         this.comunidad1.agregarUsuarios(miembro1);
         Puntaje puntaje1 = new Puntaje();
         puntaje1.setValor(3.00);
@@ -77,7 +77,7 @@ public class servicio_fusionadorComunidades {
         this.comunidad1.getIncidentes().add(incidente);
 
         this.comunidad2 = new Comunidad();
-        this.comunidad2.setId(UUID.randomUUID());
+        this.comunidad2.setIdAmigable(2L);
         this.comunidad2.agregarUsuarios(miembro1);
         Puntaje puntaje2 = new Puntaje();
         puntaje2.setValor(3.00);
@@ -115,6 +115,7 @@ public class servicio_fusionadorComunidades {
 
         ResponseComunidadesAnalizables comunidadesAnalizablesResponse = ServicioFusionador.getInstance().responseComunidadesAnalizables(this.requestComunidadesAnalizables);
         System.out.println(comunidadesAnalizablesResponse.resultado.get(0).comunidad1.gradoConfianza);
+        System.out.println(comunidadesAnalizablesResponse.resultado.get(0).comunidad2.gradoConfianza);
     }
 
     @Test

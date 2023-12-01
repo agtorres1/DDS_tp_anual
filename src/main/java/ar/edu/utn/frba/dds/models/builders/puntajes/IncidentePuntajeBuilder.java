@@ -13,21 +13,21 @@ import java.util.UUID;
 public class IncidentePuntajeBuilder {
     private IncidentePuntaje incidentePuntaje = new IncidentePuntaje();
 
-    public IncidentePuntajeBuilder conId(UUID id){
-        this.incidentePuntaje.incidenteId = id.getMostSignificantBits();
+    public IncidentePuntajeBuilder conId(Long id){
+        this.incidentePuntaje.incidenteId = id;
         return this;
     }
 
     public IncidentePuntajeBuilder conAbridor(Long id_abridor){
-        this.incidentePuntaje.abiertoPorId = Math.toIntExact(id_abridor);
+        this.incidentePuntaje.abiertoPorId = id_abridor;
         return this;
     }
     public IncidentePuntajeBuilder conCerrador(Long id_cerrador){
-        this.incidentePuntaje.cerradoPorId = Math.toIntExact(id_cerrador);
+        this.incidentePuntaje.cerradoPorId = id_cerrador;
         return this;
     }
     public IncidentePuntajeBuilder conServicio(Long id_servicio){
-        this.incidentePuntaje.codigoServicio = Math.toIntExact(id_servicio);
+        this.incidentePuntaje.codigoServicio = id_servicio;
         return this;
     }
     public IncidentePuntajeBuilder conFechaApertura(LocalDateTime fechaApertura){
@@ -40,7 +40,7 @@ public class IncidentePuntajeBuilder {
     }
 
     public IncidentePuntaje construir(){
-        if(!idValidos()){ //TODO idValidos this.incidentePuntaje.incidenteId,this.incidentePuntaje.abiertoPorId,this.incidentePuntaje.codigoServicio
+        if(!idValidos(this.incidentePuntaje.incidenteId,this.incidentePuntaje.codigoServicio,this.incidentePuntaje.abiertoPorId,this.incidentePuntaje.cerradoPorId)){ //TODO idValidos this.incidentePuntaje.incidenteId,this.incidentePuntaje.abiertoPorId,this.incidentePuntaje.codigoServicio
             throw new SinIdValidoExcepcion();
         }
 
@@ -67,8 +67,7 @@ public class IncidentePuntajeBuilder {
         }
     }
 
-    private boolean idValidos() {
-        //TODO idValidos
-        return true;
+    private boolean idValidos(Long... ids) {
+        return Arrays.stream(ids).allMatch(id->id!=0);
     }
 }

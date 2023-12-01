@@ -72,7 +72,10 @@ public class ComunidadesController extends Controller {
 
     private List<Comunidad> comunidadesSugeridas(SugerenciaFusion sugerenciaFusion) {
         List<Comunidad> comunidades = new ArrayList<>();
+        System.out.println(sugerenciaFusion.comunidad1.id);
         comunidades.add(this.repoDeComunidades.buscarPorIdLong(sugerenciaFusion.comunidad1.id));
+
+
         comunidades.add(this.repoDeComunidades.buscarPorIdLong(sugerenciaFusion.comunidad2.id));
         return comunidades;
     }
