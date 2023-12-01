@@ -115,7 +115,7 @@
                 </div>
 
                     <div class="text-right">
-                        <a class="btn btn-secondary" href="/">Ir a inicio</a>
+                        <button id="botonRegresar" class="btn btn-secondary" >Regresar</button>
                     </div>
 
 
@@ -126,5 +126,12 @@
 
 <script src="../js/redi.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.getElementById('botonRegresar').addEventListener('click', function() {
+        // Obtén la dirección de la página anterior y redirige a esa dirección
+        var paginaAnterior = document.referrer;
+        window.location.href = paginaAnterior;
+    });
+</script>
 </body>
 </html>

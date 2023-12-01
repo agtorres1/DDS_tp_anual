@@ -323,7 +323,8 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         Map<String, Object> modelo = new HashMap<>();
         modelo.put("usuario", usuario);
 
-        //todo
+        context.render("Usuarios/show.hbs",modelo);
+
     }
 
 }

@@ -9,7 +9,6 @@
             <table id="datatable" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Nombre de Usuario</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
@@ -21,29 +20,18 @@
                 <tbody>
                     {{#each usuarios}}
                         <tr>
-                            <td>{{this.id}}</td>
                             <td>{{this.usuario}}</td>
                             <td>{{this.nombre}}</td>
                             <td>{{this.apellido}}</td>
                             <td>{{this.mail}}</td>
                             <td>{{this.rol.tipo}}</td>
                             <td>
-                                <a href="#" class="btn btn-primary d-block m-1"><i class="fa-regular fa-pen-to-square"></i> Editar</a>
+                                <a href="/usuarios/{{this.id}}" class="btn btn-primary d-block m-1"><i class="fa-regular fa-pen-to-square"></i> Editar</a>
                             </td>
                         </tr>
                     {{/each}}
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre de Usuario</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Rol</th>
-                        <th>Acciones</th>
-                    </tr>
-                </tfoot>
+
             </table>
         </div>
     </div>
