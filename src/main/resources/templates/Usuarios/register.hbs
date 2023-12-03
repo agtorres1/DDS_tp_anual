@@ -64,6 +64,7 @@
                             <span class="fa-solid fa-bell"></span>
                         </span>
                         <select required name="provincia" id="provincia" class="form-select" onchange="cargarMunicipiosYDepartamentos()">
+
                             <option selected disabled>Seleccionar Provincia</option>
                             {{#each provincias}}
                                 <option value="{{this.nombre}}">{{this.nombre}}</option>
