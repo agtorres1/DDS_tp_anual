@@ -100,6 +100,42 @@
 
                         </div>
 
+                    <label class="form-label">Provincia</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select required name="provincia" id="provincia" class="form-select" onchange="cargarMunicipiosYDepartamentos()">
+
+                            <option selected disabled>Seleccionar Provincia</option>
+                            {{#each provincias}}
+                                <option value="{{this.nombre}}">{{this.nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <label class="form-label">Municipio</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select name="municipio" id="municipio" class="form-select">
+                            <option selected disabled>Seleccionar Municipio</option>
+
+                        </select>
+                    </div>
+
+                    
+                    <label class="form-label">Departamento</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <span class="fa-solid fa-bell"></span>
+                        </span>
+                        <select name="departamento" id="departamento" class="form-select">
+                            <option selected disabled>Seleccionar Departamento</option>
+
+                        </select>
+                    </div>
                         <hr class="my-4">
 
                         <button class="w-100 btn btn-primary btn-lg" type="submit">Guardar</button>
@@ -117,6 +153,7 @@
 <script src="../../js/restricciones.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../../js/new.js"></script>
+<script src="js/georef.js"></script>
 
 </body>
 </html>
