@@ -71,6 +71,15 @@ public class ComunidadesController extends Controller {
         context.render("comunidades/comunidadesFusionables.hbs", model);
     }
 
+    private List<Comunidad> comunidadesSugeridas(SugerenciaFusion sugerenciaFusion) {
+        List<Comunidad> comunidades = new ArrayList<>();
+        System.out.println(sugerenciaFusion.comunidad1.id);
+        comunidades.add(this.repoDeComunidades.buscarPorIdLong(sugerenciaFusion.comunidad1.id));
+
+
+        comunidades.add(this.repoDeComunidades.buscarPorIdLong(sugerenciaFusion.comunidad2.id));
+        return comunidades;
+    }
 
 
     public void fusion(Context context) throws IOException {
@@ -115,8 +124,8 @@ public class ComunidadesController extends Controller {
         return null;
     }*/
 
-    private List<Incidente> buscarIncidentes(List<UUID> ids) {
-        return ids.stream().map(id -> this.repoDeIncidentes.buscarPorId(id)).collect(Collectors.toList());
+    private List<Incidente> buscarIncidentes(List<Long> ids) {
+        return ids.stream().map(id -> this.repoDeIncidentes.buscarPorIdLong(id)).collect(Collectors.toList());
     }
 
     private List<Miembro> buscarMiembros(List<Long> ids) {

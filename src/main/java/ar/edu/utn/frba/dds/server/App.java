@@ -1,6 +1,5 @@
 package ar.edu.utn.frba.dds.server;
 
-import ar.edu.utn.frba.dds.MainExample;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Notificador;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
@@ -19,6 +18,10 @@ import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepci
 import ar.edu.utn.frba.dds.repositories.*;
 import ar.edu.utn.frba.dds.server.utils.cronTasks.ConfigurationTask;
 
+
+import java.io.IOException;
+import java.util.List;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -36,7 +39,9 @@ public class App {
         for(Miembro miembro : miembros){
             Localizacion localizacion = new Localizacion();
             localizacion.setProvincia("Chaco");
-            repoDeLocalizaciones.agregar(localizacion);
+
+            /*repoDeLocalizaciones.agregar(localizacion);*/
+
             miembro.setLocalizacion(localizacion);
         }
     }

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ComunidadFusionableBuilder {
     private ComunidadFusionable comunidadFusionable = new ComunidadFusionable();
 
-    public ComunidadFusionableBuilder conId(UUID id){
+    public ComunidadFusionableBuilder conId(Long id){
         this.comunidadFusionable.id = id;
         return this;
     }
@@ -31,7 +31,7 @@ public class ComunidadFusionableBuilder {
     }
 
     public ComunidadFusionableBuilder conIncidentes(List<Incidente> incidentes) {
-        this.comunidadFusionable.incidentes = incidentes.stream().map(incidente -> incidente.getId()).collect(Collectors.toList());
+        this.comunidadFusionable.incidentes = incidentes.stream().map(Incidente::getIdAmigable).collect(Collectors.toList());
         return this;
     }
 

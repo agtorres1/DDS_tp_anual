@@ -1,11 +1,15 @@
 package ar.edu.utn.frba.dds.repositories;
 
+import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.usuario.Rol;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import java.util.List;
+import java.util.UUID;
 
 public class RepoDeRoles implements WithSimplePersistenceUnit {
     public Rol buscarPorTipoRol(TipoRol valor) {
@@ -38,5 +42,14 @@ public class RepoDeRoles implements WithSimplePersistenceUnit {
         tx.begin();
         entityManager().merge(rol);
         tx.commit();
+    }
+
+    public List<Rol> buscarTodos(){
+        return entityManager().createQuery("from " + Rol.class.getName()).getResultList();
+
+    }
+
+    public Rol buscarPorId(Long id){
+        return entityManager().find(Rol.class,id);
     }
 }

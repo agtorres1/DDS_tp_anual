@@ -24,7 +24,7 @@ public class PropuestaFusion {
     private LocalDate fechaSolicitada;
 
     public PropuestaAnterior propuestaAnterior(){
-        return new PropuestaAnteriorBuilder().conId(this.comunidad.getId()).conFecha(this.fechaSolicitada).construir();
+        return new PropuestaAnteriorBuilder().conId(this.comunidad.getIdAmigable()).conFecha(this.fechaSolicitada).construir();
     }
 
 }

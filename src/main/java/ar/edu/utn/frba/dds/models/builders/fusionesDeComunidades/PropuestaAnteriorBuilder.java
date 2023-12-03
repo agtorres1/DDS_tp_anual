@@ -9,7 +9,7 @@ import java.util.UUID;
 public class PropuestaAnteriorBuilder {
     private PropuestaAnterior propuestaAnterior = new PropuestaAnterior();
 
-    public PropuestaAnteriorBuilder conId(UUID id){
+    public PropuestaAnteriorBuilder conId(Long id){
         this.propuestaAnterior.idComunidad = id;
         return this;
     }

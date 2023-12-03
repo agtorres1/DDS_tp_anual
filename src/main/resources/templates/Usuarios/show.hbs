@@ -101,9 +101,13 @@
                                 {{/if}}
 
 
-                                <p class="font-italic mb-0"><strong>Provincia:</strong> {{usuario.localizacion.provincia}}</p>
-                                <p class="font-italic mb-0"><strong>Municipio:</strong> {{usuario.localizacion.municipio}}</p>
-                                <p class="font-italic mb-0"><strong>Departamento:</strong> {{usuario.localizacion.departamento}}</p>
+                                <p class="font-italic mb-0"><strong>Provincia:</strong> {{usuario.localizacion.provincia.nombre}}</p>
+                                {{#if usuario.localizacion.municipio}}
+                                    <p class="font-italic mb-0"><strong>Municipio:</strong> {{usuario.localizacion.municipio.nombre}}</p>
+                                {{/if}}
+                                {{#if usuario.localizacion.departamento}}
+                                    <p class="font-italic mb-0"><strong>Departamento:</strong> {{usuario.localizacion.departamento.nombre}}</p>
+                                {{/if}}
                                 <p class="font-italic mb-0"><strong>Cantidad de comunidades:</strong> {{usuario.cantComunidades}}</p>
                             </div>
 
@@ -112,10 +116,8 @@
 
 
 
-                </div>
-
                     <div class="text-right">
-                        <a class="btn btn-secondary" href="/comunidades">Ir a inicio</a>
+                        <button id="botonRegresar" class="btn btn-secondary" >Regresar</button>
                     </div>
 
 
@@ -124,7 +126,15 @@
     </div>
 </section>
 
+
 <script src="../js/redi.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.getElementById('botonRegresar').addEventListener('click', function() {
+        // Obtén la dirección de la página anterior y redirige a esa dirección
+        var paginaAnterior = document.referrer;
+        window.location.href = paginaAnterior;
+    });
+</script>
 </body>
 </html>

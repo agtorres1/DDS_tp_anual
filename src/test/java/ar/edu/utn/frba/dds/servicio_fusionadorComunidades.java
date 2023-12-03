@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class servicio_fusionadorComunidades {
@@ -62,14 +63,14 @@ public class servicio_fusionadorComunidades {
         this.miembro1.setId(1L);
 
         this.incidente = new Incidente();
-        this.incidente.setId(1L);
+        this.incidente.setIdAmigable(1L);
         this.incidente.setFachaYHoraApertura(LocalDateTime.now());
         this.incidente.setPrestacionDeServicio(this.prestacionDeServicio);
         this.incidente.setEstablecimiento(this.establecimiento);
         this.incidente.setAbridor(this.miembro1);
 
         this.comunidad1 = new Comunidad();
-        this.comunidad1.setId(1L);
+        this.comunidad1.setIdAmigable(1L);
         this.comunidad1.agregarUsuarios(miembro1);
         Puntaje puntaje1 = new Puntaje();
         puntaje1.setValor(3.00);
@@ -77,7 +78,7 @@ public class servicio_fusionadorComunidades {
         this.comunidad1.getIncidentes().add(incidente);
 
         this.comunidad2 = new Comunidad();
-        this.comunidad2.setId(2L);
+        this.comunidad2.setIdAmigable(2L);
         this.comunidad2.agregarUsuarios(miembro1);
         Puntaje puntaje2 = new Puntaje();
         puntaje2.setValor(3.00);
@@ -111,8 +112,13 @@ public class servicio_fusionadorComunidades {
     @Test
     @DisplayName("Generar response del analizador")
     public void generarResponseAnalizador() throws IOException {
+        System.out.println(this.requestComunidadesAnalizables.getComunidades().get(0).id);
+        System.out.println(this.requestComunidadesAnalizables.getComunidades().get(0).incidentes.get(0));
+        System.out.println(this.requestComunidadesAnalizables.getComunidades().get(0).propuestasAnteriores.get(0).idComunidad);
+
         ResponseComunidadesAnalizables comunidadesAnalizablesResponse = ServicioFusionador.getInstance().responseComunidadesAnalizables(this.requestComunidadesAnalizables);
         System.out.println(comunidadesAnalizablesResponse.resultado.get(0).comunidad1.gradoConfianza);
+        System.out.println(comunidadesAnalizablesResponse.resultado.get(0).comunidad2.gradoConfianza);
     }
 
     @Test
