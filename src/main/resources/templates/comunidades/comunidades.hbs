@@ -53,15 +53,15 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Unete a una nueva comunidad</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="/comunidades" method="post">
                         <div class="mb-3">
                             <label for="comunidad" class="form-label tipografia-label">Comunidad</label>
-                            <select id="comunidad" name="comunidad" class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
+                            <select id="comunidad" name="comunidad" class="form-select" aria-label="Default select example" required>
+                                <option value="" disabled selected>Selecciona una comunidad</option>
                                 {{#each comunidades}}
                                     <option value="{{this.id}}">{{this.nombre}}</option>
                                 {{/each}}
@@ -78,6 +78,7 @@
     </main>
 
     <script src="/js/comunidades.js"></script>
+    
 
 {{/partial}}
 {{> templates/base}}

@@ -49,6 +49,7 @@ public class Router {
             get("/usuario",((UsuariosController) FactoryController.controller("Usuarios")) :: show);
             get("/usuario/{id}/editar",((UsuariosController) FactoryController.controller("Usuarios")) :: edit);
             post("/usuario",((UsuariosController) FactoryController.controller("Usuarios")) :: update);
+            post("/usuarios/{id}/permiso",((UsuariosController) FactoryController.controller("Usuarios")) :: updateRol);
             get("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
             post("/usuario/{id}/intereses",((UsuariosController) FactoryController.controller("Usuarios"))::show);
 

@@ -16,7 +16,6 @@ import ar.edu.utn.frba.dds.models.domain.servicios.*;
 import ar.edu.utn.frba.dds.models.domain.serviciospublicos.*;
 import ar.edu.utn.frba.dds.models.excepciones.TipoEstablecimientoInvalidoExcepcion;
 import ar.edu.utn.frba.dds.repositories.*;
-import ar.edu.utn.frba.dds.server.utils.cronTasks.ConfigurationTask;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,25 +23,23 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) throws IOException, TipoEstablecimientoInvalidoExcepcion {
-        ConfigurationTask.actualizarPuntajes();
 
-        cargarDatos();
-
-        Server.init();
-
-
+        /*ConfigurationTask.actualizarPuntajes();*/ //Preparamos cron de puntajes
+        cargarCosas(); //Cargamos cosas iniciales para no tener app vacía
+        Server.init(); //Acción :D
 
     }
+
     public static void somosDeChaco(RepoDeLocalizaciones repoDeLocalizaciones, Miembro... miembros) throws IOException {
         for(Miembro miembro : miembros){
             Localizacion localizacion = new Localizacion();
             localizacion.setProvincia("Chaco");
-            repoDeLocalizaciones.agregar(localizacion);
+            /*repoDeLocalizaciones.agregar(localizacion);*/
             miembro.setLocalizacion(localizacion);
         }
     }
 
-    private static void cargarDatos() throws TipoEstablecimientoInvalidoExcepcion, IOException {
+    public static void cargarCosas() throws TipoEstablecimientoInvalidoExcepcion, IOException {
 
         RepoDeProvincias repoDeProvincias = new RepoDeProvincias();
         RepoDeLocalizaciones repoDeLocalizaciones = new RepoDeLocalizaciones();
@@ -241,6 +238,8 @@ public class App {
         generadorRanking.agregarRanking(RankingMayorPromedioCierre.getInstance());
         generadorRanking.generarRankings(repoDeComunidades.buscarTodos(), repoDeEntidades.buscarTodos());
         System.out.println(generadorRanking.getResultadosRanking().getResultados().get(RankingMayorCantidadIncidentes.getInstance()).get(0).getNombre());
+
     }
+
 }
 

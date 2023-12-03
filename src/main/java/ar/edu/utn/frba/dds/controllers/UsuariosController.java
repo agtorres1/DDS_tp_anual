@@ -3,14 +3,17 @@ import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Email;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.MedioDeNotificacion;
 import ar.edu.utn.frba.dds.models.domain.MediosDeComunicacion.Whatsapp;
 import ar.edu.utn.frba.dds.models.domain.ValidadorContrasenias.ValidadorDeContrasenias;
+import ar.edu.utn.frba.dds.models.domain.comunidades.Comunidad;
 import ar.edu.utn.frba.dds.models.domain.comunidades.Miembro;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.GradoDeConfianza;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.TipoDeGrado;
+import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
+import ar.edu.utn.frba.dds.models.domain.services_api.georef.ServicioGeoref;
+import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Provincia;
+import ar.edu.utn.frba.dds.models.domain.usuario.Rol;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
-import ar.edu.utn.frba.dds.repositories.RepoDeMediosDeNotificacion;
-import ar.edu.utn.frba.dds.repositories.RepoDeMiembros;
-import ar.edu.utn.frba.dds.repositories.RepoDeRoles;
+import ar.edu.utn.frba.dds.repositories.*;
 import ar.edu.utn.frba.dds.server.utils.ICrudViewsHandler;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
@@ -69,9 +72,16 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         context.redirect("/comunidades");
     }
 
-    public void register(Context context){context.render("Usuarios/register.hbs");}
+    public void register(Context context) throws IOException {
 
-    public void registerPost(Context context){
+        Map<String, Object> modelo = new HashMap<>();
+
+        List<Provincia> provincias = ServicioGeoref.getInstance().listadoDeProvincias().provincias;
+        modelo.put("provincias", provincias);
+        context.render("Usuarios/register.hbs",modelo);
+    }
+
+    public void registerPost(Context context) throws IOException {
         Map<String, Object> modelo = new HashMap<>();
 
         String nombre = context.formParam("nombre");
@@ -80,6 +90,10 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         String nombreDeUsuario = context.formParam("nombreDeUsuario");
         String email = context.formParam("email");
         String medioNotificacion = context.formParam("medioNotificacion");
+        String provincia = context.formParam("provincia");
+        String municipio = context.formParam("municipio");
+        String departamento = context.formParam("departamento");
+
 
             //Validaciones
         if (!(new ValidadorDeContrasenias().esValida(contrasenia))) {
@@ -138,8 +152,26 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         miembro.setNombre(nombre);
         miembro.setApellido(apellido);
 
+        Localizacion localizacion = new Localizacion();
+        RepoDeProvincias repoDeProvincias = new RepoDeProvincias();
+        repoDeProvincias.agregar(ServicioGeoref.getInstance().buscarProvincia(provincia));
+        localizacion.setProvincia(provincia);
+        if(municipio!=null){
+            RepoDeMunicipios repoDeMunicipios = new RepoDeMunicipios();
+            repoDeMunicipios.agregar(ServicioGeoref.getInstance().buscarMunicipio(municipio,localizacion.getProvincia().id,localizacion.getMaxMunicipios()));
+            localizacion.setMunicipio(municipio);
+        }
+        if (departamento != null){
+            RepoDeDepartamentos repoDeDepartamentos = new RepoDeDepartamentos();
+            repoDeDepartamentos.agregar(ServicioGeoref.getInstance().buscarDepartamento(departamento,localizacion.getProvincia().id,localizacion.getMaxDepartamentos()));
+            localizacion.setDepartamento(departamento);
+        }
+
+        miembro.setLocalizacion(localizacion);
+
+
         Puntaje puntaje = new Puntaje();
-        puntaje.setValor(5.00);
+        puntaje.setValor(puntajeInicial);
         miembro.setPuntaje(puntaje);
 
         miembro.setRol(repoDeRoles.buscarPorTipoRol(TipoRol.NORMAL));
@@ -155,6 +187,9 @@ public class UsuariosController implements WithSimplePersistenceUnit {
     public void index(Context context){
         Map<String, Object> modelo = new HashMap<>();
         List<Miembro> usuarios = repoMiembros.buscarTodos();
+        List<Rol> roles = repoDeRoles.buscarTodos();
+        System.out.println(roles);
+        modelo.put("roles",roles);
         modelo.put("usuarios", usuarios);
         context.render("Usuarios/index.hbs",modelo);
     }
@@ -320,6 +355,8 @@ public class UsuariosController implements WithSimplePersistenceUnit {
     public void mostrarUsuario(Context context){
         Long idUsuario = Long.parseLong(context.pathParam("id"));
         Miembro usuario = repoMiembros.buscarPorId(idUsuario);
+        List<Rol> roles = repoDeRoles.buscarTodos();
+
         Map<String, Object> modelo = new HashMap<>();
         modelo.put("usuario", usuario);
 
@@ -327,4 +364,13 @@ public class UsuariosController implements WithSimplePersistenceUnit {
 
     }
 
+    public void updateRol(Context context) {
+        if (!Objects.equals(context.formParam("rol"), null)) {
+            Miembro miembroModificable = this.repoMiembros.buscarPorId(Long.valueOf(context.pathParam("id")));
+            miembroModificable.setRol(repoDeRoles.buscarPorId(Long.valueOf(context.formParam("rol"))));
+            this.repoMiembros.modificar(miembroModificable);
+        }
+        context.status(HttpStatus.CREATED);
+        context.redirect("/usuarios");
+    }
 }
