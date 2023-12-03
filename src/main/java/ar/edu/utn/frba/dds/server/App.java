@@ -30,7 +30,7 @@ public class App {
     public static void main(String[] args) throws IOException, TipoEstablecimientoInvalidoExcepcion {
 
         /*ConfigurationTask.actualizarPuntajes();*/ //Preparamos cron de puntajes
-        cargarCosas(); //Cargamos cosas iniciales para no tener app vacía
+        /*cargarCosas();*/ //Cargamos cosas iniciales para no tener app vacía
         Server.init(); //Acción :D
 
     }
