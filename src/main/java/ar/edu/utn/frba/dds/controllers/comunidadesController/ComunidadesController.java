@@ -67,6 +67,8 @@ public class ComunidadesController extends Controller {
         System.out.println(responseComunidadesAnalizables.resultado);
 
         System.out.println(responseComunidadesAnalizables.exito);
+
+
         List<List<Comunidad>> comunidades = responseComunidadesAnalizables.resultado.stream().map(this::comunidadesSugeridas).collect(Collectors.toList());
         System.out.println(comunidades);
         model.put("comunidades", comunidades);
