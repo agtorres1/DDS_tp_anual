@@ -1,3 +1,18 @@
+$(document).ready(function() {
+    $('#provincia').change(function() {
+        if ($(this).val() === 'telefono') {
+            $('#telefonoInput').show();
+            $('#telefonoLabel').show();
+            $('#telefonoInput input').attr("required", true);
+        } else {
+            $('#telefonoInput').hide();
+            $('#telefonoLabel').hide();
+            $('#telefonoInput input').attr("required", false);
+        }
+    });
+});
+
+
 async function cargarMunicipiosYDepartamentos() {
     // Obtener el valor seleccionado en el campo de provincias
     var provinciaId = document.getElementById("provincia").value;
