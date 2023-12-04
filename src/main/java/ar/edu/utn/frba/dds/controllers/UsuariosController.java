@@ -10,6 +10,8 @@ import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.Puntaje;
 import ar.edu.utn.frba.dds.models.domain.comunidades.gradosDeConfianza.TipoDeGrado;
 import ar.edu.utn.frba.dds.models.domain.localizaciones.Localizacion;
 import ar.edu.utn.frba.dds.models.domain.services_api.georef.ServicioGeoref;
+import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Departamento;
+import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Municipio;
 import ar.edu.utn.frba.dds.models.domain.services_api.georef.entities.Provincia;
 import ar.edu.utn.frba.dds.models.domain.usuario.Rol;
 import ar.edu.utn.frba.dds.models.domain.usuario.TipoRol;
@@ -31,16 +33,25 @@ import javax.persistence.EntityTransaction; //
 import org.jetbrains.annotations.NotNull; //
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UsuariosController implements WithSimplePersistenceUnit {
     private static final Double puntajeInicial = 5.00;
     private RepoDeMiembros repoMiembros;
     private RepoDeMediosDeNotificacion repoDeMediosDeNotificacion;
     private RepoDeRoles repoDeRoles;
-    public UsuariosController(RepoDeMiembros repoMiembros, RepoDeMediosDeNotificacion repoDeMediosDeNotificacion, RepoDeRoles repoDeRoles){
+    private RepoDeProvincias repoDeProvincias;
+    private RepoDeMunicipios repoDeMunicipios;
+    private RepoDeDepartamentos repoDeDepartamentos;
+
+    public UsuariosController(RepoDeMiembros repoMiembros, RepoDeMediosDeNotificacion repoDeMediosDeNotificacion, RepoDeRoles repoDeRoles,
+        RepoDeProvincias repoDeProvincias, RepoDeMunicipios repoDeMunicipios, RepoDeDepartamentos repoDeDepartamentos){
         this.repoMiembros = repoMiembros;
         this.repoDeMediosDeNotificacion = repoDeMediosDeNotificacion;
         this.repoDeRoles = repoDeRoles;
+        this.repoDeProvincias = repoDeProvincias;
+        this.repoDeMunicipios = repoDeMunicipios;
+        this.repoDeDepartamentos = repoDeDepartamentos;
     }
 
     public void login(Context context){
@@ -77,6 +88,7 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         Map<String, Object> modelo = new HashMap<>();
 
         List<Provincia> provincias = ServicioGeoref.getInstance().listadoDeProvincias().provincias;
+        provincias.sort(Comparator.comparing(Provincia::getNombre)); //Ordenamos
         modelo.put("provincias", provincias);
         context.render("Usuarios/register.hbs",modelo);
     }
@@ -153,17 +165,32 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         miembro.setApellido(apellido);
 
         Localizacion localizacion = new Localizacion();
-        RepoDeProvincias repoDeProvincias = new RepoDeProvincias();
-        repoDeProvincias.agregar(ServicioGeoref.getInstance().buscarProvincia(provincia));
+
+        Provincia nuevaProvincia = ServicioGeoref.getInstance().buscarProvincia(provincia);
+
+        System.out.println(nuevaProvincia);
+        System.out.println(nuevaProvincia.id);
+        System.out.println(nuevaProvincia.nombre);
+
+        if(esNuevaProvincia(nuevaProvincia)){
+            this.repoDeProvincias.agregar(nuevaProvincia);
+        }
         localizacion.setProvincia(provincia);
-        if(municipio!=null){
-            RepoDeMunicipios repoDeMunicipios = new RepoDeMunicipios();
-            repoDeMunicipios.agregar(ServicioGeoref.getInstance().buscarMunicipio(municipio,localizacion.getProvincia().id,localizacion.getMaxMunicipios()));
+
+        if(municipio!=""){
+            Municipio nuevoMunicipio = ServicioGeoref.getInstance().buscarMunicipio(municipio,localizacion.getProvincia().id,localizacion.getMaxMunicipios());
+            System.out.println(nuevoMunicipio);
+
+            if(esNuevoMunicipio(nuevoMunicipio)){
+                this.repoDeMunicipios.agregar(nuevoMunicipio);
+            }
             localizacion.setMunicipio(municipio);
         }
-        if (departamento != null){
-            RepoDeDepartamentos repoDeDepartamentos = new RepoDeDepartamentos();
-            repoDeDepartamentos.agregar(ServicioGeoref.getInstance().buscarDepartamento(departamento,localizacion.getProvincia().id,localizacion.getMaxDepartamentos()));
+        if (departamento != ""){
+            Departamento nuevoDepartamento = ServicioGeoref.getInstance().buscarDepartamento(departamento,localizacion.getProvincia().id,localizacion.getMaxDepartamentos());
+            if(esNuevoDepartamento(nuevoDepartamento)) {
+                this.repoDeDepartamentos.agregar(nuevoDepartamento);
+            }
             localizacion.setDepartamento(departamento);
         }
 
@@ -183,6 +210,23 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         modelo.put("exito", "Usuario registrado con exito");
         context.render("Usuarios/login.hbs", modelo);
     }
+
+    private boolean esNuevoDepartamento(Departamento nuevoDepartamento) {
+        List<Departamento> departamentos = this.repoDeDepartamentos.buscarTodos();
+        return !departamentos.stream().anyMatch(departamento->departamento.id == nuevoDepartamento.id);
+    }
+
+    private boolean esNuevoMunicipio(Municipio nuevoMunicipio) {
+        List<Municipio> municipios = this.repoDeMunicipios.buscarTodos();
+        return !municipios.stream().anyMatch(municipio->municipio.id == nuevoMunicipio.id);
+    }
+
+    private boolean esNuevaProvincia(Provincia nuevaProvincia) {
+        List<Provincia> provincias = this.repoDeProvincias.buscarTodos();
+        return !provincias.stream().anyMatch(unaProvincia->unaProvincia.id == nuevaProvincia.id);
+    }
+
+
 
     public void index(Context context){
         Map<String, Object> modelo = new HashMap<>();
@@ -215,10 +259,11 @@ public class UsuariosController implements WithSimplePersistenceUnit {
     }
 
 
-    public void show(Context context) {
+    public void show(Context context) throws IOException {
         Map<String, Object> modelo = new HashMap<>();
         //Long idUsuario = Long.parseLong(context.sessionAttribute("id"));
         Miembro usuario = repoMiembros.buscarPorId(context.sessionAttribute("usuario_id"));
+
         modelo.put("usuario", usuario);
         context.render("Usuarios/show.hbs",modelo);
 }
@@ -226,16 +271,19 @@ public class UsuariosController implements WithSimplePersistenceUnit {
 
 
 
-    public void edit(Context context) {
-        Miembro usuario = (Miembro) this.repoMiembros.buscarPorId(Long.parseLong(context.pathParam("id")));
+    public void edit(Context context) throws IOException {
+        Miembro usuario = this.repoMiembros.buscarPorId(Long.parseLong(context.pathParam("id")));
         Map<String, Object> model = new HashMap<>();
+        List<Provincia> provincias = ServicioGeoref.getInstance().listadoDeProvincias().provincias;
+        provincias.sort(Comparator.comparing(Provincia::getNombre));
         model.put("usuario", usuario);
+        model.put("provincias",provincias);
         context.render("Usuarios/admin.hbs", model);
 
     }
 
 
-    public void update(Context context) {
+    public void update(Context context) throws IOException {
         Miembro usuario = repoMiembros.buscarPorId(context.sessionAttribute("usuario_id"));
         //Miembro usuario = (Miembro) this.repoMiembros.buscarPorId(Long.parseLong(context.pathParam("id")));
 
@@ -266,7 +314,7 @@ public class UsuariosController implements WithSimplePersistenceUnit {
 
 
 
-    private void asignarParametrosYactualizar(Miembro usuario, Context context) {
+    private void asignarParametrosYactualizar(Miembro usuario, Context context) throws IOException {
         Map<String, Object> modelo = new HashMap<>();
 
         String nombre = context.formParam("nombre");
@@ -274,6 +322,12 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         String email = context.formParam("email");
         String medioNotificacion = context.formParam("medioSelect");
         String desc = context.formParam("descripcion");
+
+/*        String provincia = context.formParam("provincia");
+        String municipio = context.formParam("municipio");
+        String departamento = context.formParam("departamento");*/
+
+
 
         if(medioNotificacion != null){
             Long viejo2 =  usuario.medioDeNotificacion.getId();
@@ -346,8 +400,42 @@ public class UsuariosController implements WithSimplePersistenceUnit {
         usuario.setApellido(apellido);
         usuario.setMail(email);
         usuario.setDescripcion(desc);
+        /*if(esNuevaProvincia(nuevaProvincia)){
+            this.repoDeProvincias.agregar(nuevaProvincia);
+        }
+        localizacion.setProvincia(provincia);
 
+        if(municipio!=""){
+            Municipio nuevoMunicipio = ServicioGeoref.getInstance().buscarMunicipio(municipio,localizacion.getProvincia().id,localizacion.getMaxMunicipios());
+            System.out.println(nuevoMunicipio);
 
+            if(esNuevoMunicipio(nuevoMunicipio)){
+                this.repoDeMunicipios.agregar(nuevoMunicipio);
+            }
+            localizacion.setMunicipio(municipio);
+        }
+        if (departamento != ""){
+            Departamento nuevoDepartamento = ServicioGeoref.getInstance().buscarDepartamento(departamento,localizacion.getProvincia().id,localizacion.getMaxDepartamentos());
+            if(esNuevoDepartamento(nuevoDepartamento)) {
+                this.repoDeDepartamentos.agregar(nuevoDepartamento);
+            }
+            localizacion.setDepartamento(departamento);
+        }
+
+        if(!Objects.equals(provincia, null)){
+            usuario.setLocalizacion(null);
+            Localizacion localizacion = new Localizacion();
+            localizacion.setProvincia(provincia);
+            System.out.println(municipio);
+            System.out.println(departamento);
+            if(!Objects.equals(municipio, "")){
+                localizacion.setMunicipio(municipio);
+            }
+            if(!Objects.equals(departamento, "")){
+                localizacion.setDepartamento(departamento);
+            }
+            usuario.setLocalizacion(localizacion);
+        }*/
         this.repoMiembros.modificar(usuario);
 
     }

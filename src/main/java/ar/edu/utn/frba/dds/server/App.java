@@ -229,7 +229,6 @@ public class App {
         aperturaIncidente.setEstablecimiento(establecimiento);
 
         List<Incidente> incidentes = miembro1.abrirIncidente(aperturaIncidente, new Notificador());
-        comunidad1.cerrarIncidente(miembro1,incidentes.get(0));
         RepoDeIncidentes repoDeIncidentes = new RepoDeIncidentes();
         incidentes.forEach(repoDeIncidentes::agregar);
 

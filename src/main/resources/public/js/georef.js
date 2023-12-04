@@ -1,18 +1,3 @@
-$(document).ready(function() {
-    $('#provincia').change(function() {
-        if ($(this).val() === 'telefono') {
-            $('#telefonoInput').show();
-            $('#telefonoLabel').show();
-            $('#telefonoInput input').attr("required", true);
-        } else {
-            $('#telefonoInput').hide();
-            $('#telefonoLabel').hide();
-            $('#telefonoInput input').attr("required", false);
-        }
-    });
-});
-
-
 async function cargarMunicipiosYDepartamentos() {
     // Obtener el valor seleccionado en el campo de provincias
     var provinciaId = document.getElementById("provincia").value;
@@ -68,27 +53,61 @@ function cargarSelectMunicipios(municipios) {
     // Limpiar las opciones anteriores
     selectMunicipio.innerHTML = "";
 
-    // Agregar las nuevas opciones
-    municipios.forEach(function(municipio) {
+    
+    var option = document.createElement("option");
+        option.value = "";
+        option.text = "Ninguna de las anteriores";
+        selectMunicipio.add(option);
+
+    // Ordenar y Agregar las nuevas opciones
+    municipios.sort(
+        (a, b) => {
+            if (a.nombre < b.nombre) {
+              return -1;
+            }
+            if (a.nombre > b.nombre) {
+              return 1;
+            }
+            return 0;
+          }
+    ).forEach(function(municipio) {
         var option = document.createElement("option");
         option.value = municipio.nombre;
         option.text = municipio.nombre;
         selectMunicipio.add(option);
     });
+
 }
 
 function cargarSelectDepartamentos(departamentos) {
     // Obtener el elemento select de departamentos
     var selectDepartamento = document.getElementById("departamento");
 
-    // Limpiar las opciones anteriores
     selectDepartamento.innerHTML = "";
 
+    var option = document.createElement("option");
+    option.value = "";
+    option.text = "Ninguna de las anteriores";
+    selectDepartamento.add(option);
+
     // Agregar las nuevas opciones
-    departamentos.forEach(function(departamento) {
+    departamentos.sort(
+        (a, b) => {
+            if (a.nombre < b.nombre) {
+              return -1;
+            }
+            if (a.nombre > b.nombre) {
+              return 1;
+            }
+            return 0;
+          }
+    ).forEach(function(departamento) {
         var option = document.createElement("option");
         option.value = departamento.nombre;
         option.text = departamento.nombre;
         selectDepartamento.add(option);
     });
+
+
+
 }

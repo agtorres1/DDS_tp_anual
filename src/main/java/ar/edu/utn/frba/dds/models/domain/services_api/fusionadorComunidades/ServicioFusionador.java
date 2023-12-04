@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class ServicioFusionador{
     private static ServicioFusionador instancia = null;
-    private static final String urlAPI = "http://localhost:8082/api/";
+    private static final String urlAPI = "https://api-fusionador-comunidades.onrender.com/api/";
     /* Mejor usar archivo de config para esta URL absoluta*/
     private Retrofit retrofit;
 

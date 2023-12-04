@@ -12,7 +12,7 @@ public class FactoryController {
         Object controller = null;
         switch (nombre) {
             case "Usuarios":
-                controller = new UsuariosController(new RepoDeMiembros(), new RepoDeMediosDeNotificacion(), new RepoDeRoles());
+                controller = new UsuariosController(new RepoDeMiembros(), new RepoDeMediosDeNotificacion(), new RepoDeRoles(),new RepoDeProvincias(),new RepoDeMunicipios(),new RepoDeDepartamentos());
                 break;
             case "EntidadesControladoras":
                 controller = new EntidadControladoraController(new RepoEntidadControladora());

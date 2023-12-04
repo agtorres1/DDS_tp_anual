@@ -133,7 +133,14 @@
     document.getElementById('botonRegresar').addEventListener('click', function() {
         // Obtén la dirección de la página anterior y redirige a esa dirección
         var paginaAnterior = document.referrer;
-        window.location.href = paginaAnterior;
+        // Comprueba si la página anterior es la de edición (ajusta la condición según la URL real)
+        if (paginaAnterior.includes('/editar')) {
+            // Si la página anterior es la de edición, redirige al inicio
+            window.location.href = '/comunidades';
+        } else {
+            // En otros casos, redirige a la página anterior como antes
+            window.location.href = paginaAnterior;
+        }
     });
 </script>
 </body>
